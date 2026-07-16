@@ -50,7 +50,7 @@
     "id": "unfpa-portal-q",
     "title": "내부 지식 포털 관련 질문 리스트 Wafa에게 발송",
     "detail": "온보딩 때 '다음 주 초(이번 주)' 발송 약속. Wafa가 답을 모아와야 스코핑 논의가 풀림. UNFPA Google 생태계 내 검색 가능한 CSC 리소스 허브 구상.",
-    "status": "open",
+    "status": "done",
     "priority": "med",
     "due": "2026-07-17",
     "people": [
@@ -63,9 +63,9 @@
         "url": "https://notes.granola.ai/d/3a518be7-a04c-421d-aa1d-25588ea1463b"
       }
     ],
-    "note": "",
+    "note": "2026-07-16 확인: 7/14 Wafa handoff 이메일에 Digital Interface 질문 7건 포함 발송 완료 (03-Communications/2026-07-13-wafa-handoff-request-list.md). 잔여: Wafa 응답 대기 + 미발송 follow-up 항목(대시보드 기술 선택, Signal Detection 키워드, OOO 대체 연락처, Nairobi 발표 형식, 브랜드 가이드라인)은 ~Jul 25 전 별도 발송 필요.",
     "created": "2026-07-15",
-    "updated": "2026-07-15"
+    "updated": "2026-07-16"
   },
   {
     "id": "unfpa-mapping-dash",

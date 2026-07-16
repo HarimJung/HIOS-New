@@ -1950,58 +1950,68 @@ def api_action_resolve(action_id):
     return jsonify(ok=True, result=action["result"])
 
 # ---------------------------------------------------------------- calendar
-# Reads Google Calendar via the macOS Calendar app (already synced),
-# so no Google OAuth is needed. Cached 15 min; ?refresh=1 to force.
+# Reads events via EventKit (JXA ObjC bridge) — the old AppleScript
+# `whose` query timed out on large synced calendars (90s+); EventKit's
+# predicate query returns in ~0.1s. Window: -7d .. +56d so the month
+# calendar grid is populated. Cached 15 min; ?refresh=1 to force.
 
 CAL_TTL = 900
 CAL_CACHE = {"ts": 0.0, "events": [], "error": None}
 CAL_LOCK = threading.Lock()
 
-CAL_SCRIPT = '''
-set startDate to current date
-set hours of startDate to 0
-set minutes of startDate to 0
-set seconds of startDate to 0
-set endDate to startDate + (4 * days)
-set out to ""
-tell application "Calendar"
-  repeat with cname in {"직장", "Calendar", "집", "홈", "캘린더", "data.harim.jung@gmail.com"}
-    try
-      set c to calendar (cname as string)
-      set evs to (every event of c whose start date is greater than or equal to startDate and start date is less than endDate)
-      repeat with e in evs
-        set out to out & (cname as string) & tab & (summary of e) & tab & my iso(start date of e) & tab & my iso(end date of e) & linefeed
-      end repeat
-    end try
-  end repeat
-end tell
-return out
-
-on iso(d)
-  return ((year of d) as string) & "-" & my pad((month of d) as integer) & "-" & my pad(day of d) & " " & my pad(hours of d) & ":" & my pad(minutes of d)
-end iso
-
-on pad(n)
-  set t to n as string
-  if length of t < 2 then set t to "0" & t
-  return t
-end pad
+CAL_SCRIPT = r'''
+ObjC.import("EventKit");
+function pad(n){ return (n < 10 ? "0" : "") + n; }
+function iso(nsdate){
+  var d = new Date(nsdate.timeIntervalSince1970 * 1000);
+  return d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate())
+    + " " + pad(d.getHours()) + ":" + pad(d.getMinutes());
+}
+var store = $.EKEventStore.alloc.init;
+var status = $.EKEventStore.authorizationStatusForEntityType($.EKEntityTypeEvent);
+if (status !== 3) {  // 3 = fullAccess (macOS 14+)
+  var done = false;
+  store.requestFullAccessToEventsWithCompletion(function(){ done = true; });
+  var deadline = $.NSDate.dateWithTimeIntervalSinceNow(10);
+  while (!done && $.NSDate.date.compare(deadline) === $.NSOrderedAscending) {
+    $.NSRunLoop.currentRunLoop.runModeBeforeDate($.NSDefaultRunLoopMode,
+      $.NSDate.dateWithTimeIntervalSinceNow(0.1));
+  }
+  status = $.EKEventStore.authorizationStatusForEntityType($.EKEntityTypeEvent);
+  if (status !== 3) throw new Error("NOACCESS status=" + status);
+  store = $.EKEventStore.alloc.init;
+}
+var cal = $.NSCalendar.currentCalendar;
+var comps = cal.componentsFromDate(
+  $.NSCalendarUnitYear | $.NSCalendarUnitMonth | $.NSCalendarUnitDay, $.NSDate.date);
+var midnight = cal.dateFromComponents(comps);
+var start = midnight.dateByAddingTimeInterval(-7 * 86400);
+var end = midnight.dateByAddingTimeInterval(56 * 86400);
+var pred = store.predicateForEventsWithStartDateEndDateCalendars(start, end, $());
+var evs = store.eventsMatchingPredicate(pred);
+var out = [];
+for (var i = 0; i < evs.count; i++) {
+  var e = evs.objectAtIndex(i);
+  out.push((e.calendar.title.js || "") + "\t" + (e.title.js || "")
+    + "\t" + iso(e.startDate) + "\t" + iso(e.endDate));
+}
+out.join("\n");
 '''
 
 
 def _fetch_calendar():
     try:
         proc = subprocess.run(
-            ["osascript", "-e", CAL_SCRIPT],
-            capture_output=True, text=True, timeout=90,
+            ["osascript", "-l", "JavaScript", "-e", CAL_SCRIPT],
+            capture_output=True, text=True, timeout=30,
         )
     except (OSError, subprocess.TimeoutExpired) as exc:
         return [], f"캘린더 조회 실패: {exc}"
     if proc.returncode != 0:
         err = (proc.stderr or "").strip()
-        if "-1743" in err or "authoriz" in err.lower():
-            err = ("캘린더 접근 권한 필요 — 시스템 설정 > 개인정보 보호 및 보안 > "
-                   "자동화에서 python의 Calendar 제어를 허용하세요")
+        if "NOACCESS" in err:
+            err = ("캘린더 읽기 권한 필요 — 시스템 설정 > 개인정보 보호 및 보안 > "
+                   "캘린더에서 osascript/터미널의 전체 접근을 허용한 뒤 새로고침하세요")
         return [], err or "osascript 실패"
     events, seen = [], set()
     for line in proc.stdout.splitlines():

@@ -1068,6 +1068,15 @@ async function loadWorkOverview(box) {
     : `<div class="ws-empty">할 일 없음</div>`;
 
   box.innerHTML = `
+    <div class="ws-section ov-ask">
+      <div class="ws-head"><span class="ws-title">엔진에게 바로 요청</span><span class="spacer"></span>
+        <span class="ai-note-inline">Claude가 <code>01-Projects/${escapeHtml(name)}/</code> 범위로 실행 — 로그는 AI 요청 탭</span></div>
+      <div class="ws-form">
+        <input class="ws-input" id="ov-ask-input" maxlength="2000"
+          placeholder="예: 최근 미팅노트 반영해서 _STATUS.md 업데이트해줘 (Enter로 실행)">
+        <button class="ws-add-btn" id="ov-ask-run">엔진 실행</button>
+      </div>
+    </div>
     <div class="ws-section" id="ov-status">
       <div class="ws-head"><span class="ws-title">현황 — _STATUS.md</span><span class="spacer"></span>
         <button class="ws-open-btn" id="ov-status-edit">편집</button>
@@ -1090,6 +1099,28 @@ async function loadWorkOverview(box) {
     </div>`;
 
   const reload = () => loadWorkOverview(box);
+
+  const ovAsk = async () => {
+    const inp = $("ov-ask-input");
+    const prompt = inp.value.trim();
+    if (!prompt) { toast("요청 내용을 입력하세요", "warn"); return; }
+    try {
+      const res = await postJson(`/api/projects/${encodeURIComponent(name)}/request`, { prompt });
+      toast(`엔진 시작됨 — ${name} · AI 요청 탭에서 로그 확인`, "ok");
+      inp.value = "";
+      state.workSub = "ai";
+      state.aiJobId = res.job_id;
+      state.aiOffset = 0;
+      state.aiLines = [];
+      loadWork();
+      schedulePoll(0);
+    } catch (e) {
+      if (e.status === 409) toast(e.body?.message || "이미 실행 중인 Claude 작업과 충돌", "warn");
+      else toast(`실행 실패: ${e.body?.message || e.message}`, "err");
+    }
+  };
+  $("ov-ask-run").onclick = ovAsk;
+  $("ov-ask-input").onkeydown = (ev) => { if (ev.key === "Enter") ovAsk(); };
 
   const statusEditBtn = box.querySelector("#ov-status-edit");
   if (statusEditBtn) statusEditBtn.onclick = () =>

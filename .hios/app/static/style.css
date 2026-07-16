@@ -1734,6 +1734,25 @@ body::after{
   color:var(--auto);
 }
 
+.ai-note-inline{
+  font-size:11px;
+  color:var(--text3);
+}
+
+.ai-note-inline code{
+  font-family:var(--mono);
+  font-size:10px;
+  background:var(--surface2);
+  border:1px solid var(--border);
+  border-radius:4px;
+  padding:0 4px;
+  color:var(--auto);
+}
+
+.ov-ask{
+  border-color:color-mix(in srgb, var(--auto) 35%, var(--border));
+}
+
 .ai-ta{
   width:100%;
   min-height:96px;
@@ -2027,7 +2046,7 @@ body::after{
 .cal-note{margin-top:8px;font-size:13px;color:var(--text2)}
 .cal-memo-box{margin-top:12px}
 .cal-memo-box textarea{
-  width:100%;min-height:64px;background:var(--input);color:var(--text);
+  width:100%;min-height:64px;background:var(--surface2);color:var(--text);
   border:1px solid var(--border);border-radius:6px;padding:8px;
   font-family:var(--sans);font-size:13px;resize:vertical;box-sizing:border-box;
 }
