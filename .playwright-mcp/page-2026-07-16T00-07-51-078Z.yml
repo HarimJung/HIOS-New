@@ -1,0 +1,64 @@
+- generic [active] [ref=e1]:
+  - table [ref=e2]:
+    - rowgroup [ref=e3]:
+      - row [ref=e4]:
+        - cell [ref=e5]:
+          - link "Gmail by Google":
+            - /url: https://mail.google.com
+            - img "Gmail by Google" [ref=e6] [cursor=pointer]
+        - cell "Confirmation" [ref=e7]:
+          - table [ref=e8]:
+            - rowgroup [ref=e9]:
+              - row [ref=e10]:
+                - cell [ref=e11]
+              - row [ref=e13]:
+                - cell [ref=e14]:
+                  - table [ref=e15]:
+                    - rowgroup [ref=e16]:
+                      - row "Confirmation":
+                        - cell
+                        - cell "Confirmation" [ref=e17]
+                        - cell
+                      - row [ref=e18]:
+                        - cell [ref=e19]
+                        - cell [ref=e20]
+  - table
+  - table [ref=e21]:
+    - rowgroup [ref=e22]:
+      - row [ref=e23]:
+        - cell [ref=e24]:
+          - paragraph [ref=e25]:
+            - text: Please confirm forwarding mail of hajung@unfpa.org to
+            - strong [ref=e26]: data.harim.jung@gmail.com
+            - text: .
+          - paragraph [ref=e28]:
+            - button "Confirm" [ref=e29]
+          - paragraph [ref=e30]
+          - paragraph [ref=e31]
+  - table [ref=e32]:
+    - rowgroup [ref=e33]:
+      - row [ref=e34]:
+        - cell [ref=e35]
+        - cell [ref=e36]:
+          - generic [ref=e37]:
+            - text: ©2026 Google -
+            - link "Gmail Home" [ref=e38] [cursor=pointer]:
+              - /url: https://mail.google.com
+            - text: "-"
+            - link "Privacy Policy" [ref=e39] [cursor=pointer]:
+              - /url: https://policies.google.com/privacy?hl=en
+            - text: "-"
+            - link "Program Policies" [ref=e40] [cursor=pointer]:
+              - /url: https://www.gmail.com/mail/help/program_policies.html
+            - text: "-"
+            - link "Terms of Use" [ref=e41] [cursor=pointer]:
+              - /url: https://www.gmail.com/mail/help/terms_of_use.html
+            - generic [ref=e42]:
+              - text: "-"
+              - link "Google Home" [ref=e43] [cursor=pointer]:
+                - /url: https://www.google.com
+        - cell [ref=e44]
+      - row [ref=e45]:
+        - cell [ref=e46]
+        - cell [ref=e47]
+  - paragraph [ref=e48]

@@ -1,0 +1,63 @@
+[
+  {
+    "id": "who-doc-review",
+    "title": "SOP · SDG7 Tracking Report · HCF 전화 booklet 리뷰",
+    "detail": "7/13 인트로 콜에서 채팅으로 링크 공유받음. WIMS 계정 나오기 전에 할 수 있는 유일한 준비 작업. 업무 배분: 가정에너지 DB ~60% (12월 말까지 업데이트 → 1월 Glasgow대 CISCO 모델 런), HCF 전화 ~40% (3-4년 미업데이트, 클린에너지 이벤트용 예비 추정치 필요). 올해 신규 방법론: GNI를 공변량으로 추가.",
+    "status": "in_progress",
+    "priority": "high",
+    "due": "2026-07-20",
+    "people": ["Heather Adair-Rohani", "Wenlu Ye", "Salvatore Vinci"],
+    "sources": [
+      {"kind": "granola", "label": "Introduction to the Work (7/13)", "url": "https://notes.granola.ai/d/90dffc42-b9f4-4d8f-84e1-13dd51e7c1d4"},
+      {"kind": "gmail", "label": "Introduction Meeting 스레드 (7/10)", "url": "https://mail.google.com/mail/u/0/#all/19f4c6faf8abafa9"}
+    ],
+    "note": "",
+    "created": "2026-07-15",
+    "updated": "2026-07-15"
+  },
+  {
+    "id": "who-wims-teams",
+    "title": "WIMS 계정 도착 즉시 Wenlu 연락 → Teams 온보딩",
+    "detail": "Health and Energy Teams 채널에 모든 핵심 DB/폴더 있음: 가정에너지 DB(~3,000 서베이), HCF 전화 DB, SDG7 보고서, Alina 인수인계 노트. Wenlu가 폴더 구조 워크스루 해주기로 함. Heather는 휴가 중에도 개인 이메일/WhatsApp 가능.",
+    "status": "blocked",
+    "priority": "high",
+    "due": "",
+    "people": ["Wenlu Ye"],
+    "sources": [
+      {"kind": "granola", "label": "Introduction to the Work (7/13)", "url": "https://notes.granola.ai/d/90dffc42-b9f4-4d8f-84e1-13dd51e7c1d4"}
+    ],
+    "note": "WIMS 계정 대기 중 (계약 7/11 시작, HR 클리어런스 완료)",
+    "created": "2026-07-15",
+    "updated": "2026-07-15"
+  },
+  {
+    "id": "who-hcf-concept",
+    "title": "Salvatore HCF 지표 조화 컨셉노트 수신 확인",
+    "detail": "WASH 파트너(UNICEF, World Bank, UNDP 등)와 '신뢰할 수 있는 전기 접근' 지표 정의 정렬하는 신규 워크스트림. Salvatore가 이메일+컨셉노트 포워딩하기로 함. 안 오면 리마인드.",
+    "status": "open",
+    "priority": "med",
+    "due": "2026-07-22",
+    "people": ["Salvatore Vinci"],
+    "sources": [
+      {"kind": "granola", "label": "Introduction to the Work (7/13)", "url": "https://notes.granola.ai/d/90dffc42-b9f4-4d8f-84e1-13dd51e7c1d4"}
+    ],
+    "note": "",
+    "created": "2026-07-15",
+    "updated": "2026-07-15"
+  },
+  {
+    "id": "who-mailbox",
+    "title": "가정에너지 데이터 요청 메일박스 인수",
+    "detail": "~5-6건 요청 대기 중, 현재 인력 부족. 데이터 공유 협약(data sharing agreement) 이제 필수 — 오남용 이슈 있었음. 정치적 민감 케이스는 온보딩되면서 케이스별 논의.",
+    "status": "blocked",
+    "priority": "med",
+    "due": "",
+    "people": ["Heather Adair-Rohani"],
+    "sources": [
+      {"kind": "granola", "label": "Introduction to the Work (7/13)", "url": "https://notes.granola.ai/d/90dffc42-b9f4-4d8f-84e1-13dd51e7c1d4"}
+    ],
+    "note": "Teams 온보딩 후 시작",
+    "created": "2026-07-15",
+    "updated": "2026-07-15"
+  }
+]

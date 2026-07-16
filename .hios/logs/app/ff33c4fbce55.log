@@ -1,0 +1,6 @@
+Equitee 프로젝트의 _STATUS.md는 여기 있습니다:
+
+`01-Projects/Equitee/_STATUS.md`
+
+참고로 다른 프로젝트들(Climate-AICA, WMO, UNFPA-CSE, WHO)도 각각 `01-Projects/<프로젝트명>/_STATUS.md` 위치에 동일한 구조로 존재합니다.
+[system] finished status=success rc=0

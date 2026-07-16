@@ -1,0 +1,9 @@
+주제 선택이 필요합니다. 07-10 digest 기준 후보는 다음과 같습니다:
+
+1. **JPMorgan AI 에이전트** — 백테스트에서 60/40 포트폴리오를 이긴 AI. AI×투자 교차 주제 (추천)
+2. **SK Hynix 미국 상장** — 사상 최대 규모 미국 상장, 한국 기업 스토리
+3. **Claude 내부 작동 연구** — Anthropic의 '숨겨진 공간' 발견, AI 과학 콘텐츠
+4. **리테일 투자자 트렌드** — 개인 투자자의 S&P500 회피 현상, 행동경제 각도
+
+번호로 알려주시거나, 다른 주제를 직접 지정해주세요. 선택하시면 해당 주제로 각도를 달리한 3개 초안을 `01-Projects/Visual-Climate/02-Xiaohongshu/drafts/`에 생성합니다.
+[system] finished status=success rc=0

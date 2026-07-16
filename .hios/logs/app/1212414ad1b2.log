@@ -1,0 +1,7 @@
+HiOS Granola Sync
+========================================
+Reading Granola credentials...
+Fetching meetings since: 2026-07-12 15:36
+Fetching documents (limit=50)...
+Error: Access token expired. Restart Granola app to refresh.
+[system] finished status=failed rc=1

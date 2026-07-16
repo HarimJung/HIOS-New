@@ -1,0 +1,1192 @@
+[
+  {
+    "title": "ChatGPT is roaming the streets of Madrid",
+    "url": "https://www.reddit.com/r/ChatGPT/comments/1us8ydj/chatgpt_is_roaming_the_streets_of_madrid/",
+    "content": "Asking for travel suggestions, it talks like a person, says stuff like \"if it were my trip I would do...\" LOL submitted by /u/binux14 to r/ChatGPT [link] [comments]",
+    "published": "2026-07-10T01:02:09+00:00",
+    "author": "/u/binux14",
+    "source": "Reddit: AI",
+    "id": "https://www.reddit.com/r/ChatGPT/comments/1us8ydj/chatgpt_is_roaming_the_streets_of_madrid/",
+    "content_score": 1.5
+  },
+  {
+    "title": "Anthropic can't remove F@ble from the subscription tier",
+    "url": "https://www.reddit.com/r/ClaudeAI/comments/1usl9ov/anthropic_cant_remove_fble_from_the_subscription/",
+    "content": "With Sol out in the open, removing F@ble 5 from the subscription tier now would be comparable to removing Opus 4.5 from subscriptions after it launched. It would be a difficult move to justify. I think we're probably safe here. It would surprise me if Anthropic were that disconnected from reality, but who knows... Do you guys see it differently? submitted by /u/Psychological_Box406 to r/ClaudeAI [link] [comments]",
+    "published": "2026-07-10T11:43:40+00:00",
+    "author": "/u/Psychological_Box406",
+    "source": "Reddit: AI",
+    "id": "https://www.reddit.com/r/ClaudeAI/comments/1usl9ov/anthropic_cant_remove_fble_from_the_subscription/",
+    "content_score": 5.5
+  },
+  {
+    "title": "2.5x faster Qwen3.6 NVFP4 Unsloth quants",
+    "url": "https://www.reddit.com/r/LocalLLaMA/comments/1usniqh/25x_faster_qwen36_nvfp4_unsloth_quants/",
+    "content": "Hey r/LocalLLaMA folks! We made NVFP4 quants 2.5x faster for Qwen3.6 27B and also 1.56x to 1.79x faster for 35B-A3B vs NVIDIA's NVFP4 quants without any accuracy degradation! We used W4A4 so actual 4bit tensor cores for matmuls, whilst NVIDIA's ones uses W4A16. FP8 KV Cache calibration is also provided, auto allowing 2x longer contexts. For accuracy we conducted MMLU-Pro, AIME 2025, GPQA for FP8, BF16, NVIDIA's NVFP4 and our NVFP4s. It also has MTP pre-embedded. We also provided 2 35B versions N",
+    "published": "2026-07-10T13:20:19+00:00",
+    "author": "/u/danielhanchen",
+    "source": "Reddit: AI",
+    "id": "https://www.reddit.com/r/LocalLLaMA/comments/1usniqh/25x_faster_qwen36_nvfp4_unsloth_quants/",
+    "content_score": 4.0
+  },
+  {
+    "title": "Why doesn't the ML research community limit the number of submissions per author? [D]",
+    "url": "https://www.reddit.com/r/MachineLearning/comments/1usq43t/why_doesnt_the_ml_research_community_limit_the/",
+    "content": "I am currently working across multiple research communities, and I've noticed that the ML community is struggling with a massive volume of submissions, which is affecting review quality (as we are seeing in the recent ARR cycles). I am wondering what the reasoning is for not limiting the number of submissions per author? This practice has been successfully used in other research areas for years, such as Security (e.g., CCS) or Computer Architecture (e.g., DAC), to help keep workloads manageable.",
+    "published": "2026-07-10T14:59:23+00:00",
+    "author": "/u/alafaya101",
+    "source": "Reddit: AI",
+    "id": "https://www.reddit.com/r/MachineLearning/comments/1usq43t/why_doesnt_the_ml_research_community_limit_the/",
+    "content_score": 2.5
+  },
+  {
+    "title": "What's one AI trend that you think is being underestimated right now?",
+    "url": "https://www.reddit.com/r/artificial/comments/1usmi4o/whats_one_ai_trend_that_you_think_is_being/",
+    "content": "Most AI discussions seem to focus on frontier models, AGI timelines, or the latest product launches. I'm more interested in the developments that aren't making headlines but could have a significant impact over the next few years. For example: Small language models running efficiently on local devices AI agents handling repetitive workflows Synthetic data for training AI in scientific discovery Privacy-preserving AI If you had to choose one AI trend that's currently underrated, what would it be—",
+    "published": "2026-07-10T12:38:47+00:00",
+    "author": "/u/Sandesh_jagtap",
+    "source": "Reddit: AI",
+    "id": "https://www.reddit.com/r/artificial/comments/1usmi4o/whats_one_ai_trend_that_you_think_is_being/",
+    "content_score": 2.5
+  },
+  {
+    "title": "ChatGPT's depiction of elite families across Asia",
+    "url": "https://www.reddit.com/r/ChatGPT/comments/1usg7b1/chatgpts_depiction_of_elite_families_across_asia/",
+    "content": "submitted by /u/Itchy_Tangerine1897 to r/ChatGPT [link] [comments]",
+    "published": "2026-07-10T07:05:04+00:00",
+    "author": "/u/Itchy_Tangerine1897",
+    "source": "Reddit: AI",
+    "id": "https://www.reddit.com/r/ChatGPT/comments/1usg7b1/chatgpts_depiction_of_elite_families_across_asia/",
+    "content_score": 1.5
+  },
+  {
+    "title": "DeepSWE just added the gpt-5.6 models to their benchmark. I hope you guys don't get too used to Claude Code as your only coding agent. Chart is marked NSFW due to the grotesque violence.",
+    "url": "https://www.reddit.com/r/ClaudeAI/comments/1usavpc/deepswe_just_added_the_gpt56_models_to_their/",
+    "content": "submitted by /u/GrumpyPidgeon to r/ClaudeAI [link] [comments]",
+    "published": "2026-07-10T02:30:17+00:00",
+    "author": "/u/GrumpyPidgeon",
+    "source": "Reddit: AI",
+    "id": "https://www.reddit.com/r/ClaudeAI/comments/1usavpc/deepswe_just_added_the_gpt56_models_to_their/",
+    "content_score": 4.5
+  },
+  {
+    "title": "Please help me understand figure on subspace similarity in LoRA paper. [D]",
+    "url": "https://www.reddit.com/r/MachineLearning/comments/1uso667/please_help_me_understand_figure_on_subspace/",
+    "content": "I am studying the LoRA paper and have trouble understanding this figure. The function essentially measures how much of the subspace spanned by the top i vectors is contained in the subspace spanned by the top j vectors in the higher rank matrix. Therefore, j can not be lower than i. So when they say the 3rd and 4th figure zoom in on the lower-left triangle of the 2 left-most figures, how are there values for j=1 and i equals 2 to 8? I dont understand what kind of y-axis the 2 right figures are s",
+    "published": "2026-07-10T13:46:15+00:00",
+    "author": "/u/BelzebubReincarnated",
+    "source": "Reddit: AI",
+    "id": "https://www.reddit.com/r/MachineLearning/comments/1uso667/please_help_me_understand_figure_on_subspace/",
+    "content_score": 2.5
+  },
+  {
+    "title": "My profile title has changed 4 times in 2 years",
+    "url": "https://www.reddit.com/r/ClaudeAI/comments/1ush697/my_profile_title_has_changed_4_times_in_2_years/",
+    "content": "submitted by /u/Daniel_Wen to r/ClaudeAI [link] [comments]",
+    "published": "2026-07-10T08:01:10+00:00",
+    "author": "/u/Daniel_Wen",
+    "source": "Reddit: AI",
+    "id": "https://www.reddit.com/r/ClaudeAI/comments/1ush697/my_profile_title_has_changed_4_times_in_2_years/",
+    "content_score": 3.0
+  },
+  {
+    "title": "Soooo what does this one say about me?",
+    "url": "https://www.reddit.com/r/ChatGPT/comments/1urx2pu/soooo_what_does_this_one_say_about_me/",
+    "content": "submitted by /u/No_Tomatillo1695 to r/ChatGPT [link] [comments]",
+    "published": "2026-07-09T17:31:57+00:00",
+    "author": "/u/No_Tomatillo1695",
+    "source": "Reddit: AI",
+    "id": "https://www.reddit.com/r/ChatGPT/comments/1urx2pu/soooo_what_does_this_one_say_about_me/",
+    "content_score": 1.5
+  },
+  {
+    "title": "Cost Analysis of 33 AI Image Models",
+    "url": "https://www.reddit.com/r/artificial/comments/1usj0l9/cost_analysis_of_33_ai_image_models/",
+    "content": "My cost benchmark is back with more models and providers. Added Seedream models, Gemini 3.1 Flash Lite Image, GPT Image 1.5 and others. The cheapest and the priciest models are the same as before: Flux Fast Schnell at $0.0025 and Recraft 4 Pro at $0.25. The full report with price and latency comparison are on my blog. Enjoy! submitted by /u/kkomelin to r/artificial [link] [comments]",
+    "published": "2026-07-10T09:48:23+00:00",
+    "author": "/u/kkomelin",
+    "source": "Reddit: AI",
+    "id": "https://www.reddit.com/r/artificial/comments/1usj0l9/cost_analysis_of_33_ai_image_models/",
+    "content_score": 4.0
+  },
+  {
+    "title": "Do modern speech AI models have a data problem more than a model problem?",
+    "url": "https://www.reddit.com/r/artificial/comments/1usllkp/do_modern_speech_ai_models_have_a_data_problem/",
+    "content": "I’ve been following recent progress in speech AI, and one thing I’ve been wondering about is whether current limitations are increasingly caused by training data rather than model architecture. Models seem much better than they were a few years ago, yet they still struggle with regional accents, code-switching, spontaneous speech, and speakers who don’t match “standard” pronunciation. My guess is that collecting this kind of data at scale is much harder than collecting carefully scripted recordi",
+    "published": "2026-07-10T11:59:12+00:00",
+    "author": "/u/EquivalentHamster675",
+    "source": "Reddit: AI",
+    "id": "https://www.reddit.com/r/artificial/comments/1usllkp/do_modern_speech_ai_models_have_a_data_problem/",
+    "content_score": 2.5
+  },
+  {
+    "title": "Better Call Sol",
+    "url": "https://www.reddit.com/r/ChatGPT/comments/1usjaw1/better_call_sol/",
+    "content": "I spent several hours comparing Claude Fable 5 and ChatGPT 5.6 Sol Ultra on a real development project. With Claude Fable 5, the experience was frustrating. Many of my requests ended with the same response: \"Fable 5's safeguards flagged this message.\" Even for legitimate software engineering tasks, I frequently hit safeguard refusals before getting a useful answer. I then switched to ChatGPT 5.6 Sol Ultra and the difference was immediately noticeable. It analyzed my project, identified multiple ",
+    "published": "2026-07-10T10:03:56+00:00",
+    "author": "/u/LIKAR1337",
+    "source": "Reddit: AI",
+    "id": "https://www.reddit.com/r/ChatGPT/comments/1usjaw1/better_call_sol/",
+    "content_score": 4.0
+  },
+  {
+    "title": "ChatGPT made better World Cup logo than the actual World Cup 2026 logo we have.",
+    "url": "https://www.reddit.com/r/ChatGPT/comments/1uslham/chatgpt_made_better_world_cup_logo_than_the/",
+    "content": "Prompt: \"Generate FIFA World Cup concept logo for [Country + Year]\" submitted by /u/JoshiMinh to r/ChatGPT [link] [comments]",
+    "published": "2026-07-10T11:53:42+00:00",
+    "author": "/u/JoshiMinh",
+    "source": "Reddit: AI",
+    "id": "https://www.reddit.com/r/ChatGPT/comments/1uslham/chatgpt_made_better_world_cup_logo_than_the/",
+    "content_score": 1.5
+  },
+  {
+    "title": "5 hour and weekly limits have been reset. Thanks Anthropic!",
+    "url": "https://www.reddit.com/r/ClaudeAI/comments/1urzmj0/5_hour_and_weekly_limits_have_been_reset_thanks/",
+    "content": "submitted by /u/DavidCBlack to r/ClaudeAI [link] [comments]",
+    "published": "2026-07-09T19:00:32+00:00",
+    "author": "/u/DavidCBlack",
+    "source": "Reddit: AI",
+    "id": "https://www.reddit.com/r/ClaudeAI/comments/1urzmj0/5_hour_and_weekly_limits_have_been_reset_thanks/",
+    "content_score": 4.5
+  },
+  {
+    "title": "Updated: Millions of ChatGPT user conversations searched, but OpenAI alleged to be holding out",
+    "url": "https://www.reddit.com/r/artificial/comments/1usbdyd/updated_millions_of_chatgpt_user_conversations/",
+    "content": "Originally published January 6, 2026; updated July 9, 2026 A side controversy in the OpenAI, Inc. Copyright Infringement Litigation case going on in federal court in New York City has been that regular users’ ChatGPT conversations were ordered disclosed to the plaintiffs for searching and perhaps other litigation-related uses. This notion first caused quite a stir with ChatGPT users commenting on Reddit, for example, when Judge Wang, the magistrate judge overseeing “discovery,” which is the exch",
+    "published": "2026-07-10T02:54:14+00:00",
+    "author": "/u/Apprehensive_Sky1950",
+    "source": "Reddit: AI",
+    "id": "https://www.reddit.com/r/artificial/comments/1usbdyd/updated_millions_of_chatgpt_user_conversations/",
+    "content_score": 5.5
+  },
+  {
+    "title": "Meta to start manufacturing its own AI chip Iris in september",
+    "url": "https://www.reddit.com/r/artificial/comments/1usjdtn/meta_to_start_manufacturing_its_own_ai_chip_iris/",
+    "content": "So, Meta plans to begin production of its in-house AI chip and it falls under meta MTIA (training and inference accelerators) program and broadcom is the design partner, and TSMC handles fabrication Iris cleared bug-testing in about six weeks with no major issues and is meant to supplement the nvidia and AMD gpus meta already buys, as part of a push to scale computing capacity from 7 gigawatts in 2026 to 14 gigawatts in 2027 Yeeeet!! submitted by /u/ocean_protocol to r/artificial [link] [comment",
+    "published": "2026-07-10T10:08:10+00:00",
+    "author": "/u/ocean_protocol",
+    "source": "Reddit: AI",
+    "id": "https://www.reddit.com/r/artificial/comments/1usjdtn/meta_to_start_manufacturing_its_own_ai_chip_iris/",
+    "content_score": 4.0
+  },
+  {
+    "title": "Someone tweeted after 3 years. About his model release",
+    "url": "https://www.reddit.com/r/LocalLLaMA/comments/1usg4ox/someone_tweeted_after_3_years_about_his_model/",
+    "content": "Tweet Lets see this is gonna happen soon/later or not submitted by /u/pmttyji to r/LocalLLaMA [link] [comments]",
+    "published": "2026-07-10T07:01:09+00:00",
+    "author": "/u/pmttyji",
+    "source": "Reddit: AI",
+    "id": "https://www.reddit.com/r/LocalLLaMA/comments/1usg4ox/someone_tweeted_after_3_years_about_his_model/",
+    "content_score": 0.0
+  },
+  {
+    "title": "GPT-5.6 Sol Ultra is impressive — for the 12 minutes you’re allowed to use it as a Plus subscriber",
+    "url": "https://www.reddit.com/r/ChatGPT/comments/1uscohi/gpt56_sol_ultra_is_impressive_for_the_12_minutes/",
+    "content": "I’m a ChatGPT Plus subscriber, and I was genuinely excited when GPT-5.6 launched today. Then I made the horrible mistake of actually using it. I gave Sol Ultra exactly two real tasks: Analyze and merge around 10 PDFs into one comprehensive document. The final output was roughly 700 pages. That single task completely drained my usage limit — even after I used one reset. Organize and clean up my Obsidian vault, involving around 700 Markdown files. And, surprise: my entire allowance disappeared aga",
+    "published": "2026-07-10T03:57:04+00:00",
+    "author": "/u/skrr2",
+    "source": "Reddit: AI",
+    "id": "https://www.reddit.com/r/ChatGPT/comments/1uscohi/gpt56_sol_ultra_is_impressive_for_the_12_minutes/",
+    "content_score": 4.0
+  },
+  {
+    "title": "Fable 5 in caveman mode comparing himself to gpt 5.6 is hilarious",
+    "url": "https://www.reddit.com/r/ClaudeAI/comments/1us8mjs/fable_5_in_caveman_mode_comparing_himself_to_gpt/",
+    "content": "\"me just win\" submitted by /u/-_-wait_what-_- to r/ClaudeAI [link] [comments]",
+    "published": "2026-07-10T00:47:42+00:00",
+    "author": "/u/-_-wait_what-_-",
+    "source": "Reddit: AI",
+    "id": "https://www.reddit.com/r/ClaudeAI/comments/1us8mjs/fable_5_in_caveman_mode_comparing_himself_to_gpt/",
+    "content_score": 4.5
+  },
+  {
+    "title": "OpenAI says GPT 5.6 is the ‘preferred model’ for Microsoft Copilot 365 amid breakup chatter",
+    "url": "https://techcrunch.com/2026/07/09/openai-says-gpt-5-6-is-the-preferred-model-for-microsoft-copilot-amid-breakup-chatter/",
+    "content": "OpenAI's new family of models will continue to power Microsoft's suite of workplace and productivity apps.",
+    "published": "Fri, 10 Jul 2026 00:16:54 +0000",
+    "author": "",
+    "source": "TechCrunch AI",
+    "id": "https://techcrunch.com/2026/07/09/openai-says-gpt-5-6-is-the-preferred-model-for-microsoft-copilot-amid-breakup-chatter/",
+    "content_score": 4.5
+  },
+  {
+    "title": "Fidji Simo steps down from OpenAI’s No. 2 role",
+    "url": "https://techcrunch.com/2026/07/09/fidji-simo-steps-down-from-openais-no-2-role/",
+    "content": "OpenAI's No. 2 executive, Fidji Simo, is stepping down from her full-time role after her medical leave proved longer than expected — a leadership vacuum that comes at a tricky time as the company eyes a possible IPO and races to catch Anthropic in the enterprise market.",
+    "published": "Thu, 09 Jul 2026 23:38:00 +0000",
+    "author": "",
+    "source": "TechCrunch AI",
+    "id": "https://techcrunch.com/2026/07/09/fidji-simo-steps-down-from-openais-no-2-role/",
+    "content_score": 7.0
+  },
+  {
+    "title": "OpenAI launches its new family of models with GPT-5.6",
+    "url": "https://techcrunch.com/2026/07/09/openai-launches-its-new-family-of-models-with-gpt-5-6/",
+    "content": "OpenAI's latest family of models promises improvements across a range of areas, including cybersecurity.",
+    "published": "Thu, 09 Jul 2026 22:24:24 +0000",
+    "author": "",
+    "source": "TechCrunch AI",
+    "id": "https://techcrunch.com/2026/07/09/openai-launches-its-new-family-of-models-with-gpt-5-6/",
+    "content_score": 4.5
+  },
+  {
+    "title": "An AI agent startup just let its agent run its $100M fundraise",
+    "url": "https://techcrunch.com/2026/07/09/an-ai-agent-startup-just-let-its-agent-run-its-100-million-fundraise/",
+    "content": "Lyzr, a startup that builds AI agents for enterprises, used its own AI agent to raise a $100 million round — proof, evidently, that the product actually works.",
+    "published": "Thu, 09 Jul 2026 22:08:58 +0000",
+    "author": "",
+    "source": "TechCrunch AI",
+    "id": "https://techcrunch.com/2026/07/09/an-ai-agent-startup-just-let-its-agent-run-its-100-million-fundraise/",
+    "content_score": 3.0
+  },
+  {
+    "title": "OpenAI is shutting down Atlas, but its AI browser ambitions are still growing",
+    "url": "https://techcrunch.com/2026/07/09/openai-is-shutting-down-atlas-but-its-ai-browser-ambitions-are-still-growing/",
+    "content": "OpenAI is sunsetting its AI-powered browser after less than a year. But it's moving some agentic browsing features to its desktop app and a Chrome extension.",
+    "published": "Thu, 09 Jul 2026 22:03:54 +0000",
+    "author": "",
+    "source": "TechCrunch AI",
+    "id": "https://techcrunch.com/2026/07/09/openai-is-shutting-down-atlas-but-its-ai-browser-ambitions-are-still-growing/",
+    "content_score": 3.0
+  },
+  {
+    "title": "Elon Musk praises Mythos/Fable, promises not to ‘cut off’ Anthropic",
+    "url": "https://techcrunch.com/2026/07/09/elon-musk-praises-mythos-fable-promises-not-to-cut-off-anthropic/",
+    "content": "Should Anthropic trust Elon Musk to host its models? With about $40 billion in revenue at stake, Musk insists that the company can.",
+    "published": "Thu, 09 Jul 2026 21:57:42 +0000",
+    "author": "",
+    "source": "TechCrunch AI",
+    "id": "https://techcrunch.com/2026/07/09/elon-musk-praises-mythos-fable-promises-not-to-cut-off-anthropic/",
+    "content_score": 3.0
+  },
+  {
+    "title": "Can AI answer the $3 trillion question?",
+    "url": "https://techcrunch.com/2026/07/09/can-ai-answer-the-3-trillion-question/",
+    "content": "The AI ROI debate has returned and the numbers are even bigger, as are, perhaps, the consequences.",
+    "published": "Thu, 09 Jul 2026 21:47:50 +0000",
+    "author": "",
+    "source": "TechCrunch AI",
+    "id": "https://techcrunch.com/2026/07/09/can-ai-answer-the-3-trillion-question/",
+    "content_score": 3.0
+  },
+  {
+    "title": "Meta enters the crowded AI coding battle with Muse Spark 1.1",
+    "url": "https://techcrunch.com/2026/07/09/meta-enters-the-crowded-ai-coding-battle-with-muse-spark-1-1/",
+    "content": "Meta's pitch to users is Spark's ability to handle large agentic workloads, fix bugs, and help with large code migrations — the kind of automation that enterprises are increasingly turning to AI companies to provide.",
+    "published": "Thu, 09 Jul 2026 19:40:45 +0000",
+    "author": "",
+    "source": "TechCrunch AI",
+    "id": "https://techcrunch.com/2026/07/09/meta-enters-the-crowded-ai-coding-battle-with-muse-spark-1-1/",
+    "content_score": 2.5
+  },
+  {
+    "title": "New York Times says OpenAI hid evidence in ChatGPT copyright trial",
+    "url": "https://techcrunch.com/2026/07/09/new-york-times-says-openai-hid-evidence-in-chatgpt-copyright-trial/",
+    "content": "News publishers say OpenAI hid tools and datasets that could identify copyrighted journalism in ChatGPT outputs, escalating their lawsuit with a new motion for sanctions.",
+    "published": "Thu, 09 Jul 2026 19:05:58 +0000",
+    "author": "",
+    "source": "TechCrunch AI",
+    "id": "https://techcrunch.com/2026/07/09/new-york-times-says-openai-hid-evidence-in-chatgpt-copyright-trial/",
+    "content_score": 4.5
+  },
+  {
+    "title": "Google will now disclose which ads are made with AI",
+    "url": "https://techcrunch.com/2026/07/09/google-will-now-disclose-which-ads-are-made-with-ai/",
+    "content": "While Google prohibits misleading and deceptive ads, an ad can still leverage AI to create some type of synthetic or digitally altered content. Until now, that's something Google only required election ads to disclose.",
+    "published": "Thu, 09 Jul 2026 18:40:51 +0000",
+    "author": "",
+    "source": "TechCrunch AI",
+    "id": "https://techcrunch.com/2026/07/09/google-will-now-disclose-which-ads-are-made-with-ai/",
+    "content_score": 4.0
+  },
+  {
+    "title": "Paris-based AI voice startup Gradium raises $100M seed, backed by Nvidia",
+    "url": "https://techcrunch.com/2026/07/09/paris-based-ai-voice-startup-gradium-raises-100m-seed-backed-by-nvidia/",
+    "content": "The company is using the cash to open an office in the Bay Area and compete for talent there, \"strengthening its position at the heart of the world's leading AI ecosystem.\"",
+    "published": "Thu, 09 Jul 2026 18:34:35 +0000",
+    "author": "",
+    "source": "TechCrunch AI",
+    "id": "https://techcrunch.com/2026/07/09/paris-based-ai-voice-startup-gradium-raises-100m-seed-backed-by-nvidia/",
+    "content_score": 3.0
+  },
+  {
+    "title": "How did the government decide OpenAI’s frontier model was safe to release?",
+    "url": "https://techcrunch.com/2026/07/09/how-did-the-government-decide-openais-frontier-model-was-safe-to-release/",
+    "content": "\"Exactly what that dialog looked like between the government and Anthropic and OpenAI is unclear.\"",
+    "published": "Thu, 09 Jul 2026 18:22:39 +0000",
+    "author": "",
+    "source": "TechCrunch AI",
+    "id": "https://techcrunch.com/2026/07/09/how-did-the-government-decide-openais-frontier-model-was-safe-to-release/",
+    "content_score": 4.5
+  },
+  {
+    "title": "Instagram users: Here’s how to stop Meta’s AI from using your photos",
+    "url": "https://techcrunch.com/2026/07/09/how-to-stop-metas-ai-image-generator-from-using-your-instagram-photos/",
+    "content": "Muse Image allows users to generate AI images using photos from public Instagram accounts. As long as a person's profile is public, another user can tag that account and use their images as part of an AI-generated creation.",
+    "published": "Thu, 09 Jul 2026 17:56:47 +0000",
+    "author": "",
+    "source": "TechCrunch AI",
+    "id": "https://techcrunch.com/2026/07/09/how-to-stop-metas-ai-image-generator-from-using-your-instagram-photos/",
+    "content_score": 4.0
+  },
+  {
+    "title": "Meta’s new AI chips will begin production in September",
+    "url": "https://techcrunch.com/2026/07/09/metas-new-ai-chips-will-begin-production-in-september/",
+    "content": "The company is taking a modular approach to designing these chips, anticipating that their needs will change as AI evolves rapidly by the time the chips are in production.",
+    "published": "Thu, 09 Jul 2026 17:17:37 +0000",
+    "author": "",
+    "source": "TechCrunch AI",
+    "id": "https://techcrunch.com/2026/07/09/metas-new-ai-chips-will-begin-production-in-september/",
+    "content_score": 1.5
+  },
+  {
+    "title": "The Download: Claude’s inner workings and OpenAI’s “super app”",
+    "url": "https://www.technologyreview.com/2026/07/10/1140316/the-download-anthropic-claude-hidden-space-openai-super-app/",
+    "content": "This is today’s edition of The Download, our weekday newsletter that provides a daily dose of what’s going on in the world of technology. Anthropic found a hidden space where Claude puzzles over concepts The AI firm Anthropic has got the clearest glimpse yet at what’s really going on inside large language models as they…",
+    "published": "Fri, 10 Jul 2026 12:10:00 +0000",
+    "author": "",
+    "source": "MIT Tech Review",
+    "id": "https://www.technologyreview.com/2026/07/10/1140316/the-download-anthropic-claude-hidden-space-openai-super-app/",
+    "content_score": 6.0
+  },
+  {
+    "title": "Sperm donors need limits, says a European fertility group",
+    "url": "https://www.technologyreview.com/2026/07/10/1140289/sperm-donors-need-limits-says-a-european-fertility-group/",
+    "content": "Ties van der Meer doesn’t know how many siblings he has. The 47-year-old was conceived at a private fertility clinic in the Netherlands using sperm provided by an anonymous donor. After the Netherlands banned anonymous donation in 2004, the doctor who ran the clinic destroyed records that might have identified those donors, he says. He…",
+    "published": "Fri, 10 Jul 2026 09:00:00 +0000",
+    "author": "",
+    "source": "MIT Tech Review",
+    "id": "https://www.technologyreview.com/2026/07/10/1140289/sperm-donors-need-limits-says-a-european-fertility-group/",
+    "content_score": 1.0
+  },
+  {
+    "title": "Anthropic found a hidden space where Claude puzzles over concepts",
+    "url": "https://www.technologyreview.com/2026/07/09/1140293/anthropic-found-a-hidden-space-where-claude-puzzles-over-concepts/",
+    "content": "The AI firm Anthropic has developed a technique that has given it the clearest glimpse yet at what’s really going on inside large language models as they answer questions or carry out tasks. What they found ranges from the mundane to the unnerving. Researchers at the company built a tool called the Jacobian lens (or…",
+    "published": "Thu, 09 Jul 2026 20:22:28 +0000",
+    "author": "",
+    "source": "MIT Tech Review",
+    "id": "https://www.technologyreview.com/2026/07/09/1140293/anthropic-found-a-hidden-space-where-claude-puzzles-over-concepts/",
+    "content_score": 5.5
+  },
+  {
+    "title": "Instagram’s Adam Mosseri: If you don’t like AI, ‘then you shouldn’t have it in your feed’",
+    "url": "https://www.theverge.com/tech/963961/instagram-adam-mosseri-ai-feed-filters",
+    "content": "Though Instagram head Adam Mosseri doesn't want to filter out AI content on the platform, he argues that you \"shouldn't have it in your feed\" if you don't like it. \"I don't think we should filter out AI content,\" Mosseri said during an interview on Lenny Rachitsky's podcast. \"I think we should let you know if content is AI content or not.\" At the same time, Mosseri seems to be drawing a distinction between content-based sorting and banning AI from the platform entirely. In fact, he believes peop",
+    "published": "2026-07-10T09:45:02-04:00",
+    "author": "Emma Roth",
+    "source": "The Verge AI",
+    "id": "https://www.theverge.com/tech/963961/instagram-adam-mosseri-ai-feed-filters",
+    "content_score": 2.5
+  },
+  {
+    "title": "Would you host part of an AI data center in your home?",
+    "url": "https://www.theverge.com/ai-artificial-intelligence/963930/sunrun-distributed-ai-data-center",
+    "content": "A solar and home energy storage company is expanding into AI data centers, but not by building one - instead, it's offering to pay its customers to put its compute units in their homes. Sunrun is launching a pilot program for a new \"distributed AI compute\" program that will \"place numerous compute nodes in homes equipped with Sunrun solar and battery storage systems.\" Customers will be \"compensated\" for participating in the pilot program. Sunrun plans to sell the distributed compute power from t",
+    "published": "2026-07-10T09:20:25-04:00",
+    "author": "Stevie Bonifield",
+    "source": "The Verge AI",
+    "id": "https://www.theverge.com/ai-artificial-intelligence/963930/sunrun-distributed-ai-data-center",
+    "content_score": 2.5
+  },
+  {
+    "title": "Microsoft’s carbon emissions went up 25 percent last year",
+    "url": "https://www.theverge.com/tech/963728/microsoft-sustainability-report-2026",
+    "content": "Microsoft may once again be struggling to keep up with its own climate goals, according to its 2026 sustainability report. As reported by GeekWire, the report states that Microsoft's carbon emissions increased 25 percent in 2025, totalling 34 million metric tons \"without select interventions.\" Microsoft says this was \"driven primarily by the expansion of our datacenter infrastructure,\" as well as the company's decision last February to stop purchasing \"non-additional, unbundled renewable energy ",
+    "published": "2026-07-09T20:04:13-04:00",
+    "author": "Stevie Bonifield",
+    "source": "The Verge AI",
+    "id": "https://www.theverge.com/tech/963728/microsoft-sustainability-report-2026",
+    "content_score": 2.5
+  },
+  {
+    "title": "Fidji Simo steps down from leading OpenAI’s AGI work due to illness",
+    "url": "https://www.theverge.com/ai-artificial-intelligence/963738/openai-fidji-simo-steps-down-ceo-advisor",
+    "content": "OpenAI's Fidji Simo is departing her full-time role as the company's AGI chief and is transitioning to being a \"part-time advisor,\" she said on X. The news follows Simo's original announcement in April that she would take a few weeks of medical leave due to a neuroimmune condition, shortly after she had taken on the AGI chief title. (She had formerly been the company's CEO of applications). Around the same time, COO Brad Lightcap also stepped down from his role to focus on \"special projects,\" an",
+    "published": "2026-07-09T19:24:04-04:00",
+    "author": "Hayden Field",
+    "source": "The Verge AI",
+    "id": "https://www.theverge.com/ai-artificial-intelligence/963738/openai-fidji-simo-steps-down-ceo-advisor",
+    "content_score": 4.0
+  },
+  {
+    "title": "The ChatGPT browser is already dead",
+    "url": "https://www.theverge.com/ai-artificial-intelligence/963654/openai-chatgpt-atlas-ai-browser-shut-down-sunset",
+    "content": "OpenAI is already shutting down ChatGPT Atlas, its browser that could do tasks for you on your behalf, less than a year after launching it. Atlas was announced in October, but as part of its wave of news about ChatGPT Work today, the company confirmed that it will be \"sunsetting\" Atlas and is targeting an August 9th date for deprecation. The shutdown follows OpenAI's push to reduce \"side quests\" and catch up with Anthropic on productivity features. As part of that push, in March, The Wall Street",
+    "published": "2026-07-09T16:34:05-04:00",
+    "author": "Jay Peters",
+    "source": "The Verge AI",
+    "id": "https://www.theverge.com/ai-artificial-intelligence/963654/openai-chatgpt-atlas-ai-browser-shut-down-sunset",
+    "content_score": 6.0
+  },
+  {
+    "title": "Google will now tell you if an ad was made with AI",
+    "url": "https://www.theverge.com/ai-artificial-intelligence/963628/google-ai-generated-ads-label",
+    "content": "You can see if ads on Google Search, Google Discover, and YouTube were made or edited using AI from a new section in Google's \"My Ad Center,\" as reported earlier by TechCrunch. The update, announced on Thursday, adds a \"created or edited with AI\" label under the \"how this ad was made\" tab. Users can find it by tapping the three dots or info button on ads, which pulls up the same panel where you can also block or report ads. Google says it will automatically apply the AI label to any ads made wit",
+    "published": "2026-07-09T16:11:38-04:00",
+    "author": "Stevie Bonifield",
+    "source": "The Verge AI",
+    "id": "https://www.theverge.com/ai-artificial-intelligence/963628/google-ai-generated-ads-label",
+    "content_score": 4.0
+  },
+  {
+    "title": "OpenAI rolls out GPT-5.6 after government greenlight — and announces ‘ChatGPT Work’",
+    "url": "https://www.theverge.com/ai-artificial-intelligence/963464/openai-gpt-5-6-codex-chatgpt-work",
+    "content": "About two weeks after OpenAI's GPT-5.6 was caught up in regulatory drama - rolled out only to government-approved organizations during a \"limited preview\" period - the company has received the Trump administration's greenlight for a public rollout of the model. OpenAI CEO Sam Altman called it \"the best model we have ever produced.\" To celebrate, OpenAI also unveiled a new AI agent on the same day: ChatGPT Work. It's billed as a combination of ChatGPT and Codex, allowing the everyday non-technica",
+    "published": "2026-07-09T13:00:00-04:00",
+    "author": "Hayden Field",
+    "source": "The Verge AI",
+    "id": "https://www.theverge.com/ai-artificial-intelligence/963464/openai-gpt-5-6-codex-chatgpt-work",
+    "content_score": 5.5
+  },
+  {
+    "title": "Stocks Rise Before SK Hynix’s Debut as Oil Swings: Markets Wrap",
+    "url": "https://www.bloomberg.com/news/articles/2026-07-09/stock-market-today-dow-s-p-live-updates",
+    "content": "Wall Street traders drove stocks higher in the countdown to the earnings season, with the market also parsing geopolitical developments while getting ready for SK Hynix Inc.’s debut.",
+    "published": "Thu, 09 Jul 2026 22:08:45 GMT",
+    "author": "",
+    "source": "Bloomberg Markets",
+    "id": "https://www.bloomberg.com/news/articles/2026-07-09/stock-market-today-dow-s-p-live-updates",
+    "content_score": 3.0
+  },
+  {
+    "title": "SK Chairman Says He Has ‘Much, Much Bigger’ US Investment Plan",
+    "url": "https://www.bloomberg.com/news/articles/2026-07-10/sk-chairman-says-he-has-much-much-bigger-us-investment-plan",
+    "content": "SK Group has a “much, much bigger” plan to invest more money in the US, Chey Tae-won, chairman of the South Korean conglomerate, said in an interview with Bloomberg.",
+    "published": "Fri, 10 Jul 2026 15:22:02 GMT",
+    "author": "",
+    "source": "Bloomberg Markets",
+    "id": "https://www.bloomberg.com/news/articles/2026-07-10/sk-chairman-says-he-has-much-much-bigger-us-investment-plan",
+    "content_score": 3.0
+  },
+  {
+    "title": "JPMorgan Builds AI Agents That Beat 60/40 Model in Backtests",
+    "url": "https://www.bloomberg.com/news/articles/2026-07-09/jpmorgan-builds-ai-agents-that-beat-60-40-portfolio-in-backtests",
+    "content": "As investors increasingly turn to artificial intelligence for help with everything from stock picking to risk management, JPMorgan Chase & Co. has been testing whether a model can do something more ambitious: allocate money itself.",
+    "published": "Thu, 09 Jul 2026 23:00:59 GMT",
+    "author": "",
+    "source": "Bloomberg Markets",
+    "id": "https://www.bloomberg.com/news/articles/2026-07-09/jpmorgan-builds-ai-agents-that-beat-60-40-portfolio-in-backtests",
+    "content_score": 5.5
+  },
+  {
+    "title": "SK Hynix Open to Issuing More US Shares, SK Group Chairman Says",
+    "url": "https://www.bloomberg.com/news/articles/2026-07-10/sk-hynix-open-to-issuing-more-us-shares-sk-group-chairman-says",
+    "content": "SK Hynix Inc. is open to issuing more US shares should returns prove strong and the company’s stock price remains stable, SK Group Chairman Chey Tae-won said.",
+    "published": "Fri, 10 Jul 2026 15:12:21 GMT",
+    "author": "",
+    "source": "Bloomberg Markets",
+    "id": "https://www.bloomberg.com/news/articles/2026-07-10/sk-hynix-open-to-issuing-more-us-shares-sk-group-chairman-says",
+    "content_score": 4.5
+  },
+  {
+    "title": "SK Hynix Indicated to Jump 17% After $26.5 Billion ADR Sale",
+    "url": "https://www.bloomberg.com/news/articles/2026-07-10/sk-hynix-indicated-to-climb-17-after-26-5-billion-adr-offering",
+    "content": "SK Hynix Inc.’s American depositary receipts are indicated to open 17% above their offering price, after the South Korean memory chipmaker raised $26.5 billion in the largest-ever US listing by a foreign company.",
+    "published": "Fri, 10 Jul 2026 13:56:50 GMT",
+    "author": "",
+    "source": "Bloomberg Markets",
+    "id": "https://www.bloomberg.com/news/articles/2026-07-10/sk-hynix-indicated-to-climb-17-after-26-5-billion-adr-offering",
+    "content_score": 2.5
+  },
+  {
+    "title": "CazéTV, febre da Copa, é alvo crescente de escrutínio por bets",
+    "url": "https://www.bloomberg.com/news/videos/2026-07-10/cazetv-febre-da-copa-e-alvo-de-escrutinio-por-bets-video",
+    "content": "Giovanna Serafim conta como a CazéTV está cada vez mais no foco dos órgãos reguladores no Brasil por publicidade de apostas para jovens durante a Copa. Edição de Patricia Xavier e produção de Barbara Nascimento e Gabriel Diniz Tavares. (Source: Bloomberg)",
+    "published": "Fri, 10 Jul 2026 15:04:28 GMT",
+    "author": "",
+    "source": "Bloomberg Markets",
+    "id": "https://www.bloomberg.com/news/videos/2026-07-10/cazetv-febre-da-copa-e-alvo-de-escrutinio-por-bets-video",
+    "content_score": 2.5
+  },
+  {
+    "title": "Oil Swings as US, Iran Continue Talks After Renewed Fighting",
+    "url": "https://www.bloomberg.com/news/articles/2026-07-09/latest-oil-market-news-and-analysis-for-july-10",
+    "content": "Oil fluctuated between gains and losses as the US and Iran continued talks following a flare-up in attacks that strained their ceasefire and deterred tanker traffic through the Strait of Hormuz.",
+    "published": "Thu, 09 Jul 2026 22:04:02 GMT",
+    "author": "",
+    "source": "Bloomberg Markets",
+    "id": "https://www.bloomberg.com/news/articles/2026-07-09/latest-oil-market-news-and-analysis-for-july-10",
+    "content_score": 1.5
+  },
+  {
+    "title": "Delta Rises on Profit Guidance; EasyJet Moves on Apollo Bid | Stock Movers",
+    "url": "https://www.bloomberg.com/news/videos/2026-07-10/delta-up-on-profit-guidance-easyjet-moves-on-apollo-bid-video",
+    "content": "On this episode of Stock Movers: - Delta (DAL) shares are higher after it reaffirmed its full-year profit guidance, citing strong demand for premium, corporate and international travel that helped offset the highest quarterly fuel expense in its history. The airline earned an adjusted $1.56 a share in the second quarter, topping analysts’ estimates, with revenue rising 14% from a year earlier and capacity increasing just 1%. - EasyJet (EZJ) shares are moving on news it received a fresh offer fro",
+    "published": "Fri, 10 Jul 2026 14:57:53 GMT",
+    "author": "",
+    "source": "Bloomberg Markets",
+    "id": "https://www.bloomberg.com/news/videos/2026-07-10/delta-up-on-profit-guidance-easyjet-moves-on-apollo-bid-video",
+    "content_score": 4.0
+  },
+  {
+    "title": "EasyJet Gets £5.7 Billion Apollo Offer in Possible Bidding War",
+    "url": "https://www.bloomberg.com/news/articles/2026-07-10/easyjet-gets-rival-offer-from-apollo-that-beats-castlelake-bid",
+    "content": "EasyJet Plc received an offer from private equity firm Apollo Global Management for 715 pence a share that beats a rival proposal from Castlelake LP, a surprise twist in the takeover saga that sets up a possible bidding war between the two US investment funds.",
+    "published": "Fri, 10 Jul 2026 06:07:25 GMT",
+    "author": "",
+    "source": "Bloomberg Markets",
+    "id": "https://www.bloomberg.com/news/articles/2026-07-10/easyjet-gets-rival-offer-from-apollo-that-beats-castlelake-bid",
+    "content_score": 4.0
+  },
+  {
+    "title": "Sports Bet Pays Off as Omers Reaps 50% Gain on MLSE Investment",
+    "url": "https://www.bloomberg.com/news/articles/2026-07-10/omers-scores-50-gain-on-toronto-sports-bet-as-rogers-buys-rest-of-mlse",
+    "content": "Ontario’s pension fund for government workers generated a return of more than 50% in less than three years on an investment tied to Toronto’s major league sports teams, vindicating a bet that was initially viewed as expensive when it was first made.",
+    "published": "Fri, 10 Jul 2026 14:48:45 GMT",
+    "author": "",
+    "source": "Bloomberg Markets",
+    "id": "https://www.bloomberg.com/news/articles/2026-07-10/omers-scores-50-gain-on-toronto-sports-bet-as-rogers-buys-rest-of-mlse",
+    "content_score": 7.0
+  },
+  {
+    "title": "Europeans Are Changing Saving Habits to Invest More, ING Says",
+    "url": "https://www.bloomberg.com/news/articles/2026-07-10/europeans-are-changing-saving-habits-to-invest-more-ing-says",
+    "content": "Europeans are showing a durable shift in savings habits toward products such as investment funds that might one day help support greater spending, ING economists said.",
+    "published": "Fri, 10 Jul 2026 14:48:27 GMT",
+    "author": "",
+    "source": "Bloomberg Markets",
+    "id": "https://www.bloomberg.com/news/articles/2026-07-10/europeans-are-changing-saving-habits-to-invest-more-ing-says",
+    "content_score": 4.5
+  },
+  {
+    "title": "Americans Are Stuck in a Rut — And a Lack of Fun Might Be to Blame",
+    "url": "https://www.bloomberg.com/news/videos/2026-07-10/americans-are-stuck-in-a-rut-and-a-lack-of-fun-might-be-to-blame",
+    "content": "America appears to be suffering from a fun shortage. From the rising cost of concert tickets, to bowling alley and nightclub closures, to venue shortages for kids to play in local sports leagues, the fun deficit is real and it's making Americans more isolated and lonelier than previous generations. Bloomberg's Ben Steverman joins Stacey Vanek Smith and Max Chafkin on the Everybody's Business podcast to explore some easy solutions to bring fun back into our everyday lives. (Source: Bloomberg)",
+    "published": "Fri, 10 Jul 2026 14:39:46 GMT",
+    "author": "",
+    "source": "Bloomberg Markets",
+    "id": "https://www.bloomberg.com/news/videos/2026-07-10/americans-are-stuck-in-a-rut-and-a-lack-of-fun-might-be-to-blame",
+    "content_score": 1.0
+  },
+  {
+    "title": "Gold Heads for Weekly Loss as Traders Consider Iran, Rates Path",
+    "url": "https://www.bloomberg.com/news/articles/2026-07-09/gold-steadies-as-traders-weigh-mideast-fighting-rate-outlook",
+    "content": "Gold headed for a weekly loss as investors assessed renewed fighting in the Middle East and the prospects for interest-rate hikes to combat inflation.",
+    "published": "Thu, 09 Jul 2026 23:03:10 GMT",
+    "author": "",
+    "source": "Bloomberg Markets",
+    "id": "https://www.bloomberg.com/news/articles/2026-07-09/gold-steadies-as-traders-weigh-mideast-fighting-rate-outlook",
+    "content_score": 1.5
+  },
+  {
+    "title": "Cencosud Shares Dive as Strategic Plan Yet to Boost Earnings",
+    "url": "https://www.bloomberg.com/news/articles/2026-07-10/cencosud-shares-tumble-as-strategic-plan-yet-to-boost-earnings",
+    "content": "More than a year into a new strategic plan at Chile’s Cencosud SA, the retailer’s shares have slumped and the company is asking investors for patience.",
+    "published": "Fri, 10 Jul 2026 09:00:00 GMT",
+    "author": "",
+    "source": "Bloomberg Markets",
+    "id": "https://www.bloomberg.com/news/articles/2026-07-10/cencosud-shares-tumble-as-strategic-plan-yet-to-boost-earnings",
+    "content_score": 3.0
+  },
+  {
+    "title": "Morgan Stanley Sees Pressure Rising on Chipmakers’ Pricing Power",
+    "url": "https://www.bloomberg.com/news/articles/2026-07-10/morgan-stanley-sees-pressure-rising-on-chipmakers-pricing-power",
+    "content": "Morgan Stanley’s Lisa Shalett urged investors to be cautious on chipmakers as evidence mounts that their pricing power is limited, suggesting that the stocks may have rallied too far on optimism around artificial-intelligence spending.",
+    "published": "Fri, 10 Jul 2026 14:13:05 GMT",
+    "author": "",
+    "source": "Bloomberg Markets",
+    "id": "https://www.bloomberg.com/news/articles/2026-07-10/morgan-stanley-sees-pressure-rising-on-chipmakers-pricing-power",
+    "content_score": 4.0
+  },
+  {
+    "title": "La dette cachée freine le développement du Sénégal: Next Africa",
+    "url": "https://www.bloomberg.com/news/articles/2026-07-10/la-dette-cachee-freine-le-developpement-du-senegal-next-africa",
+    "content": "To read the story in English, click here.",
+    "published": "Fri, 10 Jul 2026 14:00:17 GMT",
+    "author": "",
+    "source": "Bloomberg Markets",
+    "id": "https://www.bloomberg.com/news/articles/2026-07-10/la-dette-cachee-freine-le-developpement-du-senegal-next-africa",
+    "content_score": 0.0
+  },
+  {
+    "title": "US Stock Futures Slip After Tech Rally, SK Hynix Starts Trading",
+    "url": "https://www.bloomberg.com/news/articles/2026-07-10/us-stock-futures-slip-after-tech-rally-sk-hynix-starts-trading",
+    "content": "US equities were moving between losses and gains Friday as investors digested the record US listing of South Korea’s SK Hynix Inc. and prepared for the start of second-quarter earnings season.",
+    "published": "Fri, 10 Jul 2026 11:53:33 GMT",
+    "author": "",
+    "source": "Bloomberg Markets",
+    "id": "https://www.bloomberg.com/news/articles/2026-07-10/us-stock-futures-slip-after-tech-rally-sk-hynix-starts-trading",
+    "content_score": 6.0
+  },
+  {
+    "title": "A Month After SpaceX IPO, Tesla’s Stock Keeps Holding Its Ground",
+    "url": "https://www.bloomberg.com/news/articles/2026-07-10/a-month-after-spacex-ipo-tesla-s-stock-keeps-holding-its-ground",
+    "content": "In the weeks leading up to SpaceX’s monster IPO, many Wall Street pros feared the deal represented an existential threat for Elon Musk’s other giant, Tesla Inc. But after a month in the stock market, the outcome is far from clear.",
+    "published": "Fri, 10 Jul 2026 11:00:01 GMT",
+    "author": "",
+    "source": "Bloomberg Markets",
+    "id": "https://www.bloomberg.com/news/articles/2026-07-10/a-month-after-spacex-ipo-tesla-s-stock-keeps-holding-its-ground",
+    "content_score": 4.0
+  },
+  {
+    "title": "Prediction Market Bets Surge on World Cup Mania",
+    "url": "https://www.bloomberg.com/news/articles/2026-07-10/robinhood-backed-prediction-market-bets-surge-on-world-cup-mania",
+    "content": "Rabid interest in the World Cup has helped to drive more than $3 billion of wagers on a prediction market backed by Robinhood Markets Inc. and Susquehanna International Group, which launched just a few months ago.",
+    "published": "Fri, 10 Jul 2026 13:12:33 GMT",
+    "author": "",
+    "source": "Bloomberg Markets",
+    "id": "https://www.bloomberg.com/news/articles/2026-07-10/robinhood-backed-prediction-market-bets-surge-on-world-cup-mania",
+    "content_score": 2.5
+  },
+  {
+    "title": "SK Hynix Set to Make Record-Setting US Debut",
+    "url": "https://www.bloomberg.com/news/videos/2026-07-10/sk-hynix-set-to-make-record-setting-us-debut-video",
+    "content": "SK Hynix Inc. raised $26.5 billion in its American depositary share offering, the largest ever US first-time share sale by a foreign company. Bloomberg's Ed Ludlow reports. (Source: Bloomberg)",
+    "published": "Fri, 10 Jul 2026 13:11:43 GMT",
+    "author": "",
+    "source": "Bloomberg Markets",
+    "id": "https://www.bloomberg.com/news/videos/2026-07-10/sk-hynix-set-to-make-record-setting-us-debut-video",
+    "content_score": 1.5
+  },
+  {
+    "title": "Retail Traders Chase Shiny Objects But Refuse to Bet on S&P 500",
+    "url": "https://www.bloomberg.com/news/articles/2026-07-10/retail-traders-chase-shiny-objects-but-refuse-to-bet-on-s-p-500",
+    "content": "Retail traders, some of the staunchest supporters of the stock market this decade, are showing signs of waning conviction.",
+    "published": "Fri, 10 Jul 2026 12:59:35 GMT",
+    "author": "",
+    "source": "Bloomberg Markets",
+    "id": "https://www.bloomberg.com/news/articles/2026-07-10/retail-traders-chase-shiny-objects-but-refuse-to-bet-on-s-p-500",
+    "content_score": 4.5
+  },
+  {
+    "title": "AlphaQuest Founder Lost Control at Quant Fund, Investor Alleges",
+    "url": "https://www.bloomberg.com/news/articles/2026-07-10/alphaquest-founder-lost-control-at-quant-fund-investor-alleges",
+    "content": "AlphaQuest founder Nigol Koulajian admitted losing control of trading at his $2 billion quantitative hedge fund before announcing plans to shut it down, an institutional investor claimed in a lawsuit.",
+    "published": "Fri, 10 Jul 2026 12:48:36 GMT",
+    "author": "",
+    "source": "Bloomberg Markets",
+    "id": "https://www.bloomberg.com/news/articles/2026-07-10/alphaquest-founder-lost-control-at-quant-fund-investor-alleges",
+    "content_score": 6.0
+  },
+  {
+    "title": "Macro Hedge Fund Deem Raised $1 Billion From Abu Dhabi’s ADIC",
+    "url": "https://www.bloomberg.com/news/articles/2026-07-10/uae-macro-hedge-fund-deem-raised-1-billion-from-abu-dhabi-s-adic",
+    "content": "Asfandyar Nadeem’s hedge fund has received about $1 billion in new capital from an Abu Dhabi investor, amid a surge in appetite for macro strategies and as the Gulf city accelerates its drive to become a key backer of the industry.",
+    "published": "Fri, 10 Jul 2026 12:48:36 GMT",
+    "author": "",
+    "source": "Bloomberg Markets",
+    "id": "https://www.bloomberg.com/news/articles/2026-07-10/uae-macro-hedge-fund-deem-raised-1-billion-from-abu-dhabi-s-adic",
+    "content_score": 5.5
+  },
+  {
+    "title": "Foreign Ownership of UK Firms Soared 35% Amid Glut of Deals",
+    "url": "https://www.bloomberg.com/news/articles/2026-07-10/foreign-ownership-of-uk-firms-soared-35-amid-glut-of-dealmaking",
+    "content": "The number of British companies controlled by overseas firms soared 35% in the years after the outbreak of Covid, as cheap valuations drove a dealmaking boom.",
+    "published": "Fri, 10 Jul 2026 11:57:13 GMT",
+    "author": "",
+    "source": "Bloomberg Markets",
+    "id": "https://www.bloomberg.com/news/articles/2026-07-10/foreign-ownership-of-uk-firms-soared-35-amid-glut-of-dealmaking",
+    "content_score": 0.0
+  },
+  {
+    "title": "Czech Price Pressures Warrant Increased Caution for Central Bank",
+    "url": "https://www.bloomberg.com/news/articles/2026-07-10/czech-price-pressures-warrant-increased-caution-for-central-bank",
+    "content": "The Czech central bank said monetary policy caution remains warranted, with the headline inflation rate likely to return to or “slightly above” the 2% target this year following a recent drop.",
+    "published": "Fri, 10 Jul 2026 12:38:23 GMT",
+    "author": "",
+    "source": "Bloomberg Markets",
+    "id": "https://www.bloomberg.com/news/articles/2026-07-10/czech-price-pressures-warrant-increased-caution-for-central-bank",
+    "content_score": 3.0
+  },
+  {
+    "title": "Delta Reaffirms Profit Guidance as Premium Demand Rises",
+    "url": "https://www.bloomberg.com/news/videos/2026-07-10/delta-reaffirms-profit-guidance-as-premium-demand-rises-video",
+    "content": "Delta Air Lines Inc. reaffirmed its full-year profit guidance and said strong demand for premium, corporate and international travel helped offset the highest quarterly fuel expense in its history, Stephen Trent, president and founder of SDT Capital Advisors, says the earnings and guidance were solid and shows the carrier surprised some on Wall Street. He speaks on \"Bloomberg Surveillance.\" (Source: Bloomberg)",
+    "published": "Fri, 10 Jul 2026 12:31:58 GMT",
+    "author": "",
+    "source": "Bloomberg Markets",
+    "id": "https://www.bloomberg.com/news/videos/2026-07-10/delta-reaffirms-profit-guidance-as-premium-demand-rises-video",
+    "content_score": 2.5
+  },
+  {
+    "title": "Trump Does Not Want All Out War in Iran, Cook Says",
+    "url": "https://www.bloomberg.com/news/videos/2026-07-10/trump-does-not-want-all-out-war-in-iran-cook-says-video",
+    "content": "Steven Cook, Council on Foreign Relations Middle East Senior Fellow, says it's unclear how President Donald Trump will \"finish the job\" in Iran. But Cook says Trump does not want to see a return to all out combat. Cook speaks on \"Bloomberg Surveillance.\" (Source: Bloomberg)",
+    "published": "Fri, 10 Jul 2026 12:22:53 GMT",
+    "author": "",
+    "source": "Bloomberg Markets",
+    "id": "https://www.bloomberg.com/news/videos/2026-07-10/trump-does-not-want-all-out-war-in-iran-cook-says-video",
+    "content_score": 2.5
+  },
+  {
+    "title": "Cómo criar hijos en una de las capitales más calurosas de Europa",
+    "url": "https://www.bloomberg.com/news/videos/2026-07-10/como-criar-hijos-en-una-de-las-capitales-mas-calurosas-de-europa-mrewnqp0",
+    "content": "Desde elegir el momento para ir al parque hasta tomar duchas frías, criar hijos en Madrid ofrece un adelanto de cómo el cambio climático está transformando la vida familiar en toda Europa. (Source: Bloomberg)",
+    "published": "Fri, 10 Jul 2026 12:21:53 GMT",
+    "author": "",
+    "source": "Bloomberg Markets",
+    "id": "https://www.bloomberg.com/news/videos/2026-07-10/como-criar-hijos-en-una-de-las-capitales-mas-calurosas-de-europa-mrewnqp0",
+    "content_score": 1.0
+  },
+  {
+    "title": "Shein Gets Approval From Chinese Regulator for Hong Kong IPO",
+    "url": "https://www.bloomberg.com/news/articles/2026-07-10/shein-gets-approval-from-chinese-regulator-for-hong-kong-ipo",
+    "content": "Shein Global Holdings Ltd. got approval from the Chinese regulator to move ahead with its planned initial public offering in Hong Kong, capping a yearslong effort by the fast-fashion giant to go public.",
+    "published": "Fri, 10 Jul 2026 12:10:16 GMT",
+    "author": "",
+    "source": "Bloomberg Markets",
+    "id": "https://www.bloomberg.com/news/articles/2026-07-10/shein-gets-approval-from-chinese-regulator-for-hong-kong-ipo",
+    "content_score": 1.0
+  },
+  {
+    "title": "Oil Product Markets Are the Real Hormuz Pain Point",
+    "url": "https://www.bloomberg.com/news/newsletters/2026-07-10/oil-product-markets-are-the-real-hormuz-pain-point",
+    "content": "While crude has nearly erased its wartime rally, refined fuels are increasingly tight.",
+    "published": "Fri, 10 Jul 2026 12:01:08 GMT",
+    "author": "",
+    "source": "Bloomberg Markets",
+    "id": "https://www.bloomberg.com/news/newsletters/2026-07-10/oil-product-markets-are-the-real-hormuz-pain-point",
+    "content_score": 3.0
+  },
+  {
+    "title": "Fed minutes expose deep divide over interest-rate outlook",
+    "url": "https://finance.yahoo.com/economy/policy/articles/fed-minutes-expose-deep-divide-141700465.html",
+    "content": "",
+    "published": "2026-07-09T14:17:00Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/economy/policy/articles/fed-minutes-expose-deep-divide-141700465.html",
+    "content_score": 0.0
+  },
+  {
+    "title": "Warsh believes America's $700B AI buildout will lower prices — but his colleagues warn it will fuel persistent inflation",
+    "url": "https://finance.yahoo.com/economy/policy/articles/warsh-believes-americas-700b-ai-151500764.html",
+    "content": "",
+    "published": "2026-07-10T15:15:00Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/economy/policy/articles/warsh-believes-americas-700b-ai-151500764.html",
+    "content_score": 1.5
+  },
+  {
+    "title": "Circle Stock Rallies On National Bank Approval. ARK Buys More Shares.",
+    "url": "https://www.investors.com/news/circle-national-trust-bank-occ-stablecoin-circle-stock/?src=A00220&yptr=yahoo",
+    "content": "",
+    "published": "2026-07-10T15:14:51Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://www.investors.com/news/circle-national-trust-bank-occ-stablecoin-circle-stock/?src=A00220&yptr=yahoo",
+    "content_score": 1.5
+  },
+  {
+    "title": "Chip giant SK Hynix raises $26.5 billion in blockbuster US share offering, indicated to open up 17%",
+    "url": "https://finance.yahoo.com/technology/article/chip-giant-sk-hynix-raises-265-billion-in-blockbuster-us-share-offering-indicated-to-open-up-17-193700352.html",
+    "content": "",
+    "published": "2026-07-08T19:37:00Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/technology/article/chip-giant-sk-hynix-raises-265-billion-in-blockbuster-us-share-offering-indicated-to-open-up-17-193700352.html",
+    "content_score": 1.5
+  },
+  {
+    "title": "Wall Street and oil prices tread water as investors eye SK Hynix, Middle East tensions",
+    "url": "https://finance.yahoo.com/markets/stocks/articles/asian-stocks-surge-investors-look-015829863.html",
+    "content": "",
+    "published": "2026-07-10T15:07:41Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/markets/stocks/articles/asian-stocks-surge-investors-look-015829863.html",
+    "content_score": 1.5
+  },
+  {
+    "title": "Technical Assessment: Bullish in the Intermediate-Term",
+    "url": "https://finance.yahoo.com/research/reports/ARGUS_47576_TechnicalAnalysis_1783682695000?yptr=yahoo&ncid=yahooproperties_plusresear_nm5q6ze1cei",
+    "content": "",
+    "published": "2026-07-10T11:24:55Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/research/reports/ARGUS_47576_TechnicalAnalysis_1783682695000?yptr=yahoo&ncid=yahooproperties_plusresear_nm5q6ze1cei",
+    "content_score": 0.0
+  },
+  {
+    "title": "If you invested $10,000 in Bitcoin, Trump meme coin, and gold when Trump took office, here's what you'd have today",
+    "url": "https://finance.yahoo.com/markets/crypto/articles/invested-10-000-bitcoin-trump-222200005.html",
+    "content": "",
+    "published": "2026-07-09T22:22:00Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/markets/crypto/articles/invested-10-000-bitcoin-trump-222200005.html",
+    "content_score": 3.0
+  },
+  {
+    "title": "TeraWulf Eyes $3.5B Debt Raise for Anthropic AI Data Center Buildout",
+    "url": "https://finance.yahoo.com/technology/ai/articles/terawulf-eyes-3-5b-debt-145200774.html",
+    "content": "",
+    "published": "2026-07-10T14:52:00Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/technology/ai/articles/terawulf-eyes-3-5b-debt-145200774.html",
+    "content_score": 3.0
+  },
+  {
+    "title": "Yen strengthens as Japan considers nudging pension funds into domestic assets",
+    "url": "https://finance.yahoo.com/news/fragile-yen-set-weekly-decline-004342790.html",
+    "content": "",
+    "published": "2026-07-10T14:46:38Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/news/fragile-yen-set-weekly-decline-004342790.html",
+    "content_score": 1.5
+  },
+  {
+    "title": "Seagate Stock Rises After Analyst Upgrades To Buy. Western Digital Nabs Price-Target Hike.",
+    "url": "https://www.investors.com/news/technology/seagate-stock-upgrade-western-digital-wells-fargo/?src=A00220&yptr=yahoo",
+    "content": "",
+    "published": "2026-07-10T14:46:21Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://www.investors.com/news/technology/seagate-stock-upgrade-western-digital-wells-fargo/?src=A00220&yptr=yahoo",
+    "content_score": 1.5
+  },
+  {
+    "title": "Stock market today: Dow, S&P 500, Nasdaq waver ahead of SK Hynix's mega US IPO",
+    "url": "https://finance.yahoo.com/markets/live/stock-market-today-friday-july-10-dow-sp-nasdaq-113921604.html",
+    "content": "",
+    "published": "2026-07-10T11:39:21Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/markets/live/stock-market-today-friday-july-10-dow-sp-nasdaq-113921604.html",
+    "content_score": 3.0
+  },
+  {
+    "title": "Analyst Report: CarMax Inc",
+    "url": "https://finance.yahoo.com/research/reports/ARGUS_4095_AnalystReport_1783682046000?yptr=yahoo&ncid=yahooproperties_plusresear_nm5q6ze1cei",
+    "content": "",
+    "published": "2026-07-10T11:14:06Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/research/reports/ARGUS_4095_AnalystReport_1783682046000?yptr=yahoo&ncid=yahooproperties_plusresear_nm5q6ze1cei",
+    "content_score": 0.0
+  },
+  {
+    "title": "Cathie Wood Goes On a Selling Spree: 3 Stocks She Just Sold",
+    "url": "https://finance.yahoo.com/markets/stocks/articles/cathie-wood-goes-selling-spree-150800389.html",
+    "content": "",
+    "published": "2026-07-10T15:08:00Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/markets/stocks/articles/cathie-wood-goes-selling-spree-150800389.html",
+    "content_score": 1.5
+  },
+  {
+    "title": "Shein's secretive founder Sky Xu faces biggest public test with Hong Kong IPO",
+    "url": "https://finance.yahoo.com/markets/stocks/articles/sheins-secretive-founder-sky-xu-143345011.html",
+    "content": "",
+    "published": "2026-07-10T14:33:45Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/markets/stocks/articles/sheins-secretive-founder-sky-xu-143345011.html",
+    "content_score": 1.5
+  },
+  {
+    "title": "Workers at GE Appliances say they love app-based gig work despite no benefits and lower pay",
+    "url": "https://finance.yahoo.com/small-business/articles/workers-ge-appliances-love-app-143000692.html",
+    "content": "",
+    "published": "2026-07-10T14:30:00Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/small-business/articles/workers-ge-appliances-love-app-143000692.html",
+    "content_score": 0.0
+  },
+  {
+    "title": "Stock Market Today: Dow Jones Index Rises Ahead Of SK Hynix Stock Debut (Live Coverage)",
+    "url": "https://www.investors.com/market-trend/stock-market-today/dow-jones-sp500-nasdaq-sk-hynix-stock/?src=A00220&yptr=yahoo",
+    "content": "",
+    "published": "2026-07-10T14:24:44Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://www.investors.com/market-trend/stock-market-today/dow-jones-sp500-nasdaq-sk-hynix-stock/?src=A00220&yptr=yahoo",
+    "content_score": 3.0
+  },
+  {
+    "title": "These Are 5 Of The Best Stocks To Buy Or Watch Now",
+    "url": "https://www.investors.com/research/best-stocks-to-buy-now/?src=A00220&yptr=yahoo",
+    "content": "",
+    "published": "2026-07-10T14:24:36Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://www.investors.com/research/best-stocks-to-buy-now/?src=A00220&yptr=yahoo",
+    "content_score": 3.0
+  },
+  {
+    "title": "Market Digest: HAS, KMX, MSFT",
+    "url": "https://finance.yahoo.com/research/reports/ARGUS_47574_MarketSummary_1783681146000?yptr=yahoo&ncid=yahooproperties_plusresear_nm5q6ze1cei",
+    "content": "",
+    "published": "2026-07-10T10:59:06Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/research/reports/ARGUS_47574_MarketSummary_1783681146000?yptr=yahoo&ncid=yahooproperties_plusresear_nm5q6ze1cei",
+    "content_score": 1.5
+  },
+  {
+    "title": "Stock Of A Great Dividend King Jumps 24%",
+    "url": "https://finance.yahoo.com/markets/stocks/articles/stock-great-dividend-king-jumps-150726853.html",
+    "content": "",
+    "published": "2026-07-10T15:07:26Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/markets/stocks/articles/stock-great-dividend-king-jumps-150726853.html",
+    "content_score": 3.0
+  },
+  {
+    "title": "Stock Market Leadership Comes Into Focus With IBD Breakout Stocks Index",
+    "url": "https://www.investors.com/how-to-invest/investors-corner/stock-market-leadership-financials-health-care-breakout-stocks-index/?src=A00220&yptr=yahoo",
+    "content": "",
+    "published": "2026-07-10T14:23:27Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://www.investors.com/how-to-invest/investors-corner/stock-market-leadership-financials-health-care-breakout-stocks-index/?src=A00220&yptr=yahoo",
+    "content_score": 3.0
+  },
+  {
+    "title": "Do You Believe in Warrior Met Coal’s (HCC) Growth Trajectory?",
+    "url": "https://finance.yahoo.com/markets/stocks/articles/believe-warrior-met-coal-hcc-141515661.html",
+    "content": "",
+    "published": "2026-07-10T14:15:15Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/markets/stocks/articles/believe-warrior-met-coal-hcc-141515661.html",
+    "content_score": 0.0
+  },
+  {
+    "title": "90% of Americans plan to reject 1 top Social Security tip, costing them thousands of dollars. Will you ignore it, too?",
+    "url": "https://finance.yahoo.com/small-business/articles/90-americans-plan-reject-1-141500639.html",
+    "content": "",
+    "published": "2026-07-10T14:15:00Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/small-business/articles/90-americans-plan-reject-1-141500639.html",
+    "content_score": 0.0
+  },
+  {
+    "title": "Tidewater (TDW): Constructive Long-term Fundamentals Outweigh Short-Term Concerns",
+    "url": "https://finance.yahoo.com/markets/stocks/articles/tidewater-tdw-constructive-long-term-141256992.html",
+    "content": "",
+    "published": "2026-07-10T14:12:56Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/markets/stocks/articles/tidewater-tdw-constructive-long-term-141256992.html",
+    "content_score": 1.5
+  },
+  {
+    "title": "Daily – Vickers Top Buyers & Sellers for 07/10/2026",
+    "url": "https://finance.yahoo.com/research/reports/ARGUS_47573_TopBottomInsiderActivity_1783679393000?yptr=yahoo&ncid=yahooproperties_plusresear_nm5q6ze1cei",
+    "content": "",
+    "published": "2026-07-10T10:29:53Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/research/reports/ARGUS_47573_TopBottomInsiderActivity_1783679393000?yptr=yahoo&ncid=yahooproperties_plusresear_nm5q6ze1cei",
+    "content_score": 1.5
+  },
+  {
+    "title": "Jim Cramer flags bull market threat bigger than Iran war",
+    "url": "https://finance.yahoo.com/markets/stocks/articles/jim-cramer-flags-bull-market-150700850.html",
+    "content": "",
+    "published": "2026-07-10T15:07:00Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/markets/stocks/articles/jim-cramer-flags-bull-market-150700850.html",
+    "content_score": 1.5
+  },
+  {
+    "title": "Tech stocks live: SK Hynix begins trading on Nasdaq, SpaceX stock tumbles",
+    "url": "https://finance.yahoo.com/technology/live/tech-stocks-live-sk-hynix-begins-trading-on-nasdaq-spacex-stock-tumbles-131003284.html",
+    "content": "",
+    "published": "2026-07-06T13:10:03Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/technology/live/tech-stocks-live-sk-hynix-begins-trading-on-nasdaq-spacex-stock-tumbles-131003284.html",
+    "content_score": 3.0
+  },
+  {
+    "title": "Does Builders FirstSource (BLDR) Offer an Attractive Risk-Reward Opportunity?",
+    "url": "https://finance.yahoo.com/markets/stocks/articles/does-builders-firstsource-bldr-offer-140641503.html",
+    "content": "",
+    "published": "2026-07-10T14:06:41Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/markets/stocks/articles/does-builders-firstsource-bldr-offer-140641503.html",
+    "content_score": 0.0
+  },
+  {
+    "title": "Remittix Adds Perpetual Futures Platform as RTX Push Moves Beyond Crypto Payments",
+    "url": "https://finance.yahoo.com/markets/crypto/articles/remittix-adds-perpetual-futures-platform-140500743.html",
+    "content": "",
+    "published": "2026-07-10T14:05:00Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/markets/crypto/articles/remittix-adds-perpetual-futures-platform-140500743.html",
+    "content_score": 1.5
+  },
+  {
+    "title": "Does Core Natural Resources (CNR) Offer an Asymmetric Opportunity?",
+    "url": "https://finance.yahoo.com/markets/stocks/articles/does-core-natural-resources-cnr-140455600.html",
+    "content": "",
+    "published": "2026-07-10T14:04:55Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/markets/stocks/articles/does-core-natural-resources-cnr-140455600.html",
+    "content_score": 0.0
+  },
+  {
+    "title": "Daily – Vickers Top Insider Picks for 07/10/2026",
+    "url": "https://finance.yahoo.com/research/reports/ARGUS_47572_InsiderActivity_1783679393000?yptr=yahoo&ncid=yahooproperties_plusresear_nm5q6ze1cei",
+    "content": "",
+    "published": "2026-07-10T10:29:53Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/research/reports/ARGUS_47572_InsiderActivity_1783679393000?yptr=yahoo&ncid=yahooproperties_plusresear_nm5q6ze1cei",
+    "content_score": 1.5
+  },
+  {
+    "title": "2 Vanguard ETFs Beating the S&P 500 With a Momentum-Driven Strategy",
+    "url": "https://finance.yahoo.com/markets/stocks/articles/2-vanguard-etfs-beating-p-150500787.html",
+    "content": "",
+    "published": "2026-07-10T15:05:00Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/markets/stocks/articles/2-vanguard-etfs-beating-p-150500787.html",
+    "content_score": 1.5
+  },
+  {
+    "title": "Bitcoin and ethereum prices today, Friday, July 10, 2026: Up nearly 3% since last Friday",
+    "url": "https://finance.yahoo.com/personal-finance/investing/article/bitcoin-and-ethereum-prices-today-friday-july-10-2026-up-nearly-3-since-last-friday-130101171.html",
+    "content": "",
+    "published": "2026-07-10T13:01:01Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/personal-finance/investing/article/bitcoin-and-ethereum-prices-today-friday-july-10-2026-up-nearly-3-since-last-friday-130101171.html",
+    "content_score": 1.5
+  },
+  {
+    "title": "Silver prices today, Friday, July 10, 2026: Down 4% since Monday",
+    "url": "https://finance.yahoo.com/personal-finance/investing/article/silver-prices-today-friday-july-10-2026-down-4-since-monday-122910639.html",
+    "content": "",
+    "published": "2026-07-10T12:29:10Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/personal-finance/investing/article/silver-prices-today-friday-july-10-2026-down-4-since-monday-122910639.html",
+    "content_score": 0.0
+  },
+  {
+    "title": "Gold prices today, Friday, July 10, 2026: Gold finally opens higher this morning",
+    "url": "https://finance.yahoo.com/personal-finance/investing/article/gold-prices-today-friday-july-10-2026-gold-finally-opens-higher-this-morning-120806614.html",
+    "content": "",
+    "published": "2026-07-10T12:08:06Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/personal-finance/investing/article/gold-prices-today-friday-july-10-2026-gold-finally-opens-higher-this-morning-120806614.html",
+    "content_score": 0.0
+  },
+  {
+    "title": "4 Overlooked Dividend Stocks Yielding 4%+ to Buy in July",
+    "url": "https://finance.yahoo.com/markets/stocks/articles/4-overlooked-dividend-stocks-yielding-150412531.html",
+    "content": "",
+    "published": "2026-07-10T15:04:12Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/markets/stocks/articles/4-overlooked-dividend-stocks-yielding-150412531.html",
+    "content_score": 3.0
+  },
+  {
+    "title": "Raisin review (2026): Is this high-yield savings marketplace trustworthy?",
+    "url": "https://finance.yahoo.com/personal-finance/banking/review/raisin-review-154213864.html",
+    "content": "",
+    "published": "2025-04-29T15:42:13Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/personal-finance/banking/review/raisin-review-154213864.html",
+    "content_score": 3.0
+  },
+  {
+    "title": "Mortgage rate predictions for the next five years: What you can expect",
+    "url": "https://finance.yahoo.com/personal-finance/mortgages/article/mortgage-rate-predictions-for-the-next-five-years-what-you-can-expect-195826935.html",
+    "content": "",
+    "published": "2025-08-18T19:58:26Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/personal-finance/mortgages/article/mortgage-rate-predictions-for-the-next-five-years-what-you-can-expect-195826935.html",
+    "content_score": 0.0
+  },
+  {
+    "title": "First Foundation Bank review (2026): Personal and business banking with competitive online rates",
+    "url": "https://finance.yahoo.com/personal-finance/banking/review/first-foundation-bank-review-135949322.html",
+    "content": "",
+    "published": "2025-05-30T13:59:49Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/personal-finance/banking/review/first-foundation-bank-review-135949322.html",
+    "content_score": 0.0
+  },
+  {
+    "title": "Trader keeps massive EUR/USD bet open for 400 days",
+    "url": "https://finance.yahoo.com/markets/currencies/articles/trader-keeps-massive-eur-usd-150300305.html",
+    "content": "",
+    "published": "2026-07-10T15:03:00Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/markets/currencies/articles/trader-keeps-massive-eur-usd-150300305.html",
+    "content_score": 0.0
+  },
+  {
+    "title": "Does age matter when getting a mortgage?",
+    "url": "https://finance.yahoo.com/personal-finance/mortgages/article/does-age-matter-when-getting-a-mortgage-202538921.html",
+    "content": "",
+    "published": "2026-07-09T20:25:38Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/personal-finance/mortgages/article/does-age-matter-when-getting-a-mortgage-202538921.html",
+    "content_score": 0.0
+  },
+  {
+    "title": "Mortgage and refinance interest rates today, Friday, July 10: Rates are mixed today, mostly higher",
+    "url": "https://finance.yahoo.com/personal-finance/mortgages/article/mortgage-and-refinance-interest-rates-today-friday-july-10-rates-are-mixed-today-mostly-higher-100000913.html",
+    "content": "",
+    "published": "2026-07-10T10:00:00Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/personal-finance/mortgages/article/mortgage-and-refinance-interest-rates-today-friday-july-10-rates-are-mixed-today-mostly-higher-100000913.html",
+    "content_score": 0.0
+  },
+  {
+    "title": "Best CD rates today, Friday, July 10, 2026: Up to 4.10% APY return",
+    "url": "https://finance.yahoo.com/personal-finance/banking/article/best-cd-rates-today-friday-july-10-2026-up-to-410-apy-return-100000644.html",
+    "content": "",
+    "published": "2026-07-10T10:00:00Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/personal-finance/banking/article/best-cd-rates-today-friday-july-10-2026-up-to-410-apy-return-100000644.html",
+    "content_score": 3.0
+  },
+  {
+    "title": "Best high-yield savings interest rates today, Friday, July 10, 2026: Bask Bank offering up to 4.10% APY",
+    "url": "https://finance.yahoo.com/personal-finance/banking/article/best-high-yield-savings-interest-rates-today-friday-july-10-2026-bask-bank-offering-up-to-410-apy-100000281.html",
+    "content": "",
+    "published": "2026-07-07T10:00:00Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/personal-finance/banking/article/best-high-yield-savings-interest-rates-today-friday-july-10-2026-bask-bank-offering-up-to-410-apy-100000281.html",
+    "content_score": 1.5
+  },
+  {
+    "title": "Consumer Credit Plunges By Most in Almost 6 Years. There Could Be a Terrifying Reason Why",
+    "url": "https://finance.yahoo.com/economy/articles/consumer-credit-plunges-most-almost-150251677.html",
+    "content": "",
+    "published": "2026-07-10T15:02:51Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/economy/articles/consumer-credit-plunges-most-almost-150251677.html",
+    "content_score": 1.5
+  },
+  {
+    "title": "HELOC and home equity loan rates today, Friday, July 10, 2026: Why understanding how rates work matters",
+    "url": "https://finance.yahoo.com/personal-finance/mortgages/article/heloc-and-home-equity-loan-rates-today-friday-july-10-2026-why-understanding-how-rates-work-matters-100000980.html",
+    "content": "",
+    "published": "2026-07-07T10:00:00Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/personal-finance/mortgages/article/heloc-and-home-equity-loan-rates-today-friday-july-10-2026-why-understanding-how-rates-work-matters-100000980.html",
+    "content_score": 1.5
+  }
+]

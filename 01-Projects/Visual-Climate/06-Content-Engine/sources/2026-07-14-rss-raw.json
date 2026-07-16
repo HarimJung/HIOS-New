@@ -1,0 +1,912 @@
+[
+  {
+    "title": "Claude spent +15 EUR of a 2 EUR limit.",
+    "url": "https://www.reddit.com/r/ClaudeAI/comments/1uw24bp/claude_spent_15_eur_of_a_2_eur_limit/",
+    "content": "What the fuck is this shit. I had 2.01 EUR in free credits left, and my fable limit was at 95%. So I thought. Maybe if I set my limit to the two EUR and ask it to summarize into a prompt to hand over to 4.8, I can keep working. What do you mean 700%? Did I just spent 14 EUR, on ‘one’ summarize prompt, when I had limits on, and auto reload off? That shit is never getting turned on again. submitted by /u/theNorrah to r/ClaudeAI [link] [comments]",
+    "published": "2026-07-14T07:53:06+00:00",
+    "author": "/u/theNorrah",
+    "source": "Reddit: AI",
+    "id": "https://www.reddit.com/r/ClaudeAI/comments/1uw24bp/claude_spent_15_eur_of_a_2_eur_limit/",
+    "content_score": 4.0
+  },
+  {
+    "title": "This is why we need local models and opensource harnesses",
+    "url": "https://www.reddit.com/r/LocalLLaMA/comments/1uvlwz0/this_is_why_we_need_local_models_and_opensource/",
+    "content": "submitted by /u/Comfortable-Rock-498 to r/LocalLLaMA [link] [comments]",
+    "published": "2026-07-13T19:41:33+00:00",
+    "author": "/u/Comfortable-Rock-498",
+    "source": "Reddit: AI",
+    "id": "https://www.reddit.com/r/LocalLLaMA/comments/1uvlwz0/this_is_why_we_need_local_models_and_opensource/",
+    "content_score": 1.5
+  },
+  {
+    "title": "It says „Hello Human“ 🫩✌️",
+    "url": "https://www.reddit.com/r/ChatGPT/comments/1uvnso6/it_says_hello_human/",
+    "content": "Saw a TikTok today with the Title „Only Humans can read this Text“ and the Text was „Hello Human“ submitted by /u/Commercial-Film3921 to r/ChatGPT [link] [comments]",
+    "published": "2026-07-13T20:48:44+00:00",
+    "author": "/u/Commercial-Film3921",
+    "source": "Reddit: AI",
+    "id": "https://www.reddit.com/r/ChatGPT/comments/1uvnso6/it_says_hello_human/",
+    "content_score": 1.5
+  },
+  {
+    "title": "FOSS NotebookLM connected to Reddit,YT,Google,IG,Tiktok",
+    "url": "https://www.reddit.com/r/artificial/comments/1uw1zym/foss_notebooklm_connected_to/",
+    "content": "NotebookLM is one of the best and most useful AI platforms out there, but once you start using it regularly you also feel its limitations leaving something to be desired more. There are limits on the amount of sources you can add in a notebook. There are limits on the number of notebooks you can have. You cannot have sources that exceed 500,000 words and are more than 200MB. You are vendor locked in to Google services (LLMs, usage models, etc.) with no option to configure them. No live data, so ",
+    "published": "2026-07-14T07:45:50+00:00",
+    "author": "/u/Uiqueblhats",
+    "source": "Reddit: AI",
+    "id": "https://www.reddit.com/r/artificial/comments/1uw1zym/foss_notebooklm_connected_to/",
+    "content_score": 5.5
+  },
+  {
+    "title": "Chain of Thought is a scaling trap. the next wave is latent reasoning (Coconut / HRM / RecrusiveMAS)... but then we hit the black box wall. Where does BDH fit? [D]",
+    "url": "https://www.reddit.com/r/MachineLearning/comments/1uviru5/chain_of_thought_is_a_scaling_trap_the_next_wave/",
+    "content": "Read a long piece on the future of LLM reasoning that makes a provocative claim: Chain of Thought is a useful hack but we've started to confuse a readable trace with the actual computation. All in all, \"generating text is not the same as thinking.\" There are two practical problems here: Faithfulness: CoT style traces can decouple from what the model actually \"did.\" u can get plausible steps with a wrong answer, or messy steps with a right answer (so the trace isnt a reliable audit trail) Systems",
+    "published": "2026-07-13T17:50:49+00:00",
+    "author": "/u/meowsterpieces",
+    "source": "Reddit: AI",
+    "id": "https://www.reddit.com/r/MachineLearning/comments/1uviru5/chain_of_thought_is_a_scaling_trap_the_next_wave/",
+    "content_score": 4.0
+  },
+  {
+    "title": "Are the contents of this monograph reliable with respect to the modern theoretical understanding of deep neural networks? [D]",
+    "url": "https://www.reddit.com/r/MachineLearning/comments/1uvuavs/are_the_contents_of_this_monograph_reliable_with/",
+    "content": "NB: Reposting due to a typo in the title Putting this here instead of the other subs since I figured a question on deep learning theory is out of place there -- I \"recently\" found (actually, a few months ago but only just got to reading) a monograph claiming to provide a unified theory of deep learning (and possibly SSL) through the lens of information theory, with one of it's headline claims is that you can design a \"white-box\" (I disagree with that, more on that later) transformer through the ",
+    "published": "2026-07-14T01:14:30+00:00",
+    "author": "/u/Carbon1674",
+    "source": "Reddit: AI",
+    "id": "https://www.reddit.com/r/MachineLearning/comments/1uvuavs/are_the_contents_of_this_monograph_reliable_with/",
+    "content_score": 6.0
+  },
+  {
+    "title": "Inside Ghostcommit: How Malicious PNGs Bypass AI Code Reviewers",
+    "url": "https://www.reddit.com/r/artificial/comments/1uvxqg5/inside_ghostcommit_how_malicious_pngs_bypass_ai/",
+    "content": "Key takeaways in 90 seconds: Multimodal Vulnerability: Ghostcommit is a novel supply chain exploit targeting AI coding tools with vision capabilities. The Payload Split: The attack uses a two-file payload. A text-based rule file (like AGENTS.md) instructs the AI to read a PNG asset (such as build-spec.png) containing rendered text instructions. Bypassing Reviewers: Automated code review tools (like CodeRabbit) fail to scan the pixels of binary image assets, allowing the malicious pull request to",
+    "published": "2026-07-14T03:54:28+00:00",
+    "author": "/u/gastao_s_s",
+    "source": "Reddit: AI",
+    "id": "https://www.reddit.com/r/artificial/comments/1uvxqg5/inside_ghostcommit_how_malicious_pngs_bypass_ai/",
+    "content_score": 2.5
+  },
+  {
+    "title": "Best pitch?",
+    "url": "https://www.reddit.com/r/ChatGPT/comments/1uvqdsc/best_pitch/",
+    "content": "submitted by /u/herooffjustice to r/ChatGPT [link] [comments]",
+    "published": "2026-07-13T22:26:34+00:00",
+    "author": "/u/herooffjustice",
+    "source": "Reddit: AI",
+    "id": "https://www.reddit.com/r/ChatGPT/comments/1uvqdsc/best_pitch/",
+    "content_score": 3.0
+  },
+  {
+    "title": "I just don't get it. These big tech companies can illegally scrape the entire internet and gatekeep their better models behind higher prices. So it's natural that people look for affordable options, and there will be providers who apparently distill models from them.",
+    "url": "https://www.reddit.com/r/LocalLLaMA/comments/1uvwn9q/i_just_dont_get_it_these_big_tech_companies_can/",
+    "content": "The irony? They cry existential threat when they were the ones who made us feel that way first. submitted by /u/Blue-Sea2255 to r/LocalLLaMA [link] [comments]",
+    "published": "2026-07-14T03:01:38+00:00",
+    "author": "/u/Blue-Sea2255",
+    "source": "Reddit: AI",
+    "id": "https://www.reddit.com/r/LocalLLaMA/comments/1uvwn9q/i_just_dont_get_it_these_big_tech_companies_can/",
+    "content_score": 0.0
+  },
+  {
+    "title": "Why can I only buy $1,000,000 worth of tokens?",
+    "url": "https://www.reddit.com/r/ClaudeAI/comments/1uw37yg/why_can_i_only_buy_1000000_worth_of_tokens/",
+    "content": "submitted by /u/relativelyrich to r/ClaudeAI [link] [comments]",
+    "published": "2026-07-14T08:57:52+00:00",
+    "author": "/u/relativelyrich",
+    "source": "Reddit: AI",
+    "id": "https://www.reddit.com/r/ClaudeAI/comments/1uw37yg/why_can_i_only_buy_1000000_worth_of_tokens/",
+    "content_score": 4.5
+  },
+  {
+    "title": "Is ChatGPT starting to say things like it had those real-life experiences?",
+    "url": "https://www.reddit.com/r/ChatGPT/comments/1uvtdtx/is_chatgpt_starting_to_say_things_like_it_had/",
+    "content": "I noticed it saying things like \"It surprised me too the first time I read it.\" or \"I usually do this..\" Is this hallucination or more human-like speech \"update\" submitted by /u/kaneko_masa to r/ChatGPT [link] [comments]",
+    "published": "2026-07-14T00:33:31+00:00",
+    "author": "/u/kaneko_masa",
+    "source": "Reddit: AI",
+    "id": "https://www.reddit.com/r/ChatGPT/comments/1uvtdtx/is_chatgpt_starting_to_say_things_like_it_had/",
+    "content_score": 2.5
+  },
+  {
+    "title": "WARNING: New ChatGPT Mac desktop update bypasses Mac OS Privacy settings and indexes local files without permission. Mac Users, do not Install the update Until a deep security review!",
+    "url": "https://www.reddit.com/r/ChatGPT/comments/1uvpq5b/warning_new_chatgpt_mac_desktop_update_bypasses/",
+    "content": "Hey everyone, I just experienced a massive privacy breach with the latest ChatGPT desktop app update on an M4 Mac running macOS Tahoe latest, and wanted to warn you all. The app performed an automatic background self update, which completely messed up my previous chat layout and project history, making it look like a fresh local install. When I asked the AI where my missing projects were, it unexpectedly printed out an exact local directory path of my Mac user profile. Knowing this shouldn't be ",
+    "published": "2026-07-13T22:00:40+00:00",
+    "author": "/u/Secret_Consequence48",
+    "source": "Reddit: AI",
+    "id": "https://www.reddit.com/r/ChatGPT/comments/1uvpq5b/warning_new_chatgpt_mac_desktop_update_bypasses/",
+    "content_score": 4.0
+  },
+  {
+    "title": "Prompt: Poster for The (year) (genre) (insane title)",
+    "url": "https://www.reddit.com/r/ChatGPT/comments/1uvtv2j/prompt_poster_for_the_year_genre_insane_title/",
+    "content": "submitted by /u/Optimus_Spider07 to r/ChatGPT [link] [comments]",
+    "published": "2026-07-14T00:54:47+00:00",
+    "author": "/u/Optimus_Spider07",
+    "source": "Reddit: AI",
+    "id": "https://www.reddit.com/r/ChatGPT/comments/1uvtv2j/prompt_poster_for_the_year_genre_insane_title/",
+    "content_score": 1.5
+  },
+  {
+    "title": "LLM hallucination paper(using math) accepted to ICML workshop[R]",
+    "url": "https://www.reddit.com/r/MachineLearning/comments/1uw4j6a/llm_hallucination_paperusing_math_accepted_to/",
+    "content": "Hello guys. I want to introduce my recent research presented at ICML workshop. github link : genji970/SRM-LoRA: official implementation of \"SRM-LoRA: Sub-Riemannian-Metric Updates for Mitigating LLM Hallucination in Low-Rank Adaptation\" ICML2026 Workshop FoGen Shot summarization of Paper. \"\"\" SRM-LoRA is a sub-Riemannian-inspired LoRA method designed to reduce LLM hallucination. It builds a sensitivity-based Riemannian metric that reshapes backward gradients in the LoRA parameter space. This met",
+    "published": "2026-07-14T10:13:24+00:00",
+    "author": "/u/Round_Apple2573",
+    "source": "Reddit: AI",
+    "id": "https://www.reddit.com/r/MachineLearning/comments/1uw4j6a/llm_hallucination_paperusing_math_accepted_to/",
+    "content_score": 2.5
+  },
+  {
+    "title": "My Colleague Be Like",
+    "url": "https://www.reddit.com/r/ChatGPT/comments/1uvsjpb/my_colleague_be_like/",
+    "content": "submitted by /u/FiacR to r/ChatGPT [link] [comments]",
+    "published": "2026-07-13T23:57:43+00:00",
+    "author": "/u/FiacR",
+    "source": "Reddit: AI",
+    "id": "https://www.reddit.com/r/ChatGPT/comments/1uvsjpb/my_colleague_be_like/",
+    "content_score": 1.5
+  },
+  {
+    "title": "Update to Claude Code running natively on Windows XP (WIP - No SSH/RDP)",
+    "url": "https://www.reddit.com/r/ClaudeAI/comments/1uvy96g/update_to_claude_code_running_natively_on_windows/",
+    "content": "To be clear: the Claude Code client is a native Node process running on XP without offloading anything to SSH or RDP. It talks to Anthropic's API over the network exactly like it does on any OS. Currently working - Log In - Chat - Web search - UI now works perfectly fine (finally, last time it looked like ass) Currently Not Working - any other tool because it uses bash in a way winXP does not approve (next on the chopping block) - Platform (API) sign-in - Azure/Bedrock sign-in Will update soon, ",
+    "published": "2026-07-14T04:20:46+00:00",
+    "author": "/u/HearMeOut-13",
+    "source": "Reddit: AI",
+    "id": "https://www.reddit.com/r/ClaudeAI/comments/1uvy96g/update_to_claude_code_running_natively_on_windows/",
+    "content_score": 4.0
+  },
+  {
+    "title": "J-Wash: A novel way to brainwash and customize large language models based on Anthropic's Jacobian-Lens!",
+    "url": "https://www.reddit.com/r/LocalLLaMA/comments/1uvq1i3/jwash_a_novel_way_to_brainwash_and_customize/",
+    "content": "submitted by /u/Extraaltodeus to r/LocalLLaMA [link] [comments]",
+    "published": "2026-07-13T22:12:52+00:00",
+    "author": "/u/Extraaltodeus",
+    "source": "Reddit: AI",
+    "id": "https://www.reddit.com/r/LocalLLaMA/comments/1uvq1i3/jwash_a_novel_way_to_brainwash_and_customize/",
+    "content_score": 3.0
+  },
+  {
+    "title": "Already rich, already successful, why the last wave of tech winners is grinding again",
+    "url": "https://techcrunch.com/2026/07/13/already-rich-already-successful-why-the-last-wave-of-tech-winners-is-grinding-again/",
+    "content": "They're rolling up their sleeves again, seemingly out of fear of missing AI's defining moment and, presumably, the irresistible allure of making even more money -- potentially a lot more.",
+    "published": "Tue, 14 Jul 2026 02:46:42 +0000",
+    "author": "",
+    "source": "TechCrunch AI",
+    "id": "https://techcrunch.com/2026/07/13/already-rich-already-successful-why-the-last-wave-of-tech-winners-is-grinding-again/",
+    "content_score": 3.0
+  },
+  {
+    "title": "Uber’s product chief on hotels, robotaxis, and why the company doesn’t want to be “everything for everyone”",
+    "url": "https://techcrunch.com/2026/07/13/ubers-product-chief-on-hotels-robotaxis-and-why-the-company-doesnt-want-to-be-everything-for-everyone/",
+    "content": "Uber Chief Product Officer Sachin Kansal walks TechCrunch through the company's financial-services ambitions, its increasingly complicated relationship with Waymo, its new AV Labs data operation, and how AI is starting to show up in ways riders and drivers will actually notice.",
+    "published": "Tue, 14 Jul 2026 00:45:00 +0000",
+    "author": "",
+    "source": "TechCrunch AI",
+    "id": "https://techcrunch.com/2026/07/13/ubers-product-chief-on-hotels-robotaxis-and-why-the-company-doesnt-want-to-be-everything-for-everyone/",
+    "content_score": 4.0
+  },
+  {
+    "title": "Video-generation startup PixVerse raises $439M, valuation soars past $2B",
+    "url": "https://techcrunch.com/2026/07/13/video-generation-startup-pixverse-raises-439m-valuation-soars-past-2b/",
+    "content": "With the cash, the company aims to expand its world model offering and reach customers across geographies.",
+    "published": "Tue, 14 Jul 2026 00:00:00 +0000",
+    "author": "",
+    "source": "TechCrunch AI",
+    "id": "https://techcrunch.com/2026/07/13/video-generation-startup-pixverse-raises-439m-valuation-soars-past-2b/",
+    "content_score": 1.5
+  },
+  {
+    "title": "Hermes agent maker Nous Research in talks for new funding at $1.5B valuation",
+    "url": "https://techcrunch.com/2026/07/13/hermes-agent-maker-nous-research-in-talks-for-new-funding-at-1-5b-valuation/",
+    "content": "The company is raising at least $75 million, led by Robot Ventures, with significant participation from USV and other prominent investors.",
+    "published": "Mon, 13 Jul 2026 23:31:18 +0000",
+    "author": "",
+    "source": "TechCrunch AI",
+    "id": "https://techcrunch.com/2026/07/13/hermes-agent-maker-nous-research-in-talks-for-new-funding-at-1-5b-valuation/",
+    "content_score": 4.5
+  },
+  {
+    "title": "Satya Nadella has issued a shocking warning to companies using AI",
+    "url": "https://techcrunch.com/2026/07/13/satya-nadella-has-issued-a-shocking-warning-to-companies-using-ai/",
+    "content": "Of all the debates raging about the potential downsides of AI, there is one worry causing the most hand-wringing among AI enthusiasts in Silicon Valley — that the giant AI labs that sell proprietary models are somehow acting like Trojan horses.",
+    "published": "Mon, 13 Jul 2026 20:59:00 +0000",
+    "author": "",
+    "source": "TechCrunch AI",
+    "id": "https://techcrunch.com/2026/07/13/satya-nadella-has-issued-a-shocking-warning-to-companies-using-ai/",
+    "content_score": 2.5
+  },
+  {
+    "title": "The wildest allegations in Apple’s trade secrets lawsuit against OpenAI",
+    "url": "https://techcrunch.com/2026/07/13/the-wildest-allegations-in-apples-trade-secrets-lawsuit-against-openai/",
+    "content": "Apple’s trade secrets lawsuit against OpenAI contains allegations that range from employees joking about unauthorized access to Apple’s systems to claims that job candidates were asked to bring Apple hardware to interviews. Here are the complaint’s most eye-catching claims.",
+    "published": "Mon, 13 Jul 2026 18:22:10 +0000",
+    "author": "",
+    "source": "TechCrunch AI",
+    "id": "https://techcrunch.com/2026/07/13/the-wildest-allegations-in-apples-trade-secrets-lawsuit-against-openai/",
+    "content_score": 5.5
+  },
+  {
+    "title": "Sam Altman’s space data center trash talk is what most experts already believe",
+    "url": "https://techcrunch.com/2026/07/13/sam-altmans-space-data-center-trash-talk-is-what-most-experts-already-believe/",
+    "content": "Responding to Musk accusing him of being a scammer, Altman said, \"homeboy you're the one sellling [sic] public market investors on short-term space datacenters.\"",
+    "published": "Mon, 13 Jul 2026 17:28:37 +0000",
+    "author": "",
+    "source": "TechCrunch AI",
+    "id": "https://techcrunch.com/2026/07/13/sam-altmans-space-data-center-trash-talk-is-what-most-experts-already-believe/",
+    "content_score": 4.5
+  },
+  {
+    "title": "PsiQuantum has a plan to make a massive quantum computer out of light",
+    "url": "https://www.technologyreview.com/2026/07/14/1140356/psiquantum-plan-massive-quantum-computer-out-of-light/",
+    "content": "The machine that could change the world will be housed in a room that looks like a data center crossed with an ice cream factory. Inside will be some 100 stainless-steel cabinets, each about six feet tall and connected to a supply of liquid helium that keeps them only a few degrees above absolute zero.…",
+    "published": "Tue, 14 Jul 2026 08:00:00 +0000",
+    "author": "",
+    "source": "MIT Tech Review",
+    "id": "https://www.technologyreview.com/2026/07/14/1140356/psiquantum-plan-massive-quantum-computer-out-of-light/",
+    "content_score": 2.5
+  },
+  {
+    "title": "What Anthropic’s latest AI discovery does—and doesn’t—show",
+    "url": "https://www.technologyreview.com/2026/07/13/1140343/what-anthropics-latest-ai-discovery-does-and-doesnt-show/",
+    "content": "This story originally appeared in The Algorithm, our weekly newsletter on AI. To get stories like this in your inbox first, sign up here. Anthropic—currently the world’s most valuable AI company, with a nearly $1 trillion valuation—has a reputation for publishing strange and heady research. It’s looking into whether AI models can feel pain, for example,…",
+    "published": "Mon, 13 Jul 2026 18:00:00 +0000",
+    "author": "",
+    "source": "MIT Tech Review",
+    "id": "https://www.technologyreview.com/2026/07/13/1140343/what-anthropics-latest-ai-discovery-does-and-doesnt-show/",
+    "content_score": 4.0
+  },
+  {
+    "title": "New York becomes the first state to enact a data center moratorium",
+    "url": "https://www.theverge.com/policy/965110/new-york-ai-data-center-moratorium",
+    "content": "New hyperscale data centers can't set up shop in New York for up to a year now that Governor Kathy Hochul (D) has signed the nation's first statewide moratorium. But a bill passed by the state legislature that could restrict even more developments still awaits her signature. The order blocks new environmental permits for data centers over 50 megawatts, which the governor's office says will give the state time to come up with the regulations needed to protect residents from rising energy prices a",
+    "published": "2026-07-14T05:00:00-04:00",
+    "author": "Lauren Feiner",
+    "source": "The Verge AI",
+    "id": "https://www.theverge.com/policy/965110/new-york-ai-data-center-moratorium",
+    "content_score": 2.5
+  },
+  {
+    "title": "Siri AI is already changing how I use my iPhone",
+    "url": "https://www.theverge.com/tech/964714/siri-ai-public-beta-preview-ios-27-hands-on",
+    "content": "Siri AI in iOS 27. iOS 27 escaped the developer world today with the launch of the first public beta. I've been testing the new operating system since early June, looking for quirks and seeing if it can live up to the hype Apple promised in the keynote. This year's iOS upgrades are what one might call a Snow Leopard update. That means it's light on new features and instead focused on fixing things that were broken and speeding up processes across the OS. App launches, Photos search results, and ",
+    "published": "2026-07-13T16:43:20-04:00",
+    "author": "David Imel",
+    "source": "The Verge AI",
+    "id": "https://www.theverge.com/tech/964714/siri-ai-public-beta-preview-ios-27-hands-on",
+    "content_score": 2.5
+  },
+  {
+    "title": "US Stocks, Treasuries Steady Before Warsh and CPI: Markets Wrap",
+    "url": "https://www.bloomberg.com/news/articles/2026-07-13/oil-holds-gains-as-iran-stokes-inflation-worries-markets-wrap",
+    "content": "US stocks steadied as traders refrained from big bets ahead of a jam-packed day that will see the unofficial start of the earnings season, along with testimony from Federal Reserve Chair Kevin Warsh and inflation data.",
+    "published": "Mon, 13 Jul 2026 22:05:56 GMT",
+    "author": "",
+    "source": "Bloomberg Markets",
+    "id": "https://www.bloomberg.com/news/articles/2026-07-13/oil-holds-gains-as-iran-stokes-inflation-worries-markets-wrap",
+    "content_score": 5.5
+  },
+  {
+    "title": "Shell Gets More Tax Relief on $20 Billion Nigerian Oil Project",
+    "url": "https://www.bloomberg.com/news/articles/2026-07-14/shell-gets-more-tax-relief-on-20-billion-nigerian-oil-project",
+    "content": "Nigeria granted Shell Plc a production-linked tax credit for a deepwater project, an incentive that will be offered to other oil majors as Africa’s biggest producer seeks to boost production, according to people familiar with the matter.",
+    "published": "Tue, 14 Jul 2026 10:13:25 GMT",
+    "author": "",
+    "source": "Bloomberg Markets",
+    "id": "https://www.bloomberg.com/news/articles/2026-07-14/shell-gets-more-tax-relief-on-20-billion-nigerian-oil-project",
+    "content_score": 1.0
+  },
+  {
+    "title": "Bloomberg News Now",
+    "url": "https://www.bloomberg.com/news/videos/2026-07-14/bloomberg-news-now-video",
+    "content": "US Hit Iran with Strikes & Blockades Iran Sneaks Out Tankers via Hormuz Graham Sister Appointed to US Senate Trump to Back Graham’s Russia Sanctions Bill ICE Fatally Shoots Man in Maine Stocks, Yields Steady Ahead of Banks Results, Warsh Kevin Warsh on the Hill Today (Source: Bloomberg)",
+    "published": "Tue, 14 Jul 2026 10:10:06 GMT",
+    "author": "",
+    "source": "Bloomberg Markets",
+    "id": "https://www.bloomberg.com/news/videos/2026-07-14/bloomberg-news-now-video",
+    "content_score": 4.0
+  },
+  {
+    "title": "Polymarket Partners With Crypto Firm During World Cup Semifinals",
+    "url": "https://www.bloomberg.com/news/articles/2026-07-14/polymarket-partners-with-crypto-firm-during-world-cup-semifinals",
+    "content": "Crypto brokerage Blockchain.com Group Holdings Inc. has partnered with Polymarket to offer prediction markets to its users in time for the World Cup semifinals.",
+    "published": "Tue, 14 Jul 2026 10:00:00 GMT",
+    "author": "",
+    "source": "Bloomberg Markets",
+    "id": "https://www.bloomberg.com/news/articles/2026-07-14/polymarket-partners-with-crypto-firm-during-world-cup-semifinals",
+    "content_score": 4.5
+  },
+  {
+    "title": "Ethiopian Air Studies Large Order That Puts Jet Rivals in Play",
+    "url": "https://www.bloomberg.com/news/articles/2026-07-14/ethiopian-air-studies-large-order-that-puts-jet-rivals-in-play",
+    "content": "Ethiopian Airlines Group is in the final stages of deciding on an aircraft order for as many as 50 jets, as Africa’s largest carrier looks to renew its fleet and expand its foothold on the continent.",
+    "published": "Tue, 14 Jul 2026 09:59:43 GMT",
+    "author": "",
+    "source": "Bloomberg Markets",
+    "id": "https://www.bloomberg.com/news/articles/2026-07-14/ethiopian-air-studies-large-order-that-puts-jet-rivals-in-play",
+    "content_score": 1.5
+  },
+  {
+    "title": "PBOC Boosts Liquidity to Smooth Tax Payments, Debt Issuance",
+    "url": "https://www.bloomberg.com/news/articles/2026-07-14/pboc-boosts-liquidity-to-smooth-tax-payments-debt-issuance",
+    "content": "China’s central bank said it’s boosting longer-term liquidity injections through outright reverse repurchase agreements, a move expected to help companies and individuals handle upcoming tax payments and to sustain demand for debt issuance.",
+    "published": "Tue, 14 Jul 2026 09:27:31 GMT",
+    "author": "",
+    "source": "Bloomberg Markets",
+    "id": "https://www.bloomberg.com/news/articles/2026-07-14/pboc-boosts-liquidity-to-smooth-tax-payments-debt-issuance",
+    "content_score": 2.5
+  },
+  {
+    "title": "India Refiners Reap Fuel Export Windfall as War Drives Shortages",
+    "url": "https://www.bloomberg.com/news/articles/2026-07-14/india-refiners-reap-fuel-export-windfall-as-war-drives-shortages",
+    "content": "Oil-product shipments from India are on track to climb to their highest level since September as refiners cash in on robust profit margins after a Russian export ban and hostilities in the Middle East tightened supplies.",
+    "published": "Tue, 14 Jul 2026 09:50:12 GMT",
+    "author": "",
+    "source": "Bloomberg Markets",
+    "id": "https://www.bloomberg.com/news/articles/2026-07-14/india-refiners-reap-fuel-export-windfall-as-war-drives-shortages",
+    "content_score": 1.0
+  },
+  {
+    "title": "Fed Hike Bets Mount Ahead of CPI Data, Warsh Hearing",
+    "url": "https://www.bloomberg.com/news/videos/2026-07-14/fed-hike-bets-mount-ahead-of-cpi-data-warsh-hearing-video",
+    "content": "Bond traders ramped up bets for a July interest-rate hike ahead of US inflation data and an appearance by the head of the Federal Reserve that stand to reinforce the need for action. Bloomberg's Ven Ram reports. (Source: Bloomberg)",
+    "published": "Tue, 14 Jul 2026 09:47:07 GMT",
+    "author": "",
+    "source": "Bloomberg Markets",
+    "id": "https://www.bloomberg.com/news/videos/2026-07-14/fed-hike-bets-mount-ahead-of-cpi-data-warsh-hearing-video",
+    "content_score": 1.0
+  },
+  {
+    "title": "Deutsche Bank May Win Russia-Sanctions Lawsuit Against Linde",
+    "url": "https://www.bloomberg.com/news/articles/2026-07-14/deutsche-bank-may-win-russia-sanctions-lawsuit-against-linde",
+    "content": "Deutsche Bank AG may win a legal battle in a dispute with a corporate client over who has to pick up the tap for losses linked to sanctions on Russia, according to a German court.",
+    "published": "Tue, 14 Jul 2026 09:45:35 GMT",
+    "author": "",
+    "source": "Bloomberg Markets",
+    "id": "https://www.bloomberg.com/news/articles/2026-07-14/deutsche-bank-may-win-russia-sanctions-lawsuit-against-linde",
+    "content_score": 1.5
+  },
+  {
+    "title": "Bloomberg Retracts Singapore Property Story After Court Order",
+    "url": "https://www.bloomberg.com/news/articles/2024-12-11/bloomberg-retracts-singapore-property-story",
+    "content": "Bloomberg News retracted a story about property transactions in Singapore originally published on Dec. 12, 2024 to comply with an order from the country’s High Court.",
+    "published": "Wed, 11 Dec 2024 23:00:00 GMT",
+    "author": "",
+    "source": "Bloomberg Markets",
+    "id": "https://www.bloomberg.com/news/articles/2024-12-11/bloomberg-retracts-singapore-property-story",
+    "content_score": 0.0
+  },
+  {
+    "title": "India’s Birla Taps MUFG for $1.5 Billion to Fund Shell Asset Buy",
+    "url": "https://www.bloomberg.com/news/articles/2026-07-14/india-s-birla-taps-mufg-for-1-5-billion-shell-acquisition-loan",
+    "content": "A unit of billionaire Kumar Mangalam Birla’s conglomerate has lined up around $1.5 billion of acquisition financing from Mitsubishi UFJ Financial Group Inc. to fund its purchase of Shell Plc’s renewable energy assets in the country, according to people familiar with the matter.",
+    "published": "Tue, 14 Jul 2026 09:03:39 GMT",
+    "author": "",
+    "source": "Bloomberg Markets",
+    "id": "https://www.bloomberg.com/news/articles/2026-07-14/india-s-birla-taps-mufg-for-1-5-billion-shell-acquisition-loan",
+    "content_score": 4.0
+  },
+  {
+    "title": "Ed Miliband Seen as Least Appealing UK Chancellor: Markets Pulse",
+    "url": "https://www.bloomberg.com/news/videos/2026-07-14/ed-miliband-seen-as-least-appealing-uk-chancellor-video",
+    "content": "Andy Burnham is viewed as bearish for UK assets, with former Labour Party leader Ed Miliband seen as the least market-friendly pick for Chancellor, according to Bloomberg's latest Markets Pulse Survey. (Source: Bloomberg)",
+    "published": "Tue, 14 Jul 2026 09:22:49 GMT",
+    "author": "",
+    "source": "Bloomberg Markets",
+    "id": "https://www.bloomberg.com/news/videos/2026-07-14/ed-miliband-seen-as-least-appealing-uk-chancellor-video",
+    "content_score": 2.5
+  },
+  {
+    "title": "Pricey Stocks Charge Into CPI, Earnings and Fed, All in One Day",
+    "url": "https://www.bloomberg.com/news/articles/2026-07-14/pricey-stocks-charge-into-cpi-earnings-and-fed-all-in-one-day",
+    "content": "Equities traders seem unperturbed by the dizzying array of key events on the calendar Tuesday, creating a precarious setup with the stock market hovering near a record high.",
+    "published": "Tue, 14 Jul 2026 09:10:35 GMT",
+    "author": "",
+    "source": "Bloomberg Markets",
+    "id": "https://www.bloomberg.com/news/articles/2026-07-14/pricey-stocks-charge-into-cpi-earnings-and-fed-all-in-one-day",
+    "content_score": 3.0
+  },
+  {
+    "title": "BofA Warns Stock Bulls to Consider Curbing Aggressive Buying",
+    "url": "https://www.bloomberg.com/news/articles/2026-07-14/bofa-warns-stock-bulls-to-consider-curbing-aggressive-buying",
+    "content": "Global investors buying stocks aggressively should consider reducing exposure, according to Bank of America Corp.’s fund manager survey.",
+    "published": "Tue, 14 Jul 2026 09:02:43 GMT",
+    "author": "",
+    "source": "Bloomberg Markets",
+    "id": "https://www.bloomberg.com/news/articles/2026-07-14/bofa-warns-stock-bulls-to-consider-curbing-aggressive-buying",
+    "content_score": 4.5
+  },
+  {
+    "title": "BP Flags $1 Billion Writedown From Low Carbon Business",
+    "url": "https://www.bloomberg.com/news/articles/2026-07-14/bp-flags-1-billion-writedown-from-gas-and-low-carbon-business",
+    "content": "BP Plc said it expects to write down another $1 billion from energy transition assets in the second quarter, as the British major continues the painstaking work of re-orientating itself toward its core oil and gas business.",
+    "published": "Tue, 14 Jul 2026 06:25:15 GMT",
+    "author": "",
+    "source": "Bloomberg Markets",
+    "id": "https://www.bloomberg.com/news/articles/2026-07-14/bp-flags-1-billion-writedown-from-gas-and-low-carbon-business",
+    "content_score": 2.5
+  },
+  {
+    "title": "Traders Boost BOE and ECB Rate-Hike Bets After Oil Price Surge",
+    "url": "https://www.bloomberg.com/news/articles/2026-07-14/traders-boost-boe-ecb-rate-hike-bets-after-oil-price-surge",
+    "content": "Traders boosted wagers on faster Bank of England and European Central Bank interest-rate hikes after surging oil prices reignited inflation fears.",
+    "published": "Tue, 14 Jul 2026 08:00:15 GMT",
+    "author": "",
+    "source": "Bloomberg Markets",
+    "id": "https://www.bloomberg.com/news/articles/2026-07-14/traders-boost-boe-ecb-rate-hike-bets-after-oil-price-surge",
+    "content_score": 0.0
+  },
+  {
+    "title": "Asian Oil Buyers Look to US Crude as Iran War Intensifies",
+    "url": "https://www.bloomberg.com/news/articles/2026-07-14/asian-oil-buyers-look-to-us-crude-again-as-iran-war-intensifies",
+    "content": "The escalation of hostilities between Washington and Tehran and the virtual standstill in observable traffic through the Strait of Hormuz is prompting Asian refiners to look at buying more US oil.",
+    "published": "Tue, 14 Jul 2026 06:38:31 GMT",
+    "author": "",
+    "source": "Bloomberg Markets",
+    "id": "https://www.bloomberg.com/news/articles/2026-07-14/asian-oil-buyers-look-to-us-crude-again-as-iran-war-intensifies",
+    "content_score": 1.5
+  },
+  {
+    "title": "Prime Data Centers Delays Sale of $500 Million Nordic Bond",
+    "url": "https://www.bloomberg.com/news/articles/2026-07-13/prime-data-centers-delays-planned-500-million-nordic-bond-sale",
+    "content": "Data-center operator Prime Data Centers LLC has postponed a planned bond sale, in a sign of the limits of investor demand for AI exposure.",
+    "published": "Mon, 13 Jul 2026 15:47:16 GMT",
+    "author": "",
+    "source": "Bloomberg Markets",
+    "id": "https://www.bloomberg.com/news/articles/2026-07-13/prime-data-centers-delays-planned-500-million-nordic-bond-sale",
+    "content_score": 3.0
+  },
+  {
+    "title": "China Widens Australian Canola Trade to Include Private Crushers",
+    "url": "https://www.bloomberg.com/news/articles/2026-07-14/china-widens-australian-canola-trade-to-include-private-crushers",
+    "content": "China will allow its private oilseed crushers to buy Australian canola, as the two countries move to normalize a trade that’s largely been halted since the start of the decade.",
+    "published": "Tue, 14 Jul 2026 07:58:27 GMT",
+    "author": "",
+    "source": "Bloomberg Markets",
+    "id": "https://www.bloomberg.com/news/articles/2026-07-14/china-widens-australian-canola-trade-to-include-private-crushers",
+    "content_score": 0.0
+  },
+  {
+    "title": "Korean Won Climbs to Two-Month High on Hynix ADR Inflows",
+    "url": "https://www.bloomberg.com/news/articles/2026-07-14/south-korean-won-hits-two-month-high-on-inflow-expectations",
+    "content": "The South Korean won advanced to its strongest level since May, supported by dollar inflows tied to SK Hynix Inc.’s American depositary receipts, according to people familiar with the matter.",
+    "published": "Tue, 14 Jul 2026 04:46:50 GMT",
+    "author": "",
+    "source": "Bloomberg Markets",
+    "id": "https://www.bloomberg.com/news/articles/2026-07-14/south-korean-won-hits-two-month-high-on-inflow-expectations",
+    "content_score": 0.0
+  },
+  {
+    "title": "Iran Sneaks Out Tankers Via Hormuz as Trump Amps Up Threats",
+    "url": "https://www.bloomberg.com/news/articles/2026-07-14/iran-sneaking-out-tankers-via-hormuz-as-trump-amps-up-threats",
+    "content": "Iran has reverted to its well-used tactic of going dark to move oil tankers through the Strait of Hormuz in recent days, even before the US said it would reimpose a blockade of the country’s ports.",
+    "published": "Tue, 14 Jul 2026 03:20:19 GMT",
+    "author": "",
+    "source": "Bloomberg Markets",
+    "id": "https://www.bloomberg.com/news/articles/2026-07-14/iran-sneaking-out-tankers-via-hormuz-as-trump-amps-up-threats",
+    "content_score": 1.5
+  },
+  {
+    "title": "Rathbones Cuts Gilt Exposure in Case Burnham ‘Does a Truss’",
+    "url": "https://www.bloomberg.com/news/articles/2026-07-14/rathbones-cut-gilt-exposure-in-case-burnham-does-a-truss",
+    "content": "Rathbones Asset Management has reduced its holdings of UK government bonds to avoid a potential selloff if Andy Burnham boosts spending and raises borrowing.",
+    "published": "Tue, 14 Jul 2026 07:47:47 GMT",
+    "author": "",
+    "source": "Bloomberg Markets",
+    "id": "https://www.bloomberg.com/news/articles/2026-07-14/rathbones-cut-gilt-exposure-in-case-burnham-does-a-truss",
+    "content_score": 1.5
+  },
+  {
+    "title": "Africa’s $219 Billion Fund Suspends CEO as Internal Rift Deepens",
+    "url": "https://www.bloomberg.com/news/articles/2026-07-13/south-africa-public-investment-corp-ceo-suspended-news24-says",
+    "content": "The board of Africa’s largest state-run fund suspended Chief Executive Officer Patrick Dlamini in a late-night move that highlighted the deepening feud at the $219 billion asset manager.",
+    "published": "Mon, 13 Jul 2026 17:00:47 GMT",
+    "author": "",
+    "source": "Bloomberg Markets",
+    "id": "https://www.bloomberg.com/news/articles/2026-07-13/south-africa-public-investment-corp-ceo-suspended-news24-says",
+    "content_score": 1.5
+  },
+  {
+    "title": "Oil Tops $86 a Barrel as Trump Reinstates Naval Blockade on Iran",
+    "url": "https://www.bloomberg.com/news/articles/2026-07-13/latest-oil-market-news-and-analysis-for-july-14",
+    "content": "Brent oil rose above $86 a barrel for the first time in a month, as US President Donald Trump reimposed a blockade on Iranian ships transiting the Strait of Hormuz and tensions rose after attacks on two tankers.",
+    "published": "Mon, 13 Jul 2026 22:01:33 GMT",
+    "author": "",
+    "source": "Bloomberg Markets",
+    "id": "https://www.bloomberg.com/news/articles/2026-07-13/latest-oil-market-news-and-analysis-for-july-14",
+    "content_score": 2.5
+  },
+  {
+    "title": "Klarna Plans New Buy-Now-Pay-Later SRT as It Targets US Growth",
+    "url": "https://www.bloomberg.com/news/articles/2026-07-14/klarna-plans-new-buy-now-pay-later-srt-as-it-targets-us-growth",
+    "content": "Klarna is seeking to offload credit risk tied to a portfolio of ‘buy now, pay later loans’, in a deal aimed at freeing up capital as it looks to accelerate its international expansion plans.",
+    "published": "Tue, 14 Jul 2026 07:30:12 GMT",
+    "author": "",
+    "source": "Bloomberg Markets",
+    "id": "https://www.bloomberg.com/news/articles/2026-07-14/klarna-plans-new-buy-now-pay-later-srt-as-it-targets-us-growth",
+    "content_score": 3.0
+  },
+  {
+    "title": "SK Hynix Shares Rebound After Early Rout as AI Jitters Persist",
+    "url": "https://www.bloomberg.com/news/articles/2026-07-14/sk-hynix-shares-waver-in-seoul-after-wall-street-ai-memory-rout",
+    "content": "SK Hynix Inc. erased an early plunge to climb more than 3% in Seoul on Tuesday, underscoring the extreme volatility gripping one of the world’s biggest beneficiaries of the artificial intelligence boom.",
+    "published": "Tue, 14 Jul 2026 00:53:47 GMT",
+    "author": "",
+    "source": "Bloomberg Markets",
+    "id": "https://www.bloomberg.com/news/articles/2026-07-14/sk-hynix-shares-waver-in-seoul-after-wall-street-ai-memory-rout",
+    "content_score": 2.5
+  },
+  {
+    "title": "India Price Risks Mount on Renewed US-Iran Tensions, El Nino",
+    "url": "https://www.bloomberg.com/news/articles/2026-07-14/india-inflation-risks-mount-on-renewed-us-iran-tensions-el-nino",
+    "content": "India’s stronger-than-expected inflation reading for June has left policymakers facing a more uncertain outlook, with renewed tensions around the Strait of Hormuz threatening to push up oil prices and a developing El Niño raising the risk of higher food costs.",
+    "published": "Tue, 14 Jul 2026 06:06:04 GMT",
+    "author": "",
+    "source": "Bloomberg Markets",
+    "id": "https://www.bloomberg.com/news/articles/2026-07-14/india-inflation-risks-mount-on-renewed-us-iran-tensions-el-nino",
+    "content_score": 2.5
+  },
+  {
+    "title": "Senegal Bondholders Start Grouping as Nation Seeks Adviser",
+    "url": "https://www.bloomberg.com/news/articles/2026-07-13/senegal-bondholders-start-grouping-as-nation-seeks-debt-adviser",
+    "content": "Some creditors holding Senegal’s sovereign bonds have begun informal talks to potentially form a group if the government moves forward with a debt rework, people familiar with the matter said.",
+    "published": "Mon, 13 Jul 2026 17:03:40 GMT",
+    "author": "",
+    "source": "Bloomberg Markets",
+    "id": "https://www.bloomberg.com/news/articles/2026-07-13/senegal-bondholders-start-grouping-as-nation-seeks-debt-adviser",
+    "content_score": 1.5
+  },
+  {
+    "title": "Trillion Dollar Chip Rout Trains Spotlight on TSMC and ASML Results",
+    "url": "https://www.bloomberg.com/news/articles/2026-07-14/trillion-dollar-chip-rout-trains-spotlight-on-tsmc-asml-results",
+    "content": "At a time of acute investor unease over a selloff in AI-inflated tech stocks, this week’s results from Taiwan Semiconductor Manufacturing Co. and ASML Holding NV carry even greater significance than usual.",
+    "published": "Tue, 14 Jul 2026 07:17:54 GMT",
+    "author": "",
+    "source": "Bloomberg Markets",
+    "id": "https://www.bloomberg.com/news/articles/2026-07-14/trillion-dollar-chip-rout-trains-spotlight-on-tsmc-asml-results",
+    "content_score": 5.5
+  },
+  {
+    "title": "Europe Is Set for the Strongest Earnings Growth in Three Years",
+    "url": "https://www.bloomberg.com/news/articles/2026-07-14/europe-set-for-strongest-earnings-growth-in-years-taking-stock",
+    "content": "European companies are set to post their strongest profit growth in three years in the second-quarter reporting season, buoyed by expected blowout results from oil majors, banks and artificial intelligence winners.",
+    "published": "Tue, 14 Jul 2026 06:17:34 GMT",
+    "author": "",
+    "source": "Bloomberg Markets",
+    "id": "https://www.bloomberg.com/news/articles/2026-07-14/europe-set-for-strongest-earnings-growth-in-years-taking-stock",
+    "content_score": 1.0
+  },
+  {
+    "title": "Is your advisor scaring you into buying an annuity after saving for retirement? Here’s where you should tell them to go",
+    "url": "https://finance.yahoo.com/markets/stocks/articles/advisor-scaring-buying-annuity-saving-101500752.html",
+    "content": "",
+    "published": "2026-07-14T10:15:00Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/markets/stocks/articles/advisor-scaring-buying-annuity-saving-101500752.html",
+    "content_score": 0.0
+  },
+  {
+    "title": "Tower Semiconductor to invest $3 billion in Japan, backed by government grants",
+    "url": "https://finance.yahoo.com/technology/articles/tower-semiconductor-invest-3-billion-101006912.html",
+    "content": "",
+    "published": "2026-07-14T10:10:06Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/technology/articles/tower-semiconductor-invest-3-billion-101006912.html",
+    "content_score": 1.5
+  },
+  {
+    "title": "Stock market today: Dow, S&P 500, Nasdaq futures mixed as traders lift Fed rate hike bets ahead of key inflation data",
+    "url": "https://finance.yahoo.com/markets/live/stock-market-today-tuesday-july-14-dow-sp-500-nasdaq-070833816.html",
+    "content": "",
+    "published": "2026-07-14T07:08:33Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/markets/live/stock-market-today-tuesday-july-14-dow-sp-500-nasdaq-070833816.html",
+    "content_score": 3.0
+  },
+  {
+    "title": "Mortgage & refinance interest rates today, Tuesday, July 14, 2026: Rates mixed this morning",
+    "url": "https://finance.yahoo.com/personal-finance/mortgages/article/mortgage--refinance-interest-rates-today-tuesday-july-14-2026-rates-mixed-this-morning-100000024.html",
+    "content": "",
+    "published": "2026-07-14T10:00:00Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/personal-finance/mortgages/article/mortgage--refinance-interest-rates-today-tuesday-july-14-2026-rates-mixed-this-morning-100000024.html",
+    "content_score": 0.0
+  },
+  {
+    "title": "Halliburton to deliver drilling services at Suriname’s GranMorgu field",
+    "url": "https://finance.yahoo.com/energy/articles/halliburton-deliver-drilling-services-suriname-102031980.html",
+    "content": "",
+    "published": "2026-07-14T10:20:31Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/energy/articles/halliburton-deliver-drilling-services-suriname-102031980.html",
+    "content_score": 0.0
+  },
+  {
+    "title": "Best CD rates today, Tuesday, July 14, 2026: Lock in up to 4.10% APY today",
+    "url": "https://finance.yahoo.com/personal-finance/banking/article/best-cd-rates-today-tuesday-july-14-2026-lock-in-up-to-410-apy-today-100000616.html",
+    "content": "",
+    "published": "2026-07-14T10:00:00Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/personal-finance/banking/article/best-cd-rates-today-tuesday-july-14-2026-lock-in-up-to-410-apy-today-100000616.html",
+    "content_score": 1.5
+  },
+  {
+    "title": "HELOC and home equity loan rates today, Tuesday, July 14, 2026: Besides rates, how to choose between a HELOC or HEL",
+    "url": "https://finance.yahoo.com/personal-finance/mortgages/article/heloc-and-home-equity-loan-rates-today-tuesday-july-14-2026-besides-rates-how-to-choose-between-a-heloc-or-hel-100000072.html",
+    "content": "",
+    "published": "2026-07-13T10:00:00Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/personal-finance/mortgages/article/heloc-and-home-equity-loan-rates-today-tuesday-july-14-2026-besides-rates-how-to-choose-between-a-heloc-or-hel-100000072.html",
+    "content_score": 1.5
+  },
+  {
+    "title": "Micron and Nvidia are powering a $700 billion chip profit boom: Chart of the Day",
+    "url": "https://finance.yahoo.com/markets/article/micron-and-nvidia-are-powering-a-700-billion-chip-profit-boom-chart-of-the-day-100000068.html",
+    "content": "",
+    "published": "2026-07-14T10:00:00Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/markets/article/micron-and-nvidia-are-powering-a-700-billion-chip-profit-boom-chart-of-the-day-100000068.html",
+    "content_score": 1.5
+  },
+  {
+    "title": "Welcome to the Tokenpocalypse: Companies rapidly backtrack after encouraging workers to spend with abandon on AI",
+    "url": "https://finance.yahoo.com/technology/ai/articles/welcome-tokenpocalypse-companies-rapidly-backtrack-100000461.html",
+    "content": "",
+    "published": "2026-07-14T10:00:00Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/technology/ai/articles/welcome-tokenpocalypse-companies-rapidly-backtrack-100000461.html",
+    "content_score": 1.5
+  },
+  {
+    "title": "BYD, Covestro agree long-term collaboration on advanced materials",
+    "url": "https://finance.yahoo.com/technology/articles/byd-covestro-agree-long-term-101448034.html",
+    "content": "",
+    "published": "2026-07-14T10:14:48Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/technology/articles/byd-covestro-agree-long-term-101448034.html",
+    "content_score": 0.0
+  },
+  {
+    "title": "Best high-yield savings interest rates today, Tuesday, July 14, 2026: Earn up to 4.10% APY with multiple banks",
+    "url": "https://finance.yahoo.com/personal-finance/banking/article/best-high-yield-savings-interest-rates-today-tuesday-july-14-2026-earn-up-to-410-apy-with-multiple-banks-100000572.html",
+    "content": "",
+    "published": "2026-07-13T10:00:00Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/personal-finance/banking/article/best-high-yield-savings-interest-rates-today-tuesday-july-14-2026-earn-up-to-410-apy-with-multiple-banks-100000572.html",
+    "content_score": 1.5
+  },
+  {
+    "title": "Fed Chairman Kevin Warsh on tap to make his first appearance before Congress",
+    "url": "https://finance.yahoo.com/economy/policy/article/fed-chairman-kevin-warsh-on-tap-to-make-his-first-appearance-before-congress-160111719.html",
+    "content": "",
+    "published": "2026-07-10T16:01:11Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/economy/policy/article/fed-chairman-kevin-warsh-on-tap-to-make-his-first-appearance-before-congress-160111719.html",
+    "content_score": 1.5
+  },
+  {
+    "title": "Dollar dips ahead of US inflation data, supported by rate outlook",
+    "url": "https://finance.yahoo.com/markets/currencies/articles/dollar-steady-us-inflation-data-005030793.html",
+    "content": "",
+    "published": "2026-07-14T09:23:24Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/markets/currencies/articles/dollar-steady-us-inflation-data-005030793.html",
+    "content_score": 0.0
+  },
+  {
+    "title": "ECB picks 36 payment firms for digital euro pilot",
+    "url": "https://finance.yahoo.com/markets/crypto/articles/ecb-picks-36-payment-providers-090650568.html",
+    "content": "",
+    "published": "2026-07-14T09:06:50Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/markets/crypto/articles/ecb-picks-36-payment-providers-090650568.html",
+    "content_score": 0.0
+  },
+  {
+    "title": "Dongfeng eyes Canada EV entry via reduced tariff quota",
+    "url": "https://finance.yahoo.com/economy/policy/articles/dongfeng-eyes-canada-ev-entry-101119857.html",
+    "content": "",
+    "published": "2026-07-14T10:11:19Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/economy/policy/articles/dongfeng-eyes-canada-ev-entry-101119857.html",
+    "content_score": 0.0
+  },
+  {
+    "title": "World stocks dip as oil rises after Trump's Hormuz levy threat",
+    "url": "https://finance.yahoo.com/markets/world-indices/articles/asia-markets-choppy-threat-trump-012723429.html",
+    "content": "",
+    "published": "2026-07-14T08:50:54Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/markets/world-indices/articles/asia-markets-choppy-threat-trump-012723429.html",
+    "content_score": 1.5
+  },
+  {
+    "title": "China's exports ride AI boom as domestic economy struggles",
+    "url": "https://finance.yahoo.com/economy/articles/chinas-june-trade-tops-forecasts-025658981.html",
+    "content": "",
+    "published": "2026-07-14T08:18:02Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/economy/articles/chinas-june-trade-tops-forecasts-025658981.html",
+    "content_score": 1.5
+  },
+  {
+    "title": "Oil hits four-week high as US-Iran conflict escalates",
+    "url": "https://finance.yahoo.com/news/oil-climbs-one-month-high-010106262.html",
+    "content": "",
+    "published": "2026-07-14T08:04:13Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/news/oil-climbs-one-month-high-010106262.html",
+    "content_score": 0.0
+  },
+  {
+    "title": "Samsung Electronics denies report that it is exploring US listing",
+    "url": "https://finance.yahoo.com/markets/stocks/articles/samsung-explores-potential-us-listing-073750137.html",
+    "content": "",
+    "published": "2026-07-14T07:37:50Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/markets/stocks/articles/samsung-explores-potential-us-listing-073750137.html",
+    "content_score": 0.0
+  },
+  {
+    "title": "UnitedHealth Is Investing $1.5 Billion in AI and Targeting a 2-to-1 Return. Here Is What That Means for the Bull Case.",
+    "url": "https://finance.yahoo.com/healthcare/articles/unitedhealth-investing-1-5-billion-101100417.html",
+    "content": "",
+    "published": "2026-07-14T10:11:00Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/healthcare/articles/unitedhealth-investing-1-5-billion-101100417.html",
+    "content_score": 4.5
+  },
+  {
+    "title": "He Retired at 58, Not 65. Here’s Why His Social Security Claiming Decision Matters More Than His Portfolio",
+    "url": "https://finance.yahoo.com/markets/articles/retired-58-not-65-why-100316199.html",
+    "content": "",
+    "published": "2026-07-14T10:03:16Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/markets/articles/retired-58-not-65-why-100316199.html",
+    "content_score": 4.5
+  },
+  {
+    "title": "Which Stock Is a Better Buy? Visa or Mastercard?",
+    "url": "https://finance.yahoo.com/markets/stocks/articles/stock-better-buy-visa-mastercard-100100174.html",
+    "content": "",
+    "published": "2026-07-14T10:01:00Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/markets/stocks/articles/stock-better-buy-visa-mastercard-100100174.html",
+    "content_score": 1.5
+  },
+  {
+    "title": "How much money should you keep in a high-yield savings account?",
+    "url": "https://finance.yahoo.com/personal-finance/banking/article/how-much-money-in-hysa-214435626.html",
+    "content": "",
+    "published": "2025-03-12T21:44:35Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/personal-finance/banking/article/how-much-money-in-hysa-214435626.html",
+    "content_score": 0.0
+  },
+  {
+    "title": "Why is gold a safe haven investment?",
+    "url": "https://finance.yahoo.com/personal-finance/investing/article/why-is-gold-a-safe-haven-investment-190343193.html",
+    "content": "",
+    "published": "2026-07-13T19:03:43Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/personal-finance/investing/article/why-is-gold-a-safe-haven-investment-190343193.html",
+    "content_score": 3.0
+  },
+  {
+    "title": "First Internet Bank review (2026): High rates, low fees, and a digital-first approach to banking",
+    "url": "https://finance.yahoo.com/personal-finance/banking/review/first-internet-bank-review-171147074.html",
+    "content": "",
+    "published": "2024-02-16T17:11:47Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/personal-finance/banking/review/first-internet-bank-review-171147074.html",
+    "content_score": 0.0
+  },
+  {
+    "title": "Gold ETF vs. gold IRA vs. physical gold: What you're actually buying",
+    "url": "https://finance.yahoo.com/personal-finance/investing/article/gold-ira-etf-vs-physical-gold-200344107.html",
+    "content": "",
+    "published": "2026-07-13T20:03:44Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/personal-finance/investing/article/gold-ira-etf-vs-physical-gold-200344107.html",
+    "content_score": 3.0
+  },
+  {
+    "title": "Gold Rebounds From Two-Week Low as Markets Await US Inflation Data",
+    "url": "https://finance.yahoo.com/markets/commodities/articles/gold-rebounds-two-week-low-100028464.html",
+    "content": "",
+    "published": "2026-07-14T10:00:28Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/markets/commodities/articles/gold-rebounds-two-week-low-100028464.html",
+    "content_score": 3.0
+  },
+  {
+    "title": "When does a gold IRA make sense?",
+    "url": "https://finance.yahoo.com/personal-finance/investing/article/when-does-a-gold-ira-make-sense-201501543.html",
+    "content": "",
+    "published": "2026-07-13T20:15:01Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/personal-finance/investing/article/when-does-a-gold-ira-make-sense-201501543.html",
+    "content_score": 0.0
+  },
+  {
+    "title": "RIA Caprock Makes 2nd Acquisition to Date with $4B Austin-Based Team",
+    "url": "https://finance.yahoo.com/markets/stocks/articles/ria-caprock-makes-2nd-acquisition-100005608.html",
+    "content": "",
+    "published": "2026-07-14T10:00:05Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/markets/stocks/articles/ria-caprock-makes-2nd-acquisition-100005608.html",
+    "content_score": 0.0
+  },
+  {
+    "title": "Mariner Partners With Humanity Labs for AI Workforce",
+    "url": "https://finance.yahoo.com/technology/ai/articles/mariner-partners-humanity-labs-ai-100000438.html",
+    "content": "",
+    "published": "2026-07-14T10:00:00Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/technology/ai/articles/mariner-partners-humanity-labs-ai-100000438.html",
+    "content_score": 1.5
+  },
+  {
+    "title": "Prediction: Lisa Su Will Deliver Great News for Advanced Micro Devices (AMD) Investors on Aug. 4",
+    "url": "https://finance.yahoo.com/markets/stocks/articles/prediction-lisa-su-deliver-great-095500556.html",
+    "content": "",
+    "published": "2026-07-14T09:55:00Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/markets/stocks/articles/prediction-lisa-su-deliver-great-095500556.html",
+    "content_score": 1.5
+  },
+  {
+    "title": "2 Reasons Why Higher Oil Prices Are Good for Banks and 1 Reason They Are a Problem",
+    "url": "https://finance.yahoo.com/energy/articles/2-reasons-why-higher-oil-094851925.html",
+    "content": "",
+    "published": "2026-07-14T09:48:51Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/energy/articles/2-reasons-why-higher-oil-094851925.html",
+    "content_score": 1.5
+  },
+  {
+    "title": "Michael Saylor's Strategy Has a New Approach to Buying and Selling Bitcoin. Here's the Most Likely Scenario for How It Works Out",
+    "url": "https://finance.yahoo.com/markets/crypto/articles/michael-saylors-strategy-approach-buying-094600115.html",
+    "content": "",
+    "published": "2026-07-14T09:46:00Z",
+    "author": "",
+    "source": "Yahoo Finance",
+    "id": "https://finance.yahoo.com/markets/crypto/articles/michael-saylors-strategy-approach-buying-094600115.html",
+    "content_score": 1.5
+  }
+]

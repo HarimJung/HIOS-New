@@ -1,0 +1,87 @@
+[
+  {
+    "id": "tableau-0714",
+    "title": "Tableau 세션 시간 선택 (7/14 화)",
+    "desc": "'Meet the Makers: Composable Data Sources' 옵션이 캘린더에 12:00 / 19:00 두 개 있음. 선택하면 큐에 기록되고 다음 Claude 세션이 캘린더를 정리합니다.",
+    "kind": "choice",
+    "options": [
+      "12:00 참석",
+      "19:00 참석",
+      "안 감"
+    ],
+    "status": "resolved",
+    "created": 1783963541.8897018,
+    "result": "12:00 참석",
+    "resolved": 1783963732.6079879
+  },
+  {
+    "id": "reddit-keys",
+    "title": "Reddit API 키 입력",
+    "desc": "Reddit 수집기가 403으로 막혀 있음. reddit.com/prefs/apps에서 script 앱 생성 후 키를 입력하면 즉시 적용됩니다.",
+    "kind": "env",
+    "fields": [
+      {
+        "key": "REDDIT_CLIENT_ID",
+        "label": "Client ID",
+        "secret": false
+      },
+      {
+        "key": "REDDIT_CLIENT_SECRET",
+        "label": "Client Secret",
+        "secret": true
+      }
+    ],
+    "status": "pending",
+    "created": 1783963541.8897018
+  },
+  {
+    "id": "x-token",
+    "title": "X Bearer Token 입력",
+    "desc": "Nitter 인스턴스 다운으로 X 수집 실패 중. developer.x.com에서 Bearer Token을 발급해 입력하면 API 모드로 자동 전환됩니다.",
+    "kind": "env",
+    "fields": [
+      {
+        "key": "X_BEARER_TOKEN",
+        "label": "Bearer Token",
+        "secret": true
+      }
+    ],
+    "status": "pending",
+    "created": 1783963541.8897018
+  },
+  {
+    "id": "client-us",
+    "title": "'유에스' 클라이언트 확인",
+    "desc": "07-09에 언급한 신규 클라이언트가 미등록 상태. 정확한 기관명을 입력하면 프로젝트로 등록됩니다 (USAID? UNESCO?).",
+    "kind": "text",
+    "placeholder": "기관명 (예: USAID)",
+    "status": "pending",
+    "created": 1783963541.8897018
+  },
+  {
+    "id": "granola-login",
+    "title": "Granola 앱 로그인 필요",
+    "desc": "미팅 자동 동기화가 토큰 만료(5월)로 멈춰 있음. 방금 Granola 앱을 실행해뒀으니, 로그인돼 있는지 확인하고 버튼을 누르면 미팅 동기화를 재개합니다.",
+    "kind": "choice",
+    "options": [
+      "로그인 확인했음 — 동기화 재시도"
+    ],
+    "status": "resolved",
+    "created": 1783965086.1083899,
+    "result": "로그인 확인했음 — 동기화 재시도",
+    "resolved": 1783971177.3176541
+  },
+  {
+    "id": "xhs-publish-0710",
+    "title": "XHS 초안 3건 발행 결정 (07-10 작성)",
+    "desc": "jpmorgan-ai-6040 / backtest-trap / ai-finance-learning — 3일째 대기 중, 뉴스성 소재라 시의성이 떨어지고 있음. 결정하면 다음 Claude 세션이 처리합니다.",
+    "kind": "choice",
+    "options": [
+      "3건 모두 발행",
+      "선별 발행 (큐에서 지정)",
+      "전부 보류/폐기"
+    ],
+    "status": "pending",
+    "created": 1783970853.197769
+  }
+]

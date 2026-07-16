@@ -1,0 +1,1578 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HiOS — Architecture Map</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+  --bg:#0a0b0f;
+  --surface:#12131a;
+  --surface2:#1a1b24;
+  --surface3:#22232e;
+  --border:#2a2b38;
+  --text:#e2e4ea;
+  --text2:#8b8fa4;
+  --text3:#5a5e72;
+  --input:#3b7dd8;
+  --input-glow:#3b7dd822;
+  --process:#8b5cf6;
+  --process-glow:#8b5cf622;
+  --output:#10b981;
+  --output-glow:#10b98122;
+  --auto:#f59e0b;
+  --auto-glow:#f59e0b22;
+  --unfpa:#ef4444;
+  --equitee:#f59e0b;
+  --climate:#06b6d4;
+  --visual:#a855f7;
+  --accent:#e0f2fe;
+}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Noto Sans KR','IBM Plex Sans KR',sans-serif;
+  line-height:1.6;
+  overflow-x:hidden;
+}
+
+/* Grain overlay */
+body::before{
+  content:'';
+  position:fixed;
+  top:0;left:0;right:0;bottom:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events:none;
+  z-index:9999;
+}
+
+.container{
+  max-width:1400px;
+  margin:0 auto;
+  padding:40px 24px 100px;
+}
+
+/* Header */
+.header{
+  text-align:center;
+  padding:60px 0 40px;
+  position:relative;
+}
+
+.header::after{
+  content:'';
+  position:absolute;
+  bottom:0;left:50%;
+  transform:translateX(-50%);
+  width:120px;height:1px;
+  background:linear-gradient(90deg,transparent,var(--border),transparent);
+}
+
+.header h1{
+  font-family:'JetBrains Mono',monospace;
+  font-size:clamp(32px,5vw,56px);
+  font-weight:700;
+  letter-spacing:-2px;
+  background:linear-gradient(135deg,#e2e4ea 0%,#8b8fa4 100%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  margin-bottom:8px;
+}
+
+.header .subtitle{
+  font-size:14px;
+  color:var(--text2);
+  font-weight:300;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+
+.header .tagline{
+  margin-top:16px;
+  font-size:13px;
+  color:var(--text3);
+  font-family:'JetBrains Mono',monospace;
+}
+
+/* Section */
+.section{
+  margin-top:64px;
+}
+
+.section-label{
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:var(--text3);
+  margin-bottom:24px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.section-label::after{
+  content:'';
+  flex:1;
+  height:1px;
+  background:var(--border);
+}
+
+/* System Flow - Main diagram */
+.flow-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:24px;
+}
+
+@media(max-width:900px){
+  .flow-grid{grid-template-columns:1fr}
+}
+
+.flow-column{
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+
+.flow-column-header{
+  font-family:'JetBrains Mono',monospace;
+  font-size:12px;
+  font-weight:600;
+  letter-spacing:1px;
+  padding:12px 16px;
+  border-radius:8px;
+  text-align:center;
+}
+
+.flow-column-header.input{
+  background:var(--input-glow);
+  color:var(--input);
+  border:1px solid #3b7dd833;
+}
+.flow-column-header.process{
+  background:var(--process-glow);
+  color:var(--process);
+  border:1px solid #8b5cf633;
+}
+.flow-column-header.output{
+  background:var(--output-glow);
+  color:var(--output);
+  border:1px solid #10b98133;
+}
+
+.flow-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:20px;
+  transition:all .25s ease;
+  cursor:default;
+  position:relative;
+  overflow:hidden;
+}
+
+.flow-card::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;
+  width:3px;height:100%;
+}
+
+.flow-card.input-card::before{background:var(--input)}
+.flow-card.process-card::before{background:var(--process)}
+.flow-card.output-card::before{background:var(--output)}
+.flow-card.auto-card::before{background:var(--auto)}
+
+.flow-card:hover{
+  border-color:var(--text3);
+  transform:translateY(-2px);
+  box-shadow:0 8px 32px rgba(0,0,0,.3);
+}
+
+.flow-card .card-icon{
+  font-size:20px;
+  margin-bottom:8px;
+}
+
+.flow-card h3{
+  font-size:14px;
+  font-weight:600;
+  margin-bottom:6px;
+}
+
+.flow-card p{
+  font-size:12px;
+  color:var(--text2);
+  line-height:1.5;
+}
+
+.flow-card .card-path{
+  margin-top:10px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;
+  color:var(--text3);
+  background:var(--surface2);
+  padding:6px 10px;
+  border-radius:6px;
+  display:inline-block;
+}
+
+/* Flow arrows between columns */
+.flow-arrows{
+  display:none;
+}
+
+@media(min-width:901px){
+  .flow-grid{position:relative}
+  .flow-arrows{
+    display:block;
+    position:absolute;
+    top:50%;
+    width:24px;
+    text-align:center;
+    color:var(--text3);
+    font-size:18px;
+    transform:translateY(-50%);
+  }
+  .flow-arrows.arr1{left:calc(33.33% - 12px)}
+  .flow-arrows.arr2{left:calc(66.66% - 12px)}
+}
+
+/* Command Map */
+.cmd-tabs{
+  display:flex;
+  gap:4px;
+  margin-bottom:20px;
+  flex-wrap:wrap;
+}
+
+.cmd-tab{
+  font-family:'JetBrains Mono',monospace;
+  font-size:12px;
+  padding:8px 16px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:8px;
+  color:var(--text2);
+  cursor:pointer;
+  transition:all .2s ease;
+  user-select:none;
+}
+
+.cmd-tab:hover{
+  border-color:var(--text3);
+  color:var(--text);
+}
+
+.cmd-tab.active{
+  background:var(--process-glow);
+  border-color:var(--process);
+  color:var(--process);
+}
+
+.cmd-panel{
+  display:none;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:28px;
+  animation:fadeIn .3s ease;
+}
+
+.cmd-panel.active{display:block}
+
+@keyframes fadeIn{
+  from{opacity:0;transform:translateY(8px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+.cmd-panel h3{
+  font-family:'JetBrains Mono',monospace;
+  font-size:16px;
+  font-weight:600;
+  margin-bottom:4px;
+}
+
+.cmd-panel .cmd-desc{
+  font-size:13px;
+  color:var(--text2);
+  margin-bottom:20px;
+}
+
+.file-changes{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:12px;
+}
+
+.file-change{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  padding:12px;
+  background:var(--surface2);
+  border-radius:8px;
+  border:1px solid transparent;
+  transition:border-color .2s;
+}
+
+.file-change:hover{border-color:var(--border)}
+
+.file-change .fc-action{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  font-weight:600;
+  letter-spacing:1px;
+  padding:3px 8px;
+  border-radius:4px;
+  flex-shrink:0;
+  margin-top:2px;
+}
+
+.fc-create{background:#10b98120;color:#10b981}
+.fc-modify{background:#f59e0b20;color:#f59e0b}
+.fc-read{background:#3b7dd820;color:#3b7dd8}
+.fc-move{background:#8b5cf620;color:#8b5cf6}
+
+.file-change .fc-details h4{
+  font-size:12px;
+  font-weight:500;
+  margin-bottom:2px;
+}
+
+.file-change .fc-details .fc-path{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  color:var(--text3);
+}
+
+/* Timeline */
+.timeline{
+  position:relative;
+  padding-left:40px;
+}
+
+.timeline::before{
+  content:'';
+  position:absolute;
+  left:15px;top:0;bottom:0;
+  width:2px;
+  background:linear-gradient(180deg,var(--input),var(--process),var(--output),var(--auto));
+  border-radius:1px;
+}
+
+.tl-item{
+  position:relative;
+  padding:16px 0 32px;
+}
+
+.tl-item::before{
+  content:'';
+  position:absolute;
+  left:-29px;top:20px;
+  width:10px;height:10px;
+  border-radius:50%;
+  border:2px solid;
+}
+
+.tl-item.tl-auto::before{border-color:var(--auto);background:var(--auto-glow)}
+.tl-item.tl-manual::before{border-color:var(--input);background:var(--input-glow)}
+.tl-item.tl-process::before{border-color:var(--process);background:var(--process-glow)}
+.tl-item.tl-output::before{border-color:var(--output);background:var(--output-glow)}
+
+.tl-time{
+  font-family:'JetBrains Mono',monospace;
+  font-size:13px;
+  font-weight:600;
+  color:var(--text);
+  margin-bottom:4px;
+}
+
+.tl-label{
+  font-size:13px;
+  color:var(--text2);
+  margin-bottom:6px;
+}
+
+.tl-detail{
+  font-size:11px;
+  color:var(--text3);
+  font-family:'JetBrains Mono',monospace;
+  background:var(--surface);
+  padding:8px 12px;
+  border-radius:6px;
+  border:1px solid var(--border);
+  display:inline-block;
+  max-width:100%;
+}
+
+.tl-badge{
+  display:inline-block;
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  padding:2px 8px;
+  border-radius:4px;
+  margin-left:8px;
+  vertical-align:middle;
+}
+
+.tl-badge.auto{background:var(--auto-glow);color:var(--auto)}
+.tl-badge.manual{background:var(--input-glow);color:var(--input)}
+
+/* Projects */
+.projects-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+  gap:16px;
+}
+
+.project-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:12px;
+  overflow:hidden;
+  cursor:pointer;
+  transition:all .25s ease;
+}
+
+.project-card:hover{
+  border-color:var(--text3);
+  transform:translateY(-2px);
+  box-shadow:0 8px 32px rgba(0,0,0,.3);
+}
+
+.project-card .pc-header{
+  padding:20px 20px 12px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.project-card .pc-name{
+  font-size:15px;
+  font-weight:600;
+}
+
+.project-card .pc-priority{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  padding:3px 10px;
+  border-radius:20px;
+}
+
+.pc-high{background:#ef444420;color:#ef4444}
+.pc-med{background:#f59e0b20;color:#f59e0b}
+.pc-steady{background:#10b98120;color:#10b981}
+
+.project-card .pc-client{
+  padding:0 20px 12px;
+  font-size:12px;
+  color:var(--text2);
+}
+
+.pc-files{
+  padding:0 20px 20px;
+  display:none;
+}
+
+.pc-files.open{display:block}
+
+.pc-file{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:6px 0;
+  border-top:1px solid var(--border);
+  font-size:12px;
+}
+
+.pc-file:first-child{border-top:none}
+
+.pc-file .pcf-icon{
+  font-size:14px;
+  flex-shrink:0;
+  width:20px;
+  text-align:center;
+}
+
+.pc-file .pcf-name{
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;
+  color:var(--text);
+}
+
+.pc-file .pcf-role{
+  margin-left:auto;
+  font-size:10px;
+  color:var(--text3);
+}
+
+.pc-bar{
+  height:3px;
+  width:100%;
+}
+
+.pc-bar.unfpa{background:linear-gradient(90deg,var(--unfpa),transparent)}
+.pc-bar.equitee{background:linear-gradient(90deg,var(--equitee),transparent)}
+.pc-bar.climate{background:linear-gradient(90deg,var(--climate),transparent)}
+.pc-bar.visual{background:linear-gradient(90deg,var(--visual),transparent)}
+
+.project-card .pc-toggle{
+  padding:12px 20px;
+  font-size:11px;
+  color:var(--text3);
+  text-align:center;
+  border-top:1px solid var(--border);
+  transition:color .2s;
+}
+
+.project-card:hover .pc-toggle{color:var(--text2)}
+
+/* Vault map */
+.vault-tree{
+  font-family:'JetBrains Mono',monospace;
+  font-size:12px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:24px;
+  line-height:1.8;
+  overflow-x:auto;
+}
+
+.vault-tree .vt-dir{color:var(--text);font-weight:500}
+.vault-tree .vt-file{color:var(--text3)}
+.vault-tree .vt-comment{color:var(--text3);font-style:italic;opacity:.6}
+.vault-tree .vt-highlight{color:var(--process);font-weight:500}
+.vault-tree .vt-auto{color:var(--auto)}
+.vault-tree .vt-input{color:var(--input)}
+
+/* Legend */
+.legend{
+  display:flex;
+  gap:24px;
+  flex-wrap:wrap;
+  padding:16px 20px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:10px;
+  margin-bottom:24px;
+}
+
+.legend-item{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:12px;
+  color:var(--text2);
+}
+
+.legend-dot{
+  width:8px;height:8px;
+  border-radius:50%;
+  flex-shrink:0;
+}
+
+.legend-dot.l-input{background:var(--input)}
+.legend-dot.l-process{background:var(--process)}
+.legend-dot.l-output{background:var(--output)}
+.legend-dot.l-auto{background:var(--auto)}
+
+/* Daily note preview */
+.daily-note-preview{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:12px;
+  overflow:hidden;
+}
+
+.dn-titlebar{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:12px 16px;
+  background:var(--surface2);
+  border-bottom:1px solid var(--border);
+}
+
+.dn-dot{width:10px;height:10px;border-radius:50%}
+.dn-dot.r{background:#ef4444}
+.dn-dot.y{background:#f59e0b}
+.dn-dot.g{background:#10b981}
+
+.dn-title{
+  font-family:'JetBrains Mono',monospace;
+  font-size:12px;
+  color:var(--text2);
+  margin-left:8px;
+}
+
+.dn-content{
+  padding:24px;
+  font-size:13px;
+  line-height:1.7;
+}
+
+.dn-content h3{
+  font-size:14px;
+  font-weight:600;
+  margin:16px 0 8px;
+  color:var(--text);
+}
+
+.dn-content h3:first-child{margin-top:0}
+
+.dn-content table{
+  width:100%;
+  border-collapse:collapse;
+  margin:8px 0;
+  font-size:12px;
+}
+
+.dn-content th{
+  text-align:left;
+  font-weight:500;
+  color:var(--text2);
+  padding:6px 12px;
+  border-bottom:1px solid var(--border);
+}
+
+.dn-content td{
+  padding:6px 12px;
+  border-bottom:1px solid var(--border);
+  color:var(--text);
+}
+
+.dn-content .dn-priority{
+  padding-left:0;
+}
+
+.dn-content .dn-tag{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  padding:2px 8px;
+  border-radius:4px;
+  display:inline-block;
+}
+
+/* Stats bar */
+.stats-bar{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:12px;
+  margin-bottom:40px;
+}
+
+.stat-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:16px;
+  text-align:center;
+}
+
+.stat-card .stat-num{
+  font-family:'JetBrains Mono',monospace;
+  font-size:28px;
+  font-weight:700;
+  line-height:1;
+}
+
+.stat-card .stat-num.c-input{color:var(--input)}
+.stat-card .stat-num.c-process{color:var(--process)}
+.stat-card .stat-num.c-output{color:var(--output)}
+.stat-card .stat-num.c-auto{color:var(--auto)}
+
+.stat-card .stat-label{
+  font-size:11px;
+  color:var(--text3);
+  margin-top:6px;
+  letter-spacing:.5px;
+}
+
+/* Pulse animation for auto items */
+@keyframes pulse{
+  0%,100%{opacity:1}
+  50%{opacity:.5}
+}
+
+.pulse{animation:pulse 2s ease-in-out infinite}
+
+/* Scroll fade */
+.fade-in{
+  opacity:0;
+  transform:translateY(20px);
+  transition:all .6s ease;
+}
+
+.fade-in.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<!-- Header -->
+<div class="header">
+  <h1>HiOS</h1>
+  <div class="subtitle">Harim's Integrated Operating System</div>
+  <div class="tagline">하나의 볼트 · 하나의 두뇌 · 네 개의 사업</div>
+</div>
+
+<!-- Stats -->
+<div class="stats-bar fade-in">
+  <div class="stat-card">
+    <div class="stat-num c-input">75</div>
+    <div class="stat-label">파일</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num c-process">11</div>
+    <div class="stat-label">슬래시 커맨드</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num c-output">6</div>
+    <div class="stat-label">프로젝트</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num c-auto">3</div>
+    <div class="stat-label">자동 스케줄 (06:30/06:45/07:00)</div>
+  </div>
+</div>
+
+<!-- System Flow -->
+<div class="section fade-in">
+  <div class="section-label">시스템 흐름</div>
+
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot l-input"></div>입력 Input</div>
+    <div class="legend-item"><div class="legend-dot l-process"></div>처리 Process</div>
+    <div class="legend-item"><div class="legend-dot l-output"></div>출력 Output</div>
+    <div class="legend-item"><div class="legend-dot l-auto"></div>자동화 Auto</div>
+  </div>
+
+  <div class="flow-grid">
+    <div class="flow-arrows arr1">→</div>
+    <div class="flow-arrows arr2">→</div>
+
+    <!-- Input Column -->
+    <div class="flow-column">
+      <div class="flow-column-header input">입력 INPUTS</div>
+
+      <div class="flow-card input-card">
+        <div class="card-icon">🎙</div>
+        <h3>Granola 미팅 녹음</h3>
+        <p>미팅 종료 후 Export → Inbox에 드롭</p>
+        <div class="card-path">→ 00-Inbox/</div>
+      </div>
+
+      <div class="flow-card input-card">
+        <div class="card-icon">📅</div>
+        <h3>Google Calendar</h3>
+        <p>MCP 서버로 실시간 일정 조회 (여러 계정)</p>
+        <div class="card-path">→ calendarmcp.googleapis.com</div>
+      </div>
+
+      <div class="flow-card input-card">
+        <div class="card-icon">📧</div>
+        <h3>이메일 / 메모 / 아이디어</h3>
+        <p>수동으로 Inbox에 저장하거나 Queue에 요청 드롭</p>
+        <div class="card-path">→ 00-Inbox/ 또는 07-Queue/</div>
+      </div>
+    </div>
+
+    <!-- Process Column -->
+    <div class="flow-column">
+      <div class="flow-column-header process">처리 ENGINE</div>
+
+      <div class="flow-card process-card">
+        <div class="card-icon">⚡</div>
+        <h3>/start</h3>
+        <p>Inbox 처리 → 프로젝트 스캔 → 캘린더 → 데일리 노트 생성</p>
+        <div class="card-path">매일 아침 1회</div>
+      </div>
+
+      <div class="flow-card process-card">
+        <div class="card-icon">📥</div>
+        <h3>/process-inbox</h3>
+        <p>키워드 분석 → 프로젝트 자동 분류 → STATUS 갱신</p>
+        <div class="card-path">미팅 후 수시</div>
+      </div>
+
+      <div class="flow-card process-card">
+        <div class="card-icon">🎯</div>
+        <h3>/meeting</h3>
+        <p>트랜스크립트 → 노트 + 액션아이템 + 엔티티 + 캘린더</p>
+        <div class="card-path">트랜스크립트 직접 처리 시</div>
+      </div>
+
+      <div class="flow-card process-card">
+        <div class="card-icon">📢</div>
+        <h3>/content</h3>
+        <p>하나의 아이디어 → 4개 플랫폼 콘텐츠 동시 생성</p>
+        <div class="card-path">콘텐츠 제작 시</div>
+      </div>
+    </div>
+
+    <!-- Output Column -->
+    <div class="flow-column">
+      <div class="flow-column-header output">출력 OUTPUTS</div>
+
+      <div class="flow-card output-card">
+        <div class="card-icon">📋</div>
+        <h3>데일리 노트</h3>
+        <p>오늘 일정, 할 일, 우선순위 — 하루의 중심</p>
+        <div class="card-path">YYYY-MM-DD.md</div>
+      </div>
+
+      <div class="flow-card output-card">
+        <div class="card-icon">📊</div>
+        <h3>프로젝트 STATUS</h3>
+        <p>4개 프로젝트 진행 상황 자동 갱신</p>
+        <div class="card-path">01-Projects/*/_STATUS.md</div>
+      </div>
+
+      <div class="flow-card output-card">
+        <div class="card-icon">🎬</div>
+        <h3>멀티플랫폼 콘텐츠</h3>
+        <p>YouTube + 소홍슈 + LinkedIn + Newsletter</p>
+        <div class="card-path">01-Projects/Visual-Climate/</div>
+      </div>
+
+      <div class="flow-card output-card">
+        <div class="card-icon">📈</div>
+        <h3>주간/월간 리뷰</h3>
+        <p>한 주 전체 자동 종합 리포트</p>
+        <div class="card-path">05-AI/summaries/</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Command File Map -->
+<div class="section fade-in">
+  <div class="section-label">커맨드별 파일 변경 맵</div>
+
+  <div class="cmd-tabs">
+    <div class="cmd-tab active" data-cmd="start">/start</div>
+    <div class="cmd-tab" data-cmd="process">/process-inbox</div>
+    <div class="cmd-tab" data-cmd="meeting">/meeting</div>
+    <div class="cmd-tab" data-cmd="content">/content</div>
+    <div class="cmd-tab" data-cmd="today">/today</div>
+    <div class="cmd-tab" data-cmd="collect">/collect</div>
+    <div class="cmd-tab" data-cmd="xhsdraft">/xhs-draft</div>
+    <div class="cmd-tab" data-cmd="igdraft">/ig-draft</div>
+    <div class="cmd-tab" data-cmd="weekly">/weekly</div>
+    <div class="cmd-tab" data-cmd="research">/research</div>
+    <div class="cmd-tab" data-cmd="productdeck">/product-deck</div>
+  </div>
+
+  <!-- /start panel -->
+  <div class="cmd-panel active" id="cmd-start">
+    <h3>/start</h3>
+    <div class="cmd-desc">매일 아침 실행. Inbox 처리 → 프로젝트 스캔 → 캘린더 → 데일리 노트 생성</div>
+    <div class="file-changes">
+      <div class="file-change">
+        <div class="fc-action fc-create">CREATE</div>
+        <div class="fc-details">
+          <h4>데일리 노트</h4>
+          <div class="fc-path">./YYYY-MM-DD.md</div>
+        </div>
+      </div>
+      <div class="file-change">
+        <div class="fc-action fc-read">READ</div>
+        <div class="fc-details">
+          <h4>프로젝트 현황</h4>
+          <div class="fc-path">01-Projects/*/_STATUS.md</div>
+        </div>
+      </div>
+      <div class="file-change">
+        <div class="fc-action fc-read">READ</div>
+        <div class="fc-details">
+          <h4>타임라인</h4>
+          <div class="fc-path">01-Projects/*/_TIMELINE.md</div>
+        </div>
+      </div>
+      <div class="file-change">
+        <div class="fc-action fc-read">READ</div>
+        <div class="fc-details">
+          <h4>미처리 인박스</h4>
+          <div class="fc-path">00-Inbox/*</div>
+        </div>
+      </div>
+      <div class="file-change">
+        <div class="fc-action fc-read">READ</div>
+        <div class="fc-details">
+          <h4>Google Calendar</h4>
+          <div class="fc-path">MCP → list-events</div>
+        </div>
+      </div>
+      <div class="file-change">
+        <div class="fc-action fc-read">READ</div>
+        <div class="fc-details">
+          <h4>어제 데일리 노트</h4>
+          <div class="fc-path">./YYYY-MM-DD.md (전일)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- /process-inbox panel -->
+  <div class="cmd-panel" id="cmd-process">
+    <h3>/process-inbox</h3>
+    <div class="cmd-desc">Inbox의 파일들을 키워드로 분류하고 프로젝트별로 라우팅. STATUS와 TIMELINE 자동 갱신.</div>
+    <div class="file-changes">
+      <div class="file-change">
+        <div class="fc-action fc-read">READ</div>
+        <div class="fc-details">
+          <h4>인박스 파일들</h4>
+          <div class="fc-path">00-Inbox/*.md</div>
+        </div>
+      </div>
+      <div class="file-change">
+        <div class="fc-action fc-create">CREATE</div>
+        <div class="fc-details">
+          <h4>미팅 노트</h4>
+          <div class="fc-path">01-Projects/{project}/02-Meetings/</div>
+        </div>
+      </div>
+      <div class="file-change">
+        <div class="fc-action fc-modify">MODIFY</div>
+        <div class="fc-details">
+          <h4>프로젝트 현황</h4>
+          <div class="fc-path">01-Projects/{project}/_STATUS.md</div>
+        </div>
+      </div>
+      <div class="file-change">
+        <div class="fc-action fc-modify">MODIFY</div>
+        <div class="fc-details">
+          <h4>타임라인</h4>
+          <div class="fc-path">01-Projects/{project}/_TIMELINE.md</div>
+        </div>
+      </div>
+      <div class="file-change">
+        <div class="fc-action fc-create">CREATE</div>
+        <div class="fc-details">
+          <h4>엔티티 (인물/조직)</h4>
+          <div class="fc-path">06-Entities/people/{name}.md</div>
+        </div>
+      </div>
+      <div class="file-change">
+        <div class="fc-action fc-move">MOVE</div>
+        <div class="fc-details">
+          <h4>처리 완료 → 아카이브</h4>
+          <div class="fc-path">→ 04-Archive/inbox-processed/</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- /meeting panel -->
+  <div class="cmd-panel" id="cmd-meeting">
+    <h3>/meeting</h3>
+    <div class="cmd-desc">트랜스크립트를 직접 전달하면 노트, 액션아이템, 엔티티, 캘린더까지 한번에 처리.</div>
+    <div class="file-changes">
+      <div class="file-change">
+        <div class="fc-action fc-create">CREATE</div>
+        <div class="fc-details">
+          <h4>미팅 노트</h4>
+          <div class="fc-path">01-Projects/{client}/02-Meetings/YYYY-MM-DD-{topic}.md</div>
+        </div>
+      </div>
+      <div class="file-change">
+        <div class="fc-action fc-modify">MODIFY</div>
+        <div class="fc-details">
+          <h4>프로젝트 현황</h4>
+          <div class="fc-path">_STATUS.md ← 액션아이템 추가</div>
+        </div>
+      </div>
+      <div class="file-change">
+        <div class="fc-action fc-modify">MODIFY</div>
+        <div class="fc-details">
+          <h4>타임라인</h4>
+          <div class="fc-path">_TIMELINE.md ← 마감일 추가</div>
+        </div>
+      </div>
+      <div class="file-change">
+        <div class="fc-action fc-create">CREATE</div>
+        <div class="fc-details">
+          <h4>엔티티 업데이트</h4>
+          <div class="fc-path">06-Entities/ ← 새 인물/조직</div>
+        </div>
+      </div>
+      <div class="file-change">
+        <div class="fc-action fc-modify">MODIFY</div>
+        <div class="fc-details">
+          <h4>데일리 노트</h4>
+          <div class="fc-path">YYYY-MM-DD.md ← 미팅 요약 추가</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- /content panel -->
+  <div class="cmd-panel" id="cmd-content">
+    <h3>/content</h3>
+    <div class="cmd-desc">하나의 주제 → YouTube(롱폼+숏폼) + 소홍슈 + LinkedIn 동시 생성. 콘텐츠 캘린더 자동 갱신.</div>
+    <div class="file-changes">
+      <div class="file-change">
+        <div class="fc-action fc-create">CREATE</div>
+        <div class="fc-details">
+          <h4>YouTube 롱폼 스크립트</h4>
+          <div class="fc-path">Visual-Climate/01-YouTube/longform/scripts/</div>
+        </div>
+      </div>
+      <div class="file-change">
+        <div class="fc-action fc-create">CREATE</div>
+        <div class="fc-details">
+          <h4>YouTube 숏폼 (3개)</h4>
+          <div class="fc-path">Visual-Climate/01-YouTube/shorts/</div>
+        </div>
+      </div>
+      <div class="file-change">
+        <div class="fc-action fc-create">CREATE</div>
+        <div class="fc-details">
+          <h4>소홍슈 포스트 (3개, 중국어)</h4>
+          <div class="fc-path">Visual-Climate/02-Xiaohongshu/drafts/</div>
+        </div>
+      </div>
+      <div class="file-change">
+        <div class="fc-action fc-create">CREATE</div>
+        <div class="fc-details">
+          <h4>LinkedIn 포스트 (영문)</h4>
+          <div class="fc-path">Visual-Climate/04-Social/linkedin/</div>
+        </div>
+      </div>
+      <div class="file-change">
+        <div class="fc-action fc-modify">MODIFY</div>
+        <div class="fc-details">
+          <h4>콘텐츠 캘린더</h4>
+          <div class="fc-path">_CONTENT-CALENDAR.md ← 일정 추가</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- /today panel -->
+  <div class="cmd-panel" id="cmd-today">
+    <h3>/today</h3>
+    <div class="cmd-desc">모닝 브리프 — 매일 07:00 스케줄러가 자동 실행 (수동 실행도 가능). 캘린더 + 프로젝트 + 인박스 종합.</div>
+    <div class="file-changes">
+      <div class="file-change">
+        <div class="fc-action fc-create">CREATE</div>
+        <div class="fc-details">
+          <h4>데일리 노트</h4>
+          <div class="fc-path">./YYYY-MM-DD.md</div>
+        </div>
+      </div>
+      <div class="file-change">
+        <div class="fc-action fc-read">READ</div>
+        <div class="fc-details">
+          <h4>캘린더 · STATUS · 인박스 · 큐</h4>
+          <div class="fc-path">Calendar / 01-Projects / 00-Inbox / 07-Queue</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- /collect panel -->
+  <div class="cmd-panel" id="cmd-collect">
+    <h3>/collect</h3>
+    <div class="cmd-desc">콘텐츠 소스 자동 수집 — RSS(+Reddit/X 키 설정 시) → 다이제스트 생성.</div>
+    <div class="file-changes">
+      <div class="file-change">
+        <div class="fc-action fc-create">CREATE</div>
+        <div class="fc-details">
+          <h4>일일 다이제스트</h4>
+          <div class="fc-path">Visual-Climate/06-Content-Engine/sources/</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- /xhs-draft panel -->
+  <div class="cmd-panel" id="cmd-xhsdraft">
+    <h3>/xhs-draft</h3>
+    <div class="cmd-desc">샤오홍슈 포스트 초안 생성 (중국어) — 다이제스트에서 소재 선정 또는 주제 지정.</div>
+    <div class="file-changes">
+      <div class="file-change">
+        <div class="fc-action fc-create">CREATE</div>
+        <div class="fc-details">
+          <h4>XHS 초안</h4>
+          <div class="fc-path">Visual-Climate/02-Xiaohongshu/drafts/</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- /ig-draft panel -->
+  <div class="cmd-panel" id="cmd-igdraft">
+    <h3>/ig-draft</h3>
+    <div class="cmd-desc">Instagram 캐러셀 초안 생성 — 다이제스트에서 소재 선정 또는 주제 지정.</div>
+    <div class="file-changes">
+      <div class="file-change">
+        <div class="fc-action fc-create">CREATE</div>
+        <div class="fc-details">
+          <h4>IG 초안</h4>
+          <div class="fc-path">Visual-Climate/04-Social/instagram/</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- /weekly panel -->
+  <div class="cmd-panel" id="cmd-weekly">
+    <h3>/weekly</h3>
+    <div class="cmd-desc">금요일 저녁 실행. 이번 주 데일리 노트, STATUS, 미팅 노트를 종합하여 주간 리뷰 생성.</div>
+    <div class="file-changes">
+      <div class="file-change">
+        <div class="fc-action fc-create">CREATE</div>
+        <div class="fc-details">
+          <h4>주간 리뷰</h4>
+          <div class="fc-path">05-AI/summaries/YYYY-WXX-weekly-review.md</div>
+        </div>
+      </div>
+      <div class="file-change">
+        <div class="fc-action fc-read">READ</div>
+        <div class="fc-details">
+          <h4>이번 주 데일리 노트들</h4>
+          <div class="fc-path">./YYYY-MM-DD.md (월~금)</div>
+        </div>
+      </div>
+      <div class="file-change">
+        <div class="fc-action fc-read">READ</div>
+        <div class="fc-details">
+          <h4>모든 프로젝트 STATUS</h4>
+          <div class="fc-path">01-Projects/*/_STATUS.md</div>
+        </div>
+      </div>
+      <div class="file-change">
+        <div class="fc-action fc-read">READ</div>
+        <div class="fc-details">
+          <h4>이번 주 미팅 노트</h4>
+          <div class="fc-path">01-Projects/*/02-Meetings/</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- /research panel -->
+  <div class="cmd-panel" id="cmd-research">
+    <h3>/research</h3>
+    <div class="cmd-desc">주제를 주면 웹 리서치 → 구조화된 브리프 생성. 관련 프로젝트에 자동 저장.</div>
+    <div class="file-changes">
+      <div class="file-change">
+        <div class="fc-action fc-create">CREATE</div>
+        <div class="fc-details">
+          <h4>리서치 브리프</h4>
+          <div class="fc-path">01-Projects/{project}/04-Research/</div>
+        </div>
+      </div>
+      <div class="file-change">
+        <div class="fc-action fc-create">CREATE</div>
+        <div class="fc-details">
+          <h4>리소스 저장 (범용)</h4>
+          <div class="fc-path">03-Resources/{category}/</div>
+        </div>
+      </div>
+      <div class="file-change">
+        <div class="fc-action fc-create">CREATE</div>
+        <div class="fc-details">
+          <h4>개념 노트</h4>
+          <div class="fc-path">06-Entities/concepts/{concept}.md</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- /product-deck panel -->
+  <div class="cmd-panel" id="cmd-productdeck">
+    <h3>/product-deck</h3>
+    <div class="cmd-desc">프로젝트 데이터를 읽고 12슬라이드 프로덕트 데크 + 1페이지 요약 생성.</div>
+    <div class="file-changes">
+      <div class="file-change">
+        <div class="fc-action fc-create">CREATE</div>
+        <div class="fc-details">
+          <h4>프로덕트 데크</h4>
+          <div class="fc-path">Visual-Climate/05-Product-Decks/deck-{name}.md</div>
+        </div>
+      </div>
+      <div class="file-change">
+        <div class="fc-action fc-read">READ</div>
+        <div class="fc-details">
+          <h4>프로젝트 전체 파일</h4>
+          <div class="fc-path">01-Projects/{project}/**</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Daily Timeline -->
+<div class="section fade-in">
+  <div class="section-label">하루 타임라인</div>
+
+  <div class="timeline">
+    <div class="tl-item tl-auto">
+      <div class="tl-time">06:30–07:00 <span class="tl-badge auto">AUTO</span></div>
+      <div class="tl-label">내장 스케줄러 — RSS 수집 → Granola 동기화 → 모닝 브리프</div>
+      <div class="tl-detail">Control Center 서버 → claude --print "/today" (잠자기 시 wake 후 자동 보충)</div>
+    </div>
+
+    <div class="tl-item tl-manual">
+      <div class="tl-time">07:30 <span class="tl-badge manual">YOU</span></div>
+      <div class="tl-label">기상 → 터미널 열기 → <strong>/start</strong></div>
+      <div class="tl-detail">오늘 일정 + 할 일 + 우선순위 확인 (5분)</div>
+    </div>
+
+    <div class="tl-item tl-process">
+      <div class="tl-time">08:00</div>
+      <div class="tl-label">딥워크 — 최우선 프로젝트 작업</div>
+      <div class="tl-detail">데일리 노트의 "반드시 할 것" #1부터</div>
+    </div>
+
+    <div class="tl-item tl-manual">
+      <div class="tl-time">10:00 <span class="tl-badge manual">YOU</span></div>
+      <div class="tl-label">미팅 (Granola 자동 녹음)</div>
+      <div class="tl-detail">미팅 끝 → Granola Export → 00-Inbox/ (30초)</div>
+    </div>
+
+    <div class="tl-item tl-process">
+      <div class="tl-time">11:00</div>
+      <div class="tl-label"><strong>/process-inbox</strong> → 미팅 노트 자동 분류</div>
+      <div class="tl-detail">STATUS, TIMELINE, Entities 자동 갱신</div>
+    </div>
+
+    <div class="tl-item tl-manual">
+      <div class="tl-time">14:00 <span class="tl-badge manual">YOU</span></div>
+      <div class="tl-label">두 번째 미팅 → Granola export → Inbox</div>
+      <div class="tl-detail">프로젝트 전환 시 /process-inbox 실행</div>
+    </div>
+
+    <div class="tl-item tl-process">
+      <div class="tl-time">17:00</div>
+      <div class="tl-label"><strong>/content</strong> — 오늘 작업을 콘텐츠로</div>
+      <div class="tl-detail">YouTube + 소홍슈 + LinkedIn 동시 생성</div>
+    </div>
+
+    <div class="tl-item tl-output">
+      <div class="tl-time">18:00</div>
+      <div class="tl-label">하루 마무리 — 데일리 노트에 DONE 기록</div>
+      <div class="tl-detail">YYYY-MM-DD.md → "### Done" 섹션에 완료 항목</div>
+    </div>
+
+    <div class="tl-item tl-auto">
+      <div class="tl-time">금요일 <span class="tl-badge auto">AUTO</span></div>
+      <div class="tl-label"><strong>/weekly</strong> — 주간 리뷰 자동 생성</div>
+      <div class="tl-detail">→ 05-AI/summaries/YYYY-WXX-weekly-review.md</div>
+    </div>
+  </div>
+</div>
+
+<!-- Projects -->
+<div class="section fade-in">
+  <div class="section-label">프로젝트 구조</div>
+
+  <div class="projects-grid">
+    <!-- UNFPA -->
+    <div class="project-card" onclick="toggleProject(this)">
+      <div class="pc-bar unfpa"></div>
+      <div class="pc-header">
+        <div class="pc-name">UNFPA-CSE</div>
+        <div class="pc-priority pc-high">HIGH</div>
+      </div>
+      <div class="pc-client">UNFPA · 포괄적 성교육 글로벌 프로그램</div>
+      <div class="pc-files">
+        <div class="pc-file"><div class="pcf-icon">🤖</div><div class="pcf-name">CLAUDE.md</div><div class="pcf-role">AI 컨텍스트</div></div>
+        <div class="pc-file"><div class="pcf-icon">📊</div><div class="pcf-name">_STATUS.md</div><div class="pcf-role">자동 갱신</div></div>
+        <div class="pc-file"><div class="pcf-icon">📅</div><div class="pcf-name">_TIMELINE.md</div><div class="pcf-role">자동 갱신</div></div>
+        <div class="pc-file"><div class="pcf-icon">📄</div><div class="pcf-name">_PROJECT-BRIEF.md</div><div class="pcf-role">프로젝트 개요</div></div>
+        <div class="pc-file"><div class="pcf-icon">👥</div><div class="pcf-name">_STAKEHOLDERS.md</div><div class="pcf-role">이해관계자</div></div>
+        <div class="pc-file"><div class="pcf-icon">📁</div><div class="pcf-name">01-Deliverables/</div><div class="pcf-role">6개 산출물</div></div>
+        <div class="pc-file"><div class="pcf-icon">🎙</div><div class="pcf-name">02-Meetings/</div><div class="pcf-role">자동 생성</div></div>
+        <div class="pc-file"><div class="pcf-icon">🔍</div><div class="pcf-name">04-Research/signals/</div><div class="pcf-role">CSE 신호탐지</div></div>
+      </div>
+      <div class="pc-toggle">클릭하여 파일 구조 보기</div>
+    </div>
+
+    <!-- Equitee -->
+    <div class="project-card" onclick="toggleProject(this)">
+      <div class="pc-bar equitee"></div>
+      <div class="pc-header">
+        <div class="pc-name">Equitee</div>
+        <div class="pc-priority pc-med">MED</div>
+      </div>
+      <div class="pc-client">Equitee · DEI 임팩트 대시보드</div>
+      <div class="pc-files">
+        <div class="pc-file"><div class="pcf-icon">🤖</div><div class="pcf-name">CLAUDE.md</div><div class="pcf-role">AI 컨텍스트</div></div>
+        <div class="pc-file"><div class="pcf-icon">📊</div><div class="pcf-name">_STATUS.md</div><div class="pcf-role">자동 갱신</div></div>
+        <div class="pc-file"><div class="pcf-icon">📄</div><div class="pcf-name">_PROJECT-BRIEF.md</div><div class="pcf-role">프로젝트 개요</div></div>
+        <div class="pc-file"><div class="pcf-icon">📁</div><div class="pcf-name">01-Deliverables/</div><div class="pcf-role">산출물</div></div>
+        <div class="pc-file"><div class="pcf-icon">🎙</div><div class="pcf-name">02-Meetings/</div><div class="pcf-role">자동 생성</div></div>
+        <div class="pc-file"><div class="pcf-icon">🔍</div><div class="pcf-name">03-Research/</div><div class="pcf-role">리서치</div></div>
+      </div>
+      <div class="pc-toggle">클릭하여 파일 구조 보기</div>
+    </div>
+
+    <!-- Climate -->
+    <div class="project-card" onclick="toggleProject(this)">
+      <div class="pc-bar climate"></div>
+      <div class="pc-header">
+        <div class="pc-name">Climate-AICA</div>
+        <div class="pc-priority pc-med">MED</div>
+      </div>
+      <div class="pc-client">AICA Award · 기후 데이터 문해력 엔진</div>
+      <div class="pc-files">
+        <div class="pc-file"><div class="pcf-icon">🤖</div><div class="pcf-name">CLAUDE.md</div><div class="pcf-role">AI 컨텍스트</div></div>
+        <div class="pc-file"><div class="pcf-icon">📊</div><div class="pcf-name">_STATUS.md</div><div class="pcf-role">자동 갱신</div></div>
+        <div class="pc-file"><div class="pcf-icon">📄</div><div class="pcf-name">_PROJECT-BRIEF.md</div><div class="pcf-role">프로젝트 개요</div></div>
+        <div class="pc-file"><div class="pcf-icon">🧩</div><div class="pcf-name">01-Modules/</div><div class="pcf-role">3개 모듈</div></div>
+        <div class="pc-file"><div class="pcf-icon">🔍</div><div class="pcf-name">02-Research/</div><div class="pcf-role">경쟁분석·수요감지</div></div>
+        <div class="pc-file"><div class="pcf-icon">📝</div><div class="pcf-name">03-Application/</div><div class="pcf-role">지원서</div></div>
+      </div>
+      <div class="pc-toggle">클릭하여 파일 구조 보기</div>
+    </div>
+
+    <!-- WMO -->
+    <div class="project-card" onclick="toggleProject(this)">
+      <div class="pc-bar" style="background:linear-gradient(90deg,#64748b,transparent)"></div>
+      <div class="pc-header">
+        <div class="pc-name">WMO</div>
+        <div class="pc-priority" style="background:#64748b20;color:#94a3b8">TBC</div>
+      </div>
+      <div class="pc-client">WMO · 코스 제작 컨설팅 (계약 상세 확인 중)</div>
+      <div class="pc-files">
+        <div class="pc-file"><div class="pcf-icon">📊</div><div class="pcf-name">_STATUS.md</div><div class="pcf-role">자동 갱신</div></div>
+        <div class="pc-file"><div class="pcf-icon">✅</div><div class="pcf-name">_TODO.md</div><div class="pcf-role">계약 스코프·마감 확인</div></div>
+      </div>
+      <div class="pc-toggle">클릭하여 파일 구조 보기</div>
+    </div>
+
+    <!-- WHO -->
+    <div class="project-card" onclick="toggleProject(this)">
+      <div class="pc-bar" style="background:linear-gradient(90deg,#64748b,transparent)"></div>
+      <div class="pc-header">
+        <div class="pc-name">WHO</div>
+        <div class="pc-priority" style="background:#64748b20;color:#94a3b8">TBC</div>
+      </div>
+      <div class="pc-client">WHO · Active (상세 확인 중)</div>
+      <div class="pc-files">
+        <div class="pc-file"><div class="pcf-icon">📊</div><div class="pcf-name">_STATUS.md</div><div class="pcf-role">자동 갱신</div></div>
+        <div class="pc-file"><div class="pcf-icon">✅</div><div class="pcf-name">_TODO.md</div><div class="pcf-role">계약 스코프·마감 확인</div></div>
+      </div>
+      <div class="pc-toggle">클릭하여 파일 구조 보기</div>
+    </div>
+
+    <!-- Visual Climate -->
+    <div class="project-card" onclick="toggleProject(this)">
+      <div class="pc-bar visual"></div>
+      <div class="pc-header">
+        <div class="pc-name">Visual Climate</div>
+        <div class="pc-priority pc-steady">STEADY</div>
+      </div>
+      <div class="pc-client">개인 브랜드 · YouTube + 소홍슈 + 컨설팅 리드</div>
+      <div class="pc-files">
+        <div class="pc-file"><div class="pcf-icon">🤖</div><div class="pcf-name">CLAUDE.md</div><div class="pcf-role">AI 컨텍스트</div></div>
+        <div class="pc-file"><div class="pcf-icon">🎨</div><div class="pcf-name">_BRAND-GUIDE.md</div><div class="pcf-role">보이스·스타일</div></div>
+        <div class="pc-file"><div class="pcf-icon">📅</div><div class="pcf-name">_CONTENT-CALENDAR.md</div><div class="pcf-role">자동 갱신</div></div>
+        <div class="pc-file"><div class="pcf-icon">🎬</div><div class="pcf-name">01-YouTube/</div><div class="pcf-role">롱폼·숏폼</div></div>
+        <div class="pc-file"><div class="pcf-icon">📱</div><div class="pcf-name">02-Xiaohongshu/</div><div class="pcf-role">중국어 콘텐츠</div></div>
+        <div class="pc-file"><div class="pcf-icon">💼</div><div class="pcf-name">04-Social/</div><div class="pcf-role">LinkedIn</div></div>
+        <div class="pc-file"><div class="pcf-icon">📊</div><div class="pcf-name">05-Product-Decks/</div><div class="pcf-role">4개 프로덕트</div></div>
+      </div>
+      <div class="pc-toggle">클릭하여 파일 구조 보기</div>
+    </div>
+  </div>
+</div>
+
+<!-- Daily Note Preview -->
+<div class="section fade-in">
+  <div class="section-label">"하루에 뭐해야 하는지" — 데일리 노트 미리보기</div>
+
+  <div class="daily-note-preview">
+    <div class="dn-titlebar">
+      <div class="dn-dot r"></div>
+      <div class="dn-dot y"></div>
+      <div class="dn-dot g"></div>
+      <div class="dn-title">2026-07-09.md — /start 실행 결과</div>
+    </div>
+    <div class="dn-content">
+      <h3>📅 오늘 일정</h3>
+      <table>
+        <tr><th>시간</th><th>일정</th><th>프로젝트</th></tr>
+        <tr><td>10:00</td><td>CSE Data Review with Wafa</td><td><span class="dn-tag" style="background:#ef444420;color:#ef4444">UNFPA</span></td></tr>
+        <tr><td>14:00</td><td>Equitee Kickoff Call</td><td><span class="dn-tag" style="background:#f59e0b20;color:#f59e0b">Equitee</span></td></tr>
+        <tr><td>16:00</td><td>AICA Module 1 Brainstorm</td><td><span class="dn-tag" style="background:#06b6d420;color:#06b6d4">Climate</span></td></tr>
+      </table>
+
+      <h3>🔴 반드시 할 것</h3>
+      <div class="dn-priority">
+        1. <strong>UNFPA Reporting Platform</strong> — 기존 Google Apps Script 리뷰 (Jul 31 마감)<br>
+        2. <strong>Equitee 킥오프 준비</strong> — 질문 리스트 작성<br>
+        3. <strong>AICA Module 1</strong> — 스코프 초안
+      </div>
+
+      <h3>📊 프로젝트 현황</h3>
+      <table>
+        <tr><th>Project</th><th>Status</th><th>Next</th><th>Due</th></tr>
+        <tr><td style="color:#ef4444">UNFPA-CSE</td><td>Active</td><td>Reporting Platform 리뷰</td><td>Jul 31</td></tr>
+        <tr><td style="color:#f59e0b">Equitee</td><td>Kickoff today</td><td>미팅 후 스코프 확정</td><td>TBD</td></tr>
+        <tr><td style="color:#06b6d4">Climate-AICA</td><td>Framing</td><td>Module 1 scope</td><td>TBD</td></tr>
+        <tr><td style="color:#a855f7">Visual Climate</td><td>Ongoing</td><td>첫 YouTube 스크립트</td><td>TBD</td></tr>
+      </table>
+
+      <h3>🎯 오늘의 우선순위</h3>
+      <div class="dn-priority">
+        1. <strong>Reporting Platform 리뷰</strong> — Jul 31 마감 최근접, 기존 스크립트 파악 필수<br>
+        2. <strong>Equitee 킥오프 (14:00)</strong> — 첫 미팅이므로 질문 준비 중요<br>
+        3. <strong>AICA Module 1</strong> — 16:00 브레인스톰 전 초안 작성
+      </div>
+
+      <h3>✅ Done</h3>
+      <div style="color:var(--text3);font-style:italic">
+        (하루 중 완료한 것을 여기에 기록)
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Automation Layer -->
+<div class="section fade-in">
+  <div class="section-label">자동화 레이어 — HiOS Control Center</div>
+
+  <div class="flow-grid" style="grid-template-columns:repeat(auto-fill,minmax(280px,1fr))">
+    <div class="flow-card auto-card">
+      <div class="card-icon pulse">🖥</div>
+      <h3>Control Center 서버</h3>
+      <p>로컬 웹 대시보드 — 작업 실행, 일정, 프로젝트 할 일/링크 관리, 폴더 열기, 액션 카드</p>
+      <div class="card-path">http://127.0.0.1:8787</div>
+    </div>
+
+    <div class="flow-card auto-card">
+      <div class="card-icon pulse">⏰</div>
+      <h3>내장 스케줄러 (서버)</h3>
+      <p>06:30 RSS → 06:45 Granola → 07:00 데일리 브리프. 잠자기로 놓치면 깨어난 뒤 자동 보충 (launchd 대체)</p>
+      <div class="card-path">.hios/app/server.py</div>
+    </div>
+
+    <div class="flow-card auto-card">
+      <div class="card-icon pulse">🔄</div>
+      <h3>Granola 동기화</h3>
+      <p>Granola API → 미팅 노트/트랜스크립트 Markdown 추출 → 프로젝트 자동 분류 → Inbox</p>
+      <div class="card-path">.hios/scripts/granola_sync.py</div>
+    </div>
+
+    <div class="flow-card auto-card">
+      <div class="card-icon pulse">📅</div>
+      <h3>캘린더 조회 (맥 동기화 경유)</h3>
+      <p>대시보드 일정 탭 — macOS Calendar를 통해 구글 캘린더 4일치 조회 (OAuth 불필요)</p>
+      <div class="card-path">Calendar.app → /api/calendar</div>
+    </div>
+
+    <div class="flow-card auto-card">
+      <div class="card-icon pulse">🔘</div>
+      <h3>액션 필요 패널</h3>
+      <p>사람 입력이 필요한 결정은 버튼/폼으로 → 응답이 07-Queue로 자동 라우팅 → 다음 Claude 세션이 처리</p>
+      <div class="card-path">07-Queue/*.md</div>
+    </div>
+
+    <div class="flow-card auto-card">
+      <div class="card-icon pulse">📡</div>
+      <h3>Google Calendar MCP</h3>
+      <p>Claude 세션 내 실시간 일정 조회 · 이벤트 생성/수정</p>
+      <div class="card-path">calendarmcp.googleapis.com/mcp/v1</div>
+    </div>
+  </div>
+</div>
+
+<!-- Vault Tree -->
+<div class="section fade-in">
+  <div class="section-label">볼트 전체 구조</div>
+
+  <div class="vault-tree">
+<span class="vt-dir">Visual Climate Hermes/</span>
+├── <span class="vt-highlight">CLAUDE.md</span> <span class="vt-comment">← 글로벌 시스템 프롬프트</span>
+├── <span class="vt-highlight">Dashboard.md</span> <span class="vt-comment">← Obsidian Dataview 대시보드</span>
+├── <span class="vt-auto">YYYY-MM-DD.md</span> <span class="vt-comment">← 데일리 노트 (매일 자동 생성)</span>
+│
+├── <span class="vt-input">00-Inbox/</span> <span class="vt-comment">← 미처리 입력 (Granola export 여기에)</span>
+│
+├── <span class="vt-dir">01-Projects/</span>
+│   ├── <span class="vt-dir">UNFPA-CSE/</span>
+│   │   ├── CLAUDE.md, _STATUS.md, _TIMELINE.md, _PROJECT-BRIEF.md
+│   │   ├── 01-Deliverables/ <span class="vt-comment">(6개 산출물 폴더)</span>
+│   │   ├── <span class="vt-auto">02-Meetings/</span> <span class="vt-comment">← /meeting이 자동 생성</span>
+│   │   └── 04-Research/signals/ <span class="vt-comment">← CSE 신호탐지</span>
+│   ├── <span class="vt-dir">Equitee/</span> <span class="vt-comment">(같은 구조)</span>
+│   ├── <span class="vt-dir">Climate-AICA/</span> <span class="vt-comment">(같은 구조 + 01-Modules/)</span>
+│   ├── <span class="vt-dir">WMO/</span> <span class="vt-comment">코스제작 컨설팅 (상세 TBC)</span>
+│   ├── <span class="vt-dir">WHO/</span> <span class="vt-comment">Active (상세 TBC)</span>
+│   └── <span class="vt-dir">Visual-Climate/</span>
+│       ├── 01-YouTube/, 02-Xiaohongshu/, 04-Social/
+│       ├── <span class="vt-auto">05-Product-Decks/</span> <span class="vt-comment">← 4개 프로덕트 데크</span>
+│       └── <span class="vt-auto">06-Content-Engine/</span> <span class="vt-comment">수집기 스크립트 + 다이제스트</span>
+│
+├── <span class="vt-dir">02-Areas/</span> <span class="vt-comment">career, skills, finance, health</span>
+├── <span class="vt-dir">03-Resources/</span> <span class="vt-comment">참고자료 (data-viz, un-systems, ai-tools...)</span>
+├── <span class="vt-dir">04-Archive/</span> <span class="vt-comment">← /process-inbox가 여기로 이동</span>
+├── <span class="vt-auto">05-AI/</span> <span class="vt-comment">sessions, summaries, generated/</span>
+├── <span class="vt-auto">06-Entities/</span> <span class="vt-comment">people, organizations, concepts</span>
+├── <span class="vt-input">07-Queue/</span> <span class="vt-comment">← 비동기 작업 요청</span>
+├── <span class="vt-dir">Templates/</span> <span class="vt-comment">6개 템플릿</span>
+│
+├── <span class="vt-dir">.claude/commands/</span> <span class="vt-comment">11개 슬래시 커맨드</span>
+│   ├── <span class="vt-highlight">start.md</span>, today.md, weekly.md, meeting.md
+│   ├── content.md, research.md, collect.md
+│   └── process-inbox.md, product-deck.md, xhs-draft.md, ig-draft.md
+│
+└── <span class="vt-dir">.hios/</span> <span class="vt-comment">← Control Center</span>
+    ├── <span class="vt-highlight">app/server.py</span> <span class="vt-comment">← 대시보드 + 내장 스케줄러 (127.0.0.1:8787)</span>
+    ├── <span class="vt-auto">scripts/granola_sync.py</span> <span class="vt-comment">미팅 자동 수집</span>
+    ├── state/ <span class="vt-comment">액션 카드, 스케줄러 상태</span>
+    └── .env <span class="vt-comment">API 키 (chmod 600, 볼트 밖)</span>
+  </div>
+</div>
+
+</div>
+
+<script>
+// Command tab switching
+document.querySelectorAll('.cmd-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.cmd-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.cmd-panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('cmd-' + tab.dataset.cmd).classList.add('active');
+  });
+});
+
+// Project card toggle
+function toggleProject(card) {
+  const files = card.querySelector('.pc-files');
+  const toggle = card.querySelector('.pc-toggle');
+  files.classList.toggle('open');
+  toggle.textContent = files.classList.contains('open') ? '접기' : '클릭하여 파일 구조 보기';
+}
+
+// Scroll fade-in
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+[
+  {
+    "id": "vc-annual-return",
+    "title": "Visual Climate Inc. 연차보고서(Annual Return) 제출",
+    "detail": "Corporations Canada — 법인번호 1702438-0. 제출 기간 2026-05-26 ~ 2026-07-25. 미제출 시 법인 해산 리스크. 온라인 제출로 금방 끝나는 행정 업무.",
+    "status": "open",
+    "priority": "high",
+    "due": "2026-07-25",
+    "people": [],
+    "sources": [
+      {"kind": "gmail", "label": "Corporations Canada 안내 (7/15)", "url": "https://mail.google.com/mail/u/0/#all/19f64b5317e475a3"}
+    ],
+    "note": "",
+    "created": "2026-07-15",
+    "updated": "2026-07-15"
+  },
+  {
+    "id": "vc-girleffect",
+    "title": "Girl Effect HPV 디자인 컨설턴시 제안서 — 응답 팔로업",
+    "detail": "7/15 새벽 제안서 + 포트폴리오 샘플 2건 발송 완료 (suppliers@girleffect.org). 1주 내 응답 없으면 팔로업 메일.",
+    "status": "open",
+    "priority": "med",
+    "due": "2026-07-22",
+    "people": [],
+    "sources": [
+      {"kind": "gmail", "label": "제안서 발송 메일 (7/15)", "url": "https://mail.google.com/mail/u/0/#all/19f63e19c7b437d0"}
+    ],
+    "note": "",
+    "created": "2026-07-15",
+    "updated": "2026-07-15"
+  },
+  {
+    "id": "vc-youtube-script",
+    "title": "YouTube 롱폼 스크립트 초안",
+    "detail": "이번 주 포커스 항목. 한국어 우선 + 영어 자막.",
+    "status": "open",
+    "priority": "med",
+    "due": "",
+    "people": [],
+    "sources": [],
+    "note": "",
+    "created": "2026-07-15",
+    "updated": "2026-07-15"
+  },
+  {
+    "id": "vc-onx-invoice",
+    "title": "ONX 인보이스 발송 규칙 — 두 주소 모두 발송",
+    "detail": "Nicole 요청: 앞으로 모든 인보이스는 Invoice.ODC@onx.com + onxaccountspayable.canada@onx.com 두 곳 모두에 발송. 다음 인보이스부터 적용.",
+    "status": "open",
+    "priority": "low",
+    "due": "",
+    "people": ["Nicole Mantle"],
+    "sources": [
+      {"kind": "gmail", "label": "Nicole 안내 메일 (7/5)", "url": "https://mail.google.com/mail/u/0/#all/19f340cfeea2ef66"}
+    ],
+    "note": "",
+    "created": "2026-07-15",
+    "updated": "2026-07-15"
+  }
+]

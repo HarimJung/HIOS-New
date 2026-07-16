@@ -1,0 +1,3 @@
+[     200ms] [VERBOSE] [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o @ http://127.0.0.1:8787/:0
+[     201ms] [VERBOSE] [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o @ http://127.0.0.1:8787/:0
+[   71875ms] [ERROR] Failed to load resource: the server responded with a status of 404 (NOT FOUND) @ http://127.0.0.1:8787/api/vault-file/01-Projects/WHO/_PROJECT-BRIEF.md:0

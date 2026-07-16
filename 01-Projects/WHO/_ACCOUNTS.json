@@ -1,0 +1,11 @@
+[
+  {
+    "service": "WHO WIMS",
+    "account": "(계정 발급 대기중)",
+    "url": "",
+    "pw_hint": "발급되면 키체인에 저장 후 여기 위치 기록",
+    "note": "WIMS 계정 pending — Teams 온보딩 blocker. 도착하면 이 항목 업데이트",
+    "id": "50057dcf",
+    "updated": "2026-07-15"
+  }
+]

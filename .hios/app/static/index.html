@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HiOS — Control Center</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="shell">
+
+  <header class="topbar">
+    <div class="logo">Hi<em>OS</em></div>
+    <div class="sub">Control Center</div>
+    <div class="quickbar">
+      <input id="qb-input" placeholder="질문 (이거 어딨어?) 또는 메모 한 줄…" maxlength="1000">
+      <button class="qb-btn ask" id="qb-ask" title="vault 전체에서 AI가 찾아서 답합니다">질문</button>
+      <button class="qb-btn memo" id="qb-memo" title="오늘 데일리 노트에 기록합니다">메모</button>
+    </div>
+    <div class="spacer"></div>
+    <button class="theme-btn" id="theme-btn">다크</button>
+    <div class="clock" id="clock">—</div>
+    <div class="health" id="health"><span class="dot"></span><span id="health-text">확인 중…</span></div>
+  </header>
+
+  <!-- action bar: human input required -->
+  <div class="action-bar" id="action-bar" style="display:none">
+    <div class="ab-label">액션<br>필요</div>
+    <div class="ab-cards" id="ab-cards"></div>
+  </div>
+
+  <main class="main-area">
+
+    <nav class="tabs main-tabs" id="tabs"></nav>
+
+    <div class="tab-panes">
+
+      <!-- engine tab: task runner + job list + log -->
+      <div class="engine-view" id="engine-view" style="display:none">
+        <section class="zone">
+          <div class="zone-label"><span class="idx">01</span> 실행</div>
+          <div class="sched" id="sched"></div>
+          <div class="run-panel" id="run-panel"></div>
+        </section>
+        <section class="zone jobs-zone">
+          <div class="zone-label"><span class="idx">02</span> 작업 로그</div>
+          <div class="job-history" id="job-history">
+            <div class="log-empty">아직 실행된 작업 없음</div>
+          </div>
+          <div class="log-head">
+            <span class="ltitle" id="log-title">작업을 선택하세요</span>
+            <span id="log-pill"></span>
+            <button class="btn-cancel" id="btn-cancel" style="display:none">중단</button>
+          </div>
+          <div class="log-view" id="log-view">
+            <div class="log-empty">로그 없음</div>
+          </div>
+        </section>
+      </div>
+
+      <!-- all other tabs render here -->
+      <div class="output-body" id="output-body">
+        <div class="doc-view" id="doc-view">
+          <div class="doc-empty">불러오는 중…</div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<!-- global ask drawer: vault-wide AI answers, works on any tab -->
+<div class="ask-drawer" id="ask-drawer" style="display:none">
+  <div class="ask-head">
+    <span class="ltitle" id="ask-title">질문</span>
+    <span id="ask-pill"></span>
+    <span class="spacer"></span>
+    <button class="btn-cancel" id="ask-cancel" style="display:none">중단</button>
+    <button class="ws-open-btn" id="ask-close">닫기</button>
+  </div>
+  <div class="ask-q" id="ask-q"></div>
+  <div class="log-view ask-view" id="ask-view"></div>
+</div>
+
+<div class="toasts" id="toasts"></div>
+
+<script src="/static/vendor/marked.min.js"></script>
+<script src="/static/app.js"></script>
+</body>
+</html>

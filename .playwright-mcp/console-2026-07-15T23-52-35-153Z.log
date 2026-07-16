@@ -1,0 +1,4 @@
+[     275ms] [INFO] [O11Y] [DatadogRUM] Initialized {service: claude-ai, env: production, version: 1248c42784} @ https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/c41323917-DaCVNyW6.js:1
+[     638ms] [LOG] recaptchacompat disabled @ https://js.hcaptcha.com/1/api.js?render=explicit&recaptchacompat=off&onload=__antClientAttestationHcaptchaInvisibleReady:3
+[     763ms] [ERROR] Not signed in with the identity provider. @ https://claude.ai/login:0
+[    8086ms] [ERROR] [GSI_LOGGER]: FedCM get() rejects with NetworkError: Error retrieving a token. @ https://accounts.google.com/gsi/client:87

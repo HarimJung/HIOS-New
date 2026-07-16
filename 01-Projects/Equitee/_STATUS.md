@@ -1,0 +1,35 @@
+---
+client: Equitee
+updated: 2026-07-16
+tags: [equitee, status]
+---
+
+# Equitee — Status Tracker
+
+## Status: Active — insurance fraud & vehicle crime analytics
+
+| Workstream | Status | Next Step |
+|---|---|---|
+| False-positive detection | Pattern research — 1 confirmed pattern (same-insurer before/after, policy active) | Findings email + target case list (**draft ready 7/16** → review & send) → Angel |
+| Fraud dashboard migration (Tableau → Power BI) | In progress | Funnel & score page per NTD feedback |
+| CGI gold report extraction | Working; known data quality issue (insured period dates unreliable) | Re-check code against this week's PDF update |
+| Auto trend & value reports | Submitted for Kevin/Jung review | Await feedback |
+| Fraud scoring model (Shift) | Threshold 0.1, low F1 (~1,400 training samples) | Follow-up meetings incl. Harim; model tuning planned this quarter |
+
+## Context from 7/15 working group
+- June alert volume 1,780 (≈4x May's 481); 4 new scenarios contributed 1,245 alerts
+- This quarter: prior-damage detection improvements, high-interest claim scenario,
+  third-party vehicle alert removal, **new triage step** for low-qualification alerts
+- Entity resolution improvements NOT planned this quarter (examples → existing tickets)
+- Member survey on working-session cadence coming (David) — respond when it arrives
+
+## Blockers / pending asks
+- IB status data — Yulia (re-requested multiple times)
+- EQ Insights active-user list — Dominique
+- Dash API agreement — Angel/Burim (longer-term)
+
+## Recent Updates
+- 2026-07-16: findings email + target case list structure drafted (`03-Communications/`)
+- 2026-07-15: working group meeting (alert volume spike, triage step announced)
+- 2026-07-13: false-positive meeting — 1 confirmed pattern; scope corrected (old "DEI Dashboard / Awaiting Kickoff" description removed)
+- 2026-07-08: project folder created

@@ -1,0 +1,139 @@
+[
+  {
+    "id": "unfpa-platform-fix",
+    "title": "리포팅 플랫폼(Google Script) 버그 수정",
+    "detail": "버그 2건: ① 국가가 이름으로 클러스터링 안 됨 ② 리포팅 기간 간 연속성 없음. 분기 리포팅 마감이 7/31 — 그 전에 업데이트된 플랫폼 배포가 이상적. Wafa 7/27~8/2 부재이므로 실질 마감은 7/24경.",
+    "status": "open",
+    "priority": "high",
+    "due": "2026-07-24",
+    "people": [
+      "Wafa Dhaouadi"
+    ],
+    "sources": [
+      {
+        "kind": "granola",
+        "label": "Wafa 온보딩 미팅 (7/8)",
+        "url": "https://notes.granola.ai/d/3a518be7-a04c-421d-aa1d-25588ea1463b"
+      },
+      {
+        "kind": "gmail",
+        "label": "Data and knowledge CSE 스레드 (7/7)",
+        "url": "https://mail.google.com/mail/u/0/#all/19f3dbb72f286e8b"
+      }
+    ],
+    "note": "",
+    "created": "2026-07-15",
+    "updated": "2026-07-15"
+  },
+  {
+    "id": "unfpa-access-remind",
+    "title": "Wafa info pack/드라이브/스크립트 수신 확인 — 안 왔으면 리마인드",
+    "detail": "Wafa가 7/10(금)까지 보내기로 한 것: 핵심 문서, 드라이브 액세스, 리포팅 플랫폼 Google Script 코드, 첫 info pack. 7/10에 액세스 요청 메일 보냈으나 수신 확인 안 됨. 플랫폼 수정의 선행 조건이므로 오늘 확인.",
+    "status": "open",
+    "priority": "high",
+    "due": "2026-07-15",
+    "people": [
+      "Wafa Dhaouadi"
+    ],
+    "sources": [
+      {
+        "kind": "gmail",
+        "label": "액세스 요청 메일 (7/10)",
+        "url": "https://mail.google.com/mail/u/0/#all/19f4c4bad6319b93"
+      }
+    ],
+    "note": "",
+    "created": "2026-07-15",
+    "updated": "2026-07-15"
+  },
+  {
+    "id": "unfpa-portal-q",
+    "title": "내부 지식 포털 관련 질문 리스트 Wafa에게 발송",
+    "detail": "온보딩 때 '다음 주 초(이번 주)' 발송 약속. Wafa가 답을 모아와야 스코핑 논의가 풀림. UNFPA Google 생태계 내 검색 가능한 CSC 리소스 허브 구상.",
+    "status": "open",
+    "priority": "med",
+    "due": "2026-07-17",
+    "people": [
+      "Wafa Dhaouadi"
+    ],
+    "sources": [
+      {
+        "kind": "granola",
+        "label": "Wafa 온보딩 미팅 (7/8)",
+        "url": "https://notes.granola.ai/d/3a518be7-a04c-421d-aa1d-25588ea1463b"
+      }
+    ],
+    "note": "",
+    "created": "2026-07-15",
+    "updated": "2026-07-15"
+  },
+  {
+    "id": "unfpa-mapping-dash",
+    "title": "CSC 국가 매핑 대시보드 구축",
+    "detail": "인터랙티브 + 데이터 기반, financial/UPR engagement 두 필러 커버. 나이로비 팀미팅(9/21~24)까지 완성. CSC Country Mapping 문서 풀버전 액세스 필요(요청함). 모든 딜리버러블은 Google Workspace에서 접근 가능해야 함.",
+    "status": "open",
+    "priority": "high",
+    "due": "2026-09-14",
+    "people": [
+      "Wafa Dhaouadi"
+    ],
+    "sources": [
+      {
+        "kind": "granola",
+        "label": "Wafa 온보딩 미팅 (7/8)",
+        "url": "https://notes.granola.ai/d/3a518be7-a04c-421d-aa1d-25588ea1463b"
+      }
+    ],
+    "note": "",
+    "created": "2026-07-15",
+    "updated": "2026-07-15"
+  },
+  {
+    "id": "unfpa-baseline-infog",
+    "title": "10개국 베이스라인 보고서 → 인포그래픽 변환",
+    "detail": "베이스라인 보고서를 비주얼 지식 상품으로. 나이로비 팀미팅(9/21~24) 대상. 참고: 프로그램명 변경 — 'Out of School CSE' → Empowered / Informed로 분리됨. 결제는 딜리버러블 기반(진행노트 1-2p 제출 시 지급).",
+    "status": "open",
+    "priority": "high",
+    "due": "2026-09-14",
+    "people": [
+      "Wafa Dhaouadi"
+    ],
+    "sources": [
+      {
+        "kind": "granola",
+        "label": "Wafa 온보딩 미팅 (7/8)",
+        "url": "https://notes.granola.ai/d/3a518be7-a04c-421d-aa1d-25588ea1463b"
+      }
+    ],
+    "note": "",
+    "created": "2026-07-15",
+    "updated": "2026-07-15"
+  },
+  {
+    "id": "unfpa-nairobi-travel",
+    "title": "나이로비 출장(9/21~24) 트래블 클리어런스 팔로업",
+    "detail": "Wafa가 현장 참석용 클리어런스 진행 중. 8월 초까지 소식 없으면 확인. UNFPA 계정(hajung@unfpa.org)은 7/13 생성 완료 — Gemini/공유드라이브/커뮤니티 액세스 풀림.",
+    "status": "open",
+    "priority": "low",
+    "due": "2026-08-15",
+    "people": [
+      "Wafa Dhaouadi",
+      "Khadija Mohammed"
+    ],
+    "sources": [
+      {
+        "kind": "granola",
+        "label": "Wafa 온보딩 미팅 (7/8)",
+        "url": "https://notes.granola.ai/d/3a518be7-a04c-421d-aa1d-25588ea1463b"
+      },
+      {
+        "kind": "gmail",
+        "label": "UNFPA 계정 생성 (7/13)",
+        "url": "https://mail.google.com/mail/u/0/#all/19f5a59d494b2e22"
+      }
+    ],
+    "note": "",
+    "created": "2026-07-15",
+    "updated": "2026-07-15"
+  }
+]

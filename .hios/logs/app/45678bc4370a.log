@@ -1,0 +1,16 @@
+`2026-07-11.md` 생성 완료. 요약:
+
+**오늘의 핵심**
+1. **UNFPA Reporting Platform 검토** — 유일한 hard deadline(Jul 31)인데 3일째 진행률 0%. Wafa OOO(Jul 27~) 때문에 실질 데드라인은 Jul 25 전후.
+2. **Wafa handoff 자료 목록 확정**
+3. **07-09 콘텐츠 초안 5개** — 이틀째 발행 대기 중. 뉴스성 소재라 오늘 결정 안 하면 시의성 소멸.
+
+**상태**
+- Inbox/Queue 모두 clear, 7일 내 마감 없음
+- 07-10 RSS digest는 생성됐지만 **07-10 데일리 노트가 없음** → launchd 자동 브리프가 여전히 권한 문제로 미작동 중인 것으로 보임. 시스템 설정에서 `bash`에 전체 디스크 접근 권한을 줘야 하고, 이건 Harim만 할 수 있음.
+- 07-11 RSS digest도 아직 미생성 — 수집기 수동 실행 원하시면 말씀 주세요.
+
+**이월된 확인 사항**: "유에스" 클라이언트 정체, WMO/WHO 계약 상세, Reddit OAuth 키.
+
+한 가지 지적: Reporting Platform이 3일 연속 Must Do 1순위인데 진행률 0%입니다. 오늘도 착수가 어렵다면, 무엇이 막고 있는지(자료 부재? 우선순위 충돌?) 확인이 필요합니다.
+[system] finished status=success rc=0

@@ -1,0 +1,133 @@
+[
+  {
+    "id": "wmo-moodle-mig",
+    "title": "Articulate 업데이트 → Moodle 패키징/업로드",
+    "detail": "최우선 병목. 전문가 테스트는 공유 링크가 아니라 라이브 플랫폼에서 해야 하므로 코스 임베드가 선행돼야 함. ETRP 계정은 7/9에 생성 완료 (etrp.wmo.int). 8월 초 Xiao 상세 리뷰 전까지 완료 목표.",
+    "status": "in_progress",
+    "priority": "high",
+    "due": "2026-08-07",
+    "people": [
+      "Xiao Zhou",
+      "Luciane Veeck"
+    ],
+    "sources": [
+      {
+        "kind": "granola",
+        "label": "BCM Module 미팅 (7/9)",
+        "url": "https://notes.granola.ai/d/3ce7ddcf-148a-4a56-8f59-f48d19a84dbf"
+      },
+      {
+        "kind": "gmail",
+        "label": "ETRP 계정 생성 (7/9)",
+        "url": "https://mail.google.com/mail/u/0/#all/19f476d193e9a0f6"
+      }
+    ],
+    "note": "",
+    "created": "2026-07-15",
+    "updated": "2026-07-15"
+  },
+  {
+    "id": "wmo-zhangdi-fb",
+    "title": "Zhang Di 리뷰 피드백 2건 반영 + 완료 회신",
+    "detail": "7/3 Xiao가 전달한 CMA Zhang Di 피드백. 7/7에 '작업 중' 회신함 — File Attachment Block용 다운로드 PDF 템플릿(Model BCM Policy 등) 제작 포함. 완료 보고가 아직 안 나감.",
+    "status": "in_progress",
+    "priority": "high",
+    "due": "",
+    "people": [
+      "Xiao Zhou",
+      "Zhang Di"
+    ],
+    "sources": [
+      {
+        "kind": "gmail",
+        "label": "Review request 스레드 (7/3~)",
+        "url": "https://mail.google.com/mail/u/0/#all/19f288ec626d6d2b"
+      }
+    ],
+    "note": "",
+    "created": "2026-07-15",
+    "updated": "2026-07-15"
+  },
+  {
+    "id": "wmo-duration",
+    "title": "모듈별 소요시간 + 총 코스 길이 기입",
+    "detail": "코스 메타데이터 누락분. Moodle 업로드 시 필요.",
+    "status": "open",
+    "priority": "med",
+    "due": "2026-08-07",
+    "people": [],
+    "sources": [
+      {
+        "kind": "granola",
+        "label": "BCM Module 미팅 (7/9)",
+        "url": "https://notes.granola.ai/d/3ce7ddcf-148a-4a56-8f59-f48d19a84dbf"
+      }
+    ],
+    "note": "",
+    "created": "2026-07-15",
+    "updated": "2026-07-15"
+  },
+  {
+    "id": "wmo-cert",
+    "title": "Mustafa에게 수료증 템플릿 컨펌",
+    "detail": "수료증 템플릿은 Mustafa가 승인권자. 컴플라이언스는 하림 담당 아님 확인됨(블로커 없음). PDF 자료는 공유 폴더에 초안 있음 — 나중에 크로스체크.",
+    "status": "open",
+    "priority": "med",
+    "due": "",
+    "people": [
+      "Mustafa Adiguzel"
+    ],
+    "sources": [
+      {
+        "kind": "granola",
+        "label": "BCM Module 미팅 (7/9)",
+        "url": "https://notes.granola.ai/d/3ce7ddcf-148a-4a56-8f59-f48d19a84dbf"
+      }
+    ],
+    "note": "",
+    "created": "2026-07-15",
+    "updated": "2026-07-15"
+  },
+  {
+    "id": "wmo-aug-review",
+    "title": "Xiao와 8월 초 상세 리뷰 미팅 확정 (8/8~9경)",
+    "detail": "Xiao가 8월 중 1주 여름휴가 예정 — 미리 일정 잡을 것. 이후 9월 검증 워크숍(WMO 플랫폼, 멤버 배포) → 연말 공식 런칭. 평가 보고서도 준비 필요.",
+    "status": "open",
+    "priority": "med",
+    "due": "2026-07-31",
+    "people": [
+      "Xiao Zhou"
+    ],
+    "sources": [
+      {
+        "kind": "granola",
+        "label": "BCM Module 미팅 (7/9)",
+        "url": "https://notes.granola.ai/d/3ce7ddcf-148a-4a56-8f59-f48d19a84dbf"
+      }
+    ],
+    "note": "",
+    "created": "2026-07-15",
+    "updated": "2026-07-15"
+  },
+  {
+    "id": "wmo-hydrohub-badge",
+    "title": "HydroHub 뱃지 디자인 — 지영님 수정본 확인",
+    "detail": "7/7에 수정 요청 보냄 (아리엘 폰트, 밴딩 글자 키우기, 이탤릭, 컬러 첨부). 회신 왔는지 확인 후 마무리.",
+    "status": "open",
+    "priority": "low",
+    "due": "",
+    "people": [
+      "지영 (Jiyoung Kim)"
+    ],
+    "sources": [
+      {
+        "kind": "gmail",
+        "label": "간단 디자인 컨설팅 스레드",
+        "url": "https://mail.google.com/mail/u/0/#all/19f19800bf005f00"
+      }
+    ],
+    "note": "",
+    "created": "2026-07-15",
+    "updated": "2026-07-15"
+  }
+]

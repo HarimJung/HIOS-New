@@ -1,0 +1,17 @@
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - generic [ref=e4]:
+      - text: Hi
+      - emphasis [ref=e5]: OS
+    - generic [ref=e6]: Control Center
+    - button "다크" [ref=e7] [cursor=pointer]
+    - generic [ref=e8]: —
+    - generic [ref=e9]: 확인 중…
+  - main [ref=e12]:
+    - navigation [ref=e13]:
+      - button "홈" [ref=e14] [cursor=pointer]
+      - button "액션" [ref=e15] [cursor=pointer]
+      - button "워크스페이스" [ref=e16] [cursor=pointer]
+      - button "엔진" [ref=e17] [cursor=pointer]
+      - button "일정" [ref=e18] [cursor=pointer]
+    - generic [ref=e19]: 불러오는 중…

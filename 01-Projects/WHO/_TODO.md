@@ -1,0 +1,16 @@
+---
+tags: [todo]
+client: WHO
+updated: 2026-07-13
+---
+
+# WHO — To-Do
+
+## Open
+- [ ] SOP, SDG7 진행 리포트, HCF 전화(電化) 부클릿 리뷰 (채팅으로 링크 공유됨 — WIMS 계정 전에 시작 가능)
+- [ ] WIMS 계정 나오면 Wenlu에게 연락 → Teams 채널 온보딩 + 폴더 구조 안내
+- [ ] Salvatore의 HCF 지표 조화(harmonization) 컨셉노트 수신 확인
+- [ ] 계약 마감일·우선순위 확인 (contract dates still TBD)
+
+## Done
+- [x] 계약 스코프 확인 — 2026-07-13 온보딩 미팅에서 확정 (_STATUS.md 참조)

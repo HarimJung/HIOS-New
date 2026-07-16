@@ -1,0 +1,153 @@
+[
+  {
+    "id": "eq-findings-email",
+    "title": "False positive 첫 발견사항 요약 이메일 발송",
+    "detail": "7/13 미팅에서 커밋한 액션. 지금까지 발견한 패턴 포함: ① 동일 보험사 전/후 계약 + 정책 여전히 활성 (CVSA 정보 완전 오류) ② export 케이스 — 커버리지 export됐으나 동일 회사에서 정책 활성. 현황: 1,000+ 레코드 SQL Server 적재, 100+ 알림 수동 리뷰(20-30% 수동 플래그), 2-플래그 체계(코멘트 기반 + AI).",
+    "status": "open",
+    "priority": "high",
+    "due": "2026-07-17",
+    "people": [],
+    "sources": [
+      {"kind": "granola", "label": "False Positive 미팅 (7/13)", "url": "https://notes.granola.ai/d/abc014f6-f7a6-4a78-9116-a1119b62d0e2"}
+    ],
+    "note": "",
+    "created": "2026-07-15",
+    "updated": "2026-07-15"
+  },
+  {
+    "id": "eq-target-list",
+    "title": "타겟 케이스 리스트 + 조사관 질문 작성",
+    "detail": "액세스 시트에 타겟 케이스 마킹, 조사관에게 물을 질문 정리, 케이스별 멤버/보험사 분류. Intact가 케이스 최다 예상, Aviva는 false positive 적을 것. 내부팀은 주로 network alert 사용 — claim/policy alert는 외부 조사관(TDI, Intact 슈퍼유저)에 적합.",
+    "status": "open",
+    "priority": "high",
+    "due": "2026-07-18",
+    "people": [],
+    "sources": [
+      {"kind": "granola", "label": "False Positive 미팅 (7/13)", "url": "https://notes.granola.ai/d/abc014f6-f7a6-4a78-9116-a1119b62d0e2"}
+    ],
+    "note": "",
+    "created": "2026-07-15",
+    "updated": "2026-07-15"
+  },
+  {
+    "id": "eq-angel-engage",
+    "title": "Angel과 조사관 인게이지먼트 논의",
+    "detail": "Angel의 첫 질문은 '어느 멤버를 인게이지할 건데?' — 타겟 리스트 + 멤버별 분류가 준비된 후에 논의할 것. Acceptance working group의 시나리오 피드백도 공유 가능.",
+    "status": "blocked",
+    "priority": "med",
+    "due": "",
+    "people": ["Angel"],
+    "sources": [
+      {"kind": "granola", "label": "False Positive 미팅 (7/13)", "url": "https://notes.granola.ai/d/abc014f6-f7a6-4a78-9116-a1119b62d0e2"}
+    ],
+    "note": "선행: 타겟 케이스 리스트 완성",
+    "created": "2026-07-15",
+    "updated": "2026-07-15"
+  },
+  {
+    "id": "eq-flag-dims",
+    "title": "False positive 플래그 10개 카테고리 dimension 테이블 생성",
+    "detail": "AI가 코멘트에서 분류한 10개 카테고리라 100% 정확하지 않음. Corner와 공유용 표준 정의는 공유 링크에 문서화돼 있음 — dimension/분류 테이블로 명확화.",
+    "status": "open",
+    "priority": "med",
+    "due": "",
+    "people": ["Corner"],
+    "sources": [
+      {"kind": "granola", "label": "False Positive 미팅 (7/13)", "url": "https://notes.granola.ai/d/abc014f6-f7a6-4a78-9116-a1119b62d0e2"}
+    ],
+    "note": "",
+    "created": "2026-07-15",
+    "updated": "2026-07-15"
+  },
+  {
+    "id": "eq-cgi-recheck",
+    "title": "CGI 추출 코드 재확인 (PDF 업데이트 반영)",
+    "detail": "7월 첫 주에 PDF 업데이트가 있었음 — 추출이 여전히 정상 작동하는지 확인. 배경: CGI gold report 날짜 부정확(취소/이전으로 1년+ 기간 중복), Dash가 더 신뢰할 만한 대안(상세 날짜 + 취소 지역 정보), Dash API는 Angel/Burim 통한 협약 필요할 수도.",
+    "status": "open",
+    "priority": "med",
+    "due": "",
+    "people": [],
+    "sources": [
+      {"kind": "granola", "label": "CGI 데이터 품질 미팅 (7/9)", "url": "https://notes.granola.ai/d/89a22791-3c17-4d61-9a60-ef9dd71f2199"}
+    ],
+    "note": "",
+    "created": "2026-07-15",
+    "updated": "2026-07-15"
+  },
+  {
+    "id": "eq-julia-ib",
+    "title": "Julia에게 IB status 데이터 액세스 재팔로업",
+    "detail": "여러 번 요청했으나 아직 미수신. Dash로 트랜잭션 데이터를 못 받으면 필수. IPC/RBC 데이터(더 깨끗한 소스)도 대기 중.",
+    "status": "open",
+    "priority": "med",
+    "due": "",
+    "people": ["Julia"],
+    "sources": [
+      {"kind": "granola", "label": "CGI 데이터 품질 미팅 (7/9)", "url": "https://notes.granola.ai/d/89a22791-3c17-4d61-9a60-ef9dd71f2199"},
+      {"kind": "granola", "label": "AI False All 미팅 (7/3)", "url": "https://notes.granola.ai/d/ded8cf53-e167-48a8-851b-331a5ae2fa4f"}
+    ],
+    "note": "",
+    "created": "2026-07-15",
+    "updated": "2026-07-15"
+  },
+  {
+    "id": "eq-security-report",
+    "title": "Claude Code 보안 건 Ivan/Julia에게 공식 통보",
+    "detail": "개발 중 Claude가 blockchain/crypto 인코딩 모듈 다운로드 → Ivan 리뷰 결과 서명된 버전으로 클리어. 다만 다른 동료는 미서명 버전 다운로드했었음. 클리어됐어도 보안팀에 공식 통보 필요. 정책: 어떤 LLM에도 실데이터/IP 업로드 금지 (현재 Faker 목데이터만 사용, 실데이터는 로컬 Python으로만 읽음).",
+    "status": "open",
+    "priority": "med",
+    "due": "2026-07-17",
+    "people": ["Ivan", "Julia"],
+    "sources": [
+      {"kind": "granola", "label": "CGI 데이터 품질 미팅 (7/9)", "url": "https://notes.granola.ai/d/89a22791-3c17-4d61-9a60-ef9dd71f2199"}
+    ],
+    "note": "",
+    "created": "2026-07-15",
+    "updated": "2026-07-15"
+  },
+  {
+    "id": "eq-shift-meeting",
+    "title": "Shift 스코어링 모델 후속 미팅 확정 (하림 포함 필수)",
+    "detail": "Julia 복귀 후 확정. 오픈 질문: ① 타 협회 대비 F1 스코어 비교 ② 시나리오별 스코어 분해 (현재 전체 스코어만). 배경: 분류 모델, threshold 0.1(표준 0.5보다 낮음), F1 낮은 원인은 학습셋 ~1,400건뿐 — 내부 폐기됐지만 확정된 fraud alert를 학습 데이터로 추가하는 제안 있음.",
+    "status": "open",
+    "priority": "med",
+    "due": "",
+    "people": ["Julia"],
+    "sources": [
+      {"kind": "granola", "label": "CGI 데이터 품질 미팅 (7/9)", "url": "https://notes.granola.ai/d/89a22791-3c17-4d61-9a60-ef9dd71f2199"}
+    ],
+    "note": "",
+    "created": "2026-07-15",
+    "updated": "2026-07-15"
+  },
+  {
+    "id": "eq-dominique",
+    "title": "Dominique에게 EQ Insights 실사용자 확인",
+    "detail": "조사관 인게이지먼트 전략의 일부 — 누가 실제로 EQ Insights를 쓰고 있는지 파악.",
+    "status": "open",
+    "priority": "low",
+    "due": "",
+    "people": ["Dominique"],
+    "sources": [
+      {"kind": "granola", "label": "False Positive 미팅 (7/13)", "url": "https://notes.granola.ai/d/abc014f6-f7a6-4a78-9116-a1119b62d0e2"}
+    ],
+    "note": "",
+    "created": "2026-07-15",
+    "updated": "2026-07-15"
+  },
+  {
+    "id": "eq-pbi-funnel",
+    "title": "Power BI 마이그레이션 — funnel & score 페이지 추가",
+    "detail": "Fraud 대시보드 마이그레이션 진행 중(데이터 모델링 처음부터 다시 함). NTD 피드백 기반 funnel/score 페이지 1개 추가 예정. Tableau 추출은 라이브 데이터소스로 완료, 웹앱 임베드 가능.",
+    "status": "in_progress",
+    "priority": "med",
+    "due": "",
+    "people": [],
+    "sources": [
+      {"kind": "granola", "label": "CGI 데이터 품질 미팅 (7/9)", "url": "https://notes.granola.ai/d/89a22791-3c17-4d61-9a60-ef9dd71f2199"}
+    ],
+    "note": "",
+    "created": "2026-07-15",
+    "updated": "2026-07-15"
+  }
+]
