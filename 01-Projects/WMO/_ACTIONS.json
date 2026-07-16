@@ -113,7 +113,7 @@
     "id": "wmo-hydrohub-badge",
     "title": "HydroHub 뱃지 디자인 — 지영님 수정본 확인",
     "detail": "7/7에 수정 요청 보냄 (아리엘 폰트, 밴딩 글자 키우기, 이탤릭, 컬러 첨부). 회신 왔는지 확인 후 마무리.",
-    "status": "open",
+    "status": "done",
     "priority": "low",
     "due": "",
     "people": [
@@ -128,6 +128,6 @@
     ],
     "note": "",
     "created": "2026-07-15",
-    "updated": "2026-07-15"
+    "updated": "2026-07-16"
   }
 ]
