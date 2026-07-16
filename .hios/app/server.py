@@ -1968,7 +1968,8 @@ function iso(nsdate){
     + " " + pad(d.getHours()) + ":" + pad(d.getMinutes());
 }
 var store = $.EKEventStore.alloc.init;
-var status = $.EKEventStore.authorizationStatusForEntityType($.EKEntityTypeEvent);
+// NB: JXA bridges the enum back as a *string* ("3"), so coerce before comparing.
+var status = Number($.EKEventStore.authorizationStatusForEntityType($.EKEntityTypeEvent));
 if (status !== 3) {  // 3 = fullAccess (macOS 14+)
   var done = false;
   store.requestFullAccessToEventsWithCompletion(function(){ done = true; });
@@ -1977,7 +1978,7 @@ if (status !== 3) {  // 3 = fullAccess (macOS 14+)
     $.NSRunLoop.currentRunLoop.runModeBeforeDate($.NSDefaultRunLoopMode,
       $.NSDate.dateWithTimeIntervalSinceNow(0.1));
   }
-  status = $.EKEventStore.authorizationStatusForEntityType($.EKEntityTypeEvent);
+  status = Number($.EKEventStore.authorizationStatusForEntityType($.EKEntityTypeEvent));
   if (status !== 3) throw new Error("NOACCESS status=" + status);
   store = $.EKEventStore.alloc.init;
 }
