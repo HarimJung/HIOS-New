@@ -92,3 +92,6 @@ A is the guaranteed-delivery floor.
 - **No access by EOD Jul 17** → fallback: finalize this doc as roadmap deliverable + document tool from user-side behavior (screenshots/CO feedback)
 - **Jul 19–28**: implement chosen option
 - **Jul 29–31**: test, progress report (1–2 pages), handover
+
+## Log
+- 2026-07-16 12:01 [메모] HiOS 캘린더 시스템 v1 가동 — 이 파일은 이제 캘린더 아이템으로 추적됨 (메모/AI 요청 가능)

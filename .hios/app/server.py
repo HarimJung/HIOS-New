@@ -264,6 +264,41 @@ TASKS = {
             "질문:\n" + p["prompt"]
         ),
     },
+    "item_request": {
+        "label_ko": "아이템 AI 요청",
+        "category": "AI",
+        "groups": {"claude"},
+        "timeout": CLAUDE_TIMEOUT,
+        "heartbeat": True,
+        "internal": True,   # started only via /api/work-item-memo
+        "argv": lambda p: _claude_argv_scoped(),
+        "stdin": lambda p: (
+            f"작업 아이템 파일: {p['path']}\n"
+            "이 파일이 속한 프로젝트 폴더 범위에서만 작업하세요. 볼트 루트 CLAUDE.md와 "
+            "해당 프로젝트 CLAUDE.md(있다면) 규칙을 준수하세요. 기존 내용을 지우지 말고 "
+            "업데이트/추가만 하세요. 작업 완료 후 반드시 해당 파일 하단 '## Log' 섹션에 "
+            f"'- {time.strftime('%Y-%m-%d %H:%M')} [AI] <한 줄 요약>' 형식으로 기록하세요. "
+            "Headless mode — 질문하지 말고 바로 실행하세요.\n\n"
+            "요청:\n" + p["prompt"]
+        ),
+    },
+    "queue_process": {
+        "label_ko": "큐 자동 처리",
+        "category": "AI",
+        "groups": {"claude"},
+        "timeout": CLAUDE_TIMEOUT,
+        "heartbeat": True,
+        "internal": True,   # started only by the queue watcher thread
+        "argv": lambda p: _claude_argv_scoped(),
+        "stdin": lambda p: (
+            f"07-Queue 요청 파일: {p['path']}\n"
+            "볼트 루트 CLAUDE.md 규칙을 준수하며 아래 요청을 처리하세요. "
+            "Headless mode — 질문하지 말고 바로 실행하세요. 처리 결과 요약을 "
+            "요청 파일 하단에 '## 처리 결과' 섹션으로 덧붙이세요. "
+            "요청 파일을 삭제하거나 이동하지 마세요 (서버가 아카이브합니다).\n\n"
+            "요청 내용:\n" + p["content"]
+        ),
+    },
 }
 
 # ---------------------------------------------------------------- job manager
@@ -1336,6 +1371,304 @@ def api_action_item_update(name, item_id):
     return jsonify(ok=True)
 
 
+# ---------------------------------------------------------------- work items (calendar)
+# Unified item feed for the calendar tab:
+#  - "file" items: vault md files with a valid `due:` in front matter
+#  - "action" items: per-project _ACTIONS.json entries
+# Memo/AI requests on file items append to the file's "## Log" section
+# (memo) or start an item_request claude job (ai) — the "메모→엔진" path.
+
+WORK_SCAN_DIRS = ("01-Projects", "02-Areas")
+WORK_CACHE = {"ts": 0.0, "items": []}
+WORK_CACHE_TTL = 60
+WORK_MAX_ITEMS = 800
+WORK_LOCK = threading.Lock()
+CHECKBOX_RE = re.compile(r"^\s*- \[( |x)\]", re.MULTILINE)
+HEADING_RE = re.compile(r"^#\s+(.+)$", re.MULTILINE)
+WIKILINK_RE = re.compile(r"\[\[([^\]|#]+)")
+
+
+def _scan_work_files():
+    items = []
+    for top in WORK_SCAN_DIRS:
+        base = VAULT / top
+        if not base.is_dir():
+            continue
+        for p in sorted(base.rglob("*.md")):
+            rel = p.relative_to(VAULT).as_posix()
+            segs = rel.split("/")
+            if any(s.startswith(".") or s == "node_modules" for s in segs):
+                continue
+            try:
+                text = p.read_text(encoding="utf-8", errors="replace")
+            except OSError:
+                continue
+            meta, _ = _parse_front_matter(text)
+            due = str(meta.get("due", "") or "")
+            if not DATE_RE.match(due):
+                continue
+            boxes = CHECKBOX_RE.findall(text)
+            heading = HEADING_RE.search(text)
+            status = str(meta.get("status", "") or "")
+            items.append({
+                "kind": "file",
+                "path": rel,
+                "title": heading.group(1).strip() if heading else p.stem,
+                "project": segs[1] if len(segs) > 1 else "",
+                "client": str(meta.get("client", "") or ""),
+                "due": due,
+                "status": "done" if status in ("done", "complete", "completed") else (status or "open"),
+                "priority": str(meta.get("priority", "") or "med").lower(),
+                "tags": meta.get("tags", []) if isinstance(meta.get("tags"), list) else [],
+                "mtime": p.stat().st_mtime,
+                "done_boxes": sum(1 for b in boxes if b == "x"),
+                "total_boxes": len(boxes),
+            })
+            if len(items) >= WORK_MAX_ITEMS:
+                return items
+    return items
+
+
+def _work_items():
+    now = time.time()
+    with WORK_LOCK:
+        if now - WORK_CACHE["ts"] < WORK_CACHE_TTL:
+            return WORK_CACHE["items"]
+    items = _scan_work_files()
+    for name in _project_names():
+        for it in _load_items(PROJECTS_DIR / name):
+            if not isinstance(it, dict):
+                continue
+            items.append({
+                "kind": "action",
+                "project": name,
+                "id": str(it.get("id", "")),
+                "title": str(it.get("title", "")),
+                "detail": str(it.get("detail", "")),
+                "note": str(it.get("note", "")),
+                "due": str(it.get("due", "")),
+                "status": it.get("status", "open"),
+                "priority": it.get("priority", "med"),
+            })
+    with WORK_LOCK:
+        WORK_CACHE.update(ts=now, items=items)
+    return items
+
+
+@app.get("/api/work-items")
+def api_work_items():
+    if request.args.get("refresh") == "1":
+        with WORK_LOCK:
+            WORK_CACHE["ts"] = 0.0
+    return jsonify(_work_items())
+
+
+@app.get("/api/work-item-detail")
+def api_work_item_detail():
+    target = _vault_path(request.args.get("path", ""))
+    if target.suffix != ".md":
+        abort(400)
+    text = target.read_text(encoding="utf-8", errors="replace")
+    meta, body = _parse_front_matter(text)
+    boxes = CHECKBOX_RE.findall(text)
+    siblings = sorted(
+        f.name for f in target.parent.iterdir()
+        if f.is_file() and f.suffix == ".md" and f.name != target.name
+        and not f.name.startswith(".")
+    )[:15]
+    links = []
+    for l in WIKILINK_RE.findall(text):
+        l = l.strip()
+        if l and l not in links:
+            links.append(l)
+    return jsonify(
+        path=target.relative_to(VAULT).as_posix(),
+        meta=meta,
+        content=body,
+        mtime=target.stat().st_mtime,
+        done_boxes=sum(1 for b in boxes if b == "x"),
+        total_boxes=len(boxes),
+        siblings=siblings,
+        links=links[:20],
+    )
+
+
+def _append_item_log(target, line):
+    """Append a one-line entry to the file's ## Log section (created if absent)."""
+    with EDIT_LOCK:
+        body = target.read_text(encoding="utf-8", errors="replace").rstrip("\n")
+        if "\n## Log" not in body and not body.startswith("## Log"):
+            body += "\n\n## Log"
+        body += f"\n{line}\n"
+        _atomic_write_text(target, body)
+
+
+@app.post("/api/work-item-memo")
+def api_work_item_memo():
+    data = request.get_json(silent=True) or {}
+    rel = str(data.get("path", "") or "")
+    text = _clean_item_text(data.get("text", ""), PROMPT_MAX)
+    mode = data.get("mode", "memo")
+    if not text:
+        return jsonify(error="empty", message="내용을 입력하세요"), 400
+    target = _vault_path(rel)
+    if target.suffix != ".md":
+        return jsonify(error="md_only", message=".md 파일만 지원합니다"), 400
+    stamp = time.strftime("%Y-%m-%d %H:%M")
+    one_line = text.replace("\n", " ")
+    if mode == "ai":
+        job_id, err = _start_job(
+            "item_request",
+            {"path": target.relative_to(VAULT).as_posix(), "prompt": text},
+            label=f"아이템 AI · {target.stem[:30]}",
+        )
+        if err:
+            return jsonify(error="conflict", message=err), 409
+        _append_item_log(target, f"- {stamp} [AI요청] {one_line}")
+        with WORK_LOCK:
+            WORK_CACHE["ts"] = 0.0
+        return jsonify(job_id=job_id), 202
+    _append_item_log(target, f"- {stamp} [메모] {one_line}")
+    with WORK_LOCK:
+        WORK_CACHE["ts"] = 0.0
+    return jsonify(ok=True)
+
+
+# ---------------------------------------------------------------- queue watcher
+# Background daemon: 07-Queue/*.md with `status: pending` front matter are
+# handed to a headless claude job automatically. On success the file is
+# marked processed and archived to 04-Archive/queue-processed/ (never
+# deleted). On failure it is marked failed so it won't retry-loop.
+
+QUEUE_TICK = 30
+QUEUE_ACTIVE = {}                 # filename -> job_id (this process only)
+QUEUE_ARCHIVE = VAULT / "04-Archive/queue-processed"
+QUEUE_NAME_RE = re.compile(r"^[\w\-. ]+\.md$", re.UNICODE)
+QUEUE_CONTENT_MAX = 8000
+
+
+def _queue_set_status(path, status):
+    try:
+        lines = path.read_text(encoding="utf-8", errors="replace").split("\n")
+    except OSError:
+        return
+    if lines and lines[0].strip() == "---":
+        for i in range(1, len(lines)):
+            if lines[i].strip() == "---":
+                break
+            if lines[i].startswith("status:"):
+                lines[i] = f"status: {status}"
+        try:
+            path.write_text("\n".join(lines), encoding="utf-8")
+        except OSError:
+            pass
+
+
+def _archive_queue_file(path):
+    QUEUE_ARCHIVE.mkdir(parents=True, exist_ok=True)
+    dest = QUEUE_ARCHIVE / path.name
+    n = 2
+    while dest.exists():
+        dest = QUEUE_ARCHIVE / f"{path.stem}-{n}{path.suffix}"
+        n += 1
+    try:
+        path.replace(dest)
+    except OSError:
+        pass
+
+
+def _queue_tick():
+    # 1) bookkeeping for jobs that finished
+    for fname, job_id in list(QUEUE_ACTIVE.items()):
+        with LOCK:
+            job = JOBS.get(job_id)
+            status = job["status"] if job else "failed"
+        if status in ("pending", "running"):
+            continue
+        del QUEUE_ACTIVE[fname]
+        path = QUEUE_DIR / fname
+        if not path.is_file():
+            continue
+        if status == "success":
+            _queue_set_status(path, "processed")
+            _archive_queue_file(path)
+        else:
+            _queue_set_status(path, "failed")
+    # 2) pick up the next pending file (one at a time)
+    if QUEUE_ACTIVE or not QUEUE_DIR.is_dir():
+        return
+    for f in sorted(QUEUE_DIR.glob("*.md")):
+        if not QUEUE_NAME_RE.match(f.name):
+            continue
+        try:
+            text = f.read_text(encoding="utf-8", errors="replace")
+        except OSError:
+            continue
+        meta, _ = _parse_front_matter(text)
+        # "processing" without an active job = stale from a restart → resume
+        if meta.get("status") not in ("pending", "processing"):
+            continue
+        job_id, err = _start_job(
+            "queue_process",
+            {"path": f"07-Queue/{f.name}", "content": text[:QUEUE_CONTENT_MAX]},
+            label=f"큐 처리 · {f.stem[:40]}",
+        )
+        if err:            # claude group busy — retry next tick
+            return
+        _queue_set_status(f, "processing")
+        QUEUE_ACTIVE[f.name] = job_id
+        return
+
+
+def _queue_loop():
+    time.sleep(20)         # let the server settle first
+    while True:
+        try:
+            _queue_tick()
+        except Exception:
+            pass
+        time.sleep(QUEUE_TICK)
+
+
+# ---------------------------------------------------------------- git snapshot
+# "절대 지워지지 않게": hourly auto-snapshot of the whole vault.
+# Runs in-process (launchd bash jobs hit TCC "Operation not permitted").
+# Explicit exception to the no-auto-commit rule, approved 2026-07-16.
+
+GIT_SNAPSHOT_SEC = 3600
+
+
+def _git_snapshot():
+    if not (VAULT / ".git").is_dir():
+        return
+    try:
+        chk = subprocess.run(
+            ["git", "status", "--porcelain"],
+            cwd=str(VAULT), capture_output=True, text=True, timeout=60,
+        )
+        if chk.returncode != 0 or not chk.stdout.strip():
+            return
+        subprocess.run(["git", "add", "-A"], cwd=str(VAULT),
+                       capture_output=True, timeout=120)
+        subprocess.run(
+            ["git", "commit", "-m",
+             f"auto-snapshot {time.strftime('%Y-%m-%d %H:%M')}"],
+            cwd=str(VAULT), capture_output=True, timeout=120,
+        )
+    except (OSError, subprocess.TimeoutExpired):
+        pass
+
+
+def _git_snapshot_loop():
+    time.sleep(120)
+    while True:
+        try:
+            _git_snapshot()
+        except Exception:
+            pass
+        time.sleep(GIT_SNAPSHOT_SEC)
+
+
 # ---------------------------------------------------------------- scheduler
 # Replaces the broken launchd bash job (TCC "Operation not permitted").
 # This python process already has vault access, so scheduling lives here.
@@ -1706,4 +2039,6 @@ if __name__ == "__main__":
     _load_env()
     _ensure_actions()
     threading.Thread(target=_scheduler_loop, daemon=True).start()
+    threading.Thread(target=_queue_loop, daemon=True).start()
+    threading.Thread(target=_git_snapshot_loop, daemon=True).start()
     app.run(host="127.0.0.1", port=8787, threaded=True, debug=False)

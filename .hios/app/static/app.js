@@ -8,7 +8,7 @@ const TABS = [
   { id: "board", label: "액션" },
   { id: "work", label: "워크스페이스" },
   { id: "engine", label: "엔진" },
-  { id: "agenda", label: "일정" },
+  { id: "agenda", label: "캘린더" },
 ];
 
 const CONTENT_PROJECT = "Visual-Climate";
@@ -72,6 +72,16 @@ const state = {
   askOffset: 0,
   askLines: [],
   askTimer: null,
+  // calendar
+  calMonth: null,       // "YYYY-MM"
+  calSel: null,         // selected item key
+  calItems: [],
+  calEvents: [],
+  calError: null,
+  calJobId: null,
+  calOffset: 0,
+  calLines: [],
+  calTimer: null,
 };
 
 /* ---------------------------------------------------------------- utils */
@@ -388,6 +398,7 @@ function switchTab(id) {
 
 async function loadTab() {
   stopAiPoll();
+  stopCalPoll();
   const isEngine = state.activeTab === "engine";
   $("engine-view").style.display = isEngine ? "" : "none";
   $("output-body").style.display = isEngine ? "none" : "";
@@ -437,19 +448,240 @@ function localDateStr(offsetDays) {
 }
 
 async function loadAgenda(force) {
+  stopCalPoll();
   const doc = $("doc-view");
   doc.innerHTML = `<div class="doc-empty">캘린더 불러오는 중…</div>`;
   try {
-    const res = await api(`/api/calendar${force ? "?refresh=1" : ""}`);
-    let html = "";
-    if (res.error) html += `<div class="ag-error">${escapeHtml(res.error)}</div>`;
-    html += agendaHtml(res.events || [], "4일 내 일정 없음");
-    html += `<button class="ab-btn ag-refresh" id="ag-refresh">새로고침</button>`;
-    doc.innerHTML = html;
-    $("ag-refresh").onclick = () => loadAgenda(true);
+    const [cal, items] = await Promise.all([
+      api(`/api/calendar${force ? "?refresh=1" : ""}`),
+      api(`/api/work-items${force ? "?refresh=1" : ""}`),
+    ]);
+    state.calEvents = cal.events || [];
+    state.calError = cal.error || null;
+    state.calItems = items || [];
+    if (!state.calMonth) state.calMonth = localDateStr(0).slice(0, 7);
+    renderCalendar();
   } catch (e) {
     doc.innerHTML = `<div class="doc-empty">캘린더 로드 실패: ${escapeHtml(e.message)}</div>`;
   }
+}
+
+function calShiftMonth(delta) {
+  const [y, m] = state.calMonth.split("-").map(Number);
+  const d = new Date(y, m - 1 + delta, 1);
+  state.calMonth = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`;
+  renderCalendar();
+}
+
+function calItemKey(it) {
+  return it.kind === "file" ? `f:${it.path}` : `a:${it.project}/${it.id}`;
+}
+
+function calFindItem(key) {
+  return state.calItems.find((it) => calItemKey(it) === key) || null;
+}
+
+function calChipHtml(it) {
+  const key = calItemKey(it);
+  const cls = `cal-chip p-${it.priority || "med"}` +
+    (it.status === "done" ? " done" : "") +
+    (state.calSel === key ? " sel" : "");
+  const proj = it.project ? `<span class="cal-proj">${escapeHtml(it.project)}</span>` : "";
+  return `<button class="${cls}" data-key="${escapeHtml(key)}" title="${escapeHtml(it.title)}">${proj}${escapeHtml(it.title)}</button>`;
+}
+
+function renderCalendar() {
+  const doc = $("doc-view");
+  const [y, m] = state.calMonth.split("-").map(Number);
+  const startDow = new Date(y, m - 1, 1).getDay();
+  const daysInMonth = new Date(y, m, 0).getDate();
+  const todayStr = localDateStr(0);
+
+  const evByDay = {}, itByDay = {}, undated = [];
+  for (const e of state.calEvents) {
+    const d = e.start.slice(0, 10);
+    (evByDay[d] = evByDay[d] || []).push(e);
+  }
+  for (const it of state.calItems) {
+    if (it.due) (itByDay[it.due] = itByDay[it.due] || []).push(it);
+    else if (it.status !== "done") undated.push(it);
+  }
+
+  const dowKo = ["일", "월", "화", "수", "목", "금", "토"];
+  let cells = "";
+  for (let i = 0; i < startDow; i++) cells += `<div class="cal-cell empty"></div>`;
+  for (let d = 1; d <= daysInMonth; d++) {
+    const ds = `${state.calMonth}-${String(d).padStart(2, "0")}`;
+    const evs = (evByDay[ds] || []).map((e) =>
+      `<div class="cal-ev" title="${escapeHtml(e.title)}"><span class="cal-time">${escapeHtml(e.start.slice(11))}</span>${escapeHtml(e.title)}</div>`).join("");
+    const its = (itByDay[ds] || []).map(calChipHtml).join("");
+    cells += `<div class="cal-cell${ds === todayStr ? " today" : ""}"><div class="cal-daynum">${d}</div>${evs}${its}</div>`;
+  }
+
+  doc.innerHTML = `
+    <div class="cal-head">
+      <button class="ab-btn" id="cal-prev">◀</button>
+      <span class="cal-month">${y}년 ${m}월</span>
+      <button class="ab-btn" id="cal-next">▶</button>
+      <button class="ab-btn" id="cal-goto-today">오늘</button>
+      <span class="spacer"></span>
+      <button class="ab-btn" id="cal-refresh">새로고침</button>
+    </div>
+    ${state.calError ? `<div class="ag-error">${escapeHtml(state.calError)}</div>` : ""}
+    <div class="cal-dow">${dowKo.map((d) => `<div>${d}</div>`).join("")}</div>
+    <div class="cal-grid">${cells}</div>
+    ${undated.length ? `<div class="cal-undated"><div class="cal-und-head">날짜 미지정 (${undated.length})</div>${undated.map(calChipHtml).join("")}</div>` : ""}
+    <div class="cal-detail" id="cal-detail" style="display:none"></div>`;
+
+  $("cal-prev").onclick = () => calShiftMonth(-1);
+  $("cal-next").onclick = () => calShiftMonth(1);
+  $("cal-goto-today").onclick = () => { state.calMonth = todayStr.slice(0, 7); renderCalendar(); };
+  $("cal-refresh").onclick = () => loadAgenda(true);
+  doc.querySelectorAll(".cal-chip[data-key]").forEach((b) => {
+    b.onclick = () => {
+      state.calSel = b.dataset.key;
+      doc.querySelectorAll(".cal-chip").forEach((c) =>
+        c.classList.toggle("sel", c.dataset.key === state.calSel));
+      openCalItem(state.calSel);
+    };
+  });
+  if (state.calSel) openCalItem(state.calSel);
+}
+
+async function openCalItem(key) {
+  const box = $("cal-detail");
+  if (!box) return;
+  const it = calFindItem(key);
+  if (!it) { box.style.display = "none"; return; }
+  box.style.display = "";
+  box.innerHTML = `<div class="doc-empty">불러오는 중…</div>`;
+
+  let bodyHtml = "", progressHtml = "", relatedHtml = "", openBtn = "";
+  if (it.kind === "file") {
+    let d;
+    try { d = await api(`/api/work-item-detail?path=${encodeRel(it.path)}`); }
+    catch (e) { box.innerHTML = failHtml(e); return; }
+    if (d.total_boxes) {
+      const pct = Math.round(100 * d.done_boxes / d.total_boxes);
+      progressHtml = `<div class="cal-prog"><div class="cal-prog-bar" style="width:${pct}%"></div></div>
+        <div class="cal-prog-label">진행 ${d.done_boxes}/${d.total_boxes} 항목 (${pct}%)</div>`;
+    }
+    bodyHtml = `<div class="md cal-md">${renderMarkdown(d.content)}</div>`;
+    const links = (d.links || []).map((l) => `<span class="cal-rel wl">[[${escapeHtml(l)}]]</span>`).join("");
+    const sibs = (d.siblings || []).map((s) => `<span class="cal-rel">${escapeHtml(s)}</span>`).join("");
+    if (links || sibs) relatedHtml = `<div class="cal-related"><b>관련</b> ${links}${sibs}</div>`;
+    openBtn = `<button class="ws-open-btn" id="cal-open-file">파일 열기</button>`;
+  } else {
+    bodyHtml =
+      (it.detail ? `<div class="md cal-md">${renderMarkdown(it.detail)}</div>` : "") +
+      (it.note ? `<div class="cal-note"><b>메모</b><div class="md">${renderMarkdown(it.note)}</div></div>` : "");
+    if (!bodyHtml) bodyHtml = `<div class="doc-empty">상세 내용 없음</div>`;
+  }
+
+  const badges =
+    (it.project ? `<span class="pill">${escapeHtml(it.project)}</span>` : "") +
+    (it.due ? dueBadge(it.due) : "") +
+    `<span class="pill ${escapeHtml(it.status || "")}">${escapeHtml(BI_STATUS_KO[it.status] || it.status || "")}</span>` +
+    `<span class="pill">${escapeHtml(BI_PRIO_KO[it.priority] || it.priority || "")}</span>`;
+
+  box.innerHTML = `
+    <div class="cal-det-head">
+      <span class="cal-det-title">${escapeHtml(it.title)}</span>
+      ${badges}
+      <span class="spacer"></span>
+      ${openBtn}
+      <button class="ws-open-btn" id="cal-det-close">닫기</button>
+    </div>
+    ${progressHtml}
+    ${bodyHtml}
+    ${relatedHtml}
+    <div class="cal-memo-box">
+      <textarea id="cal-memo" placeholder="메모 또는 요청 — 'AI 요청 → 엔진'을 누르면 엔진이 이 아이템에 바로 반영합니다" maxlength="2000"></textarea>
+      <div class="cal-memo-btns">
+        <button class="ab-btn" id="cal-memo-save">메모 저장</button>
+        <button class="ab-btn cal-primary" id="cal-memo-ai">AI 요청 → 엔진</button>
+      </div>
+    </div>
+    <div class="cal-log" id="cal-log" style="display:none">
+      <div class="log-head"><span class="ltitle" id="cal-log-title"></span><span id="cal-log-pill"></span></div>
+      <div class="log-view" id="cal-log-view"></div>
+    </div>`;
+
+  $("cal-det-close").onclick = () => {
+    state.calSel = null;
+    box.style.display = "none";
+    document.querySelectorAll(".cal-chip.sel").forEach((c) => c.classList.remove("sel"));
+  };
+  const of = $("cal-open-file");
+  if (of) of.onclick = () =>
+    postJson("/api/open-path", { path: it.path, app: "vscode" }).catch((e) => toast(e.message, "err"));
+  $("cal-memo-save").onclick = () => calMemoSend(it, "memo");
+  $("cal-memo-ai").onclick = () => calMemoSend(it, "ai");
+}
+
+async function calMemoSend(it, mode) {
+  const ta = $("cal-memo");
+  const text = (ta && ta.value || "").trim();
+  if (!text) { toast("내용을 입력하세요", "warn"); return; }
+  try {
+    if (it.kind === "file") {
+      const res = await postJson("/api/work-item-memo", { path: it.path, text, mode });
+      if (mode === "ai") { startCalPoll(res.job_id); toast("AI 작업 시작 — 완료되면 아이템에 반영됩니다"); }
+      else { toast("메모 저장됨 (## Log)"); openCalItem(calItemKey(it)); }
+    } else if (mode === "ai") {
+      const res = await postJson(`/api/projects/${encodeURIComponent(it.project)}/request`,
+        { prompt: `[액션 아이템: ${it.title}]\n${text}` });
+      startCalPoll(res.job_id);
+      toast("AI 작업 시작됨");
+    } else {
+      const note = (it.note ? it.note + "\n" : "") + `**${localDateStr(0)}** ${text}`;
+      await postJson(`/api/action-items/${encodeURIComponent(it.project)}/${encodeURIComponent(it.id)}`, { note });
+      it.note = note;
+      toast("메모 저장됨");
+      openCalItem(calItemKey(it));
+    }
+    if (ta) ta.value = "";
+  } catch (e) { toast(`실패: ${e.message}`, "err"); }
+}
+
+function stopCalPoll() {
+  clearTimeout(state.calTimer);
+  state.calTimer = null;
+}
+
+function startCalPoll(jobId) {
+  state.calJobId = jobId;
+  state.calOffset = 0;
+  state.calLines = [];
+  stopCalPoll();
+  pollCal();
+}
+
+async function pollCal() {
+  const box = $("cal-log");
+  if (!box || !state.calJobId) { stopCalPoll(); return; }
+  let d;
+  try { d = await api(`/api/jobs/${state.calJobId}?offset=${state.calOffset}`); }
+  catch { stopCalPoll(); return; }
+  state.calLines.push(...d.lines);
+  if (state.calLines.length > 2000) state.calLines = state.calLines.slice(-2000);
+  state.calOffset = d.next_offset;
+  box.style.display = "";
+  $("cal-log-title").textContent = `${d.label} — ${d.id}`;
+  $("cal-log-pill").innerHTML = `<span class="pill ${d.status}">${STATUS_KO[d.status] || d.status}</span>`;
+  const view = $("cal-log-view");
+  const stick = view.scrollTop + view.clientHeight >= view.scrollHeight - 40;
+  view.innerHTML = `<pre>${logLinesHtml(state.calLines)}</pre>`;
+  if (stick) view.scrollTop = view.scrollHeight;
+  if (TERMINAL.has(d.status)) {
+    stopCalPoll();
+    if (d.status === "success" && state.activeTab === "agenda") {
+      toast("AI 작업 완료 — 캘린더 새로고침");
+      loadAgenda(true);
+    }
+    return;
+  }
+  state.calTimer = setTimeout(pollCal, 1500);
 }
 
 /* ---------------------------------------------------------------- action board */

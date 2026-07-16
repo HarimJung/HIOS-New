@@ -3,3 +3,7 @@
 .obsidian/workspace-mobile.json
 .obsidian/cache
 .trash/
+__pycache__/
+.hios/logs/
+.hios/.env
+.playwright-mcp/

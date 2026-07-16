@@ -30,6 +30,8 @@ climate data, and personal brand content creation.
 1. Before implementing anything, state the approach and wait for confirmation.
 2. One instruction at a time. Never dump checklists.
 3. Never auto-commit. Only commit when explicitly asked.
+   EXCEPTION (approved 2026-07-16): the HiOS dashboard server makes hourly
+   `auto-snapshot` commits of the vault for the never-lose-anything guarantee.
 4. When multiple solutions exist, list tradeoffs. Don't just pick one.
 5. Verification: state the method before writing, then actually run it.
 6. No sycophancy. Skip "great question!" — answer directly.
