@@ -407,6 +407,7 @@ function switchTab(id) {
 async function loadTab() {
   stopAiPoll();
   stopCalPoll();
+  stopUploadPoll();
   const isEngine = state.activeTab === "engine";
   $("engine-view").style.display = isEngine ? "" : "none";
   $("output-body").style.display = isEngine ? "none" : "";
@@ -1539,6 +1540,171 @@ async function openVaultFile(rel) {
   try { f = await api(`/api/vault-file/${encodeRel(rel)}`); }
   catch (e) { pane.innerHTML = failHtml(e); return; }
   renderFilePane(pane, rel, f, openVaultFile);
+}
+
+/* -------- uploads: global dropzone + AI classification batches -------- */
+
+const UB_STATUS_KO = {
+  staged: "대기", classifying: "분류 중", filed: "완료", failed: "실패",
+};
+const UB_SUBFOLDERS = [
+  ["06-Documents", "문서"], ["02-Meetings", "회의록"],
+  ["05-References", "참고"], ["01-Deliverables", "산출물"],
+];
+
+let dragDepth = 0;
+
+document.addEventListener("dragenter", (ev) => {
+  if (![...(ev.dataTransfer?.types || [])].includes("Files")) return;
+  ev.preventDefault();
+  dragDepth += 1;
+  $("drop-overlay").style.display = "";
+});
+document.addEventListener("dragover", (ev) => {
+  if (![...(ev.dataTransfer?.types || [])].includes("Files")) return;
+  ev.preventDefault();
+});
+document.addEventListener("dragleave", (ev) => {
+  if (![...(ev.dataTransfer?.types || [])].includes("Files")) return;
+  dragDepth = Math.max(0, dragDepth - 1);
+  if (dragDepth === 0) $("drop-overlay").style.display = "none";
+});
+document.addEventListener("drop", (ev) => {
+  if (![...(ev.dataTransfer?.types || [])].includes("Files")) return;
+  ev.preventDefault();
+  dragDepth = 0;
+  $("drop-overlay").style.display = "none";
+  const files = [...ev.dataTransfer.files];
+  if (files.length) uploadFiles(files);
+});
+
+async function uploadFiles(files) {
+  const fd = new FormData();
+  for (const f of files) fd.append("files", f, f.name);
+  toast(`${files.length}개 업로드 중…`, "ok");
+  let res;
+  try {
+    const r = await fetch("/api/upload", { method: "POST", body: fd });
+    res = await r.json().catch(() => ({}));
+    if (!r.ok) throw new Error(res.message || `HTTP ${r.status}`);
+  } catch (e) {
+    toast(`업로드 실패: ${e.message}`, "err");
+    return;
+  }
+  if (res.conflict) {
+    toast(`${res.count}개 업로드됨 — 다른 AI 작업 종료 후 분류 버튼을 누르세요`, "warn");
+  } else {
+    toast(`${res.count}개 업로드됨 — AI 분류 시작`, "ok");
+  }
+  state.vaultTree = null;   // staging dir appeared under 00-Inbox
+  if (state.activeTab === "vault") loadVaultTab();
+  else switchTab("vault");
+}
+
+function stopUploadPoll() {
+  clearTimeout(state.uploadPollTimer);
+  state.uploadPollTimer = null;
+}
+
+async function loadUploadBatches() {
+  stopUploadPoll();
+  const box = $("upload-batches");
+  if (!box) return;
+  try { state.uploadBatches = await api("/api/uploads"); }
+  catch { return; }
+  renderUploadBatches(box);
+  if (state.uploadBatches.some((b) => b.status === "classifying")) {
+    state.uploadPollTimer = setTimeout(() => {
+      const stillHere = $("upload-batches");
+      if (stillHere && state.activeTab === "vault") {
+        const before = JSON.stringify(state.uploadBatches);
+        api("/api/uploads").then((bs) => {
+          const done = state.uploadBatches.some((b) => b.status === "classifying")
+            && !bs.some((b) => b.status === "classifying");
+          state.uploadBatches = bs;
+          if (JSON.stringify(bs) !== before) {
+            renderUploadBatches(stillHere);
+            if (done) {
+              toast("업로드 분류 완료", "ok");
+              state.vaultTree = null;
+              loadVaultTab();
+              return;
+            }
+          }
+          if (bs.some((b) => b.status === "classifying")) loadUploadBatches();
+        }).catch(() => {});
+      }
+    }, 3000);
+  }
+}
+
+function ubDestOptions(current) {
+  const projects = (state.vaultTree ? state.vaultTree.children : [])
+    .filter((c) => c.dir && c.path === "01-Projects")
+    .flatMap((c) => (c.children || []).filter((x) => x.dir).map((x) => x.name));
+  const opts = [`<option value="">재분류…</option>`,
+    `<option value="00-Inbox/unsorted">00-Inbox/unsorted</option>`];
+  for (const p of projects) {
+    for (const [sub, ko] of UB_SUBFOLDERS) {
+      const v = `01-Projects/${p}/${sub}`;
+      opts.push(`<option value="${escapeHtml(v)}"${v === current ? " selected" : ""}>${escapeHtml(p)} · ${ko}</option>`);
+    }
+  }
+  return opts.join("");
+}
+
+function renderUploadBatches(box) {
+  const batches = state.uploadBatches || [];
+  if (!batches.length) { box.innerHTML = ""; box.className = "upload-batches"; return; }
+  box.className = "upload-batches";
+  box.innerHTML = batches.map((b) => {
+    const t = fmtDate(b.created);
+    const pill = `<span class="pill ${b.status === "filed" ? "success" : b.status === "failed" ? "failed" : "running"}">${UB_STATUS_KO[b.status] || b.status}</span>`;
+    const retry = (b.status === "failed" || b.status === "staged")
+      ? `<button class="ws-open-btn" data-ub-retry="${escapeHtml(b.id)}">분류 ${b.status === "failed" ? "재시도" : "시작"}</button>` : "";
+    const failNote = b.status === "failed"
+      ? `<div class="ub-fail">분류 실패 — 파일은 ${escapeHtml(b.staging)}에 그대로 있습니다</div>` : "";
+    const rows = b.files.map((f) => {
+      const where = f.status === "filed" && f.dest
+        ? `→ <a class="vault-link" data-path="${escapeHtml(f.dest)}" href="#">${escapeHtml(f.dest)}</a>`
+        : `<span class="ub-label">(${escapeHtml(UB_STATUS_KO[f.status] || f.status)})</span>`;
+      const desc = (f.label ? `<span class="ub-label">${escapeHtml(f.label)}</span>` : "")
+        + (f.summary ? ` <span class="ub-summary">"${escapeHtml(f.summary)}"</span>` : "");
+      const resel = `<select class="ub-resel" data-ub-b="${escapeHtml(b.id)}" data-ub-f="${escapeHtml(f.name)}">${ubDestOptions("")}</select>`;
+      return `<div class="ub-file"><span class="tree-ic">▤</span>
+        <span class="ub-name">${escapeHtml(f.name)}</span> ${desc} ${where} ${resel}</div>`;
+    }).join("");
+    return `<div class="ub-card">
+      <div class="ub-head">${pill}<span>${t} · ${b.files.length}개</span><span class="spacer"></span>${retry}</div>
+      ${failNote}${rows}
+    </div>`;
+  }).join("");
+
+  box.querySelectorAll("[data-ub-retry]").forEach((btn) => {
+    btn.onclick = async () => {
+      try {
+        await postJson(`/api/uploads/${encodeURIComponent(btn.dataset.ubRetry)}/classify`, {});
+        toast("분류 시작됨", "ok");
+        loadUploadBatches();
+        schedulePoll(0);
+      } catch (e) { toast(`실패: ${e.body?.message || e.message}`, "err"); }
+    };
+  });
+  box.querySelectorAll(".ub-resel").forEach((sel) => {
+    sel.onchange = async () => {
+      if (!sel.value) return;
+      try {
+        const res = await postJson(`/api/uploads/${encodeURIComponent(sel.dataset.ubB)}/reclassify`,
+          { name: sel.dataset.ubF, dest: sel.value });
+        toast(`이동됨 → ${res.dest}`, "ok");
+        state.vaultTree = null;
+        loadVaultTab();
+      } catch (e) {
+        toast(`재분류 실패: ${e.body?.message || e.message}`, "err");
+        sel.value = "";
+      }
+    };
+  });
 }
 
 /* -------- workspace: 리소스 -------- */

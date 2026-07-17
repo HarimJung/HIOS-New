@@ -1,0 +1,49 @@
+{
+  "batches": [
+    {
+      "id": "efa0ed93",
+      "created": 1784259648.384951,
+      "staging": "00-Inbox/uploads/2026-07-16-2340-efa0",
+      "status": "classifying",
+      "job_id": "686eedd83f16",
+      "files": [
+        {
+          "name": "evil.md",
+          "orig_name": "../../evil.md",
+          "size": 8,
+          "path": "00-Inbox/uploads/2026-07-16-2340-efa0/evil.md",
+          "status": "staged",
+          "dest": "",
+          "project": "",
+          "kind": "",
+          "label": "",
+          "summary": ""
+        },
+        {
+          "name": "env",
+          "orig_name": ".env",
+          "size": 8,
+          "path": "00-Inbox/uploads/2026-07-16-2340-efa0/env",
+          "status": "staged",
+          "dest": "",
+          "project": "",
+          "kind": "",
+          "label": "",
+          "summary": ""
+        },
+        {
+          "name": "테스트 문서.md",
+          "orig_name": "테스트 문서.md",
+          "size": 8,
+          "path": "00-Inbox/uploads/2026-07-16-2340-efa0/테스트 문서.md",
+          "status": "staged",
+          "dest": "",
+          "project": "",
+          "kind": "",
+          "label": "",
+          "summary": ""
+        }
+      ]
+    }
+  ]
+}

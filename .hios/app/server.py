@@ -1987,6 +1987,359 @@ def api_action_resolve(action_id):
         _write_json(ACTIONS_FILE, actions)
     return jsonify(ok=True, result=action["result"])
 
+# ---------------------------------------------------------------- uploads
+# Dropzone uploads → AI auto-filing.
+# Architecture: files land in a staging dir INSIDE the vault
+# (00-Inbox/uploads/<stamp>-<id>/), a READ-ONLY claude job emits a JSON
+# manifest, then the SERVER performs the actual moves (claude never writes;
+# binary moves via Write are impossible and Bash would break the scoped-job
+# security model). Manifest failure degrades safely: files stay in staging —
+# which already lives in the Inbox — and can be re-filed manually.
+
+UPLOADS_FILE = STATE_DIR / "uploads.json"
+UPLOADS_LOCK = threading.Lock()
+UPLOAD_STAGING = VAULT / "00-Inbox/uploads"
+UPLOAD_FILE_MAX = 50 * 1024 * 1024          # per file
+UPLOAD_BATCH_MAX = 200 * 1024 * 1024        # per batch
+UPLOAD_COUNT_MAX = 50
+UPLOAD_BATCH_KEEP = 20
+UPLOAD_DENY_EXTS = {".app", ".exe", ".sh", ".command", ".dmg", ".pkg"}
+UPLOAD_DEST_TOPS = {"00-Inbox", "01-Projects", "02-Areas", "03-Resources",
+                    "05-AI", "06-Entities"}
+UPLOAD_UNSORTED = "00-Inbox/unsorted"
+
+# hard cap on the multipart body itself (batch max + form overhead slack)
+app.config["MAX_CONTENT_LENGTH"] = UPLOAD_BATCH_MAX + 16 * 1024 * 1024
+
+
+class _UploadRejected(Exception):
+    pass
+
+
+def _load_upload_batches():
+    data = _read_json(UPLOADS_FILE, {"batches": []})
+    batches = data.get("batches") if isinstance(data, dict) else []
+    return batches if isinstance(batches, list) else []
+
+
+def _save_upload_batches(batches):
+    _write_json(UPLOADS_FILE, {"batches": batches[-UPLOAD_BATCH_KEEP:]})
+
+
+def _sanitize_upload_name(raw):
+    name = os.path.basename(str(raw or "").replace("\\", "/"))
+    name = unicodedata.normalize("NFC", name)      # 한글 자모 결합 (macOS NFD)
+    name = "".join(ch for ch in name if ch >= " " and ch != "\x7f")
+    name = name.lstrip(".")
+    name = re.sub(r"[^\w\-. ()가-힣]", "_", name, flags=re.UNICODE)
+    name = name.strip()[:120]
+    return name or "file"
+
+
+def _unique_in_set(existing, name):
+    if name not in existing:
+        return name
+    stem, dot, ext = name.rpartition(".")
+    if not dot:
+        stem, ext = name, ""
+    n = 2
+    while True:
+        cand = f"{stem}-{n}.{ext}" if dot else f"{stem}-{n}"
+        if cand not in existing:
+            return cand
+        n += 1
+
+
+def _upload_dest_valid(dest):
+    """Validate a manifest destination directory. Returns clean rel path or None."""
+    dest = str(dest or "").strip().strip("/")
+    if not dest or "\\" in dest or "\x00" in dest:
+        return None
+    segs = dest.split("/")
+    if len(segs) > 4:
+        return None
+    for seg in segs:
+        if not seg or seg.startswith(".") or seg != seg.strip():
+            return None
+    if segs[0] not in UPLOAD_DEST_TOPS:
+        return None
+    if segs[0] == "01-Projects" and (len(segs) < 2 or segs[1] not in _project_names()):
+        return None
+    if not (VAULT / dest).resolve().is_relative_to(VAULT.resolve()):
+        return None
+    return dest
+
+
+def _upload_move(src, dest_dir_rel):
+    """Move a staged file into the vault; collision-safe with -2 suffix."""
+    dest_dir = VAULT / dest_dir_rel
+    dest_dir.mkdir(parents=True, exist_ok=True)
+    dest = dest_dir / src.name
+    n = 2
+    while dest.exists():
+        dest = dest_dir / f"{src.stem}-{n}{src.suffix}"
+        n += 1
+    shutil.move(str(src), str(dest))
+    return dest
+
+
+def _upload_classify_prompt(p):
+    listing = "\n".join(f"- {f['name']} ({f.get('size', 0)} bytes)" for f in p["files"])
+    projects = _project_names()
+    return (
+        "업로드된 파일들을 분류하세요. 읽기 전용 작업입니다 — 파일 이동/수정/생성은 "
+        "서버가 수행하므로 절대 파일을 만들거나 바꾸려 하지 마세요.\n\n"
+        f"스테이징 폴더: {p['staging']}/\n"
+        f"파일 목록:\n{listing}\n\n"
+        "md/txt/csv 등 텍스트 파일과 pdf는 Read 도구로 내용을 확인하세요. "
+        "xlsx/docx/이미지처럼 읽을 수 없는 파일은 파일명과 같은 배치의 다른 파일 "
+        "맥락으로 추정하세요.\n\n"
+        f"프로젝트는 반드시 이 실제 폴더명 중에서만 고르세요: {', '.join(projects)}\n"
+        "키워드 힌트: UNFPA/CSE→UNFPA-CSE · 보험/fraud/theft→Equitee · "
+        "BCM/Moodle/Articulate→WMO · energy/HCF/SDG7→WHO · AICA→Climate-AICA · "
+        "유튜브/콘텐츠/샤오홍슈→Visual-Climate\n"
+        "서브폴더 규칙: 일반 문서→06-Documents, 회의록→02-Meetings, "
+        "참고자료→05-References, 산출물→01-Deliverables, 불확실하면→06-Documents\n"
+        f"어느 프로젝트/영역인지 알 수 없으면 dest를 \"{UPLOAD_UNSORTED}\"로 하세요.\n\n"
+        "답변 마지막에 코드펜스 없이 JSON 객체 하나만 출력하세요:\n"
+        '{"files":[{"name":"파일명","dest":"01-Projects/<프로젝트>/<서브폴더>",'
+        '"project":"프로젝트명 (미상이면 빈 문자열)","kind":"document|meeting|reference|deliverable|unknown",'
+        '"label":"짧은 라벨","summary":"\'이건 ~할 때 쓰는 것\' 형식의 한 문장"}]}\n'
+    )
+
+
+def _upload_classify_finalize(job, params):
+    """Post-job hook: parse the JSON manifest and move files server-side."""
+    bid = params.get("batch_id")
+    with LOCK:
+        status = job["status"]
+        text = "\n".join(job["log"])
+    manifest = None
+    if status == "success":
+        idx = text.rfind('{"files"')
+        if idx >= 0:
+            try:
+                manifest, _ = json.JSONDecoder().raw_decode(text[idx:])
+            except ValueError:
+                manifest = None
+    audit = []
+    with UPLOADS_LOCK:
+        batches = _load_upload_batches()
+        batch = next((b for b in batches if b.get("id") == bid), None)
+        if batch is None:
+            return
+        if not isinstance(manifest, dict) or not isinstance(manifest.get("files"), list):
+            batch["status"] = "failed"
+            _save_upload_batches(batches)
+            audit.append("[시스템] 분류 manifest 파싱 실패 — 파일은 스테이징에 유지됨")
+        else:
+            by_name = {}
+            for entry in manifest["files"]:
+                if isinstance(entry, dict) and entry.get("name"):
+                    by_name[str(entry["name"])] = entry
+            staging = VAULT / batch["staging"]
+            for rec in batch["files"]:
+                if rec.get("status") == "filed":
+                    continue
+                entry = by_name.get(rec["name"], {})
+                dest_rel = _upload_dest_valid(entry.get("dest")) or UPLOAD_UNSORTED
+                rec["project"] = _clean_item_text(entry.get("project", ""), 80)
+                rec["kind"] = _clean_item_text(entry.get("kind", ""), 40)
+                rec["label"] = _clean_item_text(entry.get("label", ""), 120)
+                rec["summary"] = _clean_item_text(entry.get("summary", ""), 300)
+                src = staging / rec["name"]
+                try:
+                    if not src.is_file():
+                        raise OSError("스테이징에 파일 없음")
+                    moved = _upload_move(src, dest_rel)
+                    rec["status"] = "filed"
+                    rec["dest"] = moved.relative_to(VAULT).as_posix()
+                    audit.append(f"[시스템] {rec['name']} → {rec['dest']}")
+                except OSError as exc:
+                    rec["status"] = "failed"
+                    audit.append(f"[시스템] {rec['name']} 이동 실패: {exc}")
+            batch["status"] = "filed"
+            _save_upload_batches(batches)
+            try:
+                staging.rmdir()          # only removes if empty
+            except OSError:
+                pass
+    with LOCK:
+        for line in audit:
+            _append_log(job, line)
+
+
+TASKS["upload_classify"] = {
+    "label_ko": "업로드 분류",
+    "category": "AI",
+    "groups": {"claude"},
+    "timeout": CLAUDE_TIMEOUT,
+    "heartbeat": True,
+    "internal": True,   # started only via /api/upload(s)
+    "argv": lambda p: _claude_argv_readonly(),
+    "stdin": _upload_classify_prompt,
+    "finalize": _upload_classify_finalize,
+}
+
+
+def _start_batch_classify(bid):
+    """Kick off the classify job for a batch. Returns (job_id, err_message)."""
+    with UPLOADS_LOCK:
+        batches = _load_upload_batches()
+        batch = next((b for b in batches if b.get("id") == bid), None)
+        if batch is None:
+            return None, "배치를 찾을 수 없습니다"
+        if batch["status"] == "classifying":
+            return None, "이미 분류 중"
+        pending = [r for r in batch["files"] if r.get("status") != "filed"]
+        if not pending:
+            return None, "모든 파일이 이미 분류되었습니다"
+        params = {
+            "batch_id": bid,
+            "staging": batch["staging"],
+            "files": [{"name": r["name"], "size": r.get("size", 0)} for r in pending],
+        }
+    job_id, err = _start_job(
+        "upload_classify", params, label=f"업로드 분류 · {len(pending)}개")
+    if err:
+        return None, err
+    with UPLOADS_LOCK:
+        batches = _load_upload_batches()
+        batch = next((b for b in batches if b.get("id") == bid), None)
+        if batch is not None:
+            batch["status"] = "classifying"
+            batch["job_id"] = job_id
+            _save_upload_batches(batches)
+    return job_id, None
+
+
+def _reset_stale_upload_batches():
+    """Boot-time: a batch stuck in 'classifying' means the server died mid-job."""
+    with UPLOADS_LOCK:
+        batches = _load_upload_batches()
+        changed = False
+        for b in batches:
+            if b.get("status") == "classifying":
+                b["status"] = "staged"
+                changed = True
+        if changed:
+            _save_upload_batches(batches)
+
+
+@app.post("/api/upload")
+def api_upload():
+    files = request.files.getlist("files")
+    if not files:
+        return jsonify(error="empty", message="파일이 없습니다"), 400
+    if len(files) > UPLOAD_COUNT_MAX:
+        return jsonify(error="too_many",
+                       message=f"한 번에 최대 {UPLOAD_COUNT_MAX}개까지"), 413
+    batch_id = uuid.uuid4().hex[:8]
+    staging = UPLOAD_STAGING / f"{time.strftime('%Y-%m-%d-%H%M')}-{batch_id[:4]}"
+    staging.mkdir(parents=True, exist_ok=True)
+    records, names, total = [], set(), 0
+    try:
+        for f in files:
+            name = _sanitize_upload_name(f.filename)
+            if Path(name).suffix.lower() in UPLOAD_DENY_EXTS:
+                raise _UploadRejected(f"허용되지 않는 파일 형식: {name}")
+            name = _unique_in_set(names, name)
+            names.add(name)
+            dest = staging / name
+            f.save(str(dest))
+            size = dest.stat().st_size
+            total += size
+            if size > UPLOAD_FILE_MAX:
+                raise _UploadRejected(f"파일당 50MB 초과: {name}")
+            if total > UPLOAD_BATCH_MAX:
+                raise _UploadRejected("배치 합계 200MB 초과")
+            records.append({
+                "name": name,
+                "orig_name": _clean_item_text(f.filename or "", 200),
+                "size": size,
+                "path": f"{staging.relative_to(VAULT).as_posix()}/{name}",
+                "status": "staged",
+                "dest": "", "project": "", "kind": "", "label": "", "summary": "",
+            })
+    except _UploadRejected as exc:
+        shutil.rmtree(staging, ignore_errors=True)
+        return jsonify(error="rejected", message=str(exc)), 413
+    except OSError as exc:
+        shutil.rmtree(staging, ignore_errors=True)
+        return jsonify(error="save_failed", message=str(exc)), 500
+
+    batch = {
+        "id": batch_id,
+        "created": time.time(),
+        "staging": staging.relative_to(VAULT).as_posix(),
+        "status": "staged",
+        "job_id": None,
+        "files": records,
+    }
+    with UPLOADS_LOCK:
+        batches = _load_upload_batches()
+        batches.append(batch)
+        _save_upload_batches(batches)
+    job_id, err = _start_batch_classify(batch_id)
+    return jsonify(
+        batch_id=batch_id,
+        count=len(records),
+        job_id=job_id,
+        conflict=bool(err),
+        message=err,
+    ), 202
+
+
+@app.get("/api/uploads")
+def api_uploads():
+    with UPLOADS_LOCK:
+        batches = _load_upload_batches()
+    return jsonify(list(reversed(batches)))
+
+
+@app.post("/api/uploads/<bid>/classify")
+def api_upload_classify(bid):
+    job_id, err = _start_batch_classify(bid)
+    if err:
+        return jsonify(error="conflict", message=err), 409
+    return jsonify(job_id=job_id), 202
+
+
+@app.post("/api/uploads/<bid>/reclassify")
+def api_upload_reclassify(bid):
+    """Manual re-file of one uploaded file — same validation as auto-filing."""
+    data = request.get_json(silent=True) or {}
+    name = str(data.get("name", "") or "")
+    dest_rel = _upload_dest_valid(data.get("dest"))
+    if not dest_rel:
+        return jsonify(error="bad_dest", message="허용되지 않는 목적지"), 400
+    with UPLOADS_LOCK:
+        batches = _load_upload_batches()
+        batch = next((b for b in batches if b.get("id") == bid), None)
+        if batch is None:
+            abort(404)
+        rec = next((r for r in batch["files"] if r.get("name") == name), None)
+        if rec is None:
+            abort(404)
+        if rec.get("status") == "filed" and rec.get("dest"):
+            src = VAULT / rec["dest"]
+            if not src.resolve().is_relative_to(VAULT.resolve()):
+                abort(400)
+        else:
+            src = VAULT / batch["staging"] / rec["name"]
+        if not src.is_file():
+            return jsonify(error="missing", message="원본 파일을 찾을 수 없습니다"), 404
+        try:
+            moved = _upload_move(src, dest_rel)
+        except OSError as exc:
+            return jsonify(error="move_failed", message=str(exc)), 500
+        rec["status"] = "filed"
+        rec["dest"] = moved.relative_to(VAULT).as_posix()
+        _save_upload_batches(batches)
+        new_dest = rec["dest"]
+    return jsonify(ok=True, dest=new_dest)
+
+
 # ---------------------------------------------------------------- calendar
 # Reads events via EventKit (JXA ObjC bridge) — the old AppleScript
 # `whose` query timed out on large synced calendars (90s+); EventKit's
@@ -2087,6 +2440,7 @@ if __name__ == "__main__":
         os.environ["PATH"] = ":".join(_extra + [os.environ.get("PATH", "")])
     _load_env()
     _ensure_actions()
+    _reset_stale_upload_batches()
     threading.Thread(target=_scheduler_loop, daemon=True).start()
     threading.Thread(target=_queue_loop, daemon=True).start()
     threading.Thread(target=_git_snapshot_loop, daemon=True).start()
