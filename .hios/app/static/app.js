@@ -8,6 +8,7 @@ const TABS = [
   { id: "board", label: "액션" },
   { id: "work", label: "워크스페이스" },
   { id: "vault", label: "파일" },
+  { id: "graph", label: "그래프" },
   { id: "engine", label: "엔진" },
   { id: "agenda", label: "캘린더" },
 ];
@@ -79,6 +80,11 @@ const state = {
   vaultFilePath: null,
   uploadBatches: [],
   uploadPollTimer: null,
+  // graph tab
+  graphData: null,
+  graphInstance: null,
+  graphFilter: "",
+  graphSearch: "",
   // calendar
   calMonth: null,       // "YYYY-MM"
   calSel: null,         // selected item key
@@ -408,6 +414,7 @@ async function loadTab() {
   stopAiPoll();
   stopCalPoll();
   stopUploadPoll();
+  destroyGraph();
   const isEngine = state.activeTab === "engine";
   $("engine-view").style.display = isEngine ? "" : "none";
   $("output-body").style.display = isEngine ? "none" : "";
@@ -417,6 +424,7 @@ async function loadTab() {
   if (state.activeTab === "board") return renderBoardView(doc, null);
   if (state.activeTab === "work") return loadWork();
   if (state.activeTab === "vault") return loadVaultTab();
+  if (state.activeTab === "graph") return loadGraphTab(false);
   if (state.activeTab === "agenda") return loadAgenda(false);
 }
 
@@ -1705,6 +1713,130 @@ function renderUploadBatches(box) {
       }
     };
   });
+}
+
+/* ---------------------------------------------------------------- graph tab (F4) */
+
+const GRAPH_PALETTE = [
+  "#e05d5d", "#5d8fe0", "#5dbf7a", "#c98add",
+  "#e0a54f", "#4fc3c9", "#a3b356", "#d97ba4",
+];
+
+function destroyGraph() {
+  if (state.graphInstance) {
+    try { state.graphInstance._destructor(); } catch (e) { /* noop */ }
+    state.graphInstance = null;
+  }
+}
+
+async function loadGraphTab(refresh) {
+  const doc = $("doc-view");
+  destroyGraph();
+  doc.innerHTML = `<div class="doc-empty">그래프 불러오는 중…</div>`;
+  let g;
+  try { g = await api("/api/graph" + (refresh ? "?refresh=1" : "")); }
+  catch (e) { doc.innerHTML = failHtml(e); return; }
+  if (state.activeTab !== "graph") return;
+  state.graphData = g;
+  if (state.graphFilter && !g.projects.includes(state.graphFilter)) state.graphFilter = "";
+
+  doc.innerHTML = `
+    <div class="graph-toolbar">
+      <select class="ws-input" id="graph-filter">
+        <option value="">전체</option>
+        ${g.projects.map((p) =>
+          `<option value="${escapeHtml(p)}"${p === state.graphFilter ? " selected" : ""}>${escapeHtml(p)}</option>`).join("")}
+      </select>
+      <input class="ws-input" id="graph-search" placeholder="노드 검색…" value="${escapeHtml(state.graphSearch)}">
+      <button class="ws-open-btn" id="graph-refresh">새로고침</button>
+      <span class="spacer"></span>
+      <span class="graph-meta" id="graph-meta"></span>
+    </div>
+    <div class="graph-box" id="graph-box"></div>`;
+
+  $("graph-refresh").onclick = () => loadGraphTab(true);
+  $("graph-filter").onchange = (ev) => { state.graphFilter = ev.target.value; renderGraph(); };
+  $("graph-search").oninput = (ev) => {
+    state.graphSearch = ev.target.value.trim().toLowerCase();
+    const fg = state.graphInstance;
+    if (fg) fg.nodeColor(fg.nodeColor());  // re-evaluate accessor → dim non-matching
+  };
+  renderGraph();
+}
+
+function renderGraph() {
+  const g = state.graphData;
+  const box = $("graph-box");
+  if (!g || !box || typeof ForceGraph === "undefined") {
+    if (box) box.innerHTML = `<div class="doc-empty">그래프 라이브러리 로드 실패</div>`;
+    return;
+  }
+  destroyGraph();
+
+  const idOf = (x) => (typeof x === "object" && x !== null ? x.id : x);
+  let nodes = g.nodes, links = g.links;
+  if (state.graphFilter) {
+    const keep = new Set();
+    for (const n of g.nodes) {
+      if (n.group === state.graphFilter || n.id === `project:${state.graphFilter}`) keep.add(n.id);
+    }
+    nodes = g.nodes.filter((n) => keep.has(n.id));
+    links = g.links.filter((l) => keep.has(idOf(l.source)) && keep.has(idOf(l.target)));
+  }
+  // fresh copies — force-graph mutates node/link objects (x, y, source refs)
+  const data = {
+    nodes: nodes.map((n) => ({ ...n })),
+    links: links.map((l) => ({ source: idOf(l.source), target: idOf(l.target) })),
+  };
+
+  const meta = $("graph-meta");
+  if (meta) meta.textContent = `노드 ${data.nodes.length} · 링크 ${data.links.length}`;
+
+  const groups = [...new Set(g.nodes.map((n) => n.group))].sort();
+  const colorOf = (grp) => GRAPH_PALETTE[Math.max(0, groups.indexOf(grp)) % GRAPH_PALETTE.length];
+  const cs = getComputedStyle(document.body);
+  const textColor = cs.getPropertyValue("--text2").trim() || "#888";
+  const linkColor = (cs.getPropertyValue("--border").trim() || "#888") + "cc";
+
+  const height = Math.max(420, window.innerHeight - box.getBoundingClientRect().top - 32);
+  const fg = ForceGraph()(box)
+    .width(box.clientWidth || 800)
+    .height(height)
+    .graphData(data)
+    .nodeId("id")
+    .nodeVal("val")
+    .nodeLabel((n) => (n.type === "project" ? `프로젝트: ${escapeHtml(n.name)}` : escapeHtml(n.id)))
+    .nodeColor((n) => {
+      const c = colorOf(n.group);
+      const q = state.graphSearch;
+      return q && !n.name.toLowerCase().includes(q) ? c + "22" : c;
+    })
+    .linkColor(() => linkColor)
+    .linkWidth(1)
+    .nodeCanvasObjectMode(() => "after")
+    .nodeCanvasObject((n, ctx, scale) => {
+      // labels: project hubs always, files only when zoomed in
+      if (n.type !== "project" && scale < 1.4) return;
+      const q = state.graphSearch;
+      if (q && !n.name.toLowerCase().includes(q)) return;
+      const size = n.type === "project" ? 12 / scale : 10 / scale;
+      ctx.font = `${n.type === "project" ? "600 " : ""}${size}px sans-serif`;
+      ctx.textAlign = "center";
+      ctx.textBaseline = "top";
+      ctx.fillStyle = textColor;
+      ctx.fillText(n.name, n.x, n.y + Math.sqrt(n.val || 1) * 2 + 2 / scale);
+    })
+    .onNodeClick((n) => {
+      if (n.type === "project") {
+        state.graphFilter = state.graphFilter === n.name ? "" : n.name;
+        const sel = $("graph-filter");
+        if (sel) sel.value = state.graphFilter;
+        renderGraph();
+      } else {
+        openFileModal(n.id);
+      }
+    });
+  state.graphInstance = fg;
 }
 
 /* -------- workspace: 리소스 -------- */

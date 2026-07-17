@@ -2420,6 +2420,138 @@ def _fetch_calendar():
     return events, None
 
 
+# ---------------------------------------------------------------- graph view
+# Obsidian-style link graph. Scans md files, resolves [[wikilinks]] by stem,
+# adds project hub nodes. Capped + cached so it never hurts the UI thread.
+
+GRAPH_CACHE = {"ts": 0.0, "data": None}
+GRAPH_TTL = 300
+GRAPH_LOCK = threading.Lock()
+GRAPH_MAX_NODES = 400
+GRAPH_MAX_EDGES = 1200
+GRAPH_MAX_FILE = 512 * 1024
+GRAPH_SCAN_DIRS = ["01-Projects", "06-Entities", "02-Areas"]
+GRAPH_DAILY_COUNT = 30
+
+
+def _graph_scan_files():
+    """Yield (rel_posix, Path) for graph-eligible md files."""
+    files = []
+    for top in GRAPH_SCAN_DIRS:
+        base = VAULT / top
+        if not base.is_dir():
+            continue
+        for p in sorted(base.rglob("*.md")):
+            if any(seg.startswith(".") for seg in p.relative_to(VAULT).parts):
+                continue
+            if p.is_symlink():
+                continue
+            files.append((p.relative_to(VAULT).as_posix(), p))
+    dailies = sorted(
+        (p for p in VAULT.iterdir() if p.is_file() and DAILY_RE.match(p.name)),
+        key=lambda p: p.name, reverse=True)[:GRAPH_DAILY_COUNT]
+    files.extend((p.name, p) for p in dailies)
+    return files
+
+
+def _build_graph():
+    files = _graph_scan_files()
+    # stem -> rel index for wikilink resolution (first wins on stem collision)
+    stem_index = {}
+    for rel, p in files:
+        stem_index.setdefault(p.stem, rel)
+
+    projects = set(_project_names())
+    nodes, edges = {}, []
+    edge_seen = set()
+    degree = {}
+
+    def add_edge(a, b):
+        if a == b or len(edges) >= GRAPH_MAX_EDGES:
+            return
+        key = (a, b) if a < b else (b, a)
+        if key in edge_seen:
+            return
+        edge_seen.add(key)
+        edges.append({"source": a, "target": b})
+        degree[a] = degree.get(a, 0) + 1
+        degree[b] = degree.get(b, 0) + 1
+
+    def node_meta(rel):
+        parts = rel.split("/")
+        if len(parts) == 1:
+            return "daily", "daily"
+        if parts[0] == "06-Entities":
+            return "entity", parts[0]
+        group = parts[1] if parts[0] == "01-Projects" and len(parts) > 1 else parts[0]
+        return "file", group
+
+    pending = []  # (rel, links, fm_project, is_status)
+    for rel, p in files:
+        if len(nodes) >= GRAPH_MAX_NODES:
+            break
+        try:
+            if p.stat().st_size > GRAPH_MAX_FILE:
+                continue
+            text = p.read_text(encoding="utf-8", errors="replace")
+        except OSError:
+            continue
+        meta, _body = _parse_front_matter(text)
+        links = []
+        for l in WIKILINK_RE.findall(text):
+            target = stem_index.get(l.strip())
+            if target and target != rel:
+                links.append(target)
+        fm_project = ""
+        for key in ("client", "project"):
+            v = meta.get(key)
+            if isinstance(v, list):
+                v = v[0] if v else ""
+            v = str(v or "").strip()
+            if v in projects:
+                fm_project = v
+                break
+        kind, group = node_meta(rel)
+        nodes[rel] = {"id": rel, "name": p.stem, "type": kind, "group": group}
+        pending.append((rel, links, fm_project,
+                        p.name in ("_STATUS.md",) or bool(links) or bool(fm_project)))
+
+    # project hub nodes
+    for name in sorted(projects):
+        hub = f"project:{name}"
+        nodes[hub] = {"id": hub, "name": name, "type": "project", "group": name}
+
+    for rel, links, fm_project, connectable in pending:
+        for target in links:
+            if target in nodes:
+                add_edge(rel, target)
+        if fm_project:
+            add_edge(rel, f"project:{fm_project}")
+        # membership edge only for files that carry signal (anti-hairball)
+        if connectable and rel.startswith("01-Projects/"):
+            proj = rel.split("/")[1]
+            if proj in projects:
+                add_edge(rel, f"project:{proj}")
+
+    for n in nodes.values():
+        n["val"] = 1 + degree.get(n["id"], 0)
+        if n["type"] == "project":
+            n["val"] = max(n["val"], 6)
+    return {"nodes": list(nodes.values()), "links": edges,
+            "projects": sorted(projects), "generated": time.time()}
+
+
+@app.get("/api/graph")
+def api_graph():
+    force = request.args.get("refresh") == "1"
+    with GRAPH_LOCK:
+        if not force and GRAPH_CACHE["data"] and time.time() - GRAPH_CACHE["ts"] < GRAPH_TTL:
+            return jsonify(cached=True, **GRAPH_CACHE["data"])
+        data = _build_graph()
+        GRAPH_CACHE.update(ts=time.time(), data=data)
+    return jsonify(cached=False, **data)
+
+
 @app.get("/api/calendar")
 def api_calendar():
     force = request.args.get("refresh") == "1"
