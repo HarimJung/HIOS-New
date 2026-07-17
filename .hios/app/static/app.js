@@ -1236,6 +1236,10 @@ async function loadWorkFiles(box) {
   box.innerHTML = `
     <div class="files-wrap">
       <div class="file-tree">
+        <div class="dropzone-strip">
+          <span class="dz-ic">⇣</span> 파일을 여기로 드래그 — ${escapeHtml(name)} 안에서 AI가 정리합니다
+        </div>
+        <div id="upload-batches" data-project="${escapeHtml(name)}"></div>
         <div class="tree-toolbar">
           <span class="tree-root-name">${escapeHtml(tree.root)}</span>
           <span class="spacer"></span>
@@ -1304,6 +1308,7 @@ async function loadWorkFiles(box) {
   } else {
     state.workFilePath = null;
   }
+  loadUploadBatches();
 }
 
 function renderTree(rootEl, children, open, rerender, opts) {
@@ -1571,10 +1576,18 @@ const UB_SUBFOLDERS = [
 
 let dragDepth = 0;
 
+// while on a workspace project, drops are scoped to that project
+const dropProject = () => (state.activeTab === "work" && state.workProject) || "";
+
 document.addEventListener("dragenter", (ev) => {
   if (![...(ev.dataTransfer?.types || [])].includes("Files")) return;
   ev.preventDefault();
   dragDepth += 1;
+  const proj = dropProject();
+  const msg = document.querySelector("#drop-overlay .drop-overlay-msg");
+  if (msg) msg.textContent = proj
+    ? `여기에 놓으면 ${proj} 안으로 업로드 — AI가 폴더를 정리합니다`
+    : "여기에 놓으면 업로드 — AI가 자동 분류합니다";
   $("drop-overlay").style.display = "";
 });
 document.addEventListener("dragover", (ev) => {
@@ -1592,11 +1605,12 @@ document.addEventListener("drop", (ev) => {
   dragDepth = 0;
   $("drop-overlay").style.display = "none";
   const files = [...ev.dataTransfer.files];
-  if (files.length) uploadFiles(files);
+  if (files.length) uploadFiles(files, dropProject());
 });
 
-async function uploadFiles(files) {
+async function uploadFiles(files, project) {
   const fd = new FormData();
+  if (project) fd.append("project", project);
   for (const f of files) fd.append("files", f, f.name);
   toast(`${files.length}개 업로드 중…`, "ok");
   let res;
@@ -1614,7 +1628,12 @@ async function uploadFiles(files) {
     toast(`${res.count}개 업로드됨 — AI 분류 시작`, "ok");
   }
   state.vaultTree = null;   // staging dir appeared under 00-Inbox
-  if (state.activeTab === "vault") loadVaultTab();
+  if (project) {
+    delete state.workTreeCache[project];
+    state.workSub = "files";
+    if (state.activeTab === "work") loadWork();
+    else switchTab("work");
+  } else if (state.activeTab === "vault") loadVaultTab();
   else switchTab("vault");
 }
 
@@ -1633,7 +1652,7 @@ async function loadUploadBatches() {
   if (state.uploadBatches.some((b) => b.status === "classifying")) {
     state.uploadPollTimer = setTimeout(() => {
       const stillHere = $("upload-batches");
-      if (stillHere && state.activeTab === "vault") {
+      if (stillHere) {
         const before = JSON.stringify(state.uploadBatches);
         api("/api/uploads").then((bs) => {
           const done = state.uploadBatches.some((b) => b.status === "classifying")
@@ -1644,7 +1663,10 @@ async function loadUploadBatches() {
             if (done) {
               toast("업로드 분류 완료", "ok");
               state.vaultTree = null;
-              loadVaultTab();
+              if (state.activeTab === "work") {
+                delete state.workTreeCache[state.workProject];
+                loadWork();
+              } else if (state.activeTab === "vault") loadVaultTab();
               return;
             }
           }
@@ -1671,7 +1693,9 @@ function ubDestOptions(current) {
 }
 
 function renderUploadBatches(box) {
-  const batches = state.uploadBatches || [];
+  let batches = state.uploadBatches || [];
+  const scope = box.dataset.project || "";
+  if (scope) batches = batches.filter((b) => b.project === scope);
   if (!batches.length) { box.innerHTML = ""; box.className = "upload-batches"; return; }
   box.className = "upload-batches";
   box.innerHTML = batches.map((b) => {
@@ -1711,7 +1735,20 @@ function renderUploadBatches(box) {
   box.querySelectorAll(".ub-dest-dir").forEach((a) => {
     a.onclick = (ev) => {
       ev.preventDefault();
-      revealVaultDir(a.dataset.dir);
+      const dir = a.dataset.dir;
+      const parts = dir.split("/");
+      if (state.activeTab === "work" && parts[0] === "01-Projects"
+          && parts[1] === state.workProject) {
+        // expand inside the workspace tree instead of jumping to the vault tab
+        const open = state.workOpenDirs[parts[1]]
+          || (state.workOpenDirs[parts[1]] = new Set());
+        for (let i = 3; i <= parts.length; i += 1) {
+          open.add(parts.slice(0, i).join("/"));
+        }
+        loadWork();
+      } else {
+        revealVaultDir(dir);
+      }
     };
   });
   box.querySelectorAll("[data-ub-retry]").forEach((btn) => {
@@ -1732,7 +1769,12 @@ function renderUploadBatches(box) {
           { name: sel.dataset.ubF, dest: sel.value });
         toast(`이동됨 → ${res.dest}`, "ok");
         state.vaultTree = null;
-        loadVaultTab();
+        if (state.activeTab === "work") {
+          delete state.workTreeCache[state.workProject];
+          loadWork();
+        } else {
+          loadVaultTab();
+        }
       } catch (e) {
         toast(`재분류 실패: ${e.body?.message || e.message}`, "err");
         sel.value = "";

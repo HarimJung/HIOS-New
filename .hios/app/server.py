@@ -2086,6 +2086,22 @@ def _upload_move(src, dest_dir_rel):
 def _upload_classify_prompt(p):
     listing = "\n".join(f"- {f['name']} ({f.get('size', 0)} bytes)" for f in p["files"])
     projects = _project_names()
+    project = p.get("project") or ""
+    if project:
+        scope = (
+            f"이 배치는 프로젝트 '{project}' 전용 업로드입니다. 모든 파일의 dest는 "
+            f"반드시 01-Projects/{project}/<서브폴더> 형식이어야 합니다 — 다른 "
+            "프로젝트나 다른 상위 폴더로 절대 보내지 마세요. doc_updates도 "
+            f"{project}에만 제안하세요.\n"
+        )
+    else:
+        scope = (
+            f"프로젝트는 반드시 이 실제 폴더명 중에서만 고르세요: {', '.join(projects)}\n"
+            "키워드 힌트: UNFPA/CSE→UNFPA-CSE · 보험/fraud/theft→Equitee · "
+            "BCM/Moodle/Articulate→WMO · energy/HCF/SDG7→WHO · AICA→Climate-AICA · "
+            "유튜브/콘텐츠/샤오홍슈→Visual-Climate\n"
+            f"어느 프로젝트/영역인지 알 수 없으면 dest를 \"{UPLOAD_UNSORTED}\"로 하세요.\n"
+        )
     return (
         "업로드된 파일들을 분류하세요. 읽기 전용 작업입니다 — 파일 이동/수정/생성은 "
         "서버가 수행하므로 절대 파일을 만들거나 바꾸려 하지 마세요.\n\n"
@@ -2094,13 +2110,9 @@ def _upload_classify_prompt(p):
         "md/txt/csv 등 텍스트 파일과 pdf는 Read 도구로 내용을 확인하세요. "
         "xlsx/docx/이미지처럼 읽을 수 없는 파일은 파일명과 같은 배치의 다른 파일 "
         "맥락으로 추정하세요.\n\n"
-        f"프로젝트는 반드시 이 실제 폴더명 중에서만 고르세요: {', '.join(projects)}\n"
-        "키워드 힌트: UNFPA/CSE→UNFPA-CSE · 보험/fraud/theft→Equitee · "
-        "BCM/Moodle/Articulate→WMO · energy/HCF/SDG7→WHO · AICA→Climate-AICA · "
-        "유튜브/콘텐츠/샤오홍슈→Visual-Climate\n"
+        + scope +
         "서브폴더 규칙: 일반 문서→06-Documents, 회의록→02-Meetings, "
-        "참고자료→05-References, 산출물→01-Deliverables, 불확실하면→06-Documents\n"
-        f"어느 프로젝트/영역인지 알 수 없으면 dest를 \"{UPLOAD_UNSORTED}\"로 하세요.\n\n"
+        "참고자료→05-References, 산출물→01-Deliverables, 불확실하면→06-Documents\n\n"
         "추가로: 파일이 특정 프로젝트로 분류되면 그 프로젝트의 _RESOURCES.md, _STATUS.md, "
         "_TODO.md를 Read로 읽어보고, 이번 파일들을 반영해 갱신할 가치가 있는 문서에 "
         "추가할 줄들을 제안하세요 (doc_updates). 판단 기준:\n"
@@ -2210,12 +2222,17 @@ def _upload_classify_finalize(job, params):
                 if isinstance(entry, dict) and entry.get("name"):
                     by_name[str(entry["name"])] = entry
             staging = VAULT / batch["staging"]
+            b_project = batch.get("project") or ""
             for rec in batch["files"]:
                 if rec.get("status") == "filed":
                     continue
                 entry = by_name.get(rec["name"], {})
                 dest_rel = _upload_dest_valid(entry.get("dest")) or UPLOAD_UNSORTED
-                rec["project"] = _clean_item_text(entry.get("project", ""), 80)
+                if b_project and not (dest_rel == f"01-Projects/{b_project}"
+                                      or dest_rel.startswith(f"01-Projects/{b_project}/")):
+                    # project-scoped batch: never allow filing outside the project
+                    dest_rel = f"01-Projects/{b_project}/06-Documents"
+                rec["project"] = b_project or _clean_item_text(entry.get("project", ""), 80)
                 rec["kind"] = _clean_item_text(entry.get("kind", ""), 40)
                 rec["label"] = _clean_item_text(entry.get("label", ""), 120)
                 rec["summary"] = _clean_item_text(entry.get("summary", ""), 300)
@@ -2273,6 +2290,7 @@ def _start_batch_classify(bid):
         params = {
             "batch_id": bid,
             "staging": batch["staging"],
+            "project": batch.get("project", ""),
             "files": [{"name": r["name"], "size": r.get("size", 0)} for r in pending],
         }
     job_id, err = _start_job(
@@ -2310,6 +2328,9 @@ def api_upload():
     if len(files) > UPLOAD_COUNT_MAX:
         return jsonify(error="too_many",
                        message=f"한 번에 최대 {UPLOAD_COUNT_MAX}개까지"), 413
+    project = str(request.form.get("project", "") or "").strip()
+    if project and project not in _project_names():
+        return jsonify(error="bad_project", message="알 수 없는 프로젝트"), 400
     batch_id = uuid.uuid4().hex[:8]
     staging = UPLOAD_STAGING / f"{time.strftime('%Y-%m-%d-%H%M')}-{batch_id[:4]}"
     staging.mkdir(parents=True, exist_ok=True)
@@ -2349,6 +2370,7 @@ def api_upload():
         "created": time.time(),
         "staging": staging.relative_to(VAULT).as_posix(),
         "status": "staged",
+        "project": project,
         "job_id": None,
         "files": records,
     }
