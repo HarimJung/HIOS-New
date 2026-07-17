@@ -123,6 +123,15 @@ def _claude_argv_readonly():
     ]
 
 
+def _claude_argv_refresh():
+    # Morning refresh: file tools + Granola/Gmail MCP (no Bash).
+    return [
+        CLAUDE_BIN, "--print",
+        "--permission-mode", "acceptEdits",
+        "--allowedTools", "Read,Write,Edit,Glob,Grep,mcp__granola,mcp__claude_ai_Gmail",
+    ]
+
+
 def _topic(params):
     raw = str(params.get("topic", "") or "")
     # strip control chars, cap length — becomes part of a single argv element only
@@ -171,16 +180,9 @@ TASKS = {
             + (["--mode", "api"] if os.environ.get("X_BEARER_TOKEN") else [])
         ),
     },
-    "granola": {
-        "label_ko": "Granola 동기화",
-        "category": "동기화",
-        "groups": {"sync"},
-        "timeout": CLAUDE_TIMEOUT,
-        "heartbeat": False,
-        "refresh": "projects",
-        # Granola MCP sync via headless claude; same script launchd runs every 2h.
-        "argv": lambda p: ["/bin/bash", os.path.expanduser("~/.hios/granola-sync.sh")],
-    },
+    # "granola" (granola-sync.sh) removed 2026-07-17 — replaced by morning_refresh
+    # (Granola MCP + Gmail MCP via headless claude), registered near the emails
+    # section below.
     "daily_brief": {
         "label_ko": "데일리 브리프",
         "category": "브리핑",
@@ -1715,7 +1717,7 @@ def _git_snapshot_loop():
 
 SCHEDULE = [
     {"task": "rss", "at": "06:30"},
-    # {"task": "granola", "at": "06:45"},  # DEPRECATED: Granola v7+ uses encrypted credentials. Use MCP instead.
+    {"task": "morning_refresh", "at": "06:40"},  # Granola 회의 + Gmail 이메일 (MCP)
     {"task": "daily_brief", "at": "07:00"},
 ]
 
@@ -2436,6 +2438,109 @@ def api_upload_reclassify(bid):
         _save_upload_batches(batches)
         new_dest = rec["dest"]
     return jsonify(ok=True, dest=new_dest)
+
+
+# ---------------------------------------------------------------- emails / morning refresh
+# One headless claude job pulls recent Granola meetings into 02-Meetings/
+# and searches Gmail per project; the email manifest is parsed by the server
+# and stored in state/emails.json (same safety pattern as upload_classify).
+
+EMAILS_FILE = STATE_DIR / "emails.json"
+EMAILS_LOCK = threading.Lock()
+EMAILS_MAX = 200
+EMAILS_PER_PROJECT = 15
+
+
+def _morning_refresh_prompt(p):
+    projects = _project_names()
+    return (
+        "아침 리프레시 작업입니다. 아래 두 작업을 순서대로 수행하세요. "
+        "Headless mode — 질문하지 말고 바로 실행하세요.\n\n"
+        "[1] Granola 회의 동기화\n"
+        "- granola MCP(list_meetings)로 최근 7일 회의를 조회하세요.\n"
+        "- 각 회의가 이미 볼트에 있는지 Glob으로 확인하세요 "
+        "(01-Projects/*/02-Meetings/YYYY-MM-DD-*.md 및 00-Inbox/).\n"
+        "- 없으면 get_meetings(또는 get_meeting_transcript)로 내용을 받아 "
+        "노트를 생성하세요: 파일명 YYYY-MM-DD-<client>-<topic>.md, YAML "
+        "front-matter(tags, client, status, due, priority) + 요약/결정사항/액션.\n"
+        f"- 프로젝트는 이 실제 폴더명 중에서만: {', '.join(projects)}. "
+        "어느 프로젝트인지 불명확하면 00-Inbox/에 생성하세요.\n\n"
+        "[2] Gmail 이메일 수집 (파일 생성 금지 — 서버가 저장합니다)\n"
+        "- 각 프로젝트의 01-Projects/<프로젝트>/CLAUDE.md와 _STAKEHOLDERS.md를 "
+        "읽고 관련 인물/조직/키워드를 파악하세요.\n"
+        "- claude_ai_Gmail MCP(search_threads)로 최근 14일 프로젝트 관련 "
+        "스레드를 검색하세요 (발신자·키워드 조합, newer_than:14d).\n"
+        f"- 프로젝트당 최대 {EMAILS_PER_PROJECT}개, 관련 없는 뉴스레터/알림은 제외.\n"
+        "- needs_action: 하림의 회신/작업이 필요해 보이면 true.\n\n"
+        "답변 마지막에 코드펜스 없이 JSON 객체 하나만 출력하세요:\n"
+        '{"emails":[{"project":"프로젝트명","subject":"제목","from":"보낸사람",'
+        '"date":"YYYY-MM-DD","thread_id":"Gmail 스레드 ID","summary":"한 줄 요약",'
+        '"needs_action":true}]}\n'
+    )
+
+
+def _morning_refresh_finalize(job, params):
+    """Post-job hook: parse the email manifest and store it server-side."""
+    with LOCK:
+        status = job["status"]
+        text = "\n".join(job["log"])
+    if status != "success":
+        return
+    idx = text.rfind('{"emails"')
+    manifest = None
+    if idx >= 0:
+        try:
+            manifest, _ = json.JSONDecoder().raw_decode(text[idx:])
+        except ValueError:
+            manifest = None
+    if not isinstance(manifest, dict) or not isinstance(manifest.get("emails"), list):
+        with LOCK:
+            _append_log(job, "[시스템] 이메일 manifest 파싱 실패 — emails.json 갱신 안 됨")
+        return
+    projects = set(_project_names())
+    emails = []
+    for e in manifest["emails"][:EMAILS_MAX]:
+        if not isinstance(e, dict):
+            continue
+        project = str(e.get("project", "") or "")
+        if project not in projects:
+            continue
+        emails.append({
+            "project": project,
+            "subject": _clean_item_text(e.get("subject", ""), 200),
+            "from": _clean_item_text(e.get("from", ""), 120),
+            "date": _clean_item_text(e.get("date", ""), 20),
+            "thread_id": _clean_item_text(e.get("thread_id", ""), 60),
+            "summary": _clean_item_text(e.get("summary", ""), 300),
+            "needs_action": bool(e.get("needs_action")),
+        })
+    with EMAILS_LOCK:
+        _write_json(EMAILS_FILE, {"updated": time.time(), "emails": emails})
+    with LOCK:
+        _append_log(job, f"[시스템] 이메일 {len(emails)}건 저장 → state/emails.json")
+
+
+TASKS["morning_refresh"] = {
+    "label_ko": "아침 리프레시",
+    "category": "동기화",
+    "groups": {"claude"},
+    "timeout": 900,          # meetings + per-project Gmail searches
+    "heartbeat": True,
+    "refresh": "projects",
+    "argv": lambda p: _claude_argv_refresh(),
+    "stdin": _morning_refresh_prompt,
+    "finalize": _morning_refresh_finalize,
+}
+
+
+@app.get("/api/projects/<name>/emails")
+def api_project_emails(name):
+    if name not in _project_names():
+        abort(404)
+    with EMAILS_LOCK:
+        data = _read_json(EMAILS_FILE, {"updated": None, "emails": []})
+    emails = [e for e in data.get("emails", []) if e.get("project") == name]
+    return jsonify(updated=data.get("updated"), emails=emails)
 
 
 # ---------------------------------------------------------------- calendar

@@ -25,6 +25,7 @@ const WORK_SUBS = [
   ["overview", "개요"],
   ["actions", "액션"],
   ["meetings", "미팅"],
+  ["emails", "이메일"],
   ["files", "파일"],
   ["resources", "리소스"],
   ["accounts", "계정"],
@@ -963,7 +964,10 @@ async function loadHome() {
       </div>
       <div class="home-col">
         <div class="ws-section">
-          <div class="ws-head"><span class="ws-title">프로젝트</span></div>
+          <div class="ws-head"><span class="ws-title">프로젝트</span>
+            <span class="spacer"></span>
+            <button class="ws-open-btn" id="home-refresh"
+              title="Granola 회의 + Gmail 이메일 다시 수집 (매일 06:40 자동)">↻ 아침 리프레시</button></div>
           <div class="proj-grid">${projCards}</div>
         </div>
         <div class="ws-section">
@@ -975,6 +979,12 @@ async function loadHome() {
     </div>`;
 
   $("home-goto-board").onclick = () => switchTab("board");
+  $("home-refresh").onclick = async () => {
+    try {
+      await postJson("/api/run/morning_refresh", {});
+      toast("아침 리프레시 시작 — 엔진 탭에서 로그 확인", "ok");
+    } catch (e) { toast(`실패: ${e.body?.message || e.message}`, "err"); }
+  };
   wireBiCards(doc, loadHome);
 
   doc.querySelectorAll(".proj-card").forEach((c) => {
@@ -1060,6 +1070,7 @@ async function loadWork() {
   if (state.workSub === "overview") return loadWorkOverview(body);
   if (state.workSub === "actions") return renderBoardView(body, state.workProject);
   if (state.workSub === "meetings") return loadWorkMeetings(body);
+  if (state.workSub === "emails") return loadWorkEmails(body);
   if (state.workSub === "files") return loadWorkFiles(body);
   if (state.workSub === "resources") return loadWorkResources(body);
   if (state.workSub === "accounts") return loadWorkAccounts(body);
@@ -1218,6 +1229,49 @@ async function loadWorkMeetings(box) {
   if (state.workMeeting && p.meetings.some((f) => f.name === state.workMeeting)) {
     showMeeting(state.workMeeting);
   }
+}
+
+/* -------- workspace: 이메일 -------- */
+
+async function loadWorkEmails(box) {
+  const name = state.workProject;
+  let p;
+  try { p = await api(`/api/projects/${encodeURIComponent(name)}/emails`); }
+  catch (e) { box.innerHTML = failHtml(e); return; }
+
+  const rows = p.emails.length ? p.emails.map((e) => {
+    const link = e.thread_id
+      ? `https://mail.google.com/mail/u/0/#all/${encodeURIComponent(e.thread_id)}` : "";
+    const subj = link
+      ? `<a class="em-subject" href="${escapeHtml(link)}" target="_blank" rel="noopener">${escapeHtml(e.subject || "(제목 없음)")}</a>`
+      : `<span class="em-subject">${escapeHtml(e.subject || "(제목 없음)")}</span>`;
+    return `<div class="em-row">
+      <div class="em-line">
+        <span class="em-date">${escapeHtml(e.date || "")}</span>
+        ${e.needs_action ? `<span class="pill failed">액션</span>` : ""}
+        ${subj}
+        <span class="em-from">${escapeHtml(e.from || "")}</span>
+      </div>
+      ${e.summary ? `<div class="em-summary">${escapeHtml(e.summary)}</div>` : ""}
+    </div>`;
+  }).join("") : `<div class="ws-empty">수집된 이메일 없음 — '지금 수집'을 누르거나 매일 아침 06:40 자동 수집을 기다리세요</div>`;
+
+  const upd = p.updated ? `마지막 수집 ${fmtDate(p.updated)}` : "아직 수집 안 됨";
+
+  box.innerHTML = `
+    <div class="ws-section">
+      <div class="ws-head"><span class="ws-title">이메일 — ${escapeHtml(name)}</span>
+        <span class="em-updated">${escapeHtml(upd)}</span><span class="spacer"></span>
+        <button class="ws-open-btn" id="em-refresh">지금 수집</button></div>
+      <div class="em-list">${rows}</div>
+    </div>`;
+
+  $("em-refresh").onclick = async () => {
+    try {
+      await postJson("/api/run/morning_refresh", {});
+      toast("아침 리프레시 시작 — 엔진 탭에서 로그 확인", "ok");
+    } catch (e) { toast(`실패: ${e.body?.message || e.message}`, "err"); }
+  };
 }
 
 /* -------- workspace: 파일 (트리 + 뷰어/에디터) -------- */
