@@ -3,7 +3,7 @@
     "id": "wmo-moodle-mig",
     "title": "Articulate 업데이트 → Moodle 패키징/업로드",
     "detail": "최우선 병목. 전문가 테스트는 공유 링크가 아니라 라이브 플랫폼에서 해야 하므로 코스 임베드가 선행돼야 함. ETRP 계정은 7/9에 생성 완료 (etrp.wmo.int). 8월 초 Xiao 상세 리뷰 전까지 완료 목표.",
-    "status": "in_progress",
+    "status": "done",
     "priority": "high",
     "due": "2026-08-07",
     "people": [
@@ -24,13 +24,13 @@
     ],
     "note": "",
     "created": "2026-07-15",
-    "updated": "2026-07-15"
+    "updated": "2026-07-16"
   },
   {
     "id": "wmo-zhangdi-fb",
     "title": "Zhang Di 리뷰 피드백 2건 반영 + 완료 회신",
     "detail": "7/3 Xiao가 전달한 CMA Zhang Di 피드백. 7/7에 '작업 중' 회신함 — File Attachment Block용 다운로드 PDF 템플릿(Model BCM Policy 등) 제작 포함. 완료 보고가 아직 안 나감.",
-    "status": "in_progress",
+    "status": "done",
     "priority": "high",
     "due": "",
     "people": [
@@ -46,13 +46,13 @@
     ],
     "note": "",
     "created": "2026-07-15",
-    "updated": "2026-07-15"
+    "updated": "2026-07-16"
   },
   {
     "id": "wmo-duration",
     "title": "모듈별 소요시간 + 총 코스 길이 기입",
     "detail": "코스 메타데이터 누락분. Moodle 업로드 시 필요.",
-    "status": "open",
+    "status": "in_progress",
     "priority": "med",
     "due": "2026-08-07",
     "people": [],
@@ -63,15 +63,15 @@
         "url": "https://notes.granola.ai/d/3ce7ddcf-148a-4a56-8f59-f48d19a84dbf"
       }
     ],
-    "note": "",
+    "note": "지금 진행중 물어봄 이메일로 어쩔지.",
     "created": "2026-07-15",
-    "updated": "2026-07-15"
+    "updated": "2026-07-16"
   },
   {
     "id": "wmo-cert",
     "title": "Mustafa에게 수료증 템플릿 컨펌",
     "detail": "수료증 템플릿은 Mustafa가 승인권자. 컴플라이언스는 하림 담당 아님 확인됨(블로커 없음). PDF 자료는 공유 폴더에 초안 있음 — 나중에 크로스체크.",
-    "status": "open",
+    "status": "in_progress",
     "priority": "med",
     "due": "",
     "people": [
@@ -86,7 +86,7 @@
     ],
     "note": "",
     "created": "2026-07-15",
-    "updated": "2026-07-15"
+    "updated": "2026-07-16"
   },
   {
     "id": "wmo-aug-review",
@@ -105,9 +105,9 @@
         "url": "https://notes.granola.ai/d/3ce7ddcf-148a-4a56-8f59-f48d19a84dbf"
       }
     ],
-    "note": "",
+    "note": "대기중 아마 이메일이 샤오로 부터 올듯.",
     "created": "2026-07-15",
-    "updated": "2026-07-15"
+    "updated": "2026-07-16"
   },
   {
     "id": "wmo-hydrohub-badge",
