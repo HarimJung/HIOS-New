@@ -2101,11 +2101,82 @@ def _upload_classify_prompt(p):
         "서브폴더 규칙: 일반 문서→06-Documents, 회의록→02-Meetings, "
         "참고자료→05-References, 산출물→01-Deliverables, 불확실하면→06-Documents\n"
         f"어느 프로젝트/영역인지 알 수 없으면 dest를 \"{UPLOAD_UNSORTED}\"로 하세요.\n\n"
+        "추가로: 파일이 특정 프로젝트로 분류되면 그 프로젝트의 _RESOURCES.md, _STATUS.md, "
+        "_TODO.md를 Read로 읽어보고, 이번 파일들을 반영해 갱신할 가치가 있는 문서에 "
+        "추가할 줄들을 제안하세요 (doc_updates). 판단 기준:\n"
+        "- _RESOURCES.md: 새 참고자료/문서 목록 — 보통 항상 추가. 형식: "
+        "'- [파일명](vault 상대경로) — 한 줄 설명 (업로드 M/D)'\n"
+        "- _STATUS.md: 이번 자료가 프로젝트 진행에 의미 있을 때만 한 줄.\n"
+        "- _TODO.md: 자료에서 명확한 할 일이 보일 때만 '- [ ] ...' 형식.\n"
+        "기존 문서의 톤/구조에 맞추고, 이미 있는 내용과 중복되면 넣지 마세요. "
+        "직접 수정하지 말 것 — 서버가 append만 수행합니다.\n\n"
         "답변 마지막에 코드펜스 없이 JSON 객체 하나만 출력하세요:\n"
         '{"files":[{"name":"파일명","dest":"01-Projects/<프로젝트>/<서브폴더>",'
         '"project":"프로젝트명 (미상이면 빈 문자열)","kind":"document|meeting|reference|deliverable|unknown",'
-        '"label":"짧은 라벨","summary":"\'이건 ~할 때 쓰는 것\' 형식의 한 문장"}]}\n'
+        '"label":"짧은 라벨","summary":"\'이건 ~할 때 쓰는 것\' 형식의 한 문장"}],'
+        '"doc_updates":[{"project":"프로젝트명","file":"_RESOURCES.md|_STATUS.md|_TODO.md",'
+        '"section":"## 섹션 제목 (기존 섹션이면 그 제목 그대로)","lines":["추가할 줄"]}]}\n'
     )
+
+
+DOC_UPDATE_FILES = {"_RESOURCES.md", "_STATUS.md", "_TODO.md"}
+DOC_UPDATE_MAX_LINES = 20
+
+
+def _append_doc_section(path, section, lines):
+    """Append lines under a heading (append-only; creates file/section if missing)."""
+    text = path.read_text(encoding="utf-8") if path.is_file() else ""
+    rows = text.splitlines()
+    for i, row in enumerate(rows):
+        if row.strip() != section:
+            continue
+        # end of this section = next heading or EOF
+        j = i + 1
+        while j < len(rows) and not rows[j].lstrip().startswith("#"):
+            j += 1
+        # insert before the section's trailing blank lines
+        k = j
+        while k > i + 1 and not rows[k - 1].strip():
+            k -= 1
+        new_rows = rows[:k] + lines + rows[k:]
+        _atomic_write_text(path, "\n".join(new_rows).rstrip("\n") + "\n")
+        return
+    body = text.rstrip("\n")
+    block = ("\n\n" if body else "") + section + "\n\n" + "\n".join(lines) + "\n"
+    _atomic_write_text(path, body + block)
+
+
+def _apply_doc_updates(manifest, filed_projects):
+    """Apply AI-proposed appends to project meta docs. Returns audit lines."""
+    audit = []
+    updates = manifest.get("doc_updates")
+    if not isinstance(updates, list):
+        return audit
+    projects = set(_project_names())
+    for u in updates[:10]:
+        if not isinstance(u, dict):
+            continue
+        project = str(u.get("project", "") or "")
+        fname = str(u.get("file", "") or "")
+        section = _clean_item_text(u.get("section", ""), 80)
+        raw_lines = u.get("lines")
+        if (project not in projects or project not in filed_projects
+                or fname not in DOC_UPDATE_FILES
+                or not section.startswith("#")
+                or not isinstance(raw_lines, list)):
+            continue
+        lines = [_clean_item_text(l, 500).replace("\n", " ")
+                 for l in raw_lines[:DOC_UPDATE_MAX_LINES]
+                 if isinstance(l, str) and l.strip()]
+        if not lines:
+            continue
+        path = VAULT / "01-Projects" / project / fname
+        try:
+            _append_doc_section(path, section, lines)
+            audit.append(f"[시스템] {project}/{fname} 업데이트 ({len(lines)}줄)")
+        except OSError as exc:
+            audit.append(f"[시스템] {project}/{fname} 업데이트 실패: {exc}")
+    return audit
 
 
 def _upload_classify_finalize(job, params):
@@ -2123,6 +2194,7 @@ def _upload_classify_finalize(job, params):
             except ValueError:
                 manifest = None
     audit = []
+    filed_projects = set()
     with UPLOADS_LOCK:
         batches = _load_upload_batches()
         batch = next((b for b in batches if b.get("id") == bid), None)
@@ -2154,6 +2226,8 @@ def _upload_classify_finalize(job, params):
                     moved = _upload_move(src, dest_rel)
                     rec["status"] = "filed"
                     rec["dest"] = moved.relative_to(VAULT).as_posix()
+                    if rec["dest"].startswith("01-Projects/"):
+                        filed_projects.add(rec["dest"].split("/")[1])
                     audit.append(f"[시스템] {rec['name']} → {rec['dest']}")
                 except OSError as exc:
                     rec["status"] = "failed"
@@ -2164,6 +2238,8 @@ def _upload_classify_finalize(job, params):
                 staging.rmdir()          # only removes if empty
             except OSError:
                 pass
+    if isinstance(manifest, dict) and filed_projects:
+        audit.extend(_apply_doc_updates(manifest, filed_projects))
     with LOCK:
         for line in audit:
             _append_log(job, line)

@@ -1,12 +1,13 @@
 ---
 tags: [todo]
 client: UNFPA-CSE
-updated: 2026-07-14
+updated: 2026-07-17
 ---
 
 # UNFPA-CSE — To-Do
 
 ## Open
+- [ ] **I-G (ITSO/KM) 질문 이메일 발송** — 드래프트 완성: `03-Communications/2026-07-17-ig-itso-technical-questions-draft.md`. hajung@unfpa.org에서 Wafa 7/15 스레드에 회신 (Wafa cc). 목표: 7/25 전 답변 확보
 - [ ] Wafa 응답 대기 → 접근 권한 받는 대로 clasp export → 현황 감사 (checklist: 01-Deliverables/reporting-platform/2026-07-13-review-kickoff.md)
 - [ ] **미발송 항목 follow-up (~Jul 25 전)**: 대시보드 기술 선택 (Tableau/Looker/custom), Signal Detection 키워드·언어 확정, OOO 기간(7/27–8/2) 대체 연락처, Nairobi 발표 형식 — 7/14 이메일에 빠짐
 - [ ] Baseline infographics: 10개국 데이터 수집 계획 수립 (due: 2026-09-22)

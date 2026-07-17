@@ -1550,6 +1550,15 @@ async function openVaultFile(rel) {
   renderFilePane(pane, rel, f, openVaultFile);
 }
 
+function revealVaultDir(dir) {
+  const parts = dir.split("/");
+  for (let i = 1; i <= parts.length; i += 1) {
+    state.vaultOpenDirs.add(parts.slice(0, i).join("/"));
+  }
+  if (state.activeTab === "vault") loadVaultTab();
+  else switchTab("vault");
+}
+
 /* -------- uploads: global dropzone + AI classification batches -------- */
 
 const UB_STATUS_KO = {
@@ -1672,6 +1681,17 @@ function renderUploadBatches(box) {
       ? `<button class="ws-open-btn" data-ub-retry="${escapeHtml(b.id)}">분류 ${b.status === "failed" ? "재시도" : "시작"}</button>` : "";
     const failNote = b.status === "failed"
       ? `<div class="ub-fail">분류 실패 — 파일은 ${escapeHtml(b.staging)}에 그대로 있습니다</div>` : "";
+    // destination summary: group filed files by folder
+    const groups = {};
+    for (const f of b.files) {
+      if (f.status !== "filed" || !f.dest) continue;
+      const dir = f.dest.split("/").slice(0, -1).join("/");
+      (groups[dir] = groups[dir] || []).push(f);
+    }
+    const dests = Object.keys(groups).sort().map((dir) =>
+      `<div class="ub-dest-row">└ <a class="ub-dest-dir" data-dir="${escapeHtml(dir)}" href="#">${escapeHtml(dir)}</a>
+       <b>${groups[dir].length}개</b></div>`).join("");
+    const destBox = dests ? `<div class="ub-dests">${dests}</div>` : "";
     const rows = b.files.map((f) => {
       const where = f.status === "filed" && f.dest
         ? `→ <a class="vault-link" data-path="${escapeHtml(f.dest)}" href="#">${escapeHtml(f.dest)}</a>`
@@ -1684,10 +1704,16 @@ function renderUploadBatches(box) {
     }).join("");
     return `<div class="ub-card">
       <div class="ub-head">${pill}<span>${t} · ${b.files.length}개</span><span class="spacer"></span>${retry}</div>
-      ${failNote}${rows}
+      ${destBox}${failNote}${rows}
     </div>`;
   }).join("");
 
+  box.querySelectorAll(".ub-dest-dir").forEach((a) => {
+    a.onclick = (ev) => {
+      ev.preventDefault();
+      revealVaultDir(a.dataset.dir);
+    };
+  });
   box.querySelectorAll("[data-ub-retry]").forEach((btn) => {
     btn.onclick = async () => {
       try {

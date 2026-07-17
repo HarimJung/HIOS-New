@@ -4,5 +4,11 @@
     "job_id": "4e47bca3adb4",
     "prompt": "[액션 아이템: 내부 지식 포털 관련 질문 리스트 Wafa에게 발송]\n이거관련으로 음./ 궁금한게 unfpa 관련 일 많다나 갭아날리시스랑 등등 더 잇는거같은데?",
     "created": 1784218697.472106
+  },
+  {
+    "id": "367bd03a",
+    "job_id": "fe9e9c70921b",
+    "prompt": "Wafa Dhaouadi <dhaouadi@unfpa.org>\nJul 15, 2026, 5:27 AM (2 days ago)\nto Isabelle-Geraldine, me\n\nDear I-G,\n\nThe CSE team has recently hired a consultant (Ms. Harim Jung cc-ed) to support the development and organization of internal visualization assets and dashboards. In the process of scoping this work, she has raised several technical questions regarding the specific tools available within the UNFPA Google Workspace environment, such as Google Sheets and Google Looker Studio, as well as institutional restrictions regarding building custom web applications and embedding external content into internal pages.\n\nGiven that these inquiries intersect with broader knowledge management work, native Google tools configurations, and standard ITSO policies, I would highly appreciate your guidance on these matters.\n\nCould you please assist us by addressing these technical parameters, or alternatively, refer us to the appropriate focal point within ITSO or the KM Unit who can support our consultant? We would be glad to coordinate a brief call or proceed via direct email interaction, depending on what works best for your schedule.\n\nDear Harim, please feel free to write to I-G on your specific requests.\nThank you very much for your time and collaborative support.\n\nBest regards,\nWafa Dhaouadi 아거 이메일 잇자나 우리가 가지고잇는 모든 정보 동원햇거 뭘 물어볼까.",
+    "created": 1784261769.905044
   }
 ]
