@@ -1,0 +1,131 @@
+{
+  "updated": 1784301261.100855,
+  "emails": [
+    {
+      "project": "UNFPA-CSE",
+      "subject": "Fwd: inquiries about google suite and KM tools",
+      "from": "hajung@unfpa.org",
+      "date": "2026-07-16",
+      "thread_id": "19f6841a0071b72c",
+      "summary": "Wafa의 Google Suite·KM 도구 문의 메일을 UNFPA 계정에서 개인 계정으로 포워딩 — 대응 검토 필요",
+      "needs_action": true
+    },
+    {
+      "project": "UNFPA-CSE",
+      "subject": "Data and Knowledge CSC – Access & initial questions",
+      "from": "dhaouadi@unfpa.org (fwd via hajung@unfpa.org)",
+      "date": "2026-07-16",
+      "thread_id": "19f4c4bad6319b93",
+      "summary": "착수에 필요한 접근권한(CSC 매핑 문서, 리포팅 플랫폼, Google Script 코드) 요청에 대한 Wafa의 회신 도착",
+      "needs_action": true
+    },
+    {
+      "project": "UNFPA-CSE",
+      "subject": "Welcome Harim to CSE team",
+      "from": "dhaouadi@unfpa.org",
+      "date": "2026-07-16",
+      "thread_id": "19f5aa5bb9545afc",
+      "summary": "CSE 글로벌 팀 공식 환영 스레드 — Ramz, Sharafdzhon, Piay-Fernandez 등 인사, 하림 회신 완료",
+      "needs_action": false
+    },
+    {
+      "project": "UNFPA-CSE",
+      "subject": "Fwd: UNFPA Account For (Harim Jung)",
+      "from": "khamohammed@unfpa.org",
+      "date": "2026-07-13",
+      "thread_id": "19f5a59d494b2e22",
+      "summary": "UNFPA 계정(hajung@unfpa.org) 생성 완료 및 로그인 안내",
+      "needs_action": false
+    },
+    {
+      "project": "UNFPA-CSE",
+      "subject": "Fwd: Notes: 'Onboarding with Harim' 8 Jul 2026",
+      "from": "dhaouadi@unfpa.org",
+      "date": "2026-07-08",
+      "thread_id": "19f41d3f025ccb52",
+      "summary": "7/8 온보딩 미팅의 Gemini 자동 회의록 공유",
+      "needs_action": false
+    },
+    {
+      "project": "UNFPA-CSE",
+      "subject": "Wafa/Harim - Data and knowledge CSE thread",
+      "from": "dhaouadi@unfpa.org",
+      "date": "2026-07-07",
+      "thread_id": "19f3dbb72f286e8b",
+      "summary": "온보딩 논의용 핵심 항목 정리(랜딩페이지, 리포팅 플랫폼, 리서치 IT 서버 등) — 논의 완료",
+      "needs_action": false
+    },
+    {
+      "project": "UNFPA-CSE",
+      "subject": "Start Date of Contract_07 July 26-09 October 2026",
+      "from": "khamohammed@unfpa.org",
+      "date": "2026-07-06",
+      "thread_id": "19f3762606cfa106",
+      "summary": "계약서·TOR 수령 및 서명본 회신 완료 (계약기간 7/7–10/9)",
+      "needs_action": false
+    },
+    {
+      "project": "WHO",
+      "subject": "Introduction Meeting",
+      "from": "adairrohanih@who.int",
+      "date": "2026-07-10",
+      "thread_id": "19f4c6faf8abafa9",
+      "summary": "Heather의 계약 진행 업데이트(HR 승인 완료, 7/11 시작) 및 소개 미팅 일정 확정 — 미팅 완료",
+      "needs_action": false
+    },
+    {
+      "project": "WHO",
+      "subject": "Introduction to the Work",
+      "from": "adairrohanih@who.int",
+      "date": "2026-07-10",
+      "thread_id": "19f4c6fd2053c9f7",
+      "summary": "통계 업무 소개 콜 초대(Salvatore, Wenlu 포함) — 7/13 진행 완료",
+      "needs_action": false
+    },
+    {
+      "project": "WMO",
+      "subject": "FW: Review request_BCM self-paced online training module",
+      "from": "xzhou@wmo.int",
+      "date": "2026-07-07",
+      "thread_id": "19f288ec626d6d2b",
+      "summary": "Zhang Di 전문가 피드백 2건 반영 작업 중(PDF 템플릿 등) + Xiao가 목요일로 미팅 재조정 제안 — 업데이트 전달 필요",
+      "needs_action": true
+    },
+    {
+      "project": "WMO",
+      "subject": "Quick Favour — Reference Check Request",
+      "from": "xzhou@wmo.int",
+      "date": "2026-07-06",
+      "thread_id": "19f236df1d42eda2",
+      "summary": "레퍼런스 초안 전달 완료, Xiao 수신 확인 — 종결",
+      "needs_action": false
+    },
+    {
+      "project": "Visual-Climate",
+      "subject": "COP 31 Canada pavilion 된다 무조건된다",
+      "from": "data.harim.jung@gmail.com (self)",
+      "date": "2026-07-17",
+      "thread_id": "19f6e2891ce3fca7",
+      "summary": "COP31 캐나다 파빌리온 전략 셀프 노트 — Interest Form 제출 등 후속 실행 항목 있음",
+      "needs_action": true
+    },
+    {
+      "project": "Visual-Climate",
+      "subject": "Visual Design and Publication Development Services",
+      "from": "harim.jung@visualclimate.org (sent)",
+      "date": "2026-07-15",
+      "thread_id": "19f63e19c7b437d0",
+      "summary": "Girl Effect HPV 가이드라인 디자인 컨설턴시 제안서 발송 — 회신 대기",
+      "needs_action": false
+    },
+    {
+      "project": "Visual-Climate",
+      "subject": "Re: Invoice Harim Jung_Visual Climate Inc.",
+      "from": "nicole.mantle@onx.com",
+      "date": "2026-07-05",
+      "thread_id": "19f340cfeea2ef66",
+      "summary": "ONX 인보이스를 향후 onxaccountspayable.canada@onx.com에도 함께 발송 요청",
+      "needs_action": true
+    }
+  ]
+}
