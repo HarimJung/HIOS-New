@@ -7,6 +7,7 @@ const TABS = [
   { id: "home", label: "홈" },
   { id: "board", label: "액션" },
   { id: "work", label: "워크스페이스" },
+  { id: "vault", label: "파일" },
   { id: "engine", label: "엔진" },
   { id: "agenda", label: "캘린더" },
 ];
@@ -72,6 +73,12 @@ const state = {
   askOffset: 0,
   askLines: [],
   askTimer: null,
+  // vault file tab
+  vaultTree: null,
+  vaultOpenDirs: new Set(),
+  vaultFilePath: null,
+  uploadBatches: [],
+  uploadPollTimer: null,
   // calendar
   calMonth: null,       // "YYYY-MM"
   calSel: null,         // selected item key
@@ -269,6 +276,7 @@ function renderActions() {
     });
     box.appendChild(card);
   }
+  linkifyVaultPaths(box);
 }
 
 async function resolveAction(a, payload) {
@@ -407,6 +415,7 @@ async function loadTab() {
   if (state.activeTab === "home") return loadHome();
   if (state.activeTab === "board") return renderBoardView(doc, null);
   if (state.activeTab === "work") return loadWork();
+  if (state.activeTab === "vault") return loadVaultTab();
   if (state.activeTab === "agenda") return loadAgenda(false);
 }
 
@@ -1288,14 +1297,20 @@ async function loadWorkFiles(box) {
   }
 }
 
-function renderTree(rootEl, children, open, rerender) {
+function renderTree(rootEl, children, open, rerender, opts) {
+  const activePath = opts ? opts.activePath : state.workFilePath;
+  const onFile = (opts && opts.onFile) || ((path) => {
+    state.workFilePath = path;
+    rerender();
+    openWorkFile(path);
+  });
   rootEl.innerHTML = "";
   const build = (nodes, depth) => {
     const wrap = document.createElement("div");
     for (const n of nodes) {
       const row = document.createElement("div");
       row.className = "tree-row" + (n.dir ? " dir" : "") +
-        (!n.dir && n.path === state.workFilePath ? " active" : "");
+        (!n.dir && n.path === activePath ? " active" : "");
       row.style.paddingLeft = `${depth * 14 + 8}px`;
       if (n.dir) {
         const isOpen = open.has(n.path);
@@ -1321,9 +1336,7 @@ function renderTree(rootEl, children, open, rerender) {
           <span class="tree-size">${fmtSize(n.size)}</span>`;
         row.onclick = () => {
           if (!confirmLeave()) return;
-          state.workFilePath = n.path;
-          rerender();
-          openWorkFile(n.path);
+          onFile(n.path);
         };
         wrap.appendChild(row);
       }
@@ -1357,7 +1370,7 @@ function wireOpenButtons(container, rel) {
   });
 }
 
-function renderFilePane(pane, rel, f) {
+function renderFilePane(pane, rel, f, reopen) {
   let body;
   if (f.binary) {
     body = `<div class="bin-card">
@@ -1375,8 +1388,11 @@ function renderFilePane(pane, rel, f) {
   }
   pane.innerHTML = body + openButtonsHtml();
   wireOpenButtons(pane, rel);
+  const md = pane.querySelector(".md");
+  if (md) linkifyVaultPaths(md);
   const eb = pane.querySelector("#file-edit");
-  if (eb) eb.onclick = () => openInlineEditor(pane, rel, () => openWorkFile(rel));
+  const again = reopen || openWorkFile;
+  if (eb) eb.onclick = () => openInlineEditor(pane, rel, () => again(rel));
 }
 
 /* -------- markdown editor + 409 conflict UX -------- */
@@ -1460,6 +1476,69 @@ function renderEditor(container, rel, f, afterClose) {
     }
   };
   container.querySelector("#ed-save").onclick = () => save(false);
+}
+
+/* ---------------------------------------------------------------- vault file tab (파일) */
+/* Whole-vault explorer + upload dropzone + AI classification batches. */
+
+async function loadVaultTab() {
+  const doc = $("doc-view");
+  doc.innerHTML = `<div class="doc-empty">불러오는 중…</div>`;
+  let tree = state.vaultTree;
+  if (!tree) {
+    try { tree = await api("/api/vault-tree"); }
+    catch (e) { doc.innerHTML = failHtml(e); return; }
+    state.vaultTree = tree;
+  }
+  const open = state.vaultOpenDirs;
+
+  doc.innerHTML = `
+    <div class="files-wrap vault-wrap">
+      <div class="file-tree">
+        <div class="dropzone-strip" id="vault-dropzone">
+          <span class="dz-ic">⇣</span> 파일을 여기로 드래그 — AI가 자동 분류합니다
+        </div>
+        <div id="upload-batches"></div>
+        <div class="tree-toolbar">
+          <span class="tree-root-name">vault</span>
+          <span class="spacer"></span>
+          ${tree.truncated ? `<span class="tree-trunc" title="깊이/개수 제한으로 일부만 표시">일부만 표시</span>` : ""}
+          <button class="ws-open-btn" id="vault-tree-refresh">새로고침</button>
+        </div>
+        <div class="tree-body" id="vault-tree-root"></div>
+      </div>
+      <div class="file-pane" id="vault-file-pane"><div class="doc-empty">파일을 선택하세요</div></div>
+    </div>`;
+
+  $("vault-tree-refresh").onclick = () => {
+    if (!confirmLeave()) return;
+    state.vaultTree = null;
+    loadVaultTab();
+  };
+
+  const rootEl = $("vault-tree-root");
+  const rerender = () => renderTree(rootEl, tree.children, open, rerender, {
+    activePath: state.vaultFilePath,
+    onFile: (path) => {
+      state.vaultFilePath = path;
+      rerender();
+      openVaultFile(path);
+    },
+  });
+  rerender();
+
+  if (state.vaultFilePath) openVaultFile(state.vaultFilePath);
+  loadUploadBatches();
+}
+
+async function openVaultFile(rel) {
+  const pane = $("vault-file-pane");
+  if (!pane) return;
+  pane.innerHTML = `<div class="doc-empty">불러오는 중…</div>`;
+  let f;
+  try { f = await api(`/api/vault-file/${encodeRel(rel)}`); }
+  catch (e) { pane.innerHTML = failHtml(e); return; }
+  renderFilePane(pane, rel, f, openVaultFile);
 }
 
 /* -------- workspace: 리소스 -------- */
@@ -1843,6 +1922,137 @@ function schedulePoll(delay) {
   state.pollTimer = setTimeout(poll, delay);
 }
 
+/* ---------------------------------------------------------------- file modal + clickable vault paths */
+/* Any rendered text containing a vault-relative path becomes a .vault-link;
+   one delegated click handler opens the global viewer modal on every tab. */
+
+const VAULT_PATH_RE = /(?:0[0-7]-[\w-]+|Templates)\/[^\s`"'<>|*?]+?\.[A-Za-z0-9]{1,6}|\d{4}-\d{2}-\d{2}\.md/g;
+
+function linkifyVaultPaths(container) {
+  if (!container) return;
+  const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT, {
+    acceptNode(node) {
+      const p = node.parentElement;
+      if (!p || p.closest("a, textarea, input, .vault-link")) return NodeFilter.FILTER_REJECT;
+      return NodeFilter.FILTER_ACCEPT;
+    },
+  });
+  const targets = [];
+  let n;
+  while ((n = walker.nextNode())) {
+    VAULT_PATH_RE.lastIndex = 0;
+    if (VAULT_PATH_RE.test(n.nodeValue)) targets.push(n);
+  }
+  for (const node of targets) {
+    const text = node.nodeValue;
+    const frag = document.createDocumentFragment();
+    let last = 0;
+    VAULT_PATH_RE.lastIndex = 0;
+    let m;
+    while ((m = VAULT_PATH_RE.exec(text))) {
+      if (m.index > last) frag.appendChild(document.createTextNode(text.slice(last, m.index)));
+      const a = document.createElement("a");
+      a.className = "vault-link";
+      a.dataset.path = m[0];
+      a.href = "#";
+      a.textContent = m[0];
+      frag.appendChild(a);
+      last = m.index + m[0].length;
+    }
+    if (last < text.length) frag.appendChild(document.createTextNode(text.slice(last)));
+    node.parentNode.replaceChild(frag, node);
+  }
+}
+
+document.addEventListener("click", (ev) => {
+  const a = ev.target.closest(".vault-link");
+  if (!a) return;
+  ev.preventDefault();
+  openFileModal(a.dataset.path);
+});
+
+function closeFileModal() {
+  $("file-modal-backdrop").style.display = "none";
+}
+
+function fmOpenInWorkspace(rel) {
+  closeFileModal();
+  if (rel.startsWith("01-Projects/")) {
+    const parts = rel.split("/");
+    state.workProject = parts[1];
+    state.workSub = "files";
+    state.workFilePath = rel;
+    localStorage.setItem("hios-work-proj", parts[1]);
+    if (!state.workOpenDirs[parts[1]]) state.workOpenDirs[parts[1]] = new Set();
+    for (let i = 3; i < parts.length; i += 1) {
+      state.workOpenDirs[parts[1]].add(parts.slice(0, i).join("/"));
+    }
+    switchTab("work");
+  } else {
+    state.vaultFilePath = rel;
+    const parts = rel.split("/");
+    for (let i = 1; i < parts.length; i += 1) {
+      state.vaultOpenDirs.add(parts.slice(0, i).join("/"));
+    }
+    switchTab("vault");
+  }
+}
+
+async function openFileModal(rel) {
+  const backdrop = $("file-modal-backdrop");
+  const body = $("fm-body");
+  backdrop.style.display = "";
+  $("fm-path").textContent = rel;
+  body.innerHTML = `<div class="doc-empty">불러오는 중…</div>`;
+
+  $("fm-close").onclick = closeFileModal;
+  $("fm-workspace").onclick = () => fmOpenInWorkspace(rel);
+  $("fm-folder").onclick = () => {
+    const parent = rel.includes("/") ? rel.slice(0, rel.lastIndexOf("/")) : null;
+    // root files have no parent inside the vault → reveal the file instead
+    postJson("/api/open-path", parent
+      ? { path: parent, app: "finder" }
+      : { path: rel, app: "finder" })
+      .catch((e) => toast(`열기 실패: ${e.message}`, "err"));
+  };
+
+  let f;
+  try {
+    f = await api(`/api/vault-file/${encodeRel(rel)}`);
+  } catch (e) {
+    body.innerHTML = `<div class="doc-empty">${e.status === 404
+      ? "파일 없음 — 경로가 오래되었거나 이동되었습니다"
+      : `로드 실패: ${escapeHtml(e.message)}`}</div>`;
+    return;
+  }
+  if (f.binary) {
+    body.innerHTML = `<div class="bin-card">
+      <div class="bin-name">${escapeHtml(f.name)}</div>
+      <div class="bin-meta">${escapeHtml(f.ext || "파일")} · ${fmtSize(f.size)} — 브라우저 미리보기 불가</div>
+      <div class="file-open-row">
+        <button class="ws-open-btn" data-fm-open="finder">Finder에서 열기</button>
+        <button class="ws-open-btn" data-fm-open="default">앱으로 열기</button>
+      </div>
+    </div>`;
+    body.querySelectorAll("[data-fm-open]").forEach((b) => {
+      b.onclick = () => postJson("/api/open-path", { path: rel, app: b.dataset.fmOpen })
+        .catch((e) => toast(`열기 실패: ${e.message}`, "err"));
+    });
+  } else if (f.ext === ".md") {
+    body.innerHTML = `<div class="md">${renderMarkdown(f.content)}</div>`;
+    linkifyVaultPaths(body);
+  } else {
+    body.innerHTML = `<pre class="code-view">${escapeHtml(f.content)}</pre>`;
+  }
+}
+
+$("file-modal-backdrop").addEventListener("click", (ev) => {
+  if (ev.target === $("file-modal-backdrop")) closeFileModal();
+});
+document.addEventListener("keydown", (ev) => {
+  if (ev.key === "Escape" && $("file-modal-backdrop").style.display !== "none") closeFileModal();
+});
+
 /* ---------------------------------------------------------------- quickbar (질문 + 메모) + ask drawer */
 /* Drawer is global — its poller is NOT stopped on tab switches. */
 
@@ -1891,6 +2101,7 @@ async function pollAsk() {
       .filter((l) => !l.startsWith("[시스템]") && !/^… ?실행 중/.test(l))
       .join("\n").trim();
     view.innerHTML = `<div class="md">${renderMarkdown(answer || "(빈 응답)")}</div>`;
+    linkifyVaultPaths(view);
   } else {
     view.innerHTML = `<pre>${logLinesHtml(state.askLines)}</pre>`;
   }

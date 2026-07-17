@@ -6,10 +6,22 @@
     "status": "in_progress",
     "priority": "high",
     "due": "2026-07-20",
-    "people": ["Heather Adair-Rohani", "Wenlu Ye", "Salvatore Vinci"],
+    "people": [
+      "Heather Adair-Rohani",
+      "Wenlu Ye",
+      "Salvatore Vinci"
+    ],
     "sources": [
-      {"kind": "granola", "label": "Introduction to the Work (7/13)", "url": "https://notes.granola.ai/d/90dffc42-b9f4-4d8f-84e1-13dd51e7c1d4"},
-      {"kind": "gmail", "label": "Introduction Meeting 스레드 (7/10)", "url": "https://mail.google.com/mail/u/0/#all/19f4c6faf8abafa9"}
+      {
+        "kind": "granola",
+        "label": "Introduction to the Work (7/13)",
+        "url": "https://notes.granola.ai/d/90dffc42-b9f4-4d8f-84e1-13dd51e7c1d4"
+      },
+      {
+        "kind": "gmail",
+        "label": "Introduction Meeting 스레드 (7/10)",
+        "url": "https://mail.google.com/mail/u/0/#all/19f4c6faf8abafa9"
+      }
     ],
     "note": "",
     "created": "2026-07-15",
@@ -22,13 +34,19 @@
     "status": "blocked",
     "priority": "high",
     "due": "",
-    "people": ["Wenlu Ye"],
+    "people": [
+      "Wenlu Ye"
+    ],
     "sources": [
-      {"kind": "granola", "label": "Introduction to the Work (7/13)", "url": "https://notes.granola.ai/d/90dffc42-b9f4-4d8f-84e1-13dd51e7c1d4"}
+      {
+        "kind": "granola",
+        "label": "Introduction to the Work (7/13)",
+        "url": "https://notes.granola.ai/d/90dffc42-b9f4-4d8f-84e1-13dd51e7c1d4"
+      }
     ],
     "note": "WIMS 계정 대기 중 (계약 7/11 시작, HR 클리어런스 완료)",
     "created": "2026-07-15",
-    "updated": "2026-07-15"
+    "updated": "2026-07-16"
   },
   {
     "id": "who-hcf-concept",
@@ -37,9 +55,15 @@
     "status": "open",
     "priority": "med",
     "due": "2026-07-22",
-    "people": ["Salvatore Vinci"],
+    "people": [
+      "Salvatore Vinci"
+    ],
     "sources": [
-      {"kind": "granola", "label": "Introduction to the Work (7/13)", "url": "https://notes.granola.ai/d/90dffc42-b9f4-4d8f-84e1-13dd51e7c1d4"}
+      {
+        "kind": "granola",
+        "label": "Introduction to the Work (7/13)",
+        "url": "https://notes.granola.ai/d/90dffc42-b9f4-4d8f-84e1-13dd51e7c1d4"
+      }
     ],
     "note": "",
     "created": "2026-07-15",
@@ -52,9 +76,15 @@
     "status": "blocked",
     "priority": "med",
     "due": "",
-    "people": ["Heather Adair-Rohani"],
+    "people": [
+      "Heather Adair-Rohani"
+    ],
     "sources": [
-      {"kind": "granola", "label": "Introduction to the Work (7/13)", "url": "https://notes.granola.ai/d/90dffc42-b9f4-4d8f-84e1-13dd51e7c1d4"}
+      {
+        "kind": "granola",
+        "label": "Introduction to the Work (7/13)",
+        "url": "https://notes.granola.ai/d/90dffc42-b9f4-4d8f-84e1-13dd51e7c1d4"
+      }
     ],
     "note": "Teams 온보딩 후 시작",
     "created": "2026-07-15",

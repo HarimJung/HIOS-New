@@ -83,6 +83,20 @@
   <div class="log-view ask-view" id="ask-view"></div>
 </div>
 
+<!-- global file viewer modal: opened by clickable vault paths on any tab -->
+<div class="file-modal-backdrop" id="file-modal-backdrop" style="display:none">
+  <div class="file-modal" id="file-modal">
+    <div class="file-modal-head">
+      <span class="editor-path" id="fm-path"></span>
+      <span class="spacer"></span>
+      <button class="ws-open-btn" id="fm-workspace">워크스페이스에서 열기</button>
+      <button class="ws-open-btn" id="fm-folder">폴더 열기</button>
+      <button class="ws-open-btn" id="fm-close">닫기</button>
+    </div>
+    <div class="file-modal-body" id="fm-body"></div>
+  </div>
+</div>
+
 <div class="toasts" id="toasts"></div>
 
 <script src="/static/vendor/marked.min.js"></script>

@@ -2068,3 +2068,190 @@ body::after{
   .doc-view{max-height:none}
   .cal-cell{min-height:60px}
 }
+
+/* ---------------------------------------------------------------- vault-link + file modal (F2) */
+
+.vault-link{
+  font-family:var(--mono);
+  font-size:.95em;
+  color:var(--input);
+  background:var(--input-glow);
+  border-radius:5px;
+  padding:1px 5px;
+  text-decoration:none;
+  cursor:pointer;
+  word-break:break-all;
+  transition:all .15s;
+}
+
+.vault-link:hover{
+  background:var(--input);
+  color:var(--surface);
+}
+
+.file-modal-backdrop{
+  position:fixed;
+  inset:0;
+  background:#0008;
+  backdrop-filter:blur(2px);
+  z-index:10001;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:5vh 4vw;
+}
+
+.file-modal{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:14px;
+  width:min(880px,100%);
+  max-height:88vh;
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+  box-shadow:0 18px 60px #0006;
+}
+
+.file-modal-head{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:12px 16px;
+  border-bottom:1px solid var(--border);
+  background:var(--surface2);
+  flex-wrap:wrap;
+}
+
+.file-modal-body{
+  padding:16px 20px;
+  overflow-y:auto;
+}
+
+/* ---------------------------------------------------------------- vault tab: dropzone + upload batches (F1/F3) */
+
+.dropzone-strip{
+  margin:10px;
+  padding:12px 10px;
+  border:1.5px dashed var(--border);
+  border-radius:10px;
+  text-align:center;
+  font-size:11.5px;
+  color:var(--text3);
+  transition:all .15s;
+}
+
+.dz-ic{
+  font-family:var(--mono);
+  color:var(--input);
+}
+
+.drop-overlay{
+  position:fixed;
+  inset:0;
+  background:var(--input-glow);
+  backdrop-filter:blur(2px);
+  border:3px dashed var(--input);
+  z-index:10002;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  pointer-events:none;
+}
+
+.drop-overlay-msg{
+  background:var(--surface);
+  border:1px solid var(--input);
+  border-radius:14px;
+  padding:22px 36px;
+  font-size:15px;
+  font-weight:600;
+  color:var(--input);
+  box-shadow:0 10px 40px #0004;
+}
+
+.upload-batches{
+  padding:0 10px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.upload-batches:empty{display:none}
+
+.ub-card{
+  background:var(--surface2);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:8px 10px;
+}
+
+.ub-head{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:11px;
+  color:var(--text2);
+  margin-bottom:4px;
+}
+
+.ub-file{
+  display:flex;
+  align-items:baseline;
+  gap:6px;
+  flex-wrap:wrap;
+  font-size:11.5px;
+  padding:3px 0;
+  border-top:1px dashed var(--border);
+}
+
+.ub-name{
+  font-family:var(--mono);
+  font-weight:600;
+  color:var(--text);
+  word-break:break-all;
+}
+
+.ub-label{color:var(--text2)}
+
+.ub-summary{
+  color:var(--text3);
+  font-style:italic;
+}
+
+.ub-fail{color:var(--danger);font-size:11.5px}
+
+.ub-resel{
+  font-family:var(--mono);
+  font-size:10.5px;
+  background:var(--bg);
+  border:1px solid var(--border);
+  border-radius:6px;
+  color:var(--text2);
+  padding:1px 4px;
+  max-width:150px;
+}
+
+/* ---------------------------------------------------------------- graph tab (F4) */
+
+.graph-toolbar{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-bottom:10px;
+  flex-wrap:wrap;
+}
+
+.graph-box{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:12px;
+  overflow:hidden;
+  position:relative;
+}
+
+.graph-meta{
+  font-family:var(--mono);
+  font-size:10.5px;
+  color:var(--text3);
+}

@@ -8,11 +8,13 @@ Binds to 127.0.0.1 only. All subprocesses use argv lists (shell=False).
 import json
 import os
 import re
+import shutil
 import signal
 import subprocess
 import sys
 import threading
 import time
+import unicodedata
 import uuid
 from collections import deque
 from pathlib import Path
@@ -380,6 +382,19 @@ def _runner(job, task, params):
     log_path = LOG_DIR / f"{job['id']}.log"
     argv = task["argv"](params)
     stdin_text = task["stdin"](params) if "stdin" in task else None
+
+    def run_finalize():
+        # generic post-job hook (e.g. upload classification → server-side move);
+        # failures are logged only, never raised.
+        fin = task.get("finalize")
+        if fin is None:
+            return
+        try:
+            fin(job, params)
+        except Exception as exc:
+            with LOCK:
+                _append_log(job, f"[시스템] finalize 오류: {exc}")
+
     try:
         proc = subprocess.Popen(
             argv,
@@ -400,6 +415,7 @@ def _runner(job, task, params):
             job["finished"] = time.time()
             _append_log(job, f"[시스템] 실행 실패: {exc}")
             ACTIVE_GROUPS.difference_update(job["groups"])
+        run_finalize()
         return
 
     with LOCK:
@@ -434,6 +450,7 @@ def _runner(job, task, params):
             _append_log(job, f"[시스템] 종료 — 상태: {job['status']} (rc={rc})")
             ACTIVE_GROUPS.difference_update(job["groups"])
         lf.write(f"[system] finished status={job['status']} rc={rc}\n")
+    run_finalize()
 
 
 def _trim_jobs():
@@ -934,9 +951,8 @@ def api_project_open(name):
 # ---------------------------------------------------------------- vault file routes
 
 
-@app.get("/api/projects/<name>/tree")
-def api_project_tree(name):
-    proj = _proj_dir(name)
+def _walk_tree(root, max_entries=TREE_MAX_ENTRIES, max_depth=TREE_MAX_DEPTH):
+    """Shared directory walk for tree endpoints. Skips dot-entries/symlinks."""
     stats = {"count": 0, "truncated": False}
 
     def walk(d, depth):
@@ -948,14 +964,14 @@ def api_project_tree(name):
         for p in entries:
             if p.name.startswith(".") or p.is_symlink():
                 continue
-            if stats["count"] >= TREE_MAX_ENTRIES:
+            if stats["count"] >= max_entries:
                 stats["truncated"] = True
                 break
             stats["count"] += 1
             rel = p.relative_to(VAULT).as_posix()
             if p.is_dir():
                 node = {"name": p.name, "path": rel, "dir": True, "children": []}
-                if depth < TREE_MAX_DEPTH:
+                if depth < max_depth:
                     node["children"] = walk(p, depth + 1)
                 else:
                     stats["truncated"] = True
@@ -973,12 +989,32 @@ def api_project_tree(name):
                 })
         return children
 
+    return walk(root, 1), stats["truncated"]
+
+
+@app.get("/api/projects/<name>/tree")
+def api_project_tree(name):
+    proj = _proj_dir(name)
+    children, truncated = _walk_tree(proj)
     return jsonify(
         name=name,
         root=proj.relative_to(VAULT).as_posix(),
-        children=walk(proj, 1),
-        truncated=stats["truncated"],
+        children=children,
+        truncated=truncated,
     )
+
+
+VAULT_TREE_MAX = 2000
+
+
+@app.get("/api/vault-tree")
+def api_vault_tree():
+    """Whole-vault tree: 00~07 top dirs + Templates + root files.
+
+    _walk_tree already skips dot-entries, so .hios/.claude/.git never appear.
+    """
+    children, truncated = _walk_tree(VAULT, max_entries=VAULT_TREE_MAX)
+    return jsonify(root="", children=children, truncated=truncated)
 
 
 @app.get("/api/vault-file/<path:rel>")
@@ -1040,8 +1076,10 @@ def api_open_path():
         argv = ["open", "-R", str(target)] if target.is_file() else ["open", str(target)]
     elif which == "vscode":
         argv = ["open", "-a", "Visual Studio Code", str(target)]
+    elif which == "default":
+        argv = ["open", str(target)]        # macOS default app (PDF → Preview 등)
     else:
-        return jsonify(error="bad_app", message="finder 또는 vscode만 지원합니다"), 400
+        return jsonify(error="bad_app", message="finder / vscode / default만 지원합니다"), 400
     subprocess.Popen(argv)
     return jsonify(ok=True)
 
