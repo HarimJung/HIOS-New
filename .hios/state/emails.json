@@ -1,5 +1,5 @@
 {
-  "updated": 1784389346.826931,
+  "updated": 1784390389.2653382,
   "emails": [
     {
       "project": "UNFPA-CSE",
@@ -16,7 +16,7 @@
       "from": "hajung@unfpa.org (orig. Wafa Dhaouadi)",
       "date": "2026-07-16",
       "thread_id": "19f4c4bad6319b93",
-      "summary": "접근 권한 요청(매핑 문서, 리포팅 플랫폼, Google Script)에 대한 Wafa의 회신 도착 — 후속 작업 필요",
+      "summary": "온보딩 후 요청한 접근권한(CSC 매핑, Reporting Platform, Apps Script)에 대한 Wafa의 답신 — 접근 확인 및 후속 필요",
       "needs_action": true
     },
     {
@@ -25,7 +25,7 @@
       "from": "dhaouadi@unfpa.org",
       "date": "2026-07-16",
       "thread_id": "19f5aa5bb9545afc",
-      "summary": "CSE 글로벌 팀 공식 환영 스레드 — Harim 회신 완료, 팀원들 환영 인사 계속 수신 중",
+      "summary": "CSE 글로벌 팀 공식 환영 스레드 (Ramz, Sharafdzhon, Piay-Fernandez 등) — 회신 완료",
       "needs_action": false
     },
     {
@@ -34,7 +34,25 @@
       "from": "khamohammed@unfpa.org",
       "date": "2026-07-13",
       "thread_id": "19f5a59d494b2e22",
-      "summary": "UNFPA 계정(hajung@unfpa.org) 생성 완료 및 로그인 안내",
+      "summary": "UNFPA 계정(hajung@unfpa.org) 생성 및 로그인 안내 — 처리 완료",
+      "needs_action": false
+    },
+    {
+      "project": "UNFPA-CSE",
+      "subject": "Fwd: Notes: 'Onboarding with Harim' 8 Jul 2026",
+      "from": "dhaouadi@unfpa.org",
+      "date": "2026-07-08",
+      "thread_id": "19f41d3f025ccb52",
+      "summary": "7/8 온보딩 미팅 Gemini 자동 회의록 공유",
+      "needs_action": false
+    },
+    {
+      "project": "UNFPA-CSE",
+      "subject": "Wafa/Harim - Data and knowledge CSE thread",
+      "from": "dhaouadi@unfpa.org",
+      "date": "2026-07-07",
+      "thread_id": "19f3dbb72f286e8b",
+      "summary": "온보딩 논의 안건 정리 (랜딩페이지, Reporting Platform, 리서치 IT 서버 등)",
       "needs_action": false
     },
     {
@@ -43,7 +61,7 @@
       "from": "khamohammed@unfpa.org",
       "date": "2026-07-06",
       "thread_id": "19f3762606cfa106",
-      "summary": "계약서/TOR 수령 후 서명본 회신 완료 (계약기간 7/7–10/9)",
+      "summary": "계약서/TOR 서명 요청 — 서명본 회신 완료 (계약기간 7/7–10/9)",
       "needs_action": false
     },
     {
@@ -52,7 +70,7 @@
       "from": "adairrohanih@who.int",
       "date": "2026-07-10",
       "thread_id": "19f4c6faf8abafa9",
-      "summary": "Heather의 계약 HR 클리어런스 완료 통보 + 7/13 소개 미팅 확정 — 회신·미팅 완료",
+      "summary": "Heather: HR 승인 완료·7/11 계약 시작 확정, 월요일 소개 콜 조율 — 회신 완료",
       "needs_action": false
     },
     {
@@ -61,7 +79,7 @@
       "from": "adairrohanih@who.int",
       "date": "2026-07-10",
       "thread_id": "19f4c6fd2053c9f7",
-      "summary": "Salvatore·Wenlu 포함 stats 업무 소개 콜 초대 — 미팅 이미 진행됨",
+      "summary": "Heather가 Salvatore·Wenlu 포함 통계 업무 소개 콜 초대 (7/13 진행됨)",
       "needs_action": false
     },
     {
@@ -70,8 +88,17 @@
       "from": "xzhou@wmo.int",
       "date": "2026-07-07",
       "thread_id": "19f288ec626d6d2b",
-      "summary": "Zhang Di 리뷰 피드백 2건 반영 작업 중(PDF 템플릿 등) + Xiao가 목요일 미팅 재조정 제안 — 업데이트 회신 대기",
+      "summary": "Zhang Di 리뷰 피드백 2건 반영 작업 중 + Xiao가 목요일 미팅 대안 제안 — 업데이트 회신 필요",
       "needs_action": true
+    },
+    {
+      "project": "WMO",
+      "subject": "Quick Favour — Reference Check Request",
+      "from": "xzhou@wmo.int",
+      "date": "2026-07-06",
+      "thread_id": "19f236df1d42eda2",
+      "summary": "레퍼런스 요청 — 초안 전달했고 Xiao 수신 확인 완료",
+      "needs_action": false
     },
     {
       "project": "Visual-Climate",
@@ -79,7 +106,7 @@
       "from": "data.harim.jung@gmail.com (self)",
       "date": "2026-07-17",
       "thread_id": "19f6e2891ce3fca7",
-      "summary": "COP31 캐나다 파빌리온 참가 전략 셀프 노트 — Interest Form 오픈 중, 제출 필요",
+      "summary": "COP31 캐나다 파빌리온 전략 셀프 노트 — Interest Form 제출 등 실행 항목 존재",
       "needs_action": true
     },
     {
@@ -88,7 +115,7 @@
       "from": "harim.jung@visualclimate.org",
       "date": "2026-07-15",
       "thread_id": "19f63e19c7b437d0",
-      "summary": "Girl Effect HPV 가이드라인 디자인 컨설턴시 제안서 제출 완료 — 응답 대기",
+      "summary": "Girl Effect HPV 가이드라인 디자인 컨설팅 제안서 제출 — 회신 대기",
       "needs_action": false
     },
     {
@@ -97,7 +124,7 @@
       "from": "nicole.mantle@onx.com",
       "date": "2026-07-05",
       "thread_id": "19f340cfeea2ef66",
-      "summary": "ONX 인보이스를 AP 캐나다 메일에도 함께 제출하라는 요청 — 재발송/프로세스 수정 필요",
+      "summary": "ONX: 향후 인보이스를 AP 캐나다 메일에도 함께 제출 요청 — 프로세스 반영 필요",
       "needs_action": true
     }
   ]

@@ -1,6 +1,6 @@
 ---
 client: Equitee
-updated: 2026-07-16
+updated: 2026-07-18
 tags: [equitee, status]
 ---
 
@@ -11,7 +11,7 @@ tags: [equitee, status]
 | Workstream | Status | Next Step |
 |---|---|---|
 | False-positive detection | Pattern research — 1 confirmed pattern (same-insurer before/after, policy active) | Findings email + target case list (**draft ready 7/16** → review & send) → Angel |
-| Fraud dashboard migration (Tableau → Power BI) | In progress | Funnel & score page per NTD feedback |
+| Fraud dashboard migration (Tableau → Power BI) | **ESCALATED 7/18** — stakeholder pressure; Harim driving directly (Genspark-assisted, mock data only) | Completion plan: `2026-07-18-pbi-fraud-dashboard-completion-plan.md` — gap list → funnel & score page → reconcile → embed |
 | CGI gold report extraction | Working; known data quality issue (insured period dates unreliable) | Re-check code against this week's PDF update |
 | Auto trend & value reports | Submitted for Kevin/Jung review | Await feedback |
 | Fraud scoring model (Shift) | Threshold 0.1, low F1 (~1,400 training samples) | Follow-up meetings incl. Harim; model tuning planned this quarter |
@@ -29,6 +29,7 @@ tags: [equitee, status]
 - Dash API agreement — Angel/Burim (longer-term)
 
 ## Recent Updates
+- 2026-07-18: **PBI fraud 대시보드 에스컬레이션** — 이해관계자 불만; 완성 플랜 + Genspark 보안 게이트 문서화 (`2026-07-18-pbi-fraud-dashboard-completion-plan.md`)
 - 2026-07-16: findings email + target case list structure drafted (`03-Communications/`)
 - 2026-07-15: working group meeting (alert volume spike, triage step announced)
 - 2026-07-13: false-positive meeting — 1 confirmed pattern; scope corrected (old "DEI Dashboard / Awaiting Kickoff" description removed)

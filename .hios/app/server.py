@@ -139,6 +139,23 @@ def _topic(params):
     return clean.strip()[:TOPIC_MAX]
 
 
+# Concurrency groups.
+# - static set: vault-wide writers serialize among themselves ("claude")
+# - callable(params) -> set: per-project scope ("proj:<name>") so jobs on
+#   DIFFERENT projects run in parallel; same project stays serial.
+# - empty set: read-only jobs never conflict (still capped by MAX_CLAUDE_CONCURRENT)
+def _project_groups(p):
+    name = str(p.get("project", "") or "")
+    return {f"proj:{name}"} if name else {"claude"}
+
+
+def _item_request_groups(p):
+    parts = str(p.get("path", "") or "").split("/")
+    if len(parts) > 2 and parts[0] == "01-Projects":
+        return {f"proj:{parts[1]}"}
+    return {"claude"}
+
+
 def _reddit_env_warning():
     if not (os.environ.get("REDDIT_CLIENT_ID") and os.environ.get("REDDIT_CLIENT_SECRET")):
         return "env 미설정"
@@ -187,6 +204,7 @@ TASKS = {
         "label_ko": "데일리 브리프",
         "category": "브리핑",
         "groups": {"claude"},
+        "claude": True,
         "timeout": CLAUDE_TIMEOUT,
         "heartbeat": True,
         "refresh": "daily",
@@ -200,6 +218,7 @@ TASKS = {
         "label_ko": "XHS 초안",
         "category": "콘텐츠",
         "groups": {"claude"},
+        "claude": True,
         "timeout": CLAUDE_TIMEOUT,
         "heartbeat": True,
         "refresh": "xhs",
@@ -216,6 +235,7 @@ TASKS = {
         "label_ko": "IG 초안",
         "category": "콘텐츠",
         "groups": {"claude"},
+        "claude": True,
         "timeout": CLAUDE_TIMEOUT,
         "heartbeat": True,
         "refresh": "ig",
@@ -232,6 +252,7 @@ TASKS = {
         "label_ko": "전체 파이프라인",
         "category": "수집",
         "groups": {"claude", "collectors"},
+        "claude": True,
         "timeout": CLAUDE_TIMEOUT,
         "heartbeat": True,
         "refresh": "digests",
@@ -241,7 +262,8 @@ TASKS = {
     "project_request": {
         "label_ko": "AI 요청",
         "category": "AI",
-        "groups": {"claude"},
+        "groups": _project_groups,       # per-project → parallel across projects
+        "claude": True,
         "timeout": CLAUDE_TIMEOUT,
         "heartbeat": True,
         "internal": True,   # hidden from /api/tasks, blocked in /api/run
@@ -256,7 +278,8 @@ TASKS = {
     "vault_ask": {
         "label_ko": "질문",
         "category": "AI",
-        "groups": {"claude"},
+        "groups": set(),                 # read-only → never conflicts
+        "claude": True,
         "timeout": CLAUDE_TIMEOUT,
         "heartbeat": True,
         "internal": True,   # hidden from /api/tasks, blocked in /api/run
@@ -271,7 +294,8 @@ TASKS = {
     "item_request": {
         "label_ko": "아이템 AI 요청",
         "category": "AI",
-        "groups": {"claude"},
+        "groups": _item_request_groups,  # per-project → parallel across projects
+        "claude": True,
         "timeout": CLAUDE_TIMEOUT,
         "heartbeat": True,
         "internal": True,   # started only via /api/work-item-memo
@@ -290,6 +314,7 @@ TASKS = {
         "label_ko": "큐 자동 처리",
         "category": "AI",
         "groups": {"claude"},
+        "claude": True,
         "timeout": CLAUDE_TIMEOUT,
         "heartbeat": True,
         "internal": True,   # started only by the queue watcher thread
@@ -314,6 +339,7 @@ ACTIVE_GROUPS = set()
 MAX_JOBS = 50
 LOG_CAP = 2000
 HEARTBEAT_SEC = 15
+MAX_CLAUDE_CONCURRENT = 3   # max simultaneous headless claude processes
 
 
 def _job_summary(job):
@@ -417,6 +443,7 @@ def _runner(job, task, params):
             job["finished"] = time.time()
             _append_log(job, f"[시스템] 실행 실패: {exc}")
             ACTIVE_GROUPS.difference_update(job["groups"])
+            _dispatch_locked()
         run_finalize()
         return
 
@@ -451,6 +478,7 @@ def _runner(job, task, params):
             job["finished"] = time.time()
             _append_log(job, f"[시스템] 종료 — 상태: {job['status']} (rc={rc})")
             ACTIVE_GROUPS.difference_update(job["groups"])
+            _dispatch_locked()
         lf.write(f"[system] finished status={job['status']} rc={rc}\n")
     run_finalize()
 
@@ -611,7 +639,8 @@ def api_tasks():
     with LOCK:
         active = set(ACTIVE_GROUPS)
         running_tasks = {
-            j["task_id"] for j in JOBS.values() if j["status"] in ("pending", "running")
+            j["task_id"] for j in JOBS.values()
+            if j["status"] in ("queued", "pending", "running")
         }
     out = []
     for tid, task in TASKS.items():
@@ -624,37 +653,83 @@ def api_tasks():
             "category": task["category"],
             "topic": bool(task.get("topic")),
             "running": tid in running_tasks,
-            "blocked": bool(active & task["groups"]),
+            "blocked": bool(active & _task_groups(task, {})),
             "warning": warn() if warn else None,
         })
     return jsonify(out)
 
 
-def _start_job(task_id, params, label=None):
-    """Start a task job. Returns (job_id, None) or (None, conflict_message)."""
-    task = TASKS[task_id]
+def _task_groups(task, params):
+    g = task["groups"]
+    return set(g(params)) if callable(g) else set(g)
+
+
+def _claude_active_locked():
+    """Caller must hold LOCK. Count live claude processes."""
+    return sum(1 for j in JOBS.values()
+               if j.get("claude") and j["status"] in ("pending", "running"))
+
+
+def _dispatch_locked():
+    """Caller must hold LOCK. Start queued jobs whose groups are free (FIFO)."""
+    started = []
+    for jid in JOB_ORDER:
+        job = JOBS[jid]
+        if job["status"] != "queued":
+            continue
+        if ACTIVE_GROUPS & job["groups"]:
+            continue
+        if job.get("claude") and _claude_active_locked() >= MAX_CLAUDE_CONCURRENT:
+            continue
+        job["status"] = "pending"
+        ACTIVE_GROUPS.update(job["groups"])
+        started.append(job)
+    for job in started:
+        threading.Thread(
+            target=_runner, args=(job, TASKS[job["task_id"]], job["params"]),
+            daemon=True,
+        ).start()
+
+
+def _dispatch():
     with LOCK:
-        conflict = ACTIVE_GROUPS & task["groups"]
-        if conflict:
-            return None, f"이미 실행 중인 작업과 충돌: {', '.join(sorted(conflict))}"
+        _dispatch_locked()
+
+
+def _start_job(task_id, params, label=None):
+    """Enqueue a task job — starts immediately if its groups are free,
+    otherwise waits in the queue (no more 409 rejections).
+    Returns (job_id, None); second slot kept for caller compatibility."""
+    task = TASKS[task_id]
+    groups = _task_groups(task, params)
+    with LOCK:
         job_id = uuid.uuid4().hex[:12]
         job = {
             "id": job_id,
             "task_id": task_id,
             "label": label or task["label_ko"],
-            "status": "pending",
+            "status": "queued",
             "created": time.time(),
-            "groups": set(task["groups"]),
+            "groups": groups,
+            "claude": bool(task.get("claude")),
+            "params": params,
             "refresh": task.get("refresh"),
             "log": deque(maxlen=LOG_CAP),
             "log_total": 0,
         }
         JOBS[job_id] = job
         JOB_ORDER.append(job_id)
-        ACTIVE_GROUPS.update(task["groups"])
         _trim_jobs()
-    threading.Thread(target=_runner, args=(job, task, params), daemon=True).start()
+        _dispatch_locked()
+        if job["status"] == "queued":
+            _append_log(job, "[시스템] 대기열 등록 — 앞 작업이 끝나면 자동 시작")
     return job_id, None
+
+
+def _job_queued(job_id):
+    with LOCK:
+        j = JOBS.get(job_id)
+        return bool(j and j["status"] == "queued")
 
 
 @app.post("/api/run/<task_id>")
@@ -662,10 +737,8 @@ def api_run(task_id):
     if task_id not in TASKS or TASKS[task_id].get("internal"):
         abort(404)
     params = request.get_json(silent=True) or {}
-    job_id, err = _start_job(task_id, params)
-    if err:
-        return jsonify(error="conflict", message=err), 409
-    return jsonify(job_id=job_id), 202
+    job_id, _err = _start_job(task_id, params)
+    return jsonify(job_id=job_id, queued=_job_queued(job_id)), 202
 
 
 @app.get("/api/jobs")
@@ -700,6 +773,11 @@ def api_cancel(job_id):
         job = JOBS.get(job_id)
         if not job:
             abort(404)
+        if job["status"] == "queued":   # not started yet — just drop it
+            job["status"] = "cancelled"
+            job["finished"] = time.time()
+            _append_log(job, "[시스템] 대기열에서 취소됨")
+            return jsonify(ok=True), 202
         proc = job.get("proc")
         if job["status"] != "running" or proc is None:
             return jsonify(error="not_running"), 409
@@ -1162,12 +1240,10 @@ def api_project_request(name):
     prompt = _clean_item_text(data.get("prompt", ""), PROMPT_MAX)
     if not prompt:
         return jsonify(error="empty", message="요청 내용을 입력하세요"), 400
-    job_id, err = _start_job(
+    job_id, _err = _start_job(
         "project_request", {"project": name, "prompt": prompt},
         label=f"AI 요청 · {name}",
     )
-    if err:
-        return jsonify(error="conflict", message=err), 409
     entry = {
         "id": uuid.uuid4().hex[:8],
         "job_id": job_id,
@@ -1181,7 +1257,7 @@ def api_project_request(name):
             hist = []
         hist.append(entry)
         _write_json(_request_history_file(name), hist[-30:])
-    return jsonify(job_id=job_id, entry=entry), 202
+    return jsonify(job_id=job_id, entry=entry, queued=_job_queued(job_id)), 202
 
 
 @app.get("/api/projects/<name>/requests")
@@ -1201,10 +1277,8 @@ def api_ask():
     q = _clean_item_text(data.get("q", ""), PROMPT_MAX)
     if not q:
         return jsonify(error="empty", message="질문을 입력하세요"), 400
-    job_id, err = _start_job("vault_ask", {"prompt": q}, label=f"질문 · {q[:40]}")
-    if err:
-        return jsonify(error="conflict", message=err), 409
-    return jsonify(job_id=job_id), 202
+    job_id, _err = _start_job("vault_ask", {"prompt": q}, label=f"질문 · {q[:40]}")
+    return jsonify(job_id=job_id, queued=_job_queued(job_id)), 202
 
 
 # ---------------------------------------------------------------- accounts
@@ -1557,17 +1631,15 @@ def api_work_item_memo():
     stamp = time.strftime("%Y-%m-%d %H:%M")
     one_line = text.replace("\n", " ")
     if mode == "ai":
-        job_id, err = _start_job(
+        job_id, _err = _start_job(
             "item_request",
             {"path": target.relative_to(VAULT).as_posix(), "prompt": text},
             label=f"아이템 AI · {target.stem[:30]}",
         )
-        if err:
-            return jsonify(error="conflict", message=err), 409
         _append_item_log(target, f"- {stamp} [AI요청] {one_line}")
         with WORK_LOCK:
             WORK_CACHE["ts"] = 0.0
-        return jsonify(job_id=job_id), 202
+        return jsonify(job_id=job_id, queued=_job_queued(job_id)), 202
     _append_item_log(target, f"- {stamp} [메모] {one_line}")
     with WORK_LOCK:
         WORK_CACHE["ts"] = 0.0
@@ -1623,7 +1695,7 @@ def _queue_tick():
         with LOCK:
             job = JOBS.get(job_id)
             status = job["status"] if job else "failed"
-        if status in ("pending", "running"):
+        if status in ("queued", "pending", "running"):
             continue
         del QUEUE_ACTIVE[fname]
         path = QUEUE_DIR / fname

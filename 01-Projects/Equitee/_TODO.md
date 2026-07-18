@@ -1,12 +1,13 @@
 ---
 tags: [todo]
 client: Equitee
-updated: 2026-07-16
+updated: 2026-07-18
 ---
 
 # Equitee — To-Do
 
 ## Open
+- [ ] 🔥 **Power BI fraud 대시보드 완성 (에스컬레이션 7/18)** — 이해관계자 불만 제기. Harim 직접 진행, Genspark 활용 예정. 플랜/보안 게이트: `2026-07-18-pbi-fraud-dashboard-completion-plan.md` — funnel & score 페이지 + 수치 대사 + 임베드 확인. ⚠️ Genspark에 실데이터 업로드 금지 (목데이터만)
 - [ ] **findings 이메일 검토 후 발송** — 초안 완료 (7/16, `03-Communications/2026-07-16-false-positive-findings-email-draft.md`): 수신자 확정 + 케이스 수 로컬 데이터로 검증 후 발송
 - [ ] 타겟 케이스 리스트 실데이터 작성 — 구조/선정기준은 초안에 포함됨; access sheet에 마킹 + 조사관 질문 (로컬 작업) — Angel 미팅 전 필수
 - [ ] 워킹세션 주기 설문 응답 (David 이메일 수신 시) — from 7/15 워킹그룹

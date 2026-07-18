@@ -137,17 +137,18 @@
   },
   {
     "id": "eq-pbi-funnel",
-    "title": "Power BI 마이그레이션 — funnel & score 페이지 추가",
-    "detail": "Fraud 대시보드 마이그레이션 진행 중(데이터 모델링 처음부터 다시 함). NTD 피드백 기반 funnel/score 페이지 1개 추가 예정. Tableau 추출은 라이브 데이터소스로 완료, 웹앱 임베드 가능.",
+    "title": "Power BI fraud 대시보드 완성 (funnel & score 페이지 포함) — ESCALATED",
+    "detail": "Fraud 대시보드 마이그레이션 진행 중(데이터 모델링 처음부터 다시 함). NTD 피드백 기반 funnel/score 페이지 1개 추가 예정. Tableau 추출은 라이브 데이터소스로 완료, 웹앱 임베드 가능. 2026-07-18 에스컬레이션: 이해관계자 불만 제기, Harim 직접 진행 (Genspark 활용 — 실데이터 업로드 금지, 목데이터만).",
     "status": "in_progress",
-    "priority": "med",
-    "due": "",
+    "priority": "high",
+    "due": "2026-07-25",
     "people": [],
     "sources": [
-      {"kind": "granola", "label": "CGI 데이터 품질 미팅 (7/9)", "url": "https://notes.granola.ai/d/89a22791-3c17-4d61-9a60-ef9dd71f2199"}
+      {"kind": "granola", "label": "CGI 데이터 품질 미팅 (7/9)", "url": "https://notes.granola.ai/d/89a22791-3c17-4d61-9a60-ef9dd71f2199"},
+      {"kind": "vault", "label": "완성 플랜 (7/18)", "url": "01-Projects/Equitee/2026-07-18-pbi-fraud-dashboard-completion-plan.md"}
     ],
-    "note": "",
+    "note": "완성 정의·실행 순서·Genspark 보안 게이트는 플랜 문서 참조",
     "created": "2026-07-15",
-    "updated": "2026-07-15"
+    "updated": "2026-07-18"
   }
 ]
