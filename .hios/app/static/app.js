@@ -6,6 +6,7 @@ const $ = (id) => document.getElementById(id);
 const TABS = [
   { id: "home", label: "홈" },
   { id: "board", label: "액션" },
+  { id: "mail", label: "이메일" },
   { id: "work", label: "워크스페이스" },
   { id: "vault", label: "파일" },
   { id: "graph", label: "그래프" },
@@ -52,6 +53,7 @@ const state = {
   schedule: [],
   boardProject: "",     // "" = 전체
   boardShowDone: false,
+  mailFilter: "",       // "" = 전체 프로젝트
   // workspace
   workProject: null,
   workSub: "overview",
@@ -170,8 +172,14 @@ window.addEventListener("beforeunload", (e) => {
 
 const STATUS_KO = {
   success: "성공", failed: "실패", running: "실행중", pending: "대기",
-  cancelled: "취소됨", timeout: "타임아웃",
+  queued: "대기열", cancelled: "취소됨", timeout: "타임아웃",
 };
+
+/* 202 응답 공통 토스트 — 대기열 여부에 따라 문구 분기 */
+function startedToast(res, msg) {
+  if (res && res.queued) toast(`${msg} — 대기열 등록, 자리 나면 자동 시작`, "warn");
+  else toast(`${msg} 시작됨`, "ok");
+}
 
 function renderTasks() {
   const panel = $("run-panel");
@@ -220,11 +228,10 @@ async function runTask(t) {
     state.selectedJob = res.job_id;
     state.logOffset = 0;
     state.logLines = [];
-    toast(`${t.label_ko} 시작됨`, "ok");
+    startedToast(res, t.label_ko);
     schedulePoll(0);
   } catch (e) {
-    if (e.status === 409) toast(e.body.message || "이미 실행 중인 작업과 충돌", "warn");
-    else toast(`실행 실패: ${e.message}`, "err");
+    toast(`실행 실패: ${e.body?.message || e.message}`, "err");
   }
 }
 
@@ -312,6 +319,67 @@ function renderSchedule() {
       </div>`).join("");
 }
 
+/* ---------------------------------------------------------------- request tray */
+
+let trayOpen = false;
+
+function fmtElapsed(sec) {
+  sec = Math.max(0, Math.floor(sec));
+  if (sec < 60) return `${sec}초`;
+  const m = Math.floor(sec / 60);
+  return m < 60 ? `${m}분` : `${Math.floor(m / 60)}시간 ${m % 60}분`;
+}
+
+function renderTray() {
+  const active = state.jobs.filter((j) => !TERMINAL.has(j.status));
+  const running = active.filter((j) => j.status !== "queued").length;
+  const queued = active.length - running;
+  const cnt = $("tray-cnt");
+  cnt.style.display = active.length ? "" : "none";
+  cnt.textContent = queued ? `${running}+${queued}` : `${running}`;
+  $("tray-btn").classList.toggle("busy", active.length > 0);
+  $("tray-ic").innerHTML = active.length ? `<span class="spinner"></span>` : "◎";
+  if (!trayOpen) return;
+  const now = Date.now() / 1000;
+  const rows = state.jobs.slice(0, 10).map((j) => {
+    const time = j.status === "running" || j.status === "pending"
+      ? `${fmtElapsed(now - j.created)} 경과`
+      : j.status === "queued" ? "차례 대기" : fmtDate(j.created);
+    return `<div class="tray-row" data-j="${escapeHtml(j.id)}" title="클릭하면 엔진 탭에서 로그 보기">
+      <span class="pill ${j.status}">${STATUS_KO[j.status] || j.status}</span>
+      <span class="tray-name">${escapeHtml(j.label)}</span>
+      <span class="tray-time">${escapeHtml(time)}</span>
+    </div>`;
+  }).join("");
+  const panel = $("tray-panel");
+  panel.innerHTML = rows || `<div class="ws-empty">최근 작업 없음</div>`;
+  panel.querySelectorAll(".tray-row").forEach((r) => {
+    r.onclick = () => {
+      closeTray();
+      state.selectedJob = r.dataset.j;
+      state.logOffset = 0;
+      state.logLines = [];
+      switchTab("engine");
+    };
+  });
+}
+
+function closeTray() {
+  trayOpen = false;
+  $("tray-panel").style.display = "none";
+}
+
+$("tray-btn").onclick = (ev) => {
+  ev.stopPropagation();
+  trayOpen = !trayOpen;
+  $("tray-panel").style.display = trayOpen ? "" : "none";
+  if (trayOpen) renderTray();
+};
+
+document.addEventListener("click", (ev) => {
+  if (trayOpen && !ev.target.closest("#tray")) closeTray();
+});
+
 /* ---------------------------------------------------------------- engine: jobs & log */
 
 function renderJobs() {
@@ -348,7 +416,8 @@ function renderLogHead(job) {
     ? `${job.label} — ${job.id}` : "작업을 선택하세요";
   $("log-pill").innerHTML = job
     ? `<span class="pill ${job.status}">${STATUS_KO[job.status] || job.status}</span>` : "";
-  $("btn-cancel").style.display = job && job.status === "running" ? "" : "none";
+  $("btn-cancel").style.display =
+    job && (job.status === "running" || job.status === "queued") ? "" : "none";
 }
 
 function logLinesHtml(lines) {
@@ -423,6 +492,7 @@ async function loadTab() {
   const doc = $("doc-view");
   if (state.activeTab === "home") return loadHome();
   if (state.activeTab === "board") return renderBoardView(doc, null);
+  if (state.activeTab === "mail") return loadMailTab();
   if (state.activeTab === "work") return loadWork();
   if (state.activeTab === "vault") return loadVaultTab();
   if (state.activeTab === "graph") return loadGraphTab(false);
@@ -645,13 +715,13 @@ async function calMemoSend(it, mode) {
   try {
     if (it.kind === "file") {
       const res = await postJson("/api/work-item-memo", { path: it.path, text, mode });
-      if (mode === "ai") { startCalPoll(res.job_id); toast("AI 작업 시작 — 완료되면 아이템에 반영됩니다"); }
+      if (mode === "ai") { startCalPoll(res.job_id); startedToast(res, "AI 작업"); }
       else { toast("메모 저장됨 (## Log)"); openCalItem(calItemKey(it)); }
     } else if (mode === "ai") {
       const res = await postJson(`/api/projects/${encodeURIComponent(it.project)}/request`,
         { prompt: `[액션 아이템: ${it.title}]\n${text}` });
       startCalPoll(res.job_id);
-      toast("AI 작업 시작됨");
+      startedToast(res, "AI 작업");
     } else {
       const note = (it.note ? it.note + "\n" : "") + `**${localDateStr(0)}** ${text}`;
       await postJson(`/api/action-items/${encodeURIComponent(it.project)}/${encodeURIComponent(it.id)}`, { note });
@@ -894,13 +964,14 @@ async function renderBoardView(container, fixedProject) {
 async function loadHome() {
   const doc = $("doc-view");
   doc.innerHTML = `<div class="doc-empty">불러오는 중…</div>`;
-  let projects, groups, cal, daily;
+  let projects, groups, cal, daily, mail;
   try {
-    [projects, groups, cal, daily] = await Promise.all([
+    [projects, groups, cal, daily, mail] = await Promise.all([
       api("/api/projects"),
       api("/api/action-items"),
       api("/api/calendar").catch(() => ({ events: [], error: "캘린더 로드 실패" })),
       api("/api/files/daily").catch(() => []),
+      api("/api/emails").catch(() => null),
     ]);
   } catch (e) { doc.innerHTML = failHtml(e); return; }
 
@@ -922,6 +993,50 @@ async function loadHome() {
     ? urgent.map(([p, it]) => biCardHtml(p, it)).join("")
     : `<div class="ws-empty">임박/지연 액션 없음 🎉</div>`;
 
+  // ②-b 5일 이상 정체된 열린 액션 (놓친 것 찾기)
+  const todayMs = new Date(localDateStr(0) + "T00:00:00").getTime();
+  const stale = [];
+  for (const g of groups) {
+    for (const it of g.items) {
+      if (it.status === "done") continue;
+      const upd = it.updated || it.created;
+      if (!upd) continue;
+      const days = Math.floor((todayMs - new Date(upd + "T00:00:00").getTime()) / 86400000);
+      if (days >= 5) stale.push([g.project, it, days]);
+    }
+  }
+  stale.sort((a, b) => b[2] - a[2]);
+  const staleHtml = stale.length
+    ? stale.slice(0, 8).map(([p, it, days]) => `
+      <div class="stale-row" data-sp="${escapeHtml(p)}" title="클릭하면 액션 보드로 이동">
+        <span class="stale-days">${days}일째</span>
+        <span class="stale-proj">${escapeHtml(p)}</span>
+        <span class="stale-title">${escapeHtml(it.title)}</span>
+      </div>`).join("")
+    : "";
+
+  // ②-c 이메일 수집 상태 스트립
+  const mailStats = (mail && mail.stats) || {};
+  const naCount = ((mail && mail.emails) || []).filter((e) => e.needs_action).length;
+  let mailStrip = "";
+  if (mail) {
+    const upd = mail.updated ? `마지막 수집 ${fmtDate(mail.updated)}` : "아직 수집 안 됨";
+    const err = mail.last_status === "error"
+      ? `<span class="mail-err">⚠ 실패${mail.last_error ? ` — ${escapeHtml(mail.last_error)}` : ""}</span>`
+      : (mail.missed && mail.missed.length
+        ? `<span class="mail-err">⚠ 누락: ${escapeHtml(mail.missed.join(", "))}</span>` : "");
+    const chips = Object.keys(mailStats).map((p) =>
+      `<span class="pc-stat${mailStats[p] ? "" : " zero"}">${escapeHtml(p)} ${mailStats[p]}</span>`).join("");
+    mailStrip = `
+      <div class="home-strip">
+        <span class="hs-title">이메일</span>
+        <span class="em-updated">${escapeHtml(upd)}</span>${err}
+        <button class="ws-open-btn${naCount ? " hot" : ""}" id="hs-goto-mail">${naCount ? `회신 필요 ${naCount}건 →` : "이메일 탭 →"}</button>
+        <span class="spacer"></span>
+        <span class="hs-chips">${chips}</span>
+      </div>`;
+  }
+
   // ③ 프로젝트 카드
   const projCards = projects.map((p) => `
     <div class="proj-card" data-p="${escapeHtml(p.name)}">
@@ -931,6 +1046,7 @@ async function loadHome() {
         <span class="pc-stat${p.open_actions ? " hot" : ""}">액션 ${p.open_actions || 0}</span>
         <span class="pc-stat">할 일 ${p.open_todos || 0}</span>
         <span class="pc-stat">미팅 ${p.meetings || 0}</span>
+        ${mail ? `<span class="pc-stat">메일 ${mailStats[p.name] || 0}</span>` : ""}
       </div>
       ${p.latest_meeting
         ? `<div class="pc-meeting" title="${escapeHtml(p.latest_meeting)}">최근 미팅 · ${escapeHtml(p.latest_meeting)}</div>`
@@ -948,6 +1064,7 @@ async function loadHome() {
     : `<div class="ws-empty">데일리 노트 없음</div>`;
 
   doc.innerHTML = `
+    ${mailStrip}
     <div class="home">
       <div class="home-col">
         <div class="ws-section">
@@ -961,6 +1078,11 @@ async function loadHome() {
             <button class="ws-open-btn" id="home-goto-board">전체 보드 →</button></div>
           <div class="board-cards">${urgentHtml}</div>
         </div>
+        ${staleHtml ? `
+        <div class="ws-section">
+          <div class="ws-head"><span class="ws-title">정체 중 — 5일 이상 손 안 댄 액션</span></div>
+          <div class="stale-list">${staleHtml}</div>
+        </div>` : ""}
       </div>
       <div class="home-col">
         <div class="ws-section">
@@ -979,10 +1101,15 @@ async function loadHome() {
     </div>`;
 
   $("home-goto-board").onclick = () => switchTab("board");
+  const gotoMail = $("hs-goto-mail");
+  if (gotoMail) gotoMail.onclick = () => switchTab("mail");
+  doc.querySelectorAll(".stale-row").forEach((r) => {
+    r.onclick = () => { state.boardProject = r.dataset.sp; switchTab("board"); };
+  });
   $("home-refresh").onclick = async () => {
     try {
-      await postJson("/api/run/morning_refresh", {});
-      toast("아침 리프레시 시작 — 엔진 탭에서 로그 확인", "ok");
+      const res = await postJson("/api/run/morning_refresh", {});
+      startedToast(res, "아침 리프레시");
     } catch (e) { toast(`실패: ${e.body?.message || e.message}`, "err"); }
   };
   wireBiCards(doc, loadHome);
@@ -1015,6 +1142,88 @@ async function loadHome() {
     };
   });
   if (state.homeDaily) showDaily(state.homeDaily);
+}
+
+/* ---------------------------------------------------------------- unified mail tab */
+
+function emailRowHtml(e, showProject) {
+  const link = e.thread_id
+    ? `https://mail.google.com/mail/u/0/#all/${encodeURIComponent(e.thread_id)}` : "";
+  const subj = link
+    ? `<a class="em-subject" href="${escapeHtml(link)}" target="_blank" rel="noopener">${escapeHtml(e.subject || "(제목 없음)")}</a>`
+    : `<span class="em-subject">${escapeHtml(e.subject || "(제목 없음)")}</span>`;
+  return `<div class="em-row">
+    <div class="em-line">
+      <span class="em-date">${escapeHtml(e.date || "")}</span>
+      ${showProject ? `<span class="em-proj">${escapeHtml(e.project)}</span>` : ""}
+      ${e.needs_action ? `<span class="pill failed">액션</span>` : ""}
+      ${subj}
+      <span class="em-from">${escapeHtml(e.from || "")}</span>
+    </div>
+    ${e.summary ? `<div class="em-summary">${escapeHtml(e.summary)}</div>` : ""}
+    ${e.needs_action && e.suggested_action
+      ? `<div class="em-suggest">→ ${escapeHtml(e.suggested_action)}</div>` : ""}
+  </div>`;
+}
+
+async function loadMailTab() {
+  const doc = $("doc-view");
+  doc.innerHTML = `<div class="doc-empty">불러오는 중…</div>`;
+  let d;
+  try { d = await api("/api/emails"); }
+  catch (e) { doc.innerHTML = failHtml(e); return; }
+
+  const emails = d.emails || [];
+  const stats = d.stats || {};
+  const projNames = Object.keys(stats).length
+    ? Object.keys(stats)
+    : [...new Set(emails.map((e) => e.project))];
+  if (state.mailFilter && !projNames.includes(state.mailFilter)) state.mailFilter = "";
+
+  const chips = [`<button class="proj-chip${!state.mailFilter ? " active" : ""}" data-mf="">전체<span class="cnt">${emails.length}</span></button>`]
+    .concat(projNames.map((p) => {
+      const n = stats[p] ?? emails.filter((e) => e.project === p).length;
+      return `<button class="proj-chip${state.mailFilter === p ? " active" : ""}" data-mf="${escapeHtml(p)}">${escapeHtml(p)}<span class="cnt">${n}</span></button>`;
+    })).join("");
+
+  const visible = state.mailFilter ? emails.filter((e) => e.project === state.mailFilter) : emails;
+  const na = visible.filter((e) => e.needs_action);
+  const rest = visible.filter((e) => !e.needs_action);
+  const showProj = !state.mailFilter;
+
+  const upd = d.updated ? `마지막 수집 ${fmtDate(d.updated)}` : "아직 수집 안 됨";
+  let health = "";
+  if (d.last_status === "error") {
+    health = `<span class="mail-err">⚠ 마지막 수집 실패${d.last_error ? ` — ${escapeHtml(d.last_error)}` : ""}</span>`;
+  } else if (d.missed && d.missed.length) {
+    health = `<span class="mail-err">⚠ 검색 누락: ${escapeHtml(d.missed.join(", "))}</span>`;
+  }
+
+  doc.innerHTML = `
+    <div class="ws-section">
+      <div class="ws-head"><span class="ws-title">이메일 — 전체 프로젝트</span>
+        <span class="em-updated">${escapeHtml(upd)}</span>${health}<span class="spacer"></span>
+        <button class="ws-open-btn" id="mail-refresh"
+          title="Granola 회의 + Gmail 이메일 수집 (매일 06:40 자동)">지금 수집</button></div>
+      <div class="proj-chips">${chips}</div>
+      ${na.length ? `
+        <div class="mail-group-head na">회신·작업 필요 <span class="cnt">${na.length}</span></div>
+        <div class="em-list">${na.map((e) => emailRowHtml(e, showProj)).join("")}</div>` : ""}
+      <div class="mail-group-head">${na.length ? "나머지" : "수집된 이메일"}</div>
+      <div class="em-list">${rest.length
+        ? rest.map((e) => emailRowHtml(e, showProj)).join("")
+        : `<div class="ws-empty">이메일 없음${emails.length ? "" : " — '지금 수집'을 누르거나 매일 06:40 자동 수집을 기다리세요"}</div>`}</div>
+    </div>`;
+
+  doc.querySelectorAll("[data-mf]").forEach((c) => {
+    c.onclick = () => { state.mailFilter = c.dataset.mf; loadMailTab(); };
+  });
+  $("mail-refresh").onclick = async () => {
+    try {
+      const res = await postJson("/api/run/morning_refresh", {});
+      startedToast(res, "이메일·미팅 수집");
+    } catch (e) { toast(`실패: ${e.body?.message || e.message}`, "err"); }
+  };
 }
 
 /* ---------------------------------------------------------------- workspace shell */
@@ -1135,7 +1344,7 @@ async function loadWorkOverview(box) {
     if (!prompt) { toast("요청 내용을 입력하세요", "warn"); return; }
     try {
       const res = await postJson(`/api/projects/${encodeURIComponent(name)}/request`, { prompt });
-      toast(`엔진 시작됨 — ${name} · AI 요청 탭에서 로그 확인`, "ok");
+      startedToast(res, `엔진 요청 — ${name}`);
       inp.value = "";
       state.workSub = "ai";
       state.aiJobId = res.job_id;
@@ -1144,8 +1353,7 @@ async function loadWorkOverview(box) {
       loadWork();
       schedulePoll(0);
     } catch (e) {
-      if (e.status === 409) toast(e.body?.message || "이미 실행 중인 Claude 작업과 충돌", "warn");
-      else toast(`실행 실패: ${e.body?.message || e.message}`, "err");
+      toast(`실행 실패: ${e.body?.message || e.message}`, "err");
     }
   };
   $("ov-ask-run").onclick = ovAsk;
@@ -1239,37 +1447,26 @@ async function loadWorkEmails(box) {
   try { p = await api(`/api/projects/${encodeURIComponent(name)}/emails`); }
   catch (e) { box.innerHTML = failHtml(e); return; }
 
-  const rows = p.emails.length ? p.emails.map((e) => {
-    const link = e.thread_id
-      ? `https://mail.google.com/mail/u/0/#all/${encodeURIComponent(e.thread_id)}` : "";
-    const subj = link
-      ? `<a class="em-subject" href="${escapeHtml(link)}" target="_blank" rel="noopener">${escapeHtml(e.subject || "(제목 없음)")}</a>`
-      : `<span class="em-subject">${escapeHtml(e.subject || "(제목 없음)")}</span>`;
-    return `<div class="em-row">
-      <div class="em-line">
-        <span class="em-date">${escapeHtml(e.date || "")}</span>
-        ${e.needs_action ? `<span class="pill failed">액션</span>` : ""}
-        ${subj}
-        <span class="em-from">${escapeHtml(e.from || "")}</span>
-      </div>
-      ${e.summary ? `<div class="em-summary">${escapeHtml(e.summary)}</div>` : ""}
-    </div>`;
-  }).join("") : `<div class="ws-empty">수집된 이메일 없음 — '지금 수집'을 누르거나 매일 아침 06:40 자동 수집을 기다리세요</div>`;
+  const rows = p.emails.length
+    ? p.emails.map((e) => emailRowHtml(e, false)).join("")
+    : `<div class="ws-empty">수집된 이메일 없음 — '지금 수집'을 누르거나 매일 아침 06:40 자동 수집을 기다리세요</div>`;
 
   const upd = p.updated ? `마지막 수집 ${fmtDate(p.updated)}` : "아직 수집 안 됨";
+  const health = p.last_status === "error"
+    ? `<span class="mail-err">⚠ 마지막 수집 실패${p.last_error ? ` — ${escapeHtml(p.last_error)}` : ""}</span>` : "";
 
   box.innerHTML = `
     <div class="ws-section">
       <div class="ws-head"><span class="ws-title">이메일 — ${escapeHtml(name)}</span>
-        <span class="em-updated">${escapeHtml(upd)}</span><span class="spacer"></span>
+        <span class="em-updated">${escapeHtml(upd)}</span>${health}<span class="spacer"></span>
         <button class="ws-open-btn" id="em-refresh">지금 수집</button></div>
       <div class="em-list">${rows}</div>
     </div>`;
 
   $("em-refresh").onclick = async () => {
     try {
-      await postJson("/api/run/morning_refresh", {});
-      toast("아침 리프레시 시작 — 엔진 탭에서 로그 확인", "ok");
+      const res = await postJson("/api/run/morning_refresh", {});
+      startedToast(res, "이메일·미팅 수집");
     } catch (e) { toast(`실패: ${e.body?.message || e.message}`, "err"); }
   };
 }
@@ -2077,7 +2274,7 @@ async function loadWorkAccounts(box) {
       "절대 규칙: 실제 비밀번호/토큰은 어떤 경우에도 기록 금지 — pw_hint에는 비번이 있을 만한 위치만 적어.";
     try {
       const res = await postJson(`/api/projects/${encodeURIComponent(name)}/request`, { prompt });
-      toast("AI 수집 시작 — AI 요청 탭에서 로그 확인", "ok");
+      startedToast(res, "AI 계정 수집");
       state.workSub = "ai";
       state.aiJobId = res.job_id;
       state.aiOffset = 0;
@@ -2085,8 +2282,7 @@ async function loadWorkAccounts(box) {
       loadWork();
       schedulePoll(0);
     } catch (e) {
-      if (e.status === 409) toast(e.body.message || "이미 실행 중인 Claude 작업과 충돌", "warn");
-      else toast(`실행 실패: ${e.body?.message || e.message}`, "err");
+      toast(`실행 실패: ${e.body?.message || e.message}`, "err");
     }
   };
 }
@@ -2148,14 +2344,13 @@ async function loadWorkAi(box) {
     if (!prompt) { toast("요청 내용을 입력하세요", "warn"); return; }
     try {
       const res = await postJson(`/api/projects/${encodeURIComponent(name)}/request`, { prompt });
-      toast(`AI 요청 시작됨 — ${name}`, "ok");
+      startedToast(res, `AI 요청 — ${name}`);
       ta.value = "";
       $("ai-count").textContent = "0 / 2000";
       startAiJobView(res.job_id);
       schedulePoll(0);
     } catch (e) {
-      if (e.status === 409) toast(e.body.message || "이미 실행 중인 Claude 작업과 충돌", "warn");
-      else toast(`실행 실패: ${e.body?.message || e.message}`, "err");
+      toast(`실행 실패: ${e.body?.message || e.message}`, "err");
     }
   };
 
@@ -2305,6 +2500,11 @@ async function poll() {
             // 홈만 자동 새로고침 — 워크스페이스는 입력/편집 클로버 방지 위해 플래시만
             if (tab === "home" && state.activeTab === "home" && !state.editorDirty) loadTab();
           }
+          // 이메일·프로젝트 수집 완료 → 이메일/홈 탭 자동 갱신
+          if (j.refresh === "projects") {
+            flashTab("mail");
+            if ((state.activeTab === "mail" || state.activeTab === "home") && !state.editorDirty) loadTab();
+          }
         }
       }
       state.jobStatusCache[j.id] = j.status;
@@ -2314,6 +2514,7 @@ async function poll() {
     renderJobs();
     renderActions();
     renderSchedule();
+    renderTray();
 
     // auto-select most recent job if none selected
     if (!state.selectedJob && jobs.length) state.selectedJob = jobs[0].id;
@@ -2538,11 +2739,11 @@ async function submitAsk() {
   try {
     const res = await postJson("/api/ask", { q });
     input.value = "";
+    if (res.queued) toast("질문이 대기열에 등록됨 — 자리 나면 자동 시작", "warn");
     openAskDrawer(q, res.job_id);
     schedulePoll(0);
   } catch (e) {
-    if (e.status === 409) toast(e.body?.message || "이미 실행 중인 Claude 작업과 충돌", "warn");
-    else toast(`질문 실패: ${e.body?.message || e.message}`, "err");
+    toast(`질문 실패: ${e.body?.message || e.message}`, "err");
   }
 }
 

@@ -2340,6 +2340,7 @@ TASKS["upload_classify"] = {
     "label_ko": "업로드 분류",
     "category": "AI",
     "groups": {"claude"},
+    "claude": True,
     "timeout": CLAUDE_TIMEOUT,
     "heartbeat": True,
     "internal": True,   # started only via /api/upload(s)
@@ -2518,9 +2519,12 @@ def api_upload_reclassify(bid):
 # and stored in state/emails.json (same safety pattern as upload_classify).
 
 EMAILS_FILE = STATE_DIR / "emails.json"
+EMAIL_SEEN_FILE = STATE_DIR / "email_actions_seen.json"
 EMAILS_LOCK = threading.Lock()
 EMAILS_MAX = 200
 EMAILS_PER_PROJECT = 15
+EMAIL_SEEN_MAX = 1000
+THREAD_ID_RE = re.compile(r"^[\w.:\-]{1,60}$")
 
 
 def _morning_refresh_prompt(p):
@@ -2538,25 +2542,96 @@ def _morning_refresh_prompt(p):
         f"- 프로젝트는 이 실제 폴더명 중에서만: {', '.join(projects)}. "
         "어느 프로젝트인지 불명확하면 00-Inbox/에 생성하세요.\n\n"
         "[2] Gmail 이메일 수집 (파일 생성 금지 — 서버가 저장합니다)\n"
-        "- 각 프로젝트의 01-Projects/<프로젝트>/CLAUDE.md와 _STAKEHOLDERS.md를 "
-        "읽고 관련 인물/조직/키워드를 파악하세요.\n"
-        "- claude_ai_Gmail MCP(search_threads)로 최근 14일 프로젝트 관련 "
-        "스레드를 검색하세요 (발신자·키워드 조합, newer_than:14d).\n"
+        f"- 반드시 모든 프로젝트를 검색하세요 (하나도 건너뛰지 말 것): {', '.join(projects)}\n"
+        "- 검색 컨텍스트 파악 (프로젝트별):\n"
+        "  1순위: 01-Projects/<프로젝트>/CLAUDE.md (특히 'Email Search Keywords' 섹션)와 "
+        "_STAKEHOLDERS.md에서 인물/이메일 도메인/키워드.\n"
+        "  파일이 없으면: _STATUS.md, 02-Meetings/ 최근 노트 1-2개에서 인물·조직명을 뽑고, "
+        "그것도 없으면 프로젝트 폴더명 자체를 키워드로 사용하세요. "
+        "컨텍스트가 부족하다는 이유로 프로젝트를 건너뛰는 것은 금지입니다.\n"
+        "- claude_ai_Gmail MCP(search_threads)로 최근 14일 스레드를 검색하세요 "
+        "(발신자 도메인·키워드 조합, newer_than:14d). 한 번의 검색으로 결과가 없으면 "
+        "다른 키워드 조합으로 1-2회 더 시도하세요.\n"
         f"- 프로젝트당 최대 {EMAILS_PER_PROJECT}개, 관련 없는 뉴스레터/알림은 제외.\n"
-        "- needs_action: 하림의 회신/작업이 필요해 보이면 true.\n\n"
-        "답변 마지막에 코드펜스 없이 JSON 객체 하나만 출력하세요:\n"
+        "- needs_action: 하림의 회신/작업이 필요해 보이면 true.\n"
+        "- suggested_action: needs_action이 true일 때만, 하림이 해야 할 일을 "
+        "한 줄로 (예: '샤오에게 Moodle 접속 계정 회신').\n\n"
+        "답변 마지막에 코드펜스 없이 JSON 객체 하나만 출력하세요. "
+        "searched에는 실제로 검색한 프로젝트명을 전부 나열하세요 (결과 0건이어도 포함):\n"
         '{"emails":[{"project":"프로젝트명","subject":"제목","from":"보낸사람",'
         '"date":"YYYY-MM-DD","thread_id":"Gmail 스레드 ID","summary":"한 줄 요약",'
-        '"needs_action":true}]}\n'
+        '"needs_action":true,"suggested_action":"할 일 한 줄"}],'
+        '"searched":["프로젝트명1","프로젝트명2"]}\n'
     )
 
 
+def _emails_record_failure(error):
+    """Record a failed collection attempt without touching stored emails."""
+    with EMAILS_LOCK:
+        data = _read_json(EMAILS_FILE, {"updated": None, "emails": []})
+        if not isinstance(data, dict):
+            data = {"updated": None, "emails": []}
+        data["last_status"] = "error"
+        data["last_error"] = _clean_item_text(error, 300)
+        data["last_attempt"] = time.time()
+        _write_json(EMAILS_FILE, data)
+
+
+def _emails_create_actions(emails):
+    """Auto-create action items from needs_action emails.
+
+    Dedup across runs via a seen-thread_id registry so re-collecting the
+    same threads never duplicates board items. Returns count created."""
+    with EMAILS_LOCK:
+        raw = _read_json(EMAIL_SEEN_FILE, [])
+        seen = set(raw) if isinstance(raw, list) else set()
+    by_proj = {}
+    for e in emails:
+        tid = e.get("thread_id", "")
+        if not e.get("needs_action") or not THREAD_ID_RE.match(tid) or tid in seen:
+            continue
+        by_proj.setdefault(e["project"], []).append(e)
+    created = 0
+    today = time.strftime("%Y-%m-%d")
+    with ITEMS_LOCK:
+        for proj_name, group in by_proj.items():
+            proj = PROJECTS_DIR / proj_name
+            items = _load_items(proj)
+            for e in group:
+                items.append({
+                    "id": uuid.uuid4().hex[:8],
+                    "title": _clean_item_text("[이메일] " + (e.get("subject") or "제목 없음"), 300),
+                    "detail": e.get("suggested_action") or e.get("summary", ""),
+                    "status": "open",
+                    "priority": "med",
+                    "due": "",
+                    "people": [e["from"]] if e.get("from") else [],
+                    "sources": [{
+                        "kind": "gmail",
+                        "label": e.get("subject") or "Gmail 스레드",
+                        "url": f"https://mail.google.com/mail/u/0/#all/{e['thread_id']}",
+                    }],
+                    "note": "",
+                    "created": today,
+                    "updated": today,
+                })
+                seen.add(e["thread_id"])
+                created += 1
+            _write_json(_items_file(proj), items)
+    with EMAILS_LOCK:
+        _write_json(EMAIL_SEEN_FILE, sorted(seen)[-EMAIL_SEEN_MAX:])
+    return created
+
+
 def _morning_refresh_finalize(job, params):
-    """Post-job hook: parse the email manifest and store it server-side."""
+    """Post-job hook: parse the email manifest, store it server-side,
+    keep per-project stats (incl. 0 counts), and auto-create action items
+    from needs_action emails."""
     with LOCK:
         status = job["status"]
         text = "\n".join(job["log"])
     if status != "success":
+        _emails_record_failure(f"작업 실패 (상태: {status})")
         return
     idx = text.rfind('{"emails"')
     manifest = None
@@ -2566,6 +2641,7 @@ def _morning_refresh_finalize(job, params):
         except ValueError:
             manifest = None
     if not isinstance(manifest, dict) or not isinstance(manifest.get("emails"), list):
+        _emails_record_failure("이메일 manifest 파싱 실패")
         with LOCK:
             _append_log(job, "[시스템] 이메일 manifest 파싱 실패 — emails.json 갱신 안 됨")
         return
@@ -2585,17 +2661,40 @@ def _morning_refresh_finalize(job, params):
             "thread_id": _clean_item_text(e.get("thread_id", ""), 60),
             "summary": _clean_item_text(e.get("summary", ""), 300),
             "needs_action": bool(e.get("needs_action")),
+            "suggested_action": _clean_item_text(e.get("suggested_action", ""), 200),
         })
+    searched_raw = manifest.get("searched")
+    searched = [p for p in searched_raw if p in projects] if isinstance(searched_raw, list) else []
+    stats = {p: 0 for p in (searched or sorted(projects))}
+    for e in emails:
+        stats[e["project"]] = stats.get(e["project"], 0) + 1
+    missed = sorted(projects - set(searched)) if searched else []
+    created = _emails_create_actions(emails)
+    now = time.time()
     with EMAILS_LOCK:
-        _write_json(EMAILS_FILE, {"updated": time.time(), "emails": emails})
+        _write_json(EMAILS_FILE, {
+            "updated": now,
+            "emails": emails,
+            "stats": stats,
+            "searched": searched or sorted(projects),
+            "missed": missed,
+            "last_status": "ok",
+            "last_error": None,
+            "last_attempt": now,
+        })
     with LOCK:
         _append_log(job, f"[시스템] 이메일 {len(emails)}건 저장 → state/emails.json")
+        if created:
+            _append_log(job, f"[시스템] needs_action 이메일 → 액션 아이템 {created}건 자동 생성")
+        if missed:
+            _append_log(job, f"[시스템] ⚠️ 검색 누락 프로젝트: {', '.join(missed)}")
 
 
 TASKS["morning_refresh"] = {
     "label_ko": "아침 리프레시",
     "category": "동기화",
     "groups": {"claude"},
+    "claude": True,
     "timeout": 900,          # meetings + per-project Gmail searches
     "heartbeat": True,
     "refresh": "projects",
@@ -2605,6 +2704,25 @@ TASKS["morning_refresh"] = {
 }
 
 
+@app.get("/api/emails")
+def api_emails():
+    """Unified email view: all projects + collection stats/health."""
+    with EMAILS_LOCK:
+        data = _read_json(EMAILS_FILE, {"updated": None, "emails": []})
+    if not isinstance(data, dict):
+        data = {"updated": None, "emails": []}
+    return jsonify(
+        updated=data.get("updated"),
+        emails=data.get("emails", []),
+        stats=data.get("stats", {}),
+        searched=data.get("searched", []),
+        missed=data.get("missed", []),
+        last_status=data.get("last_status"),
+        last_error=data.get("last_error"),
+        last_attempt=data.get("last_attempt"),
+    )
+
+
 @app.get("/api/projects/<name>/emails")
 def api_project_emails(name):
     if name not in _project_names():
@@ -2612,7 +2730,12 @@ def api_project_emails(name):
     with EMAILS_LOCK:
         data = _read_json(EMAILS_FILE, {"updated": None, "emails": []})
     emails = [e for e in data.get("emails", []) if e.get("project") == name]
-    return jsonify(updated=data.get("updated"), emails=emails)
+    return jsonify(
+        updated=data.get("updated"),
+        emails=emails,
+        last_status=data.get("last_status"),
+        last_error=data.get("last_error"),
+    )
 
 
 # ---------------------------------------------------------------- calendar

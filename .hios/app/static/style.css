@@ -623,6 +623,7 @@ body::after{
 .pill.failed{color:var(--danger);background:var(--danger-glow);border:1px solid #ef444444}
 .pill.running,.pill.pending{color:var(--auto);background:var(--auto-glow);border:1px solid #f59e0b44}
 .pill.cancelled,.pill.timeout{color:var(--text2);background:var(--surface3);border:1px solid var(--border)}
+.pill.queued{color:var(--text2);background:var(--surface3);border:1px dashed var(--text3)}
 
 .pill.running::before{
   content:'●';
@@ -2330,4 +2331,206 @@ a.em-subject:hover{
   font-family:var(--mono);
   font-size:10.5px;
   color:var(--text3);
+}
+
+/* ---------------------------------------------------------------- request tray (topbar) */
+
+.tray{position:relative}
+
+.tray-btn{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  font-family:var(--mono);
+  font-size:11px;
+  color:var(--text2);
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:99px;
+  padding:5px 12px;
+  cursor:pointer;
+}
+
+.tray-btn:hover{color:var(--text);border-color:var(--text3)}
+
+.tray-btn.busy{
+  color:var(--auto);
+  border-color:#f59e0b66;
+  background:var(--auto-glow);
+}
+
+.tray-cnt{
+  font-weight:700;
+  font-size:10px;
+  border-radius:99px;
+  padding:0 6px;
+  background:var(--surface3);
+  border:1px solid var(--border);
+}
+
+.tray-btn.busy .tray-cnt{background:transparent;border-color:#f59e0b66}
+
+.tray-panel{
+  position:absolute;
+  top:calc(100% + 8px);
+  right:0;
+  z-index:60;
+  width:380px;
+  max-height:420px;
+  overflow-y:auto;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:12px;
+  box-shadow:0 12px 32px rgba(0,0,0,.18);
+  padding:8px;
+}
+
+.tray-row{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:7px 8px;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+.tray-row:hover{background:var(--surface3)}
+
+.tray-name{
+  flex:1;
+  font-size:12px;
+  color:var(--text);
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.tray-time{
+  font-family:var(--mono);
+  font-size:10px;
+  color:var(--text3);
+  flex-shrink:0;
+}
+
+/* ---------------------------------------------------------------- unified mail tab */
+
+.em-proj{
+  font-family:var(--mono);
+  font-size:10px;
+  color:var(--text2);
+  background:var(--surface3);
+  border:1px solid var(--border);
+  border-radius:6px;
+  padding:1px 7px;
+  flex-shrink:0;
+}
+
+.em-suggest{
+  font-size:12px;
+  color:var(--auto);
+  margin-top:3px;
+}
+
+.mail-err{
+  font-size:11.5px;
+  color:var(--danger);
+}
+
+.mail-group-head{
+  font-family:var(--mono);
+  font-size:10.5px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--text3);
+  margin:16px 0 4px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.mail-group-head.na{color:var(--danger)}
+
+.mail-group-head .cnt{
+  font-size:10px;
+  border-radius:99px;
+  padding:0 7px;
+  background:var(--danger-glow);
+  border:1px solid #ef444444;
+}
+
+/* ---------------------------------------------------------------- home cockpit */
+
+.home-strip{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:10px 16px;
+  margin-bottom:14px;
+}
+
+.home-strip .hs-title{
+  font-family:var(--mono);
+  font-size:10.5px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--text3);
+}
+
+.hs-chips{
+  display:flex;
+  gap:6px;
+  flex-wrap:wrap;
+}
+
+.pc-stat.zero{opacity:.45}
+
+.ws-open-btn.hot{
+  color:var(--danger);
+  border-color:#ef444466;
+  background:var(--danger-glow);
+}
+
+.stale-list{display:flex;flex-direction:column}
+
+.stale-row{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:7px 4px;
+  border-bottom:1px solid var(--border);
+  cursor:pointer;
+}
+
+.stale-row:last-child{border-bottom:none}
+.stale-row:hover{background:var(--surface3)}
+
+.stale-days{
+  font-family:var(--mono);
+  font-size:10px;
+  font-weight:700;
+  color:var(--auto);
+  background:var(--auto-glow);
+  border:1px solid #f59e0b44;
+  border-radius:99px;
+  padding:2px 8px;
+  flex-shrink:0;
+}
+
+.stale-proj{
+  font-family:var(--mono);
+  font-size:10.5px;
+  color:var(--text3);
+  flex-shrink:0;
+}
+
+.stale-title{
+  font-size:12.5px;
+  color:var(--text);
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
 }
