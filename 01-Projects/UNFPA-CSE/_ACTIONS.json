@@ -135,5 +135,26 @@
     "note": "",
     "created": "2026-07-15",
     "updated": "2026-07-15"
+  },
+  {
+    "id": "d838338e",
+    "title": "[이메일] Fwd: Data and Knowledge CSC – Access & initial questions",
+    "detail": "Wafa 회신 내용 확인 후 리포팅 플랫폼(7/31 마감) 작업 착수",
+    "status": "open",
+    "priority": "med",
+    "due": "",
+    "people": [
+      "dhaouadi@unfpa.org (via hajung@unfpa.org)"
+    ],
+    "sources": [
+      {
+        "kind": "gmail",
+        "label": "Fwd: Data and Knowledge CSC – Access & initial questions",
+        "url": "https://mail.google.com/mail/u/0/#all/19f4c4bad6319b93"
+      }
+    ],
+    "note": "",
+    "created": "2026-07-18",
+    "updated": "2026-07-18"
   }
 ]

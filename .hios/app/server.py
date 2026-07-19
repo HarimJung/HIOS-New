@@ -2532,12 +2532,12 @@ def _morning_refresh_prompt(p):
     return (
         "아침 리프레시 작업입니다. 아래 두 작업을 순서대로 수행하세요. "
         "Headless mode — 질문하지 말고 바로 실행하세요.\n\n"
-        "[1] Granola 회의 동기화\n"
-        "- granola MCP(list_meetings)로 최근 7일 회의를 조회하세요.\n"
-        "- 각 회의가 이미 볼트에 있는지 Glob으로 확인하세요 "
-        "(01-Projects/*/02-Meetings/YYYY-MM-DD-*.md 및 00-Inbox/).\n"
-        "- 없으면 get_meetings(또는 get_meeting_transcript)로 내용을 받아 "
-        "노트를 생성하세요: 파일명 YYYY-MM-DD-<client>-<topic>.md, YAML "
+        "[1] Granola 회의 동기화 (도구가 있을 때만)\n"
+        "- granola MCP 도구가 이 세션에 없으면 [1]은 조용히 건너뛰고 바로 [2]로 "
+        "가세요 (별도 스크립트가 2시간마다 회의를 동기화하므로 문제 아님).\n"
+        "- 도구가 있으면: list_meetings로 최근 7일 회의 조회 → 이미 볼트에 있는지 "
+        "Glob으로 확인 (01-Projects/*/02-Meetings/YYYY-MM-DD-*.md 및 00-Inbox/) → "
+        "없으면 노트 생성: 파일명 YYYY-MM-DD-<client>-<topic>.md, YAML "
         "front-matter(tags, client, status, due, priority) + 요약/결정사항/액션.\n"
         f"- 프로젝트는 이 실제 폴더명 중에서만: {', '.join(projects)}. "
         "어느 프로젝트인지 불명확하면 00-Inbox/에 생성하세요.\n\n"
@@ -2682,10 +2682,24 @@ def _morning_refresh_finalize(job, params):
             "last_error": None,
             "last_attempt": now,
         })
+    # distribution stage: enqueue one scoped update job per affected project.
+    per_proj = {}
+    for e in emails:
+        per_proj.setdefault(e["project"], []).append(e)
+    dispatched = 0
+    for pname in sorted(per_proj):
+        _, err = _start_job("project_update",
+                            {"project": pname, "emails": per_proj[pname]},
+                            label=f"상태 반영 — {pname}")
+        if err is None:
+            dispatched += 1
     with LOCK:
         _append_log(job, f"[시스템] 이메일 {len(emails)}건 저장 → state/emails.json")
         if created:
             _append_log(job, f"[시스템] needs_action 이메일 → 액션 아이템 {created}건 자동 생성")
+        if dispatched:
+            _append_log(job, f"[시스템] 프로젝트 상태 반영 작업 {dispatched}건 대기열 등록 "
+                             f"({', '.join(sorted(per_proj))})")
         if missed:
             _append_log(job, f"[시스템] ⚠️ 검색 누락 프로젝트: {', '.join(missed)}")
 
@@ -2701,6 +2715,52 @@ TASKS["morning_refresh"] = {
     "argv": lambda p: _claude_argv_refresh(),
     "stdin": _morning_refresh_prompt,
     "finalize": _morning_refresh_finalize,
+}
+
+
+# -------- distribution stage: collected emails/meetings → project files.
+# After a successful collection, one scoped job per affected project updates
+# _STATUS.md/_TODO.md. Per-project groups → up to 3 run in parallel.
+
+def _project_update_prompt(p):
+    name = p.get("project", "")
+    lines = "\n".join(
+        f"- [{e.get('date', '')}] {e.get('from', '')} — {e.get('subject', '')}: "
+        f"{e.get('summary', '')}"
+        + (f" (⚡ 액션: {e.get('suggested_action', '') or '회신 필요'})"
+           if e.get("needs_action") else "")
+        for e in p.get("emails", [])
+    )
+    return (
+        f"프로젝트 자동 상태 반영 작업입니다. 대상: 01-Projects/{name}/\n"
+        "Headless mode — 질문하지 말고 바로 실행하세요. "
+        "이 프로젝트 폴더 범위에서만 읽고 쓰세요.\n\n"
+        f"[오늘 수집된 이메일]\n{lines or '- 없음'}\n\n"
+        "수행할 일:\n"
+        f"1. 01-Projects/{name}/_STATUS.md 를 읽으세요 (없으면 front-matter 포함해 새로 만드세요). "
+        "위 이메일, 미팅 노트 폴더(02-Meetings/ 또는 07-Meetings/ 등 이름이 다를 수 있음)의 "
+        "최근 7일 노트, _ACTIONS.json 의 열린 항목을 반영해 "
+        "'## 최근 동향' 섹션(없으면 만들기)을 날짜별 bullet 로 갱신하세요. "
+        "front-matter 와 기존 섹션은 보존하고, 이미 반영된 내용은 중복 추가하지 마세요. "
+        "구식이 된 문장은 고치세요.\n"
+        f"2. 01-Projects/{name}/_TODO.md 에 위 이메일에서 나온 새 할 일이 있고 "
+        "아직 목록에 없으면 추가하세요 (중복 금지, 완료 표시된 항목 건드리지 말 것).\n"
+        "3. 파일 삭제/이동 금지. _ACTIONS.json 은 서버가 관리하므로 수정 금지.\n\n"
+        "마지막에 무엇을 바꿨는지 2-3줄로 요약 출력하세요.\n"
+    )
+
+
+TASKS["project_update"] = {
+    "label_ko": "프로젝트 상태 반영",
+    "category": "동기화",
+    "groups": _project_groups,
+    "claude": True,
+    "timeout": CLAUDE_TIMEOUT,
+    "heartbeat": True,
+    "internal": True,   # chained automatically after morning_refresh
+    "refresh": "projects",
+    "argv": lambda p: _claude_argv_scoped(),
+    "stdin": _project_update_prompt,
 }
 
 

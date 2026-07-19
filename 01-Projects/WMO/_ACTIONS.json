@@ -129,5 +129,26 @@
     "note": "",
     "created": "2026-07-15",
     "updated": "2026-07-16"
+  },
+  {
+    "id": "47b35bb0",
+    "title": "[이메일] FW: Fwd: RE: Review request_BCM self-paced online training module",
+    "detail": "Zhang Di 피드백 반영(PDF 템플릿 등) 완료 후 샤오에게 업데이트 회신",
+    "status": "open",
+    "priority": "med",
+    "due": "",
+    "people": [
+      "xzhou@wmo.int"
+    ],
+    "sources": [
+      {
+        "kind": "gmail",
+        "label": "FW: Fwd: RE: Review request_BCM self-paced online training module",
+        "url": "https://mail.google.com/mail/u/0/#all/19f288ec626d6d2b"
+      }
+    ],
+    "note": "",
+    "created": "2026-07-18",
+    "updated": "2026-07-18"
   }
 ]

@@ -8,7 +8,11 @@
     "due": "2026-07-25",
     "people": [],
     "sources": [
-      {"kind": "gmail", "label": "Corporations Canada 안내 (7/15)", "url": "https://mail.google.com/mail/u/0/#all/19f64b5317e475a3"}
+      {
+        "kind": "gmail",
+        "label": "Corporations Canada 안내 (7/15)",
+        "url": "https://mail.google.com/mail/u/0/#all/19f64b5317e475a3"
+      }
     ],
     "note": "",
     "created": "2026-07-15",
@@ -23,7 +27,11 @@
     "due": "2026-07-22",
     "people": [],
     "sources": [
-      {"kind": "gmail", "label": "제안서 발송 메일 (7/15)", "url": "https://mail.google.com/mail/u/0/#all/19f63e19c7b437d0"}
+      {
+        "kind": "gmail",
+        "label": "제안서 발송 메일 (7/15)",
+        "url": "https://mail.google.com/mail/u/0/#all/19f63e19c7b437d0"
+      }
     ],
     "note": "",
     "created": "2026-07-15",
@@ -49,12 +57,60 @@
     "status": "open",
     "priority": "low",
     "due": "",
-    "people": ["Nicole Mantle"],
+    "people": [
+      "Nicole Mantle"
+    ],
     "sources": [
-      {"kind": "gmail", "label": "Nicole 안내 메일 (7/5)", "url": "https://mail.google.com/mail/u/0/#all/19f340cfeea2ef66"}
+      {
+        "kind": "gmail",
+        "label": "Nicole 안내 메일 (7/5)",
+        "url": "https://mail.google.com/mail/u/0/#all/19f340cfeea2ef66"
+      }
     ],
     "note": "",
     "created": "2026-07-15",
     "updated": "2026-07-15"
+  },
+  {
+    "id": "27d4a078",
+    "title": "[이메일] COP 31 Canada pavilion 된다 무조건된다",
+    "detail": "COP31 Canada pavilion Interest Form 제출 (canada.ca 폼 + Google Form)",
+    "status": "open",
+    "priority": "med",
+    "due": "",
+    "people": [
+      "data.harim.jung@gmail.com"
+    ],
+    "sources": [
+      {
+        "kind": "gmail",
+        "label": "COP 31 Canada pavilion 된다 무조건된다",
+        "url": "https://mail.google.com/mail/u/0/#all/19f6e2891ce3fca7"
+      }
+    ],
+    "note": "",
+    "created": "2026-07-18",
+    "updated": "2026-07-18"
+  },
+  {
+    "id": "5dba6a63",
+    "title": "[이메일] Re: Invoice Harim Jung_Visual Climate Inc.",
+    "detail": "향후 ONX 인보이스를 onxaccountspayable.canada@onx.com에도 동시 발송",
+    "status": "open",
+    "priority": "med",
+    "due": "",
+    "people": [
+      "nicole.mantle@onx.com"
+    ],
+    "sources": [
+      {
+        "kind": "gmail",
+        "label": "Re: Invoice Harim Jung_Visual Climate Inc.",
+        "url": "https://mail.google.com/mail/u/0/#all/19f340cfeea2ef66"
+      }
+    ],
+    "note": "",
+    "created": "2026-07-18",
+    "updated": "2026-07-18"
   }
 ]

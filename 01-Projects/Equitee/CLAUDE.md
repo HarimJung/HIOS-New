@@ -18,6 +18,12 @@ Status: **Active** — dashboard migration and reporting work in progress.
 - Data sources: CGI, Dash (more reliable dates), IB status data (pending via Julia),
   Aurora DB (longer-term direct access)
 
+## Email Search Keywords
+Gmail queries for automated collection (client mail comes from **@equiteco.ca**):
+- `from:equiteco.ca`
+- `Equite OR Equitee OR "Équité"`
+- `"fraud dashboard" OR "Power BI" OR Shift OR "auto theft"`
+
 ## Key Contacts (roles TBC)
 - Julia — data access requests (IB status), scoring model follow-ups
 - Ivan — security review
