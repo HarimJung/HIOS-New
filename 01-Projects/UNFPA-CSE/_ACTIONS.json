@@ -156,5 +156,26 @@
     "note": "",
     "created": "2026-07-18",
     "updated": "2026-07-18"
+  },
+  {
+    "id": "2e768632",
+    "title": "[이메일] Fwd: inquiries about google suite and KM tools",
+    "detail": "Wafa의 Google Suite/KM 도구 문의 내용 검토 후 회신",
+    "status": "open",
+    "priority": "med",
+    "due": "",
+    "people": [
+      "Wafa Dhaouadi (via hajung@unfpa.org)"
+    ],
+    "sources": [
+      {
+        "kind": "gmail",
+        "label": "Fwd: inquiries about google suite and KM tools",
+        "url": "https://mail.google.com/mail/u/0/#all/19f6841a0071b72c"
+      }
+    ],
+    "note": "",
+    "created": "2026-07-18",
+    "updated": "2026-07-18"
   }
 ]

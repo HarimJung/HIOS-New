@@ -1,25 +1,25 @@
 {
-  "updated": 1784424894.10307,
+  "updated": 1784425497.7191732,
   "emails": [
     {
       "project": "UNFPA-CSE",
-      "subject": "Fwd: Data and Knowledge CSC – Access & initial questions",
-      "from": "dhaouadi@unfpa.org (via hajung@unfpa.org)",
+      "subject": "Fwd: inquiries about google suite and KM tools",
+      "from": "Wafa Dhaouadi (via hajung@unfpa.org)",
       "date": "2026-07-16",
-      "thread_id": "19f4c4bad6319b93",
-      "summary": "액세스 요청(CSC 매핑 문서, 리포팅 플랫폼, Google Script 코드)에 대한 Wafa의 회신 도착",
+      "thread_id": "19f6841a0071b72c",
+      "summary": "Wafa가 Google Suite 및 KM 도구 관련 문의를 전달함",
       "needs_action": true,
-      "suggested_action": "Wafa 회신 내용 확인 후 리포팅 플랫폼(7/31 마감) 작업 착수"
+      "suggested_action": "Wafa의 Google Suite/KM 도구 문의 내용 검토 후 회신"
     },
     {
       "project": "UNFPA-CSE",
-      "subject": "Fwd: inquiries about google suite and KM tools",
-      "from": "hajung@unfpa.org",
+      "subject": "Data and Knowledge CSC – Access & initial questions",
+      "from": "dhaouadi@unfpa.org",
       "date": "2026-07-16",
-      "thread_id": "19f6841a0071b72c",
-      "summary": "Wafa의 Google Suite/KM 도구 문의 메일을 Harim이 참고용으로 포워드",
-      "needs_action": false,
-      "suggested_action": ""
+      "thread_id": "19f4c4bad6319b93",
+      "summary": "접근권한 요청(매핑 문서, 리포팅 플랫폼, 베이스라인)에 대한 Wafa의 회신 도착",
+      "needs_action": true,
+      "suggested_action": "Wafa 회신 확인 후 미해결 접근권한 후속 요청"
     },
     {
       "project": "UNFPA-CSE",
@@ -27,17 +27,17 @@
       "from": "dhaouadi@unfpa.org",
       "date": "2026-07-16",
       "thread_id": "19f5aa5bb9545afc",
-      "summary": "CSE 글로벌 팀 공식 환영 스레드 (Ramz, Sharafdzhon, Ana 등 인사, Harim 회신 완료)",
+      "summary": "CSE 글로벌 팀 공식 환영 스레드, 팀원들 인사 및 하림 답장 완료",
       "needs_action": false,
       "suggested_action": ""
     },
     {
       "project": "UNFPA-CSE",
-      "subject": "Fwd: UNFPA Account For ( Harim Jung)",
+      "subject": "Fwd: UNFPA Account For (Harim Jung)",
       "from": "khamohammed@unfpa.org",
       "date": "2026-07-13",
       "thread_id": "19f5a59d494b2e22",
-      "summary": "UNFPA 계정(hajung@unfpa.org) 생성 완료 및 로그인 안내",
+      "summary": "UNFPA 계정(hajung@unfpa.org) 생성 및 로그인 안내",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -53,41 +53,11 @@
     },
     {
       "project": "UNFPA-CSE",
-      "subject": "Wafa/Harim - Data and knowledge CSE thread",
-      "from": "dhaouadi@unfpa.org",
-      "date": "2026-07-07",
-      "thread_id": "19f3dbb72f286e8b",
-      "summary": "온보딩 미팅 사전 아젠다 (랜딩페이지, 리포팅 플랫폼, 리서치 IT 서버 등)",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "UNFPA-CSE",
       "subject": "Start Date of Contract_07 July 26-09 October 2026",
       "from": "khamohammed@unfpa.org",
       "date": "2026-07-06",
       "thread_id": "19f3762606cfa106",
-      "summary": "계약서/TOR 수령 및 서명본 제출 완료 (계약기간 7/7–10/9)",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "WHO",
-      "subject": "Introduction Meeting",
-      "from": "adairrohanih@who.int",
-      "date": "2026-07-10",
-      "thread_id": "19f4c6faf8abafa9",
-      "summary": "Heather: HR 최종 승인 완료·7/11 시작 확정, 월요일 인트로 콜 합의 (Harim 회신 완료)",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "WHO",
-      "subject": "Introduction to the Work",
-      "from": "adairrohanih@who.int",
-      "date": "2026-07-10",
-      "thread_id": "19f4c6fd2053c9f7",
-      "summary": "통계 작업 소개 콜 초대 (Harim, Salvatore, Wenlu 대상)",
+      "summary": "계약서/TOR 수령 및 서명본 반송 완료 (7/7–10/9 계약)",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -97,9 +67,9 @@
       "from": "xzhou@wmo.int",
       "date": "2026-07-07",
       "thread_id": "19f288ec626d6d2b",
-      "summary": "Zhang Di 리뷰 피드백 2건 전달받아 업데이트 진행 중, 완료 후 회신하기로 약속",
+      "summary": "Zhang Di 피드백 반영 업데이트 진행 중, Xiao가 목요일 동일 시간 미팅 제안",
       "needs_action": true,
-      "suggested_action": "Zhang Di 피드백 반영(PDF 템플릿 등) 완료 후 샤오에게 업데이트 회신"
+      "suggested_action": "샤오에게 목요일 미팅 확정 회신 및 모듈 업데이트 진행상황 공유"
     },
     {
       "project": "WMO",
@@ -107,19 +77,39 @@
       "from": "xzhou@wmo.int",
       "date": "2026-07-06",
       "thread_id": "19f236df1d42eda2",
-      "summary": "추천서 드래프트 전달 완료, Xiao 수령 확인 (well received)",
+      "summary": "레퍼런스 초안 전달 완료, Xiao 수령 확인 — 종결",
+      "needs_action": false,
+      "suggested_action": ""
+    },
+    {
+      "project": "WHO",
+      "subject": "Introduction Meeting",
+      "from": "adairrohanih@who.int",
+      "date": "2026-07-10",
+      "thread_id": "19f4c6faf8abafa9",
+      "summary": "HR 최종 승인 완료·7/11 계약 시작, 월요일 인트로 콜 확정 (하림 회신 완료)",
+      "needs_action": false,
+      "suggested_action": ""
+    },
+    {
+      "project": "WHO",
+      "subject": "Introduction to the Work",
+      "from": "adairrohanih@who.int",
+      "date": "2026-07-10",
+      "thread_id": "19f4c6fd2053c9f7",
+      "summary": "Heather가 Salvatore·Wenlu와 함께하는 통계 업무 소개 콜 초대",
       "needs_action": false,
       "suggested_action": ""
     },
     {
       "project": "Visual-Climate",
       "subject": "COP 31 Canada pavilion 된다 무조건된다",
-      "from": "data.harim.jung@gmail.com",
+      "from": "data.harim.jung@gmail.com (셀프 노트)",
       "date": "2026-07-17",
       "thread_id": "19f6e2891ce3fca7",
-      "summary": "COP31 캐나다 파빌리온 참가 전략 셀프 노트 + Interest Form 링크 2개",
+      "summary": "COP31 Canada pavilion 참가 전략 정리, Interest Form 링크 2개 확보",
       "needs_action": true,
-      "suggested_action": "COP31 Canada pavilion Interest Form 제출 (canada.ca 폼 + Google Form)"
+      "suggested_action": "COP31 Canada pavilion Interest Form 제출 완료"
     },
     {
       "project": "Visual-Climate",
@@ -127,7 +117,7 @@
       "from": "harim.jung@visualclimate.org",
       "date": "2026-07-15",
       "thread_id": "19f63e19c7b437d0",
-      "summary": "Girl Effect HPV 기술 가이드라인 디자인 컨설팅 제안서 + 포트폴리오 제출, 응답 대기 중",
+      "summary": "Girl Effect HPV 가이드라인 디자인 컨설턴시 제안서 발송 — 회신 대기",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -137,29 +127,29 @@
       "from": "nicole.mantle@onx.com",
       "date": "2026-07-05",
       "thread_id": "19f340cfeea2ef66",
-      "summary": "ONX Nicole: 향후 인보이스는 AP 캐나다 메일 주소에도 함께 발송 요청",
+      "summary": "ONX가 향후 인보이스를 ODC와 accounts payable 두 주소로 보내 달라 요청",
       "needs_action": true,
-      "suggested_action": "향후 ONX 인보이스를 onxaccountspayable.canada@onx.com에도 동시 발송"
+      "suggested_action": "향후 인보이스 발송 시 Invoice.ODC@onx.com과 onxaccountspayable.canada@onx.com 모두 포함"
     }
   ],
   "stats": {
-    "UNFPA-CSE": 7,
+    "UNFPA-CSE": 6,
     "Equitee": 0,
-    "WHO": 2,
     "WMO": 2,
+    "WHO": 2,
     "Climate-AICA": 0,
     "Visual-Climate": 3
   },
   "searched": [
     "UNFPA-CSE",
     "Equitee",
-    "WHO",
     "WMO",
+    "WHO",
     "Climate-AICA",
     "Visual-Climate"
   ],
   "missed": [],
   "last_status": "ok",
   "last_error": null,
-  "last_attempt": 1784424894.10307
+  "last_attempt": 1784425497.7191732
 }
