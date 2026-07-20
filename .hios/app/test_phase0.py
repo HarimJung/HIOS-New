@@ -116,7 +116,7 @@ def test_p0_1_limit_rc_zero_trips_breaker_holds_then_resumes_queue(isolated, mon
     usage = json.loads(isolated.USAGE_FILE.read_text(encoding="utf-8"))
     today = usage[time.strftime("%Y-%m-%d")]
     assert (today["ai_jobs"], today["failed"], today["limited_hits"]) == (1, 1, 1)
-    assert today["provider"] == "codex"
+    assert today["provider"] == "claude"
 
     isolated.AI_HEALTH["limited_until"] = time.time() - 1
     isolated._dispatch()
@@ -133,7 +133,7 @@ def test_p0_1_restart_loader_restores_only_unexpired_state(tmp_path):
     path = tmp_path / "health.json"
     path.write_text(json.dumps({
         "limited_until": 2000, "since": 1000, "detected_at": 1100,
-        "provider": "codex",
+        "provider": "claude",
     }), encoding="utf-8")
     assert server._load_ai_health(path, now=1500) == {
         "limited_until": 2000.0, "since": 1000.0, "detected_at": 1100.0,
@@ -143,7 +143,7 @@ def test_p0_1_restart_loader_restores_only_unexpired_state(tmp_path):
     }
     path.write_text(json.dumps({
         "limited_until": 3000, "since": 1000, "detected_at": 1100,
-        "provider": "claude",
+        "provider": "codex",
     }), encoding="utf-8")
     assert server._load_ai_health(path, now=1500) == {
         "limited_until": 0.0, "since": None, "detected_at": None,
@@ -260,7 +260,7 @@ def test_p0_5_connection_health_reports_errors_and_staleness(isolated):
     assert body["granola"]["last_error"] == "Granola 앱 로그인 필요"
     assert body["calendar"]["status"] == "unknown"
     assert body["ai"]["status"] == "ok"
-    assert body["ai"]["provider"] == "codex"
+    assert body["ai"]["provider"] == "claude"
 
 
 def test_refresh_rejects_unconfirmed_gmail_and_preserves_cached_emails(isolated):
@@ -359,20 +359,28 @@ def test_gmail_snapshot_merges_recent_and_wmo_queries_without_duplicates(
                for params in detail_calls)
 
 
-def test_gmail_prompt_embeds_safe_failure_manifest_without_connector_call(
+def test_gmail_snapshot_stdin_embeds_safe_failure_manifest_without_connector_call(
         isolated, monkeypatch):
-    monkeypatch.setattr(isolated, "_project_names", lambda: ["WMO"])
     monkeypatch.setattr(
         isolated, "_gmail_collect_snapshot",
         lambda: (_ for _ in ()).throw(RuntimeError("Gmail token expired")),
     )
 
-    prompt = isolated._morning_refresh_prompt({})
+    stdin_payload = isolated._morning_refresh_snapshot_stdin({})
+    snapshot = json.loads(stdin_payload)
 
-    assert "Gmail/Granola/MCP/앱 커넥터를 호출하지 말고" in prompt
-    assert '"status":"error"' in prompt
-    assert "Gmail token expired" in prompt
-    assert "<gmail_snapshot>" in prompt
+    assert snapshot["connection"]["status"] == "error"
+    assert "Gmail token expired" in snapshot["connection"]["error"]
+    assert snapshot["candidates"] == []
+
+
+def test_morning_refresh_is_ai_free_and_runs_the_rule_based_classifier():
+    task = server.TASKS["morning_refresh"]
+    assert task["ai"] is False
+    assert task["groups"] == {"collectors"}
+    argv = task["argv"]({})
+    assert argv[0] == server.PYTHON_BIN
+    assert argv[-1] == str(server.HIOS_SCRIPTS / "email_classify.py")
 
 
 def test_gmail_other_bucket_is_kept_but_never_distributed_as_project(
@@ -415,17 +423,19 @@ def test_gmail_other_bucket_is_kept_but_never_distributed_as_project(
     assert starts[0][0][1]["project"] == "WMO"
 
 
-def test_codex_worker_argv_and_task_registry_have_no_claude_binary_dependency():
-    writable = server._codex_argv()
-    readonly = server._codex_argv_readonly()
+def test_claude_worker_argv_and_task_registry_have_no_codex_binary_dependency():
+    argv = server._claude_argv()
 
-    assert writable[:2] == [server.CODEX_BIN, "exec"]
-    assert writable[-1] == "-"
-    assert writable[writable.index("--sandbox") + 1] == "workspace-write"
-    assert readonly[readonly.index("--sandbox") + 1] == "read-only"
-    assert all("claude" not in str(task.get("argv", "")).lower()
+    assert argv[:2] == [server.CLAUDE_BIN, "--print"]
+    assert "--permission-mode" in argv
+    assert argv[argv.index("--permission-mode") + 1] == "acceptEdits"
+    assert "--allowedTools" in argv
+    assert argv[argv.index("--allowedTools") + 1] == "Read,Write,Edit,Glob,Grep,Bash"
+    assert "--max-turns" in argv
+    assert argv[argv.index("--max-turns") + 1] == "50"
+    assert all("codex" not in str(task.get("argv", "")).lower()
                for task in server.TASKS.values())
-    assert all(not task.get("claude") for task in server.TASKS.values())
+    assert all(not task.get("codex") for task in server.TASKS.values())
     assert all(task.get("ai") for task in server.TASKS.values()
                if task.get("category") in {"AI", "브리핑"})
 
@@ -453,9 +463,9 @@ def test_ai_runner_prefixes_repository_safety_rules(isolated, monkeypatch):
 
 
 def test_granola_sync_is_independent_required_mcp_and_records_health(isolated):
-    argv = isolated._codex_argv_granola()
-    assert 'model_reasoning_effort="medium"' in argv
-    assert "mcp_servers.granola.required=true" in argv
+    argv = isolated._claude_argv_granola()
+    assert argv[:2] == [isolated.CLAUDE_BIN, "--print"]
+    assert "Granola MCP가 반드시 필요합니다" in isolated._granola_refresh_prompt({})
     assert any(e["task"] == "granola_refresh" for e in isolated.SCHEDULE)
 
     manifest = {

@@ -1,23 +1,643 @@
 {
-  "updated": 1784458058.017718,
+  "updated": 1784588170.328214,
   "emails": [
+    {
+      "project": "기타",
+      "subject": "How To Turn Your Love For Learning Into A One-Person Business w/ Paul Musso",
+      "from": "Dan Koe <thedankoe@substack.com>",
+      "date": "2026-07-20",
+      "thread_id": "19f818511c7cc822",
+      "summary": "Watch now (76 mins) | Paul went from philosophy professor to philosophy creator ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏",
+      "needs_action": false,
+      "suggested_action": ""
+    },
+    {
+      "project": "기타",
+      "subject": "[55 new jobs] Every open Entry position in the UN",
+      "from": "UN Talent <contact@untalent.org>",
+      "date": "2026-07-20",
+      "thread_id": "19f817a958bffeb0",
+      "summary": "UN Talent Job Alert Every open Entry position in the UN Here is your weekly alert. Feel free to forward this email to anyone who might be interested.",
+      "needs_action": false,
+      "suggested_action": ""
+    },
+    {
+      "project": "기타",
+      "subject": "How do AI teams use RL in production?",
+      "from": "Daily Dose of DS <avi@dailydoseofds.com>",
+      "date": "2026-07-20",
+      "thread_id": "19f817a8fc2a29bc",
+      "summary": "The full RL nanodegree, covered with implementation. ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏",
+      "needs_action": false,
+      "suggested_action": ""
+    },
+    {
+      "project": "기타",
+      "subject": "Three climate risk analyses, built live on Thursday",
+      "from": "Kith Climate <contactus@voiz.academy>",
+      "date": "2026-07-20",
+      "thread_id": "19f817a2e2b0fc31",
+      "summary": "1600+ already registered ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌",
+      "needs_action": false,
+      "suggested_action": ""
+    },
+    {
+      "project": "기타",
+      "subject": "[위시켓] '스마트폰 센서 활용 급발진/졸음운...' 외 최신 프로젝트",
+      "from": "\"위시켓\" <admin@wishket.com>",
+      "date": "2026-07-20",
+      "thread_id": "19f815906c11945b",
+      "summary": "2026년 7월 4주차 위시켓 최신 프로젝트 안녕하세요. dataharimjung 파트너님. 빠르고 안전한 아웃소싱을 위해 위시켓만의 프로젝트를 준비했습니다. * 아래 내용은 클라이언트의 제시 기간 및 금액으로, 미팅 시 협의가 가능합니다. 방금 등록된 최신 프로젝트",
+      "needs_action": false,
+      "suggested_action": ""
+    },
+    {
+      "project": "기타",
+      "subject": "Earn daily on your idle cash — up to 6% APY",
+      "from": "Kraken <no-reply@email.kraken.com>",
+      "date": "2026-07-20",
+      "thread_id": "19f814ad4c0908e8",
+      "summary": "Simple, transparent rewards with DeFi Earn ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿",
+      "needs_action": false,
+      "suggested_action": ""
+    },
+    {
+      "project": "기타",
+      "subject": "👀 Friend, I thought you'd be inside by now",
+      "from": "Wise Insights <team@wiseinsightshub.com>",
+      "date": "2026-07-20",
+      "thread_id": "19f812e54d234f64",
+      "summary": "There's probably a reason you haven't seen this yet. Wise Insights Hey Friend, I honestly expected you'd have taken a look already. It's one of the fe",
+      "needs_action": false,
+      "suggested_action": ""
+    },
+    {
+      "project": "Equitee",
+      "subject": "💥 AI Winners, Our Silent Debt Crisis, and What's Next.",
+      "from": "The Finance Newsletter by Andrew Lokenauth <fluentinfinance+finance@substack.com>",
+      "date": "2026-07-20",
+      "thread_id": "19f80ebe06ed3249",
+      "summary": "Economists issue a massive warning, household debt is surging, and the market is splitting in two. Here's what to do. ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏",
+      "needs_action": false,
+      "suggested_action": ""
+    },
+    {
+      "project": "UNFPA-CSE",
+      "subject": "Upcoming Bonus Session: Emotional Wellbeing & Self-care in Practice",
+      "from": "Ayesha Saeed <aysaeed@unfpa.org>",
+      "date": "2026-07-20",
+      "thread_id": "19f80db0055e2b27",
+      "summary": "Dear Colleagues, As a follow-up to our Emotional Wellbeing & Self-Care session last month, on your request, we are pleased to bring a bonus session on",
+      "needs_action": false,
+      "suggested_action": ""
+    },
+    {
+      "project": "Visual-Climate",
+      "subject": "Your shipment will arrive tomorrow!",
+      "from": "Coach <coachorders@coachorders.narvar.com>",
+      "date": "2026-07-20",
+      "thread_id": "19f80ce22a877277",
+      "summary": "Thank you for shopping with Coach Outlet. We hope you enjoy your purchase. NEW WOMEN MEN BAGS FEATURED Arriving Tomorrow Your shipment from order WCP0",
+      "needs_action": false,
+      "suggested_action": ""
+    },
+    {
+      "project": "기타",
+      "subject": "Rewired takes: Practical people lessons for scaling AI adoption",
+      "from": "\"McKinsey & Company\" <publishing@email.mckinsey.com>",
+      "date": "2026-07-20",
+      "thread_id": "19f80c1a910a0c02",
+      "summary": "How to successfully scale AI programs ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌",
+      "needs_action": false,
+      "suggested_action": ""
+    },
+    {
+      "project": "기타",
+      "subject": "Price Alert: Cardano (ADA) is Up ↗5.59%",
+      "from": "Coinbase <no-reply@mail.coinbase.com>",
+      "date": "2026-07-20",
+      "thread_id": "19f80bf0c8cacd56",
+      "summary": "ADA is up ↗︎5.59% to CA$0.24 in the last 24 hours. View Asset Users are also interested in XRP XRP CA$1.57 ↗︎1.80% View Asset Solana SOL CA$108.87 ↗︎1",
+      "needs_action": false,
+      "suggested_action": ""
+    },
+    {
+      "project": "기타",
+      "subject": "We've updated our Privacy Policy",
+      "from": "Granola <notifications@mail.granola.ai>",
+      "date": "2026-07-20",
+      "thread_id": "19f8087500eab33d",
+      "summary": "Granola Hi Harim, We've updated our Privacy Policy, which describes how Granola uses and stores your data. We've also provided more details about your",
+      "needs_action": false,
+      "suggested_action": ""
+    },
+    {
+      "project": "기타",
+      "subject": "Live video with DAN KOE, Joey Justice, and Paul Musso, PhD now: How To Turn Your Love For Learning Into A One-Person Business w/ Paul Musso",
+      "from": "Substack <no-reply@substack.com>",
+      "date": "2026-07-20",
+      "thread_id": "19f807afde7a11cf",
+      "summary": "DAN KOE is live with Joey Justice and Paul Musso, PhD on Substack now: \"How To Turn Your Love For Learning Into A One-Person Business w/ Paul Musso\" ͏",
+      "needs_action": false,
+      "suggested_action": ""
+    },
+    {
+      "project": "기타",
+      "subject": "Kimi K3 Narrows The Intelligence Gap, Not The Compute Bill, & More",
+      "from": "Catherine Wood <ark@arkinvest.com>",
+      "date": "2026-07-20",
+      "thread_id": "19f803dce51a9a5c",
+      "summary": "Please enjoy ARK's weekly newsletter curated by our thematic research team and designed to keep you engaged with disruptive innovation. ͏ ͏ ͏ ͏ ͏ ͏ ͏",
+      "needs_action": false,
+      "suggested_action": ""
+    },
+    {
+      "project": "기타",
+      "subject": "Your future starts tomorrow ✨",
+      "from": "Blockchain Futurist Conference <futurist@emeraldeex.com>",
+      "date": "2026-07-20",
+      "thread_id": "19f8035f5e3882fd",
+      "summary": "We can't wait to see you! Here's some important info. ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏",
+      "needs_action": false,
+      "suggested_action": ""
+    },
+    {
+      "project": "Visual-Climate",
+      "subject": "Weekly update: Strengthening banks' risk frameworks: Integrating sustainability into core risk management",
+      "from": "BrightTALK <monday.reply@brighttalk.com>",
+      "date": "2026-07-20",
+      "thread_id": "19f80300f1b0511f",
+      "summary": "Hi Harim, Here is what to look out for on BrightTALK this week. Coming up this week Strengthening banks' risk frameworks: Integrating sustainability i",
+      "needs_action": false,
+      "suggested_action": ""
+    },
+    {
+      "project": "Visual-Climate",
+      "subject": "Why Did Google Throw Out A Nearly-Done AI And Start Over?",
+      "from": "The AI Collective Newsletter <newsletter@aicollective.com>",
+      "date": "2026-07-20",
+      "thread_id": "19f800d07811c0b9",
+      "summary": "And the $31B Chinese rival waiting to eat its lunch. ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌",
+      "needs_action": false,
+      "suggested_action": ""
+    },
+    {
+      "project": "기타",
+      "subject": "Releases: Efficiency Indicators and Household Appliances data",
+      "from": "IEA Statistics <statsnews@iea.org>",
+      "date": "2026-07-20",
+      "thread_id": "19f80068f91ecc36",
+      "summary": "Releases: Efficiency Indicators and Household Appliances data The IEA is pleased to announce the latest update of the Energy End-uses and Efficiency I",
+      "needs_action": false,
+      "suggested_action": ""
+    },
+    {
+      "project": "기타",
+      "subject": "That’s full time 🏁",
+      "from": "Kraken <no-reply@email.kraken.com>",
+      "date": "2026-07-20",
+      "thread_id": "19f7f7043ce35d84",
+      "summary": "The Here We Go! Sweepstakes has closed. Here's what's next. ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿",
+      "needs_action": false,
+      "suggested_action": ""
+    },
+    {
+      "project": "WHO",
+      "subject": "RE: [EXT] Re: Indicators work + your consultant",
+      "from": "\"VINCI, Salvatore\" <vincis@who.int>",
+      "date": "2026-07-20",
+      "thread_id": "19f7fc401eb3b1ac",
+      "summary": "Wonderful! Many thanks, Harim. Best, Salvatore From: Harim Jung <data.harim.jung@gmail.com> Sent: Monday, July 20, 2026 4:17 PM To: VINCI, Salvatore <",
+      "needs_action": false,
+      "suggested_action": ""
+    },
+    {
+      "project": "기타",
+      "subject": "Release of Monthly Electricity Statistics",
+      "from": "IEA Statistics <statsnews@iea.org>",
+      "date": "2026-07-20",
+      "thread_id": "19f7fe954ef37926",
+      "summary": "Monthly Electricity Statistics Highlights April 2026 In April 2026, net electricity generation in Belgium totalled 4.5 TWh, a decrease of 20.2% (1.1 T",
+      "needs_action": false,
+      "suggested_action": ""
+    },
+    {
+      "project": "WHO",
+      "subject": "Automatic reply: [EXT] Re: Indicators work + your consultant",
+      "from": "\"JOHNSTON, Richard Paul\" <johnstonr@who.int>",
+      "date": "2026-07-20",
+      "thread_id": "19f7fe3b66ed0f5e",
+      "summary": "﻿ I'm out of the office until 23 July. I'll respond to your message when I return. With best regards, Rick Johnston",
+      "needs_action": false,
+      "suggested_action": ""
+    },
+    {
+      "project": "기타",
+      "subject": "🏷️ [ACTION NEEDED] This is about to be removed",
+      "from": "Declan Quinn <help@wavestrategist.com>",
+      "date": "2026-07-20",
+      "thread_id": "19f7fe001ce40997",
+      "summary": "Your extra access won't stay active i Wave Strategies Hey Harim, Quick update — the extra attached to your access is now flagged for removal. It's sti",
+      "needs_action": false,
+      "suggested_action": ""
+    },
+    {
+      "project": "기타",
+      "subject": "🤯 Moonshot pauses new subscriptions",
+      "from": "The Code <superhumancode@news.codenewsletter.ai>",
+      "date": "2026-07-20",
+      "thread_id": "19f7fd5fe945aa11",
+      "summary": "Also: How to run loops with Claude Code ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌",
+      "needs_action": false,
+      "suggested_action": ""
+    },
+    {
+      "project": "Visual-Climate",
+      "subject": "[GitHub] Sudo email verification code",
+      "from": "GitHub <noreply@github.com>",
+      "date": "2026-07-20",
+      "thread_id": "19f7fc675cd07b25",
+      "summary": "Please verify your identity, HarimJung Here is your GitHub sudo authentication code: 80484864 This code is valid for 15 minutes and can only be used o",
+      "needs_action": false,
+      "suggested_action": ""
+    },
+    {
+      "project": "UNFPA-CSE",
+      "subject": "OIC SRHR Branch 21st July - 21st August'26",
+      "from": "Programme Division <pd.office@unfpa.org>",
+      "date": "2026-07-20",
+      "thread_id": "19f7fc4dbaf7d809",
+      "summary": "Dear Colleagues, Please note that Dr. Ayman Abdelmohsen, SRHR Branch Chief, will be away on mission and home leave from 21 July to 21 August. During h",
+      "needs_action": false,
+      "suggested_action": ""
+    },
+    {
+      "project": "WHO",
+      "subject": "RE: Indicators work + your consultant",
+      "from": "\"VINCI, Salvatore\" <vincis@who.int>",
+      "date": "2026-07-20",
+      "thread_id": "19f7fc401eb3b1ac",
+      "summary": "Dear Arabella, Many thanks for your message. I will be happy to catch up on Thursday! I am also happy to copy Harim, who will kindly help us (also) on",
+      "needs_action": false,
+      "suggested_action": ""
+    },
+    {
+      "project": "UNFPA-CSE",
+      "subject": "Fwd: Fact Sheets: EmpowerEd, Pooled Fund and Phases 1 & 2 of the Global Programme on OOS CSE",
+      "from": "Harim Jung <hajung@unfpa.org>",
+      "date": "2026-07-20",
+      "thread_id": "19f7fa8585e945a6",
+      "summary": "---------- Forwarded message --------- From: Harim Jung <hajung@unfpa.org> Date: Mon, Jul 20, 2026 at 9:33 AM Subject: Re: Fact Sheets: EmpowerEd, Poo",
+      "needs_action": false,
+      "suggested_action": ""
+    },
+    {
+      "project": "UNFPA-CSE",
+      "subject": "Invitation: Reminder: CSE Fact Sheets: EmpowerEd, Pooled Fund and Pha... @ Mon Aug 3, 2026 9:30am - 10am (EDT) (Harim Jung)",
+      "from": "Steve Petit <petit@unfpa.org>",
+      "date": "2026-07-20",
+      "thread_id": "19f7fa90adf8dd45",
+      "summary": "Reminder: CSE Fact Sheets: EmpowerEd, Pooled Fund and Phases 1 & 2 of the Global Programme on OOS CSE You have been invited by Steve Petit to attend a",
+      "needs_action": false,
+      "suggested_action": ""
+    },
+    {
+      "project": "UNFPA-CSE",
+      "subject": "Fact Sheets: EmpowerEd, Pooled Fund and Phases 1 & 2 of the Global Programme on OOS CSE",
+      "from": "Steve Petit <petit@unfpa.org>",
+      "date": "2026-07-20",
+      "thread_id": "19f7fa8585e945a6",
+      "summary": "Dear Wafa and Harim, As discussed in our team meeting, kindly prepare the following fact sheets for our global engagement with donors: 1. Fact sheet f",
+      "needs_action": false,
+      "suggested_action": ""
+    },
+    {
+      "project": "Equitee",
+      "subject": "Virtual power plants rise to tackle data center challenge",
+      "from": "Reuters Events Energy Transition newsletter <renewablesanalysis@1.reutersevents.com>",
+      "date": "2026-07-20",
+      "thread_id": "19f7f9f642a5b8ec",
+      "summary": "Hi Harim, Here's the latest insight and analysis on the energy transition from the Reuters Events editorial team. Virtual power plants rise to data ce",
+      "needs_action": false,
+      "suggested_action": ""
+    },
+    {
+      "project": "기타",
+      "subject": "55 grants you won't want to miss this week",
+      "from": "helloDarwin <clients@hellodarwin.io>",
+      "date": "2026-07-20",
+      "thread_id": "19f7f9e4789e2764",
+      "summary": "Review this week's grant changes, deadlines to watch, and the profile criteria behind your recommendations. helloDarwin Weekly watch Grants to review",
+      "needs_action": false,
+      "suggested_action": ""
+    },
+    {
+      "project": "기타",
+      "subject": "That’s full time 🏁",
+      "from": "Kraken <no-reply@email.kraken.com>",
+      "date": "2026-07-20",
+      "thread_id": "19f7f7043ce35d84",
+      "summary": "The Here We Go! Sweepstakes has closed. Here's what's next. ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿",
+      "needs_action": false,
+      "suggested_action": ""
+    },
+    {
+      "project": "기타",
+      "subject": "Futurist Conference is tomorrow!",
+      "from": "Blockchain Futurist Conference <noreply@event.eventbrite.com>",
+      "date": "2026-07-20",
+      "thread_id": "19f7f6e9b5bbab67",
+      "summary": "Eventbrite Find events My Tickets Your event is coming up soon! 2026 Blockchain Futurist Conference Toronto - Canada's Largest Web3 Event Tuesday at 8",
+      "needs_action": false,
+      "suggested_action": ""
+    },
+    {
+      "project": "Equitee",
+      "subject": "🤑 Canadian salaries — the sequel!",
+      "from": "TLDR by Wealthsimple <notifications@e-news.wealthsimple.com>",
+      "date": "2026-07-20",
+      "thread_id": "19f7f6b7d757f213",
+      "summary": "🌮 Plus: the week's sh*ttiest panic sell ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌",
+      "needs_action": false,
+      "suggested_action": ""
+    },
+    {
+      "project": "Equitee",
+      "subject": "Davids outslinging Goliaths",
+      "from": "PitchBook News <news-noreply@news.pitchbook.com>",
+      "date": "2026-07-20",
+      "thread_id": "19f7f4cb9dc9e0f4",
+      "summary": "When $188B is quaint; rarer but richer in Europe; CoreWeave's big move for GPUs July 20, 2026 | Log in | Read online | Manage your subscription PitchB",
+      "needs_action": false,
+      "suggested_action": ""
+    },
+    {
+      "project": "UNFPA-CSE",
+      "subject": "🎙️ Meet our Speakers Tomorrow: Addressing Digital Pushback for FGM Programming",
+      "from": "Fahmia AL-Fotih <al-fotih@unfpa.org>",
+      "date": "2026-07-20",
+      "thread_id": "19f7f210b2579744",
+      "summary": "View Online Dear friends and partners, ⏰ Tomorrow! The digital landscape surrounding efforts to end female genital mutilation is evolving rapidly. Whi",
+      "needs_action": false,
+      "suggested_action": ""
+    },
+    {
+      "project": "UNFPA-CSE",
+      "subject": "Notes: “CSE team meeting” Jul 20, 2026",
+      "from": "Gemini <gemini-notes@google.com>",
+      "date": "2026-07-20",
+      "thread_id": "19f7f0cc1584a569",
+      "summary": "Notes from “CSE team meeting” These notes have been sent to invited guests in your organization. Open meeting notes The content was auto-generated on",
+      "needs_action": false,
+      "suggested_action": ""
+    },
+    {
+      "project": "기타",
+      "subject": "Account created – Online citizenship application / Création d’un compte – Demande de citoyenneté en ligne",
+      "from": "IRCC <NoReply-PasDeRepondre@citapply-citdemande.apps.cic.gc.ca>",
+      "date": "2026-07-20",
+      "thread_id": "19f7ef8ba011837f",
+      "summary": "Le français suit. This is an automated message. Do not reply to this email. Hello, You can start your online application. Bookmark this link so you ca",
+      "needs_action": false,
+      "suggested_action": ""
+    },
+    {
+      "project": "기타",
+      "subject": "Verification code – Online citizenship application / Code de vérification – Demande de citoyenneté en ligne",
+      "from": "IRCC <NoReply-PasDeRepondre@citapply-citdemande.apps.cic.gc.ca>",
+      "date": "2026-07-20",
+      "thread_id": "19f7ef88c082587f",
+      "summary": "Le français suit. This is an automated message. Do not reply to this email. Hello, This email has the verification code for your online citizenship ap",
+      "needs_action": false,
+      "suggested_action": ""
+    },
+    {
+      "project": "기타",
+      "subject": "We’re updating our Privacy Notices",
+      "from": "Wise <noreply@wise.com>",
+      "date": "2026-07-20",
+      "thread_id": "19f7ed765cd2453d",
+      "summary": "Wise. Your account for the world's money ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌",
+      "needs_action": false,
+      "suggested_action": ""
+    },
+    {
+      "project": "UNFPA-CSE",
+      "subject": "Updated invitation: CSE team meeting @ Mon 20 Jul 2026 4:30am - 6am (EDT) (data.harim.jung@gmail.com)",
+      "from": "Steve Petit <petit@unfpa.org>",
+      "date": "2026-07-20",
+      "thread_id": "19f7eac39d4fafca",
+      "summary": "CSE team meeting Join with Google Meet – - EmpowerED Social Media content for Youth Day - Factsheets: - CSE Pooled Fund, - EmpowerEd, - Phase 1 &2 of",
+      "needs_action": false,
+      "suggested_action": ""
+    },
+    {
+      "project": "UNFPA-CSE",
+      "subject": "Updated invitation: CSE team meeting @ Mon Jul 20, 2026 4:30am - 6am (EDT) (Harim Jung)",
+      "from": "Steve Petit <petit@unfpa.org>",
+      "date": "2026-07-20",
+      "thread_id": "19f7eac35a293d5e",
+      "summary": "CSE team meeting Join with Google Meet – - EmpowerED Social Media content for Youth Day - Factsheets: - CSE Pooled Fund, - EmpowerEd, - Phase 1 &2 of",
+      "needs_action": false,
+      "suggested_action": ""
+    },
+    {
+      "project": "UNFPA-CSE",
+      "subject": "Updated invitation: CSE team meeting @ Mon Jul 20, 2026 7am - 8:30am (EDT) (Harim Jung)",
+      "from": "Steve Petit <petit@unfpa.org>",
+      "date": "2026-07-20",
+      "thread_id": "19f7eab24ec5164f",
+      "summary": "CSE team meeting Join with Google Meet – - EmpowerED Social Media content for Youth Day - Factsheets: - CSE Pooled Fund, - EmpowerEd, - Phase 1 &2 of",
+      "needs_action": false,
+      "suggested_action": ""
+    },
+    {
+      "project": "UNFPA-CSE",
+      "subject": "Updated invitation: CSE team meeting @ Mon 20 Jul 2026 7am - 8:30am (EDT) (data.harim.jung@gmail.com)",
+      "from": "Steve Petit <petit@unfpa.org>",
+      "date": "2026-07-20",
+      "thread_id": "19f7eab218866225",
+      "summary": "CSE team meeting Join with Google Meet – - EmpowerED Social Media content for Youth Day - Factsheets: - CSE Pooled Fund, - EmpowerEd, - Phase 1 &2 of",
+      "needs_action": false,
+      "suggested_action": ""
+    },
+    {
+      "project": "UNFPA-CSE",
+      "subject": "Event confirmed: Meeting with Wafa Dhaouadi @ Fri 24 Jul 2026 7:15am - 8am (EDT) (Harim Jung)",
+      "from": "Wafa Dhaouadi <dhaouadi@unfpa.org>",
+      "date": "2026-07-20",
+      "thread_id": "19f7ea1b03743ac8",
+      "summary": "Meeting with Wafa Dhaouadi Join with Google Meet – You have been invited by Wafa Dhaouadi to attend an event named Meeting with Wafa Dhaouadi on Frida",
+      "needs_action": false,
+      "suggested_action": ""
+    },
+    {
+      "project": "UNFPA-CSE",
+      "subject": "Event confirmed: Meeting with Wafa Dhaouadi @ Fri Jul 24, 2026 7:15am - 8am (EDT) (Harim Jung)",
+      "from": "Wafa Dhaouadi <dhaouadi@unfpa.org>",
+      "date": "2026-07-20",
+      "thread_id": "19f7e99307f93ef7",
+      "summary": "Meeting with Wafa Dhaouadi Join with Google Meet – You have been invited by Wafa Dhaouadi to attend an event named Meeting with Wafa Dhaouadi on Frida",
+      "needs_action": false,
+      "suggested_action": ""
+    },
+    {
+      "project": "WMO",
+      "subject": "RE: Milestone 1_Inception Report_BCM e-learning course",
+      "from": "Xiao Zhou <xzhou@wmo.int>",
+      "date": "2026-07-20",
+      "thread_id": "19c9011ccf41efdf",
+      "summary": "Dear Mustafa, Thank you very much for taking the time to provide such detailed and constructive suggestions. Dear Harim, Please follow Mustafa's and L",
+      "needs_action": false,
+      "suggested_action": ""
+    },
+    {
+      "project": "UNFPA-CSE",
+      "subject": "Re: inquiries about google suite and KM tools - ITSO guidance",
+      "from": "Wafa Dhaouadi <dhaouadi@unfpa.org>",
+      "date": "2026-07-20",
+      "thread_id": "19f7e6041ac2d02f",
+      "summary": "Dear Soren and Jennie, Thank you for the extensive responses. Regarding a call to discuss this further, I have reviewed calendars and found the follow",
+      "needs_action": false,
+      "suggested_action": ""
+    },
+    {
+      "project": "기타",
+      "subject": "Amanda added you to the shared calendar ‘Amanda’",
+      "from": "Amanda <amandayu1612@gmail.com>",
+      "date": "2026-07-20",
+      "thread_id": "19f7db11987c2270",
+      "summary": "Amanda shared a calendar Amanda <amandayu1612@gmail.com> has added you to the shared calendar: 'Amanda'. You can see all event details on this calenda",
+      "needs_action": false,
+      "suggested_action": ""
+    },
+    {
+      "project": "기타",
+      "subject": "라이브 웨비나: Figma Agent와 Code Layers로 컨텍스트부터 코드까지",
+      "from": "Figma <apac-events@figma.com>",
+      "date": "2026-07-19",
+      "thread_id": "19f7da38136398d8",
+      "summary": "Workflow Lab에서 컨텍스트를 실제 동작하는 프로토타입으로 발전시키는 과정을 확인해 보세요. ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌",
+      "needs_action": false,
+      "suggested_action": ""
+    },
+    {
+      "project": "기타",
+      "subject": "Harim, 100% certified good taste",
+      "from": "Pinterest <recommendations@explore.pinterest.com>",
+      "date": "2026-07-19",
+      "thread_id": "19f7d47cc27e35c0",
+      "summary": "Site Analysis Checklist Mercury Energy 2019 Annual Report: ESG Highlights & Infographics Layout Sleek Digital Marketing Agency Website UI/UX Design in",
+      "needs_action": false,
+      "suggested_action": ""
+    },
+    {
+      "project": "기타",
+      "subject": "Los Angeles Philharmonic and more picks for you",
+      "from": "\"Chris @ StubHub\" <events@mail.stubhub.com>",
+      "date": "2026-07-19",
+      "thread_id": "19f7c01462a351bc",
+      "summary": "View upcoming events picked just for you — Your personalized lineup of trending events Jul 22 Los Angeles Philharmonic with Joe Hisaishi - Film Music",
+      "needs_action": false,
+      "suggested_action": ""
+    },
+    {
+      "project": "기타",
+      "subject": "[Hands-on] Rebuilding Claude Code's Harness",
+      "from": "Daily Dose of DS <avi@dailydoseofds.com>",
+      "date": "2026-07-19",
+      "thread_id": "19f7bb33e26d26aa",
+      "summary": "...step-by-step, from scratch, using open-source stack. ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏",
+      "needs_action": false,
+      "suggested_action": ""
+    },
+    {
+      "project": "기타",
+      "subject": "Join us for our upcoming event: Career PathMakers - Job Search Bi-Weekly Session 67",
+      "from": "Tableau User Groups <usergroups@tableau.com>",
+      "date": "2026-07-19",
+      "thread_id": "19f7b1b3f96ca6fa",
+      "summary": "Tableau - DataFam Career Pathmakers Tableau User Group View in browser Tableau Join us in our next upcoming event Career PathMakers - Job Search Bi-We",
+      "needs_action": false,
+      "suggested_action": ""
+    },
+    {
+      "project": "기타",
+      "subject": "Join us for our upcoming event: The Future of Tableau and AI",
+      "from": "Tableau User Groups <usergroups@tableau.com>",
+      "date": "2026-07-19",
+      "thread_id": "19f7b1b36d7d931e",
+      "summary": "Tableau - AI + Tableau User Group View in browser Tableau Join us in our next upcoming event The Future of Tableau and AI Date & time Wed, Jul 22, 5:0",
+      "needs_action": false,
+      "suggested_action": ""
+    },
+    {
+      "project": "Equitee",
+      "subject": "Halfway through the year and feeling stuck?",
+      "from": "MasterClass <support@email.masterclass.com>",
+      "date": "2026-07-19",
+      "thread_id": "19f7ae07bb0c795b",
+      "summary": "The habits that turn good intentions into progress ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌",
+      "needs_action": false,
+      "suggested_action": ""
+    },
+    {
+      "project": "기타",
+      "subject": "1 event happening tomorrow",
+      "from": "\"AI Automation Society (Skool)\" <noreply@skool.com>",
+      "date": "2026-07-19",
+      "thread_id": "19f7ad5c03ce284e",
+      "summary": "AI Automation Society skool logo 1 event happening tomorrow 🔒 Q&A w/ Nate Monday, July 20th • 10 :00am - 10 :30am (Toronto time) Become a plus member",
+      "needs_action": false,
+      "suggested_action": ""
+    },
+    {
+      "project": "기타",
+      "subject": "Accepted: Reservation at Osteria Giulia @ Thu 23 Jul 2026 5:30pm (EDT) (data.harim.jung@gmail.com)",
+      "from": "Amanda <amandayu1612@gmail.com>",
+      "date": "2026-07-19",
+      "thread_id": "19f7ac7ee932c1b8",
+      "summary": "Reservation at Osteria Giulia Amanda has accepted this invitation. Osteria Giulia When Thursday 23 Jul 2026 ⋅ 5:30pm (Eastern Time - Toronto) Guests d",
+      "needs_action": false,
+      "suggested_action": ""
+    },
+    {
+      "project": "기타",
+      "subject": "⏰ Your 25% discount disappears tonight!!",
+      "from": "Alicia Teltz <thehypedepartment@mail.beehiiv.com>",
+      "date": "2026-07-19",
+      "thread_id": "19f7a1a9d2961d62",
+      "summary": "Future You might be annoyed if you ignore this. ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌",
+      "needs_action": false,
+      "suggested_action": ""
+    },
+    {
+      "project": "Visual-Climate",
+      "subject": "visualclimate.com - Brand Opportunity",
+      "from": "IntelDomains <contact@inteldomains.com>",
+      "date": "2026-07-19",
+      "thread_id": "19f7a1a0631dcb09",
+      "summary": "visualclimate.com - Brand Opportunity visualclimate.com - Brand Opportunity Hello, I came across your online presence at visualclimate.org — a good fo",
+      "needs_action": false,
+      "suggested_action": ""
+    },
     {
       "project": "기타",
       "subject": "The new rush to offload post-IPO shares",
       "from": "PitchBook News <news-noreply@news.pitchbook.com>",
       "date": "2026-07-19",
       "thread_id": "19f79d29a3df10e2",
-      "summary": "PitchBook의 상장 후 주식 매각과 사모시장 동향 뉴스레터입니다.",
+      "summary": "Plus: Fundless for the win, elite university downgrades pending, & more July 19, 2026 | Log in | Read online | Manage your subscription PitchBook, a M",
       "needs_action": false,
       "suggested_action": ""
     },
     {
       "project": "기타",
       "subject": "Your reservation confirmation for Osteria Giulia",
-      "from": "OpenTable | Osteria Giulia Reservations <no-reply@opentable.ca>",
+      "from": "\"OpenTable | Osteria Giulia Reservations\" <no-reply@opentable.ca>",
       "date": "2026-07-19",
       "thread_id": "19f78e92a602504a",
-      "summary": "Osteria Giulia 예약이 확정됐다는 OpenTable 안내입니다.",
+      "summary": "[Reservation confirmed] Thanks for using OpenTable! ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -27,7 +647,7 @@
       "from": "Granola <no-reply@mail.granola.ai>",
       "date": "2026-07-19",
       "thread_id": "19f7898ebbedea63",
-      "summary": "Granola 로그인용 일회용 코드가 발급됐으며 10분 후 만료된다는 안내입니다.",
+      "summary": "Your one-time code is 663744. This code expires in 10 minutes. If you didn't attempt to sign in to Granola, you can safely ignore this email. Complete",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -37,7 +657,7 @@
       "from": "Google <no-reply@accounts.google.com>",
       "date": "2026-07-18",
       "thread_id": "19f788113ad9ed12",
-      "summary": "OpenAI에 일부 Google 계정 데이터 접근을 허용했다는 보안 알림입니다.",
+      "summary": "You allowed OpenAI access to some of your Google Account data data.harim.jung@gmail.com If you didn't allow OpenAI access to some of your Google Accou",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -47,7 +667,7 @@
       "from": "Google <noreply-accounts@google.com>",
       "date": "2026-07-18",
       "thread_id": "19f78809fbfc2d9a",
-      "summary": "Google 로그인으로 OpenAI에 공유한 계정 데이터를 설명하는 알림입니다.",
+      "summary": "Keep track of your Google Account data data.harim.jung@gmail.com You're receiving this email because you used Sign in with Google to sign in to OpenAI",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -57,7 +677,7 @@
       "from": "Aritzia <aritzia@em.aritzia.com>",
       "date": "2026-07-18",
       "thread_id": "19f7826660a8bf16",
-      "summary": "Aritzia 일부 상품의 30~60% 할인 프로모션입니다.",
+      "summary": "+ Your excuse to book that pilates class. ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -67,7 +687,7 @@
       "from": "Pinterest <recommendations@explore.pinterest.com>",
       "date": "2026-07-18",
       "thread_id": "19f7820f708ac5c7",
-      "summary": "보고서·교육 과정·고객 여정 디자인 관련 Pinterest 추천입니다.",
+      "summary": "Mercury Energy 2019 Annual Report: ESG Highlights & Infographics Layout EduKart - Online Courses & Education LMS Theme Customer Journey Map Profession",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -77,7 +697,7 @@
       "from": "Questrade Success Team <invest@mail.questrade.com>",
       "date": "2026-07-18",
       "thread_id": "19f778652a203299",
-      "summary": "Questrade 자기주도형 계좌 명세서를 확인할 수 있다는 안내입니다.",
+      "summary": "Log in now to view your statement ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -87,7 +707,7 @@
       "from": "McKinsey Week in Charts <publishing@email.mckinsey.com>",
       "date": "2026-07-18",
       "thread_id": "19f76c6698cdca43",
-      "summary": "아프리카 광물 매장량과 지정학적 불확실성 등을 다룬 주간 차트입니다.",
+      "summary": "Africa's mineral reserves, geopolitical uncertainty, and more ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -97,17 +717,17 @@
       "from": "Dan Koe <thedankoe@substack.com>",
       "date": "2026-07-18",
       "thread_id": "19f7694f2ba275de",
-      "summary": "7월 20일 학습을 1인 사업으로 전환하는 라이브 방송 안내입니다.",
+      "summary": "Add to calendar to make sure you can attend. ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏",
       "needs_action": false,
       "suggested_action": ""
     },
     {
-      "project": "기타",
+      "project": "Equitee",
       "subject": "Jonathan Wilson’s World Cup Diary",
       "from": "Substack <on+stories@substack.com>",
       "date": "2026-07-18",
       "thread_id": "19f760a9e7ba16e0",
-      "summary": "월드컵 취재 기자의 일상과 Substack 운영을 다룬 이야기입니다.",
+      "summary": "A day in the life of a reporter on the road, growing his Substack, and contending with the Americanization of the world's game ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -117,7 +737,7 @@
       "from": "Glassdoor Community <noreply@glassdoor.com>",
       "date": "2026-07-18",
       "thread_id": "19f75f1adf5ff601",
-      "summary": "직장 동료와 관리자의 소셜미디어 요청에 관한 Glassdoor 커뮤니티 인기 글입니다.",
+      "summary": "Check out the latest trending posts from the community 🔥 ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -127,17 +747,17 @@
       "from": "Substack <no-reply@substack.com>",
       "date": "2026-07-18",
       "thread_id": "19f75e9806a35131",
-      "summary": "소규모 수입원 등 추천 게시물을 모은 Substack 주간 다이제스트입니다.",
+      "summary": "Your Weekly Stack: A digest of posts that's been assembled just for you ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏",
       "needs_action": false,
       "suggested_action": ""
     },
     {
       "project": "기타",
       "subject": "Check out 5 outdoor hosting hacks",
-      "from": "1-800-GOT-JUNK? <marketing@email.1800gotjunk.com>",
+      "from": "\"1-800-GOT-JUNK?\" <marketing@email.1800gotjunk.com>",
       "date": "2026-07-18",
       "thread_id": "19f75e106ba47090",
-      "summary": "야외 모임 팁과 폐기물 수거 서비스를 홍보하는 이메일입니다.",
+      "summary": "Leave the cleanup to us Trouble viewing this email? View in browser 1-800-GOT-JUNK? BOOK NOW Family and friends gathered on a backyard patio, chatting",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -147,7 +767,7 @@
       "from": "The Substack Post <post+the-weekender@substack.com>",
       "date": "2026-07-18",
       "thread_id": "19f757be134f484a",
-      "summary": "음악과 미덕, 법적 문제, 파리 농산물 등을 소개하는 Weekender입니다.",
+      "summary": "In this edition of the Weekender: music as a measure of virtue, Phia's possible legal troubles, and tasting Parisian produce 40 years later ͏ ͏ ͏ ͏ ͏",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -157,17 +777,17 @@
       "from": "Alicia Teltz <AliciaTeltz@user.luma-mail.com>",
       "date": "2026-07-18",
       "thread_id": "19f751aed7c8c64a",
-      "summary": "7월 23일 LinkedIn 알고리즘 심층 강연 초대입니다.",
+      "summary": "You've been posting consistently. You're putting genuine effort into your content. And yet your… Alicia Teltz You're invited to The LinkedIn Algorithm",
       "needs_action": false,
       "suggested_action": ""
     },
     {
-      "project": "기타",
+      "project": "Equitee",
       "subject": "M&A rebound is thinner than it looks",
       "from": "PitchBook Research <news-noreply@news.pitchbook.com>",
       "date": "2026-07-18",
       "thread_id": "19f74ae908b0a847",
-      "summary": "M&A 회복세와 유럽 벤처캐피털 등 시장 동향을 다룬 PitchBook 뉴스입니다.",
+      "summary": "Also: Europe VC's next chapter; Warehouse automation advances; Fresh fund benchmarks; Industry & tech First Looks... July 18, 2026 | Log in | Read onl",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -177,7 +797,7 @@
       "from": "AI Professionals Toronto Centre <info@email.meetup.com>",
       "date": "2026-07-18",
       "thread_id": "19f73725df8cd9bf",
-      "summary": "Vibe Coding 입문 및 라이브 데모 Meetup 행사 안내입니다.",
+      "summary": "AI Professionals Toronto Centre invites you to a new event ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -187,9 +807,9 @@
       "from": "FedEx Tracking <TrackingUpdates@fedex.com>",
       "date": "2026-07-18",
       "thread_id": "19f736e33e6090cc",
-      "summary": "FedEx 배송물이 세관 영향과 상업송장 요구로 지연될 수 있다는 안내입니다.",
-      "needs_action": true,
-      "suggested_action": "배송 추적에서 요구된 상업송장 제출 여부와 세관 조치를 확인하세요."
+      "summary": "We'll send another update soon. Your shipment may be impacted by customs. Scheduled delivery date Mon 7/20/2026 Estimated between 8:00 and 12:00 Your",
+      "needs_action": false,
+      "suggested_action": ""
     },
     {
       "project": "기타",
@@ -197,7 +817,7 @@
       "from": "Amanda <amandayu1612@gmail.com>",
       "date": "2026-07-18",
       "thread_id": "19f73669f1c4e401",
-      "summary": "Amanda가 7월 23일 Alobar Yorkville 예약 초대를 수락했습니다.",
+      "summary": "Reservation at Alobar Yorkville Amanda has accepted this invitation. Alobar Yorkville When Thursday 23 Jul 2026 ⋅ 5:15pm (Eastern Time - Toronto) Gues",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -207,7 +827,7 @@
       "from": "Alobar Yorkville <no-reply@opentable.ca>",
       "date": "2026-07-17",
       "thread_id": "19f73516ba758bbd",
-      "summary": "Alobar Yorkville 예약이 취소됐다는 확인입니다.",
+      "summary": "[Reservation cancelled] You've successfully cancelled your booking at Alobar Yorkville ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -217,7 +837,7 @@
       "from": "Alobar Yorkville <no-reply@opentable.ca>",
       "date": "2026-07-17",
       "thread_id": "19f734f0e5d7fe67",
-      "summary": "Alobar Yorkville 예약이 확정됐다는 확인입니다.",
+      "summary": "[Reservation confirmed] Thanks for using OpenTable! ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -227,7 +847,7 @@
       "from": "Pinterest <recommendations@explore.pinterest.com>",
       "date": "2026-07-17",
       "thread_id": "19f72faac4ad0e80",
-      "summary": "사업 전략과 프로젝트 플래너 등 Pinterest 아이디어 추천입니다.",
+      "summary": "Innovative Approaches to Elevate Your Business Strategy Effectively Unlocking Your Inner Genius Projects planner Creative Timeline... Creative Timelin",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -237,7 +857,7 @@
       "from": "Tableau User Groups <usergroups@tableau.com>",
       "date": "2026-07-17",
       "thread_id": "19f729ccc95f8e38",
-      "summary": "Tableau Next와 PDS 진화를 다루는 사용자 그룹 행사 초대입니다.",
+      "summary": "Tableau - Team DataFam Tableau User Group View in browser Tableau Check out our upcoming event: \"Beyond the Dashboard: Evolution of PDS with Tableau N",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -247,7 +867,7 @@
       "from": "Tableau User Groups <usergroups@tableau.com>",
       "date": "2026-07-17",
       "thread_id": "19f724f04d47521f",
-      "summary": "구성 가능한 데이터 소스를 주제로 한 Tableau 행사 안내입니다.",
+      "summary": "Tableau - Team DataFam Tableau User Group View in browser Tableau Join us in our next upcoming event \"Composable data sources - finally!\" by Kirk Munr",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -257,17 +877,17 @@
       "from": "Daily Dose of DS <avi@dailydoseofds.com>",
       "date": "2026-07-17",
       "thread_id": "19f721c84690de9a",
-      "summary": "RLHF, DPO, GRPO의 차이를 시각적으로 설명하는 뉴스레터입니다.",
+      "summary": "...explained visually. ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏",
       "needs_action": false,
       "suggested_action": ""
     },
     {
       "project": "기타",
       "subject": "AI in five industries: What’s now, and what’s next",
-      "from": "McKinsey & Company <publishing@email.mckinsey.com>",
+      "from": "\"McKinsey & Company\" <publishing@email.mckinsey.com>",
       "date": "2026-07-17",
       "thread_id": "19f71cce21f9d575",
-      "summary": "5개 산업의 현재와 미래 AI 활용을 다룬 McKinsey 영상 소개입니다.",
+      "summary": "Browse the 5 video Explainers ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -277,7 +897,7 @@
       "from": "Mustafa Adiguzel <MAdiguzel@wmo.int>",
       "date": "2026-07-17",
       "thread_id": "19c9011ccf41efdf",
-      "summary": "Calibration Course 인증서 템플릿을 Lu에게 공유했으며 다음 주 전달 가능하다는 답변입니다.",
+      "summary": "Dear Harim, We have only issued a certificate once, and that was for the Calibration Course. I shared the certificate template with Lu, so she should",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -287,7 +907,7 @@
       "from": "Freedom Mobile <communications@e.freedommobile.ca>",
       "date": "2026-07-17",
       "thread_id": "19f7152c56818c6e",
-      "summary": "Freedom Mobile 5G 홈 인터넷 조기 이용 프로모션입니다.",
+      "summary": "Switch for as little as $24/mo. Say hello to Freedom 5G Home Internet. No cables. No waiting. No worries And it's super affordable! Hi Harim, great ne",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -297,7 +917,7 @@
       "from": "Alicia Teltz <thehypedepartment@mail.beehiiv.com>",
       "date": "2026-07-17",
       "thread_id": "19f714e28fdd5f65",
-      "summary": "Alicia의 10만 달러 목표를 다룬 콘텐츠 시리즈 홍보입니다.",
+      "summary": "Episode 1: \"Alicia vs. A $100000 Goal\" ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -307,7 +927,7 @@
       "from": "Amanda Yu <yua.yu@mail.utoronto.ca>",
       "date": "2026-07-17",
       "thread_id": "19f712a4dc8a66d1",
-      "summary": "Amanda Yu가 Microsoft 365를 통해 Presentation 1 파일을 공유했습니다.",
+      "summary": "Amanda Yu 与你共享了 1 个文件 Hi babe Presentation 1 此链接仅适用于此邮件的直接收件人。 打开 此电子邮件是通过 University of Toronto 使用Microsoft 365生成的，可能包含由 University of Toronto 控制的内容。",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -317,7 +937,7 @@
       "from": "IAEA News <IAEA.News@iaea.org>",
       "date": "2026-07-17",
       "thread_id": "19f710d234f4f060",
-      "summary": "IAEA의 최신 뉴스와 안전조치 이행 내용을 모은 주간 소식입니다.",
+      "summary": "View this email in your browser → International Atomic Energy Agency Weekly Roundup of News from iaea.org 07/17/2026 Explore the latest from the IAEA,",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -327,7 +947,7 @@
       "from": "Coinbase <no-reply@mail.coinbase.com>",
       "date": "2026-07-17",
       "thread_id": "19f70f6552087506",
-      "summary": "Cardano 가격이 24시간 동안 5.07% 상승했다는 Coinbase 알림입니다.",
+      "summary": "ADA is up ↗︎5.07% to CA$0.232 in the last 24 hours. View Asset Users are also interested in XRP XRP CA$1.52 ↘︎2.50% View Asset Solana SOL CA$104.74 ↘︎",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -337,9 +957,9 @@
       "from": "UNFPA Staff Council <staff.council@unfpa.org>",
       "date": "2026-07-17",
       "thread_id": "19f70f01bc3e1113",
-      "summary": "UNFPA 직원협의회 설문 마감이 연장됐고 기존 피드백에 감사한다는 안내입니다.",
-      "needs_action": false,
-      "suggested_action": ""
+      "summary": "Dear Colleagues, Thank you to everyone who has provided feedback so far to our survey. We appreciate the honest feedback and we will incorporate it in",
+      "needs_action": true,
+      "suggested_action": "이메일 내용 확인 후 회신/처리 필요"
     },
     {
       "project": "기타",
@@ -347,17 +967,17 @@
       "from": "DoNotReply <dl-it-donotreply@cbts.com>",
       "date": "2026-07-17",
       "thread_id": "19f6ff832d9f855b",
-      "summary": "7월 12~18일 주간 타임카드가 제출되지 않아 즉시 입력해 달라는 알림입니다.",
+      "summary": "Hi Harim Jung, You have not submitted a timecard for the week of 7/12/2026 - 7/18/2026. Please enter your time ASAP. If you are waiting on an assignme",
       "needs_action": true,
-      "suggested_action": "7월 12~18일 주간 타임카드를 가능한 한 빨리 제출하세요."
+      "suggested_action": "이메일 내용 확인 후 회신/처리 필요"
     },
     {
-      "project": "기타",
+      "project": "Equitee",
       "subject": "AI Overviews Land Google In Hot Water, GPT-Live Puts Reasoning in the Background, How to Tell If Your Model is Manipulative",
-      "from": "The Batch @ DeepLearning.AI <thebatch@deeplearning.ai>",
+      "from": "\"The Batch @ DeepLearning.AI\" <thebatch@deeplearning.ai>",
       "date": "2026-07-17",
       "thread_id": "19f70cfcc83c9982",
-      "summary": "AI Overviews, GPT-Live와 모델 조작성 등을 다룬 AI 뉴스레터입니다.",
+      "summary": "Just as AI is turning many specialized developers into full-stack developers, it is turning many more marketers, recruiters, and other fields into ful",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -367,17 +987,17 @@
       "from": "Fetch Pet Insurance <members@email.fetchpet.com>",
       "date": "2026-07-17",
       "thread_id": "19f70ce78942aa38",
-      "summary": "Hama의 일상적 반려동물 관리 비용 절감 방법을 소개합니다.",
+      "summary": "Here's how. ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌",
       "needs_action": false,
       "suggested_action": ""
     },
     {
-      "project": "기타",
+      "project": "Visual-Climate",
       "subject": "Meta's CTO Says Norms Will Sort Out AI Glasses. Norms Need a Witness.",
       "from": "The AI Collective Newsletter <newsletter@aicollective.com>",
       "date": "2026-07-17",
       "thread_id": "19f70c915a146785",
-      "summary": "촬영 표시 없이 사진을 찍는 Meta AI 안경의 규범 문제를 다룬 뉴스레터입니다.",
+      "summary": "🕶️ Meta is testing glasses that take a photo every few seconds, and executives have discussed leaving the recording light off. ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -387,7 +1007,7 @@
       "from": "Mustafa Adiguzel <MAdiguzel@wmo.int>",
       "date": "2026-07-17",
       "thread_id": "19c9011ccf41efdf",
-      "summary": "BCM 과정 피드백이 건설적으로 받아들여져 기쁘다는 Mustafa의 답변입니다.",
+      "summary": "Dear Harim, Thank you for considering my feedback constructive. That was indeed my intention; otherwise, I would not have spent the time preparing it.",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -397,9 +1017,9 @@
       "from": "Division for Human Resources <dhr.office@unfpa.org>",
       "date": "2026-07-17",
       "thread_id": "19f7078f31a0ca54",
-      "summary": "UNFPA 2026년 중간평가가 열렸으며 완료 기한은 8월 19일입니다.",
+      "summary": "Dear Colleagues, The 2026 Mid-Year Review is now available in the Quantum CPM module. ⏰ Deadline for completion: 19 August 2026 🔍 What is the Mid-Year",
       "needs_action": true,
-      "suggested_action": "Quantum CPM에서 2026년 중간평가를 8월 19일까지 완료하세요."
+      "suggested_action": "이메일 내용 확인 후 회신/처리 필요"
     },
     {
       "project": "기타",
@@ -407,7 +1027,7 @@
       "from": "Canada Life <canadalife@mail.canadalife.com>",
       "date": "2026-07-17",
       "thread_id": "19f70619dd0763a7",
-      "summary": "저축을 자동화하는 방법을 소개하는 Canada Life 홍보 이메일입니다.",
+      "summary": "Your future, powered by a few smart moves today. View in browser. Canada Life Your future, powered by a few smart moves today. No matter where you are",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -417,9 +1037,9 @@
       "from": "Hadya Ashraf <Hadya.Ashraf@camh.ca>",
       "date": "2026-07-17",
       "thread_id": "19f705f3672279f5",
-      "summary": "7월 20일 오후 1시 가상 초기상담과 사전 설문 안내입니다.",
-      "needs_action": true,
-      "suggested_action": "사전평가 설문을 완료하고 7월 20일 오후 1시 상담에 5분 일찍 접속하세요."
+      "summary": "NOTE: Please join the WebEx link 5 minutes prior to your scheduled appointment time. What you will receive next: An email from “REDCap” with subject l",
+      "needs_action": false,
+      "suggested_action": ""
     },
     {
       "project": "기타",
@@ -427,7 +1047,7 @@
       "from": "Razi Hashim Mohamedzain <rmohamedzain@worldbank.org>",
       "date": "2026-07-17",
       "thread_id": "19f6cc5cadbd8b93",
-      "summary": "배송물 관련 전달에 감사한다는 World Bank 담당자의 짧은 회신입니다.",
+      "summary": "Thank you Harim. Official Use Only From: Harim Jung <data.harim.jung@gmail.com> Sent: Thursday, July 16, 2026 5:18 PM To: Razi Hashim Mohamedzain <rmo",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -437,7 +1057,7 @@
       "from": "Disco Support Team <disco-support-external@google.com>",
       "date": "2026-07-17",
       "thread_id": "19f705b9b0460221",
-      "summary": "Google Labs 실험 Disco의 초기 테스트 대상자로 선정됐다는 초대입니다.",
+      "summary": "Thank you for your interest in Disco, a Google Labs experiment. You are part of the exclusive first wave selected to test the prototype. To get starte",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -447,27 +1067,27 @@
       "from": "Mustafa Adiguzel <MAdiguzel@wmo.int>",
       "date": "2026-07-17",
       "thread_id": "19c9011ccf41efdf",
-      "summary": "BCM 과정 콘텐츠는 좋지만 수정이 필요한 여러 중요한 문제가 있다는 피드백입니다.",
-      "needs_action": true,
-      "suggested_action": "Mustafa가 지적한 BCM 과정의 중요 문제를 검토하고 수정하세요."
+      "summary": "Dear Harim, Thank you for sharing the course. The content still looks very good, and I appreciate the work that has gone into developing it. However,",
+      "needs_action": false,
+      "suggested_action": ""
     },
     {
-      "project": "기타",
+      "project": "Visual-Climate",
       "subject": "📹 Recording now live: Data storytelling in the age of AI",
       "from": "Flourish team <flourish-webinar@canva.com>",
       "date": "2026-07-17",
       "thread_id": "19f702de2cc83e49",
-      "summary": "AI 시대 데이터 스토리텔링 세션 녹화본이 공개됐다는 안내입니다.",
+      "summary": "Dive into our latest session available on YouTube ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌",
       "needs_action": false,
       "suggested_action": ""
     },
     {
       "project": "기타",
       "subject": "Weekly digest for Fri, Jul 10 2026",
-      "from": "AI Automation Society (Skool) <noreply@skool.com>",
+      "from": "\"AI Automation Society (Skool)\" <noreply@skool.com>",
       "date": "2026-07-17",
       "thread_id": "19f7027da9f0bb58",
-      "summary": "비개발자를 위한 Claude Code 강의 등을 담은 주간 다이제스트입니다.",
+      "summary": "AI Automation Society skool logo Weekly Digest Nate Herk 🚀New Video : Claude Code for Non-Coders (6 Hour Course) This is a complete beginner course on",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -477,7 +1097,7 @@
       "from": "The Code <superhumancode@news.codenewsletter.ai>",
       "date": "2026-07-17",
       "thread_id": "19f700f034f566d3",
-      "summary": "Kimi K3와 Fable 5 비교 및 AI 코딩 워크플로를 소개합니다.",
+      "summary": "Also: AI-native coding workflow ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -487,17 +1107,17 @@
       "from": "DoNotReply <dl-it-donotreply@cbts.com>",
       "date": "2026-07-17",
       "thread_id": "19f6ff832d9f855b",
-      "summary": "7월 12~18일 주간 타임카드가 제출되지 않아 즉시 입력해 달라는 알림입니다.",
+      "summary": "Hi Harim Jung, You have not submitted a timecard for the week of 7/12/2026 - 7/18/2026. Please enter your time ASAP. If you are waiting on an assignme",
       "needs_action": true,
-      "suggested_action": "7월 12~18일 주간 타임카드를 가능한 한 빨리 제출하세요."
+      "suggested_action": "이메일 내용 확인 후 회신/처리 필요"
     },
     {
-      "project": "기타",
+      "project": "Equitee",
       "subject": "Data center fatigue",
       "from": "PitchBook News <news-noreply@news.pitchbook.com>",
       "date": "2026-07-17",
       "thread_id": "19f6ff55e67cc867",
-      "summary": "데이터센터 피로감과 자동화 공장, 사모시장 동향을 다룬 뉴스입니다.",
+      "summary": "Self-learning factories; QumulusAI's atypical listing; European PE's exit backlog hits decade high July 17, 2026 | Log in | Read online | Manage your",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -507,17 +1127,17 @@
       "from": "Wafa Dhaouadi <dhaouadi@unfpa.org>",
       "date": "2026-07-17",
       "thread_id": "19f6fdd7dd39184d",
-      "summary": "7월 20일 CSE 팀 회의의 갱신된 초대를 전달하며 가능하면 참석해 달라는 요청입니다.",
-      "needs_action": true,
-      "suggested_action": "가능하면 7월 20일 오전 11시 30분 EAT CSE 팀 회의에 참석하세요."
+      "summary": "Please attens if you can ---------- Forwarded message --------- From: Steve Petit <petit@unfpa.org> Date: Fri, Jul 17, 2026 at 14:02 Subject: Updated",
+      "needs_action": false,
+      "suggested_action": ""
     },
     {
-      "project": "기타",
+      "project": "Equitee",
       "subject": "Course Correction",
       "from": "Nick from CryptoQuant <nick@cryptoquant.com>",
       "date": "2026-07-17",
       "thread_id": "19f6fcbb6f671d67",
-      "summary": "Strategy의 유동성과 배당 보장 및 Bitcoin 관련 쟁점을 다룬 뉴스레터입니다.",
+      "summary": "Strategy rebuilt liquidity and doubled dividend coverage—but two major Bitcoin questions remain. ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -527,7 +1147,7 @@
       "from": "ICLEI - Local Governments for Sustainability <media@iclei.org>",
       "date": "2026-07-17",
       "thread_id": "19f6f86924a8b879",
-      "summary": "공정하고 신속한 탈화석연료 에너지 전환과 생물다양성 행사를 소개합니다.",
+      "summary": "Plus, the Biodiversity COP's 9th Summit for subnational governments 15 July 2026 View this email in your browser Featured in this edition: The ICLEI n",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -537,7 +1157,7 @@
       "from": "Programme Division <pd.office@unfpa.org>",
       "date": "2026-07-17",
       "thread_id": "19f6f16e0c0fb101",
-      "summary": "7월 20일부터 8월 10일까지 PD Director 부재와 대행 체계를 알립니다.",
+      "summary": "Dear Colleagues, Happy Friday! Please be informed that PD Director will be away from Monday, 20 July to Monday, 10 August 2026. During her absence, le",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -547,17 +1167,17 @@
       "from": "McKinsey Weekend Read <publishing@email.mckinsey.com>",
       "date": "2026-07-17",
       "thread_id": "19f6e56ae01157af",
-      "summary": "AI 시대 인재 개발과 미션 중심 리더십을 다룬 주말 읽을거리입니다.",
+      "summary": "Insightful reads for your weekend ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌",
       "needs_action": false,
       "suggested_action": ""
     },
     {
-      "project": "기타",
+      "project": "Equitee",
       "subject": "New job(s) match your search on Google Careers",
       "from": "careers-noreply@google.com",
       "date": "2026-07-16",
       "thread_id": "19f6e11b35922343",
-      "summary": "Google Careers의 Climate 검색 조건에 맞는 신규 채용 공고입니다.",
+      "summary": "For your search Climate View more Enablement Manager, Google Procurement Organization Google – Multiple Sites Yesterday Bachelor's degree in project m",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -567,7 +1187,7 @@
       "from": "Pinterest <recommendations@explore.pinterest.com>",
       "date": "2026-07-16",
       "thread_id": "19f6dd4512deb238",
-      "summary": "프레젠테이션과 클린테크 회사 소개 슬라이드 디자인 추천입니다.",
+      "summary": "Innovative Slide Design Concepts to Captivate Your Audience When Is the Best Time to Buy a House? Clean Tech Company Profile Slides for Impactful Pres",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -577,17 +1197,17 @@
       "from": "AI Professionals Toronto Centre <info@email.meetup.com>",
       "date": "2026-07-16",
       "thread_id": "19f6da6b6c7ee2bc",
-      "summary": "대인관계와 영향력을 주제로 한 Meetup 학습 행사 안내입니다.",
+      "summary": "AI Professionals Toronto Centre invites you to a new event ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌",
       "needs_action": false,
       "suggested_action": ""
     },
     {
       "project": "기타",
       "subject": "[위시켓 필터 알림] ‘글로벌 투자사(VC) 영문/국문 홈페이지 및 포트폴리오 웹사이트 제작 (1년 유지보수 포함)’ 외 1개 프로젝트",
-      "from": "위시켓 <admin@wishket.com>",
+      "from": "\"위시켓\" <admin@wishket.com>",
       "date": "2026-07-16",
       "thread_id": "19f6da554554d30e",
-      "summary": "저장한 필터에 맞는 VC 웹사이트 제작 등 신규 프로젝트 알림입니다.",
+      "summary": "'글로벌 투자사(VC) 영문/국문 홈페이지 및 포트폴리오 웹사이트 제작 (1년 유지보수 포함)' 외 1개 프로젝트 파트너님이 저장한 프로젝트 필터 조건에 맞는 프로젝트가 등록되었습니다. 지금 확인하고 지원하세요! 위시켓 추천 필터 개발 / 디자인 / 웹 / 애플리케이션",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -597,7 +1217,7 @@
       "from": "Miro Polzer <iaai.glocha@gmail.com>",
       "date": "2026-07-16",
       "thread_id": "19f6d895957f7378",
-      "summary": "8월 오스트리아 GloCha 공동창작 랩의 관심표명 제출 초대입니다.",
+      "summary": "> /📢 𝗖𝗮𝗹𝗹 𝘁𝗼 𝗖𝗵𝗮𝗻𝗴𝗲𝗺𝗮𝗸𝗲𝗿𝘀 𝗮𝗻𝗱 𝗣𝘂𝗯𝗹𝗶𝗰 𝗚𝗼𝗼𝗱 💚 𝗢𝗿𝗶𝗲𝗻𝘁𝗲𝗱 𝗼𝗿𝗴𝗮𝗻𝗶𝘇𝗮𝘁𝗶𝗼𝗻𝘀! 🌍/ > > /\"Never doubt that a small group of thoughtful, committed citizens can > ch",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -607,7 +1227,7 @@
       "from": "Wil Burns <wil@feronia.org>",
       "date": "2026-07-16",
       "thread_id": "19f6d88396df839a",
-      "summary": "탄소 제거 정의를 위한 과학 표준을 다루는 7월 27일 웨비나 안내입니다.",
+      "summary": "I hope that many of you can join us for the next episode in the Scrubbing the Skies Webinar series, which will focus on the development of scientific",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -617,7 +1237,7 @@
       "from": "Miro Polzer <iaai.glocha@gmail.com>",
       "date": "2026-07-16",
       "thread_id": "19f6d8833aebab87",
-      "summary": "8월 오스트리아 GloCha 공동창작 랩의 관심표명 제출 초대입니다.",
+      "summary": ">> /📢 𝗖𝗮𝗹𝗹 𝘁𝗼 𝗖𝗵𝗮𝗻𝗴𝗲𝗺𝗮𝗸𝗲𝗿𝘀 𝗮𝗻𝗱 𝗣𝘂𝗯𝗹𝗶𝗰 𝗚𝗼𝗼𝗱 💚 𝗢𝗿𝗶𝗲𝗻𝘁𝗲𝗱 𝗼𝗿𝗴𝗮𝗻𝗶𝘇𝗮𝘁𝗶𝗼𝗻𝘀! 🌍/ >> >> /\"Never doubt that a small group of thoughtful, committed citizens >> ca",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -627,7 +1247,7 @@
       "from": "FedEx Tracking <TrackingUpdates@fedex.com>",
       "date": "2026-07-16",
       "thread_id": "19f6c712d9fa24f8",
-      "summary": "운송장 874495366761 배송물이 발송 준비 중이라는 FedEx 알림입니다.",
+      "summary": "Your package is being prepared to ship. You're getting a shipment. Tracking details Tracking ID 874495366761 From C/O FASC 28 EASTERN AVENUE OLD TORON",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -637,7 +1257,7 @@
       "from": "FedEx Tracking <TrackingUpdates@fedex.com>",
       "date": "2026-07-16",
       "thread_id": "19f6d7059e526cbe",
-      "summary": "FedEx가 배송물을 접수했으며 배송 예정일은 추후 갱신된다는 안내입니다.",
+      "summary": "We have an estimated delivery date for your shipment. We have your shipment. Scheduled delivery date Will be updated soon Take more control of your sh",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -647,17 +1267,17 @@
       "from": "Luciane Veeck <lveeck@wmo.int>",
       "date": "2026-07-16",
       "thread_id": "19f6d6ba28c7a729",
-      "summary": "Luciane이 7월 20일까지 부재 중이며 복귀 후 답변한다는 자동 회신입니다.",
+      "summary": "﻿ Thank you for your message. I'm currently out of office and will return on 20 July. I will respond to your email as soon as possible upon my return.",
       "needs_action": false,
       "suggested_action": ""
     },
     {
       "project": "WMO",
       "subject": "New sign in to your WMO Education and Training Programme account",
-      "from": "Do not reply to this email (via ETRP Moodle Site) <noreply@mail-5fdff384796c4-hg01.net>",
+      "from": "\"Do not reply to this email  (via ETRP Moodle Site)\" <noreply@mail-5fdff384796c4-hg01.net>",
       "date": "2026-07-16",
       "thread_id": "19f6d3dfc63f8d42",
-      "summary": "WMO 교육훈련 프로그램 계정에 새 기기 로그인이 있었다는 보안 알림입니다.",
+      "summary": "Hi Harim Jung, Your WMO Education and Training Programme account was just signed in to from a new device. Your account: harimjung data.harim.jung@gmai",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -667,7 +1287,7 @@
       "from": "FedEx Tracking <TrackingUpdates@fedex.com>",
       "date": "2026-07-16",
       "thread_id": "19f6cc5cadbd8b93",
-      "summary": "FedEx가 배송물을 접수했으며 배송 예정일은 추후 갱신된다는 안내입니다.",
+      "summary": "We have an estimated delivery date for your shipment. We have your shipment. Scheduled delivery date Will be updated soon Take more control of your sh",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -677,7 +1297,7 @@
       "from": "Climate Week Network <climateweeknetwork@climatebase.org>",
       "date": "2026-07-16",
       "thread_id": "19f6cb47e516e5bc",
-      "summary": "Lagos와 São Paulo의 Climate Week Network 가입과 향후 행사를 소개합니다.",
+      "summary": "How to get involved, more upcoming Climate Weeks & how to bring a Climate Week to your city. ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -687,7 +1307,7 @@
       "from": "Kraken <no-reply@email.kraken.com>",
       "date": "2026-07-16",
       "thread_id": "19f6cafb7895808f",
-      "summary": "복잡한 설정 없이 최대 6% 복리 보상을 얻는 Kraken 홍보입니다.",
+      "summary": "Earning compounding rewards with no complex setup. ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -697,17 +1317,17 @@
       "from": "AI Professionals Toronto Centre <info@email.meetup.com>",
       "date": "2026-07-16",
       "thread_id": "19f6ca7972607863",
-      "summary": "Claude Cowork를 활용한 사업 성장 Meetup 일정 변경 안내입니다.",
+      "summary": "AI Professionals Toronto Centre invites you to a new event ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌",
       "needs_action": false,
       "suggested_action": ""
     },
     {
-      "project": "기타",
+      "project": "Equitee",
       "subject": "Agents Need a New Kind of Web Search",
       "from": "Daily Dose of DS <avi@dailydoseofds.com>",
       "date": "2026-07-16",
       "thread_id": "19f6ca1394b94d0d",
-      "summary": "AI 에이전트를 위한 세 가지 검색 전략을 설명하는 뉴스레터입니다.",
+      "summary": "...covered with three retrieval strategies for AI agents in 2026. ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -717,7 +1337,7 @@
       "from": "Division for Management Services <dms.office@unfpa.org>",
       "date": "2026-07-16",
       "thread_id": "19f6c8afa10de9b5",
-      "summary": "UNPP 위험·역량 프로필 웨비나 녹화본과 슬라이드가 공유됐다는 안내입니다.",
+      "summary": "Dear Colleagues, Thank you for tuning in to last week's webinar on the UNPP Risk & Capacity Profile! 🎧 You can find the recording of the webinar here,",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -727,7 +1347,7 @@
       "from": "Kith Climate <contactus@voiz.academy>",
       "date": "2026-07-16",
       "thread_id": "19f6c87675abf84f",
-      "summary": "지속가능성 업무에서 싫어하는 부분을 주제로 한 Kith Climate 콘텐츠입니다.",
+      "summary": "Taylor Gillespie, Founder at Circadian Consulting ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -737,17 +1357,17 @@
       "from": "FedEx Tracking <TrackingUpdates@fedex.com>",
       "date": "2026-07-16",
       "thread_id": "19f6c712d9fa24f8",
-      "summary": "운송장 874495366761 배송물이 발송 준비 중이라는 FedEx 알림입니다.",
+      "summary": "Your package is being prepared to ship. You're getting a shipment. Tracking details Tracking ID 874495366761 From C/O FASC 28 Eastern Avenue Old Toron",
       "needs_action": false,
       "suggested_action": ""
     },
     {
-      "project": "기타",
+      "project": "Visual-Climate",
       "subject": "This week on Climate Change AI: July 9 - July 16, 2026",
       "from": "Climate Change AI <no-reply@notification.circle.so>",
       "date": "2026-07-16",
       "thread_id": "19f6c69720fedb53",
-      "summary": "7월 9~16일 Climate Change AI 커뮤니티 활동 요약입니다.",
+      "summary": "Climate Change AI logo This week on Climate Change AI July 9 - July 16, 2026 Here comes your personalized summary of what happened on the CCAI communi",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -757,17 +1377,17 @@
       "from": "Division for Human Resources <dhr.office@unfpa.org>",
       "date": "2026-07-16",
       "thread_id": "19f6c2b9e0e32367",
-      "summary": "7월 16일 기준 UNFPA의 국제 전문직 채용 기회를 안내합니다.",
+      "summary": "Position Office & Duty Station Level Closing Date International Professional Positions: Programme Specialist, Quality Assurance PD, Nairobi, Kenya P-3",
       "needs_action": false,
       "suggested_action": ""
     },
     {
       "project": "기타",
       "subject": "Cost versus value: Managing agentic AI system performance",
-      "from": "McKinsey & Company <publishing@email.mckinsey.com>",
+      "from": "\"McKinsey & Company\" <publishing@email.mckinsey.com>",
       "date": "2026-07-16",
       "thread_id": "19f6c22b337702d0",
-      "summary": "에이전틱 AI 시스템의 비용과 가치 및 성능 관리를 다룬 자료입니다.",
+      "summary": "See where the future of AI economics is headed ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -777,7 +1397,7 @@
       "from": "Toronto AI Developers Group <info@email.meetup.com>",
       "date": "2026-07-16",
       "thread_id": "19f6c02e82e2232c",
-      "summary": "n8n과 Memanto를 활용한 멀티에이전트 워크플로 Meetup 안내입니다.",
+      "summary": "Toronto AI Developers Group invites you to a new event ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -787,7 +1407,7 @@
       "from": "The Substack Post <post+unstacked@substack.com>",
       "date": "2026-07-16",
       "thread_id": "19f6bd2f37174603",
-      "summary": "월드컵 우승 선수들이 정상급 경기 경험을 이야기하는 Substack 콘텐츠입니다.",
+      "summary": "With eight appearances and three World Cup wins between them, soccer legends Abby Wambach and Julie Foudy peel back the curtain on life at the top of",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -797,7 +1417,7 @@
       "from": "WISE INSIGHTS <alerts@lifewayinsights.com>",
       "date": "2026-07-16",
       "thread_id": "19f6b956d2bc8202",
-      "summary": "이미 구성된 AI 플랫폼 사용을 권유하는 홍보 이메일입니다.",
+      "summary": "All that's missing is you. Wise Insights Hey Friend, The interesting part is... You don't have to build anything yourself. I already configured everyt",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -807,17 +1427,17 @@
       "from": "Tableau User Groups <usergroups@tableau.com>",
       "date": "2026-07-16",
       "thread_id": "19f6b8d7cc4e8ec4",
-      "summary": "대시보드와 분석 거버넌스를 주제로 한 Tableau 사용자 그룹 초대입니다.",
+      "summary": "Tableau - Analytics Tableau User Group View in browser Tableau Dear Harim, We're excited to invite you to our next Analytics Tableau User Group! If yo",
       "needs_action": false,
       "suggested_action": ""
     },
     {
-      "project": "기타",
+      "project": "Visual-Climate",
       "subject": "AIC Hall of Fame Ep. #2 | Siddhartha Saxena",
       "from": "The AI Collective Newsletter <newsletter@aicollective.com>",
       "date": "2026-07-16",
       "thread_id": "19f6b75525b7e3bc",
-      "summary": "Siddhartha Saxena와 Thine을 소개하는 AI Collective 콘텐츠입니다.",
+      "summary": "💬 Making explaining yourself obsolete with Thine ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -827,7 +1447,7 @@
       "from": "Clint Gibler <clint@tldrsec.com>",
       "date": "2026-07-16",
       "thread_id": "19f6b56a8f7d5805",
-      "summary": "취약점 탐지 하네스와 미끼 클라우드 환경 등을 다룬 보안 뉴스레터입니다.",
+      "summary": "Survey for AI-powered vulnerability finding harnesses, programmatically build complex decoy cloud environments, building hackbots ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -837,7 +1457,7 @@
       "from": "Steve Petit <petit@unfpa.org>",
       "date": "2026-07-16",
       "thread_id": "19f5aa5bb9545afc",
-      "summary": "Steve가 Harim의 CSE 팀 합류를 환영하고 향후 업무에 기대를 전했습니다.",
+      "summary": "Dear Harim, It was a pleasure meeting you briefly during your onboarding call with Wafa. A warm welcome aboard again! We are excited about the importa",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -847,17 +1467,17 @@
       "from": "Aritzia <aritzia@em.aritzia.com>",
       "date": "2026-07-16",
       "thread_id": "19f6b410c0971a8a",
-      "summary": "Aritzia 여름 상품의 30~60% 할인 프로모션입니다.",
+      "summary": "+ Summer's not waiting. Neither should you. ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏",
       "needs_action": false,
       "suggested_action": ""
     },
     {
       "project": "기타",
       "subject": "Toronto Business Network: [Happening Today] Simplified A.I. Marketing - Day 1 Underway!",
-      "from": "Ritche Garcia (Meetup) <the-toronto-business-network-announce@email.meetup.com>",
+      "from": "\"Ritche Garcia (Meetup)\" <the-toronto-business-network-announce@email.meetup.com>",
       "date": "2026-07-16",
       "thread_id": "19f6b3d73b8140bc",
-      "summary": "AI 마케팅 행사 1일 차가 진행 중이라는 Meetup 홍보입니다.",
+      "summary": "Hello, Day 1 of Simplified AI Marketing is happening today! The energy is incredible, and we're already diving into AI-powered strategies to remove ma",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -867,7 +1487,7 @@
       "from": "MasterClass Certificates <support@email.masterclass.com>",
       "date": "2026-07-16",
       "thread_id": "19f6b3ca1bd54fc1",
-      "summary": "협상 강의 30% 할인 프로모션입니다.",
+      "summary": "Don't let fear of negotiation stall your career. Learn how to get the most out of every interaction. ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -877,7 +1497,7 @@
       "from": "Genspark Community Team <community@genspark.ai>",
       "date": "2026-07-16",
       "thread_id": "19f6b3b4517d660e",
-      "summary": "대규모 프로젝트 도전 사례와 Genspark 새 소식을 소개합니다.",
+      "summary": "Issue 2 · July 2026 What if the impossible project wasn't? You know the ones. The projects that have felt too big to take on, until someone decides to",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -887,17 +1507,17 @@
       "from": "The Code <superhumancode@news.codenewsletter.ai>",
       "date": "2026-07-16",
       "thread_id": "19f6b08fa9078c0c",
-      "summary": "사이버 공격 관련 OpenAI 모델과 실시간 LLM 앱을 소개합니다.",
+      "summary": "Also: Build LLM apps that respond in real time ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌",
       "needs_action": false,
       "suggested_action": ""
     },
     {
       "project": "기타",
       "subject": "Thank you - FOR Innovate for Impact 2026",
-      "from": "Call for AI, ITU <ai-calls@itu.int>",
+      "from": "\"Call for AI, ITU\" <ai-calls@itu.int>",
       "date": "2026-07-16",
       "thread_id": "19f6b073bf758b97",
-      "summary": "Innovate for Impact 2026 기여자들에게 감사하는 ITU 메시지입니다.",
+      "summary": "Dear All, We would like to thank each of you for your outstanding contributions in making this summit a success. Your time and hard work were precious",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -907,7 +1527,7 @@
       "from": "Ayesha Saeed <aysaeed@unfpa.org>",
       "date": "2026-07-16",
       "thread_id": "19f6aee121f6faac",
-      "summary": "한 시간 뒤 시작하는 팀 심리적 안전과 긍정적 관계 세션 알림입니다.",
+      "summary": "Dear Colleagues, This is a gentle reminder regarding the upcoming session. You are warmly welcomed to participate. With Regards, Ayesha ---------- For",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -917,7 +1537,7 @@
       "from": "CFA Society Toronto <info@cfatoronto.ca>",
       "date": "2026-07-16",
       "thread_id": "19f6aea6a5ba2790",
-      "summary": "CFA Society Toronto의 소식과 경력 정보를 담은 뉴스레터입니다.",
+      "summary": "Click here to view this email in your browser. INSIDE CFA Society Toronto Hello Harim: Stay informed with CFA Society Toronto! Here's what's new: Your",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -927,17 +1547,17 @@
       "from": "Substack <no-reply@substack.com>",
       "date": "2026-07-16",
       "thread_id": "19f6aca222d8a161",
-      "summary": "세 명의 작가가 새 Substack 노트를 게시했다는 알림입니다.",
+      "summary": "Ruben Hassid, Andrew Lokenauth, and DAN KOE posted new notes ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏",
       "needs_action": false,
       "suggested_action": ""
     },
     {
-      "project": "기타",
+      "project": "Equitee",
       "subject": "Stripe and Advent's lowball bid",
       "from": "PitchBook News <news-noreply@news.pitchbook.com>",
       "date": "2026-07-16",
       "thread_id": "19f6ac5409eac8e0",
-      "summary": "Stripe·Advent 거래와 펀드 및 M&A 동향을 다룬 PitchBook 뉴스입니다.",
+      "summary": "Fresh fund benchmarks; tackling Asian infra; dual-use defense tech; UK M&A headed for record July 16, 2026 | Log in | Read online | Manage your subscr",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -947,37 +1567,37 @@
       "from": "Fahmia AL-Fotih <al-fotih@unfpa.org>",
       "date": "2026-07-16",
       "thread_id": "19f6a6a230263726",
-      "summary": "UNFPA가 AI for Good 정상회의에서 평등을 위한 AI 활용을 발표했다는 소식입니다.",
+      "summary": "image.png Dear Colleagues, Last week, July 9, 2026, UNFPA demonstrated how we are utilizing AI to advance the agency's transformative results, includi",
       "needs_action": false,
       "suggested_action": ""
     },
     {
       "project": "기타",
       "subject": "RE: Call for Updates to AI for Good Use Cases",
-      "from": "Liu, Xiaoyi <xiaoyi.liu@itu.int>",
+      "from": "\"Liu, Xiaoyi\" <xiaoyi.liu@itu.int>",
       "date": "2026-07-16",
       "thread_id": "19f64e4c5c4acf27",
-      "summary": "AI for Good 활용사례에 변경이 없으면 수정 양식을 제출할 필요가 없다는 안내입니다.",
+      "summary": "Dear Authors, We would like to provide the following clarifications regarding the submission of use case revisions: If no changes are required for you",
       "needs_action": false,
       "suggested_action": ""
     },
     {
-      "project": "기타",
+      "project": "Visual-Climate",
       "subject": "Electricity Maps: On and off the grid for July 2026",
       "from": "Electricity Maps <marketing@electricitymaps.com>",
       "date": "2026-07-16",
       "thread_id": "19f6a577628d27e2",
-      "summary": "전력망 해커톤, BESS 전망과 6월 전력가격 급등을 소개하는 뉴스레터입니다.",
+      "summary": "Hack on the Grid hackathon, €4860/MW BESS forecast study with FlexUp, June price spikes above €1000/MWh explained ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏",
       "needs_action": false,
       "suggested_action": ""
     },
     {
-      "project": "기타",
+      "project": "Equitee",
       "subject": "How a Belgian bank built a smart assistant customers love",
       "from": "The Miro Team <team@mail.miro.com>",
       "date": "2026-07-16",
       "thread_id": "19f6a43d2f7ced13",
-      "summary": "벨기에 은행이 Miro로 스마트 고객 도우미를 구축한 사례입니다.",
+      "summary": "See how a cross-functional team built it fast, with Miro. ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -987,7 +1607,7 @@
       "from": "Nora Piay-Fernandez <piay-fernandez@unfpa.org>",
       "date": "2026-07-16",
       "thread_id": "19f5aa5bb9545afc",
-      "summary": "Nora가 Harim의 UNFPA 팀 합류를 환영하고 지원 의사를 전했습니다.",
+      "summary": "Dear Harim, Welcome to the team and to UNFPA. We are very happy to have you on board to work on such interesting initiatives. Please do reach out if y",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -997,7 +1617,7 @@
       "from": "Alvin Mejia <alvin.mejia.a@gmail.com>",
       "date": "2026-07-15",
       "thread_id": "19f6d895bf475014",
-      "summary": "Asian Transport Observatory의 2026년 2분기 뉴스레터가 공유됐습니다.",
+      "summary": "Good day, sharing the new quarterly newsletter from the Asian Transport Observatory. Thank you. Best regards, New flagship reports, Pacific data platf",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -1007,7 +1627,7 @@
       "from": "Guillermo TORRES <torres@iges.or.jp>",
       "date": "2026-07-15",
       "thread_id": "19f6d8831599368a",
-      "summary": "행성 위기에 대한 지역 회복력을 주제로 한 국제 포럼 초대입니다.",
+      "summary": "Dear colleagues, We would like to invite you to the upcoming event as detailed below. We look forward to your active participation! ━━━━━━━━━━━━━━━━━━",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -1017,7 +1637,7 @@
       "from": "WireBarley <no-reply@wirebarley.com>",
       "date": "2026-07-15",
       "thread_id": "19f6acb15483e7f8",
-      "summary": "WireBarley 전자금융거래 이용약관 일부 변경 안내입니다.",
+      "summary": "[WireBarley] Notice on modification of Electronic Financial Transaction Terms and Conditions Thank you for using WireBarley. We would like to inform y",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -1027,7 +1647,7 @@
       "from": "Amanda <amandayu1612@gmail.com>",
       "date": "2026-07-15",
       "thread_id": "19f66ea203adbac7",
-      "summary": "공유한 배송 혁신 콘텐츠가 흥미롭다는 Amanda의 개인 회신입니다.",
+      "summary": "Wowwww. So so cool and interesting!!!! Thanks for sharing with me babe🤩🤩🩷 On Wed, Jul 15, 2026 at 10:43 PM Harim Jung <data.harim.jung@gmail.com> wrot",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -1037,7 +1657,7 @@
       "from": "Amanda <amandayu1612@gmail.com>",
       "date": "2026-07-15",
       "thread_id": "19f66ea203adbac7",
-      "summary": "공유한 배송 혁신 글에 감사하며 월간 구독인지 묻는 개인 회신입니다.",
+      "summary": "WOW, I will be reading that 😀 thanks babeeee. haha i love how we are having the same interests. This is a monthly newsletter type of subscription?? On",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -1047,17 +1667,17 @@
       "from": "Pinterest <recommendations@explore.pinterest.com>",
       "date": "2026-07-15",
       "thread_id": "19f68adf87d3bcdd",
-      "summary": "Sankey 다이어그램과 대시보드 UI 관련 Pinterest 추천입니다.",
+      "summary": "Pet Care Dashboard UI – Modern SaaS App Design Trendy T-shirt Styles for Inspiration Differences betwe... Differences between Sankey Diagrams, Paralle",
       "needs_action": false,
       "suggested_action": ""
     },
     {
       "project": "기타",
       "subject": "[신한카드] 개인정보 이용내역 안내",
-      "from": "신한카드 <shinhancard@mail3.shinhancard.com>",
+      "from": "\"신한카드\" <shinhancard@mail3.shinhancard.com>",
       "date": "2026-07-15",
       "thread_id": "19f6898f6bd2cf9c",
-      "summary": "개인정보보호법에 따른 신한카드 개인정보 이용·제공 내역 안내입니다.",
+      "summary": "shinhancard 고객님 안녕하세요. 신한카드입니다. 항상 변함없는 애정과 신뢰로 신한카드를 이용해주시는 고객님께 감사의 말씀을 드립니다. 고객님의 소중한 개인정보 보호를 위해 「개인정보보호법」 제20조의2(개인정보 이용·제공 내역의 통지)에 따라 개인정보의 이용",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -1067,7 +1687,7 @@
       "from": "Sandi Maung <sandi@ecoltdgroup.com>",
       "date": "2026-07-15",
       "thread_id": "19f688834fa05967",
-      "summary": "GCF B.45 결과와 신규 기후금융 프로젝트를 다루는 웨비나 안내입니다.",
+      "summary": "GCF B.45 unpacked Dear colleagues, Today at noon, we'll sit down to break down the exact outcomes of B.45! Ten projects. USD 369.1 million in new fina",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -1077,7 +1697,7 @@
       "from": "Harim Jung <hajung@unfpa.org>",
       "date": "2026-07-15",
       "thread_id": "19f6841a0071b72c",
-      "summary": "Google Suite와 지식관리 도구에 관한 Wafa의 문의 이메일을 전달했습니다.",
+      "summary": "---------- Forwarded message --------- From: Wafa Dhaouadi <dhaouadi@unfpa.org> Date: Wed, Jul 15, 2026 at 5:27 AM Subject: inquiries about google sui",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -1087,7 +1707,7 @@
       "from": "Harim Jung <hajung@unfpa.org>",
       "date": "2026-07-15",
       "thread_id": "19f4c4bad6319b93",
-      "summary": "Data and Knowledge CSC 접근 및 초기 질문 관련 회신을 전달했습니다.",
+      "summary": "---------- Forwarded message --------- From: Wafa Dhaouadi <dhaouadi@unfpa.org> Date: Wed, Jul 15, 2026 at 4:35 AM Subject: Re: Data and Knowledge CSC",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -1097,7 +1717,7 @@
       "from": "Harim Jung <hajung@unfpa.org>",
       "date": "2026-07-15",
       "thread_id": "19f683daaf57f0cd",
-      "summary": "UNFPA 가입 페이지 링크를 확인용으로 보낸 메일입니다.",
+      "summary": "check https://www.unfpa.org/sign-up",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -1107,7 +1727,7 @@
       "from": "Google <no-reply@accounts.google.com>",
       "date": "2026-07-15",
       "thread_id": "19f683bb5aab6949",
-      "summary": "Mac 기기에서 새로운 Google 계정 로그인이 있었다는 보안 알림입니다.",
+      "summary": "A new sign-in on Mac data.harim.jung@gmail.com We noticed a new sign-in to your Google Account on a Mac device. If this was you, you don't need to do",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -1117,9 +1737,9 @@
       "from": "United Nations Population Fund Team <forwarding-noreply@google.com>",
       "date": "2026-07-15",
       "thread_id": "19f683b40d04fd44",
-      "summary": "hajung@unfpa.org 메일을 개인 주소로 자동 전달하기 위한 확인 요청입니다.",
-      "needs_action": true,
-      "suggested_action": "UNFPA 메일 자동 전달을 원하면 전달 확인 절차를 완료하세요."
+      "summary": "hajung@unfpa.org has requested to automatically forward mail to your email address data.harim.jung@gmail.com. To allow hajung@unfpa.org to automatical",
+      "needs_action": false,
+      "suggested_action": ""
     },
     {
       "project": "UNFPA-CSE",
@@ -1127,17 +1747,17 @@
       "from": "Harim Jung <hajung@unfpa.org>",
       "date": "2026-07-15",
       "thread_id": "19f5aa5bb9545afc",
-      "summary": "CSE Global Team 환영에 감사하고 프로젝트 기여 의지를 밝힌 회신입니다.",
+      "summary": "Dear Ramz and Sharafdzhon, Thank you very much for your warm welcome. I am truly excited to join the CSE Global Team. I look forward to contributing t",
       "needs_action": false,
       "suggested_action": ""
     },
     {
-      "project": "기타",
+      "project": "WMO",
       "subject": "The writing habit that saved my brain (and my future)",
       "from": "Dan Koe <thedankoe@substack.com>",
       "date": "2026-07-15",
       "thread_id": "19f67c79c6f7bc6a",
-      "summary": "더 빠른 학습과 명확한 사고를 돕는 글쓰기 습관을 소개합니다.",
+      "summary": "One habit = learn faster, think clearly, earn more ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -1147,17 +1767,17 @@
       "from": "Coinbase Bytes <newsletter@mail.coinbase.com>",
       "date": "2026-07-15",
       "thread_id": "19f67931d3db668c",
-      "summary": "BTC·ETH ETF 자금 유입 회복과 암호화폐 시장 동향을 설명합니다.",
+      "summary": "BTC and ETH ETF inflows return. Plus: why markets rallied on CPI data and which countries are going all-in on crypto. ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌",
       "needs_action": false,
       "suggested_action": ""
     },
     {
       "project": "기타",
       "subject": "Advocacy meets action: Malala Yousafzai bets big on women’s sports",
-      "from": "McKinsey & Company <publishing@email.mckinsey.com>",
+      "from": "\"McKinsey & Company\" <publishing@email.mckinsey.com>",
       "date": "2026-07-15",
       "thread_id": "19f67927c3ef4dd7",
-      "summary": "Malala Yousafzai의 여성 스포츠 투자와 기회 확대를 다룬 콘텐츠입니다.",
+      "summary": "Expand opportunity for women and girls ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -1167,7 +1787,7 @@
       "from": "Daily Dose of DS <avi@dailydoseofds.com>",
       "date": "2026-07-15",
       "thread_id": "19f67855279a524d",
-      "summary": "실제 추론 비용을 줄이는 소형모델 파이프라인 구축법을 설명합니다.",
+      "summary": "How to build SLM pipelines that actually save money in production. ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -1177,9 +1797,9 @@
       "from": "Britt Staniar <bstaniar@salesforce.com>",
       "date": "2026-07-15",
       "thread_id": "19f6778a82cbd5d1",
-      "summary": "Tableau Ambassador 추천 및 지원 마감이 7월 16일이라는 알림입니다.",
-      "needs_action": false,
-      "suggested_action": ""
+      "summary": "Hi there, A reminder: The deadline to submit a nomination or an application to be a Tableau Ambassador is tomorrow, July 16 at 11:59 PM Pacific Time.",
+      "needs_action": true,
+      "suggested_action": "이메일 내용 확인 후 회신/처리 필요"
     },
     {
       "project": "기타",
@@ -1187,17 +1807,17 @@
       "from": "Wealthsimple <notifications@o.wealthsimple.com>",
       "date": "2026-07-15",
       "thread_id": "19f6774163361370",
-      "summary": "Wealthsimple Trade 계좌 수수료 일정이 변경됐으며 조치는 필요 없다는 안내입니다.",
-      "needs_action": false,
-      "suggested_action": ""
+      "summary": "No action is required (but please review it anyway). ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏",
+      "needs_action": true,
+      "suggested_action": "이메일 내용 확인 후 회신/처리 필요"
     },
     {
       "project": "기타",
       "subject": "request for prayers",
-      "from": "Dr. Benjamin Hardy <ben@benjaminhardy.com>",
+      "from": "\"Dr. Benjamin Hardy\" <ben@benjaminhardy.com>",
       "date": "2026-07-15",
       "thread_id": "19f6725b1a466082",
-      "summary": "가족과 아들을 위해 기도해 달라는 개인적인 뉴스레터 메시지입니다.",
+      "summary": "Hey, This is more personal, and I won't share details. But my family is currently going through a lot and particularly, my son. Nothing dire, more emo",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -1207,7 +1827,7 @@
       "from": "ARK Invest <ark@arkinvest.com>",
       "date": "2026-07-15",
       "thread_id": "19f66ea203adbac7",
-      "summary": "기술 발전으로 더 빠르고 저렴해질 배송 산업의 변화를 다룹니다.",
+      "summary": "As technology improves, delivery could become faster, cheaper, and more efficient than ever before. ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -1217,7 +1837,7 @@
       "from": "Resend <legal@notifications.resend.com>",
       "date": "2026-07-15",
       "thread_id": "19f66e1873f76a8a",
-      "summary": "Resend의 하위 처리업체 목록 변경 안내입니다.",
+      "summary": "Resend Subprocessor notice ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -1227,7 +1847,7 @@
       "from": "Ruben Hassid <ruben@substack.com>",
       "date": "2026-07-15",
       "thread_id": "19f66b6a3bb8bd4f",
-      "summary": "ChatGPT와 Claude의 기능 유사성을 다룬 Substack 글입니다.",
+      "summary": "But does ChatGPT still matter? ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -1237,17 +1857,17 @@
       "from": "Saje Natural Wellness <noreply@saje.com>",
       "date": "2026-07-15",
       "thread_id": "19f66acc3e55c449",
-      "summary": "구매한 Peppermint Halo 제품의 후기를 요청하는 이메일입니다.",
+      "summary": "Peppermint Halo Hello Visual! Thank you so much for shopping at Saje Natural Wellness. We'd love to hear what you think about your new Peppermint Halo",
       "needs_action": false,
       "suggested_action": ""
     },
     {
       "project": "기타",
       "subject": "Find your next great read: McKinsey’s 2026 book recommendations",
-      "from": "McKinsey & Company <publishing@email.mckinsey.com>",
+      "from": "\"McKinsey & Company\" <publishing@email.mckinsey.com>",
       "date": "2026-07-15",
       "thread_id": "19f669977a736f54",
-      "summary": "오늘날 리더들에게 영감을 주는 McKinsey의 2026년 도서 추천입니다.",
+      "summary": "The books inspiring today's leaders ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -1257,17 +1877,17 @@
       "from": "Venn <info@venn.ca>",
       "date": "2026-07-15",
       "thread_id": "19f6691a4f54efe2",
-      "summary": "최대 3.5% 이자를 제공하는 Venn 여름 프로모션입니다.",
+      "summary": "We're excited to announce that Venn is now trusted by more than 15000 businesses across Canada! To celebrate this milestone, we're offering a limited-",
       "needs_action": false,
       "suggested_action": ""
     },
     {
       "project": "기타",
       "subject": "How was Myth?",
-      "from": "OpenTable | Myth Reservations <no-reply@opentable.com>",
+      "from": "\"OpenTable | Myth Reservations\" <no-reply@opentable.com>",
       "date": "2026-07-15",
       "thread_id": "19f667b218aa6265",
-      "summary": "7월 14일 Myth 방문 경험에 대한 후기를 요청합니다.",
+      "summary": "OpenTable OpenTable How was Myth? We would appreciate your feedback about your experience at: OpenTable Myth Indoor Dining • Table for 2 on Tuesday, J",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -1277,7 +1897,7 @@
       "from": "Kraken <no-reply@email.kraken.com>",
       "date": "2026-07-15",
       "thread_id": "19f66681e20690f9",
-      "summary": "FOMC 일정과 스테이블코인 규정 및 시장 일정을 소개합니다.",
+      "summary": "Plus Tesla earnings July 22 and weekly options expiries on Deribit. ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌ ﻿ ͏ ‌",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -1287,17 +1907,17 @@
       "from": "YU PEI LIN <notify@payments.interac.ca>",
       "date": "2026-07-15",
       "thread_id": "19f665cd85138a5a",
-      "summary": "YU PEI LIN이 보낸 220달러가 자동 입금됐다는 확인입니다.",
+      "summary": "HARIM JUNG, your funds sent from YU PEI LIN have been automatically deposited. ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ INTERAC e-Transfer View in browser",
       "needs_action": false,
       "suggested_action": ""
     },
     {
-      "project": "기타",
+      "project": "Visual-Climate",
       "subject": "Why Is Spotify Talking Back Now?",
       "from": "The AI Collective Newsletter <newsletter@aicollective.com>",
       "date": "2026-07-15",
       "thread_id": "19f664e5a200e3ac",
-      "summary": "Spotify 음성 기능과 화면을 인식하는 Siri 소식을 다룬 뉴스레터입니다.",
+      "summary": "🧰 Plus: Siri Can Finally See What's On Your Screen ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -1307,17 +1927,17 @@
       "from": "Tableau User Groups <usergroups@tableau.com>",
       "date": "2026-07-15",
       "thread_id": "19f662f6123f8e43",
-      "summary": "비즈니스 질문에서 대시보드까지의 AI 분석 워크플로 행사 안내입니다.",
+      "summary": "Tableau - Tableau Buddy Talks User Group View in browser Tableau Join us in our next upcoming event AI-Powered Analytics Workflow: From Business Quest",
       "needs_action": false,
       "suggested_action": ""
     },
     {
       "project": "기타",
       "subject": "Save $31 for National Give Something Away Day",
-      "from": "1-800-GOT-JUNK? <marketing@email.1800gotjunk.com>",
+      "from": "\"1-800-GOT-JUNK?\" <marketing@email.1800gotjunk.com>",
       "date": "2026-07-15",
       "thread_id": "19f662b83384c674",
-      "summary": "물건 나눔의 날을 맞아 31달러 할인을 제공하는 수거 서비스 홍보입니다.",
+      "summary": "Feel good while freeing up space Trouble viewing this email? View in browser 1-800-GOT-JUNK? BOOK NOW It's National Give Something Away Day! Declutter",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -1327,7 +1947,7 @@
       "from": "ICLEI - Local Governments for Sustainability <media@iclei.org>",
       "date": "2026-07-15",
       "thread_id": "19f662a7a6b4d5c8",
-      "summary": "공정하고 신속한 탈화석연료 에너지 전환과 생물다양성 행사를 소개합니다.",
+      "summary": "Plus, the Biodiversity COP's 9th Summit for subnational governments 15 July 2026 View this email in your browser Featured in this edition: The ICLEI n",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -1337,7 +1957,7 @@
       "from": "Kith Climate <contactus@voiz.academy>",
       "date": "2026-07-15",
       "thread_id": "19f6621776977656",
-      "summary": "9월 8일 시작하는 기후위험 교육 코호트의 지원 안내입니다.",
+      "summary": "September 8th, applications open ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -1347,7 +1967,7 @@
       "from": "UNICEF Data <data@mail.unicef.org>",
       "date": "2026-07-15",
       "thread_id": "19f661f1889e99d5",
-      "summary": "2025년 영유아 예방접종 현황에 관한 WHO-UNICEF 추정치 발표입니다.",
+      "summary": "Nine in ten infants started their routine vaccinations in 2025 – but 13.5 million children, most of them living through conflict and crisis, received",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -1357,17 +1977,17 @@
       "from": "Declan Quinn <signals@realwealthwave.com>",
       "date": "2026-07-15",
       "thread_id": "19f661b9e3899da4",
-      "summary": "AI 플랫폼 접근 권한에 한시적 추가 혜택이 포함됐다는 홍보입니다.",
+      "summary": "It's already there — just not for long i Wave Strategies Hey Harim, After your access went through, we added something extra on top. Not everyone gets",
       "needs_action": false,
       "suggested_action": ""
     },
     {
       "project": "기타",
       "subject": "RE: Call for Updates to AI for Good Use Cases",
-      "from": "Liu, Xiaoyi <xiaoyi.liu@itu.int>",
+      "from": "\"Liu, Xiaoyi\" <xiaoyi.liu@itu.int>",
       "date": "2026-07-15",
       "thread_id": "19f64e4c5c4acf27",
-      "summary": "AI for Good 활용사례 수정 시 두 단계 제출 절차를 모두 완료해야 한다는 안내입니다.",
+      "summary": "Dear Authors, Due to limitations with Microsoft Forms, please note that the submission process for use case revisions has been updated. To complete yo",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -1377,107 +1997,27 @@
       "from": "The Code <superhumancode@news.codenewsletter.ai>",
       "date": "2026-07-15",
       "thread_id": "19f65e082f4363a0",
-      "summary": "GPT-5.6 관련 우려와 OpenCode 사용법을 소개하는 뉴스레터입니다.",
+      "summary": "Also: How to use OpenCode ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌",
       "needs_action": false,
       "suggested_action": ""
     },
     {
-      "project": "기타",
-      "subject": "1 new notification since 8:21 am (Jul 14, 2026)",
-      "from": "AI Automation Society (Skool) <noreply@skool.com>",
-      "date": "2026-07-15",
-      "thread_id": "19f65bd3b64ac584",
-      "summary": "새로운 AI 직무 관련 Skool 게시물 알림입니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "기타",
-      "subject": "Your Membership Rewards redemption with Amazon Shop with Points",
-      "from": "American Express <AmericanExpress@welcome.americanexpress.com>",
-      "date": "2026-07-15",
-      "thread_id": "19f65ab1707948c0",
-      "summary": "Amazon Shop with Points에서 5,159 포인트를 사용했다는 확인입니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "기타",
-      "subject": "Fundless for the win",
-      "from": "PitchBook News <news-noreply@news.pitchbook.com>",
-      "date": "2026-07-15",
-      "thread_id": "19f659704ed37df9",
-      "summary": "PayPal 인수 제안과 데이터센터·신용등급·애그테크 동향을 다룬 뉴스입니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "기타",
+      "project": "Visual-Climate",
       "subject": "Your Order Is On Its Way",
       "from": "Coach <coachorders@coachorders.narvar.com>",
       "date": "2026-07-15",
       "thread_id": "19f65688dce46f54",
-      "summary": "Coach Outlet 주문 WCP00188782가 발송됐다는 안내입니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "기타",
-      "subject": "Harim, your credit monitoring is currently paused",
-      "from": "Credit Score Update @ Borrowell.com <info@email.borrowell.com>",
-      "date": "2026-07-15",
-      "thread_id": "19f64eda7ee1acc3",
-      "summary": "1년 이상 신용 프로필을 확인하지 않아 모니터링이 중지됐다는 안내입니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "기타",
-      "subject": "Call for Updates to AI for Good Use Cases",
-      "from": "Liu, Xiaoyi <xiaoyi.liu@itu.int>",
-      "date": "2026-07-15",
-      "thread_id": "19f64e4c5c4acf27",
-      "summary": "2026 Innovate for Impact 보고서의 활용사례 검토와 선택적 수정을 요청합니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "기타",
-      "subject": "The n8n MCP server just got better",
-      "from": "Ophir from n8n <hello@info.n8n.io>",
-      "date": "2026-07-15",
-      "thread_id": "19f64d4724222f24",
-      "summary": "커스텀 노드와 버전 기록 등 n8n MCP 서버 개선사항을 소개합니다.",
+      "summary": "Your shipment from Coach Outlet can be tracked at the link below. NEW WOMEN MEN BAGS FEATURED Your Coach Outlet Order Is On Its Way Your shipment from",
       "needs_action": false,
       "suggested_action": ""
     },
     {
       "project": "Visual-Climate",
       "subject": "File your annual return now / Déposez votre rapport annuel maintenant",
-      "from": "ic.corporationscanada.ic@ised-isde.gc.ca",
+      "from": "<ic.corporationscanada.ic@ised-isde.gc.ca>",
       "date": "2026-07-15",
       "thread_id": "19f64b5317e475a3",
-      "summary": "Visual Climate Inc.의 2026년 연차보고서를 7월 25일까지 제출해야 한다는 안내입니다.",
-      "needs_action": true,
-      "suggested_action": "Visual Climate Inc.의 2026년 연차보고서를 7월 25일까지 제출하세요."
-    },
-    {
-      "project": "기타",
-      "subject": "Live Webinar: Context to code with Figma agent and code layers",
-      "from": "Figma <apac-events@figma.com>",
-      "date": "2026-07-15",
-      "thread_id": "19f63f6eb3bdca37",
-      "summary": "Figma 에이전트와 코드 레이어를 활용한 프로토타입 웨비나 안내입니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "기타",
-      "subject": "Funds have landed in your account!",
-      "from": "Venn <info@venn.ca>",
-      "date": "2026-07-15",
-      "thread_id": "19f63f4af67238ff",
-      "summary": "CINCINNAXML6675에서 보낸 20,594.25달러가 Venn 계좌에 입금됐습니다.",
+      "summary": "Corporations Canada It's time to file your annual return The 2026 Annual Return for Visual Climate Inc. (corporation number: 1702438-0) is due and mus",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -1487,177 +2027,7 @@
       "from": "Girl Effect suppliers <suppliers@girleffect.org>",
       "date": "2026-07-14",
       "thread_id": "19f63e6936f71b33",
-      "summary": "Girl Effect가 디자인·출판 서비스 관련 문의나 제안서를 접수했다는 자동 회신입니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "기타",
-      "subject": "Interac e-Transfer: You've received $230.00 from YILIN ZHANG and it has been automatically deposited.",
-      "from": "YILIN ZHANG <notify@payments.interac.ca>",
-      "date": "2026-07-14",
-      "thread_id": "19f63d991e6cc13b",
-      "summary": "YILIN ZHANG이 보낸 230달러가 자동 입금됐다는 확인입니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "기타",
-      "subject": "Soak in the sun — summer’s all yours",
-      "from": "Aritzia <aritzia@em.aritzia.com>",
-      "date": "2026-07-14",
-      "thread_id": "19f638c72af816fc",
-      "summary": "Aritzia 여름 일부 상품의 30~50% 할인 프로모션입니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "기타",
-      "subject": "Science for Harim",
-      "from": "Pinterest <recommendations@explore.pinterest.com>",
-      "date": "2026-07-14",
-      "thread_id": "19f6388ada8ae839",
-      "summary": "과학 전시와 교육용 과학 디자인 관련 Pinterest 추천입니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "기타",
-      "subject": "New jobs posted from jobs.ebrd.com",
-      "from": "ebrd-jobnotification@noreply12.jobs2web.com",
-      "date": "2026-07-14",
-      "thread_id": "19f6374ab57431fd",
-      "summary": "EBRD의 데이터 관리 분석가 등 신규 채용 공고 알림입니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "기타",
-      "subject": "Congrats! You’re pre-selected for $12,500, plus a chance to win your first loan payment",
-      "from": "Maeve @ Borrowell.com <info@email.borrowell.com>",
-      "date": "2026-07-14",
-      "thread_id": "19f633803115298e",
-      "summary": "12,500달러 대출 사전선정 및 첫 상환금 이벤트 홍보입니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "기타",
-      "subject": "Last chance! ⏰ Webinar: How data drives climate action",
-      "from": "Pacific Dataviz Challenge <no-reply@spc.int>",
-      "date": "2026-07-14",
-      "thread_id": "19f631a01afb18ca",
-      "summary": "데이터가 기후행동을 이끄는 역할을 다룬 웨비나 최종 안내입니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "기타",
-      "subject": "Tomorrow: Cohort 10 Info Session — July 15, 9 AM PT",
-      "from": "Evan from Climatebase <team@climatebase.org>",
-      "date": "2026-07-14",
-      "thread_id": "19f62dedf7a8af9a",
-      "summary": "7월 15일 Climatebase Fellowship 10기 설명회 안내입니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "기타",
-      "subject": "Join us for upcoming event: \"Building a Data Culture with Datafluencers\" by Fi Crocker and Sarah Burnett",
-      "from": "Tableau User Groups <usergroups@tableau.com>",
-      "date": "2026-07-14",
-      "thread_id": "19f62dbec101f092",
-      "summary": "Datafluencer와 데이터 문화 구축을 주제로 한 Tableau 행사 안내입니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "기타",
-      "subject": "Your order has been shipped - PRA_CAPR51108904",
-      "from": "Prada <client.service.americas@contact.prada.com>",
-      "date": "2026-07-14",
-      "thread_id": "19f62cdd37127988",
-      "summary": "Prada 주문 PRA_CAPR51108904가 발송됐다는 안내입니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "기타",
-      "subject": "Futurist Conference is Next Week",
-      "from": "Canada Crypto Week 🇨🇦 <canadacryptoweek@calendar.luma-mail.com>",
-      "date": "2026-07-14",
-      "thread_id": "19f62cb9dc7c653f",
-      "summary": "7월 21~22일 Futurist Conference 개최 안내입니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "기타",
-      "subject": "You shared some Google Account data with Claude for Google Drive",
-      "from": "Google <noreply-accounts@google.com>",
-      "date": "2026-07-14",
-      "thread_id": "19f629057c60d61f",
-      "summary": "Claude for Google Drive에 Google 계정 데이터를 공유했다는 알림입니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "기타",
-      "subject": "NEW: Get more out of every conversation",
-      "from": "MasterClass <support@email.masterclass.com>",
-      "date": "2026-07-14",
-      "thread_id": "19f6240172351850",
-      "summary": "대화 능력 향상을 주제로 한 MasterClass 강의 홍보입니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "기타",
-      "subject": "Harim,💥 Let’s Make This Year Creative",
-      "from": "Art Gallery of Ontario <membership@ago.ca>",
-      "date": "2026-07-14",
-      "thread_id": "19f61fe862cef062",
-      "summary": "AGO 멤버십 가입을 환영하며 연간 혜택을 소개합니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "기타",
-      "subject": "📅 Just scheduled: Get Google AI Certified - AI Professionals July 2026 Cohort [7 of 7]",
-      "from": "AI Professionals Toronto Centre <info@email.meetup.com>",
-      "date": "2026-07-14",
-      "thread_id": "19f61fcdc01b72ce",
-      "summary": "Google AI 자격 과정 7회차 Meetup 행사 안내입니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "기타",
-      "subject": "Your AGO digital card – Action required",
-      "from": "Art Gallery of Ontario <noreply@ago.ca>",
-      "date": "2026-07-14",
-      "thread_id": "19f61f2ad392289a",
-      "summary": "AGO 디지털 멤버십 카드가 준비되어 휴대전화에 내려받기를 권고합니다.",
-      "needs_action": true,
-      "suggested_action": "AGO 디지털 멤버십 카드를 휴대전화에 내려받으세요."
-    },
-    {
-      "project": "기타",
-      "subject": "Introducing Private Credit",
-      "from": "Questrade Success Team <invest@mail.questrade.com>",
-      "date": "2026-07-14",
-      "thread_id": "19f61def56411d10",
-      "summary": "공개시장 외 분산투자 수단으로 사모신용을 소개합니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "기타",
-      "subject": "Suphachai Chearavanont: Bold moves in innovation-driven transformation",
-      "from": "McKinsey & Company <publishing@email.mckinsey.com>",
-      "date": "2026-07-14",
-      "thread_id": "19f61db7b3fda9b7",
-      "summary": "혁신 중심 전환에 관한 Suphachai Chearavanont 인터뷰입니다.",
+      "summary": "Hi Thank you for your email. If you have submitted a query regarding a RFP, we will get back to you within 48 hours or 72 hours if over the weekend. I",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -1667,367 +2037,57 @@
       "from": "Accounts Payable Onx <Accounts.Payable@onx.com>",
       "date": "2026-07-14",
       "thread_id": "19f61da4aeb9c604",
-      "summary": "Visual Climate Inc.에 대한 ONX 송금 내역이며 입금에 1~2영업일이 걸릴 수 있습니다.",
+      "summary": "Attached find remittance details from: ONX ENTERPRISE SOLUTIONS LTD Please note it can take 1 - 2 business days to deposit. For inquiries, please emai",
       "needs_action": false,
       "suggested_action": ""
     },
     {
-      "project": "기타",
-      "subject": "Action required: security vulnerabilities detected in your projects",
-      "from": "Supabase <noreply@supabase.com>",
-      "date": "2026-07-14",
-      "thread_id": "19f61d124fe88cb2",
-      "summary": "Supabase 프로젝트에서 조치가 필요한 보안 취약점이 탐지됐다는 알림입니다.",
-      "needs_action": true,
-      "suggested_action": "Supabase 프로젝트의 탐지된 보안 취약점을 확인하고 해결하세요."
-    },
-    {
-      "project": "기타",
-      "subject": "Art Gallery of Ontario - Order Confirmation",
-      "from": "noreply@ago.ca",
-      "date": "2026-07-14",
-      "thread_id": "19f61c0b350b63f1",
-      "summary": "AGO 주문번호 6739160의 주문 확인 이메일입니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "기타",
-      "subject": "1 domain needs configuration on team 'harimjung's projects'",
-      "from": "Vercel <notifications@vercel.com>",
-      "date": "2026-07-14",
-      "thread_id": "19f61ba4aa2b4e28",
-      "summary": "Vercel 팀 프로젝트의 도메인 하나가 잘못 구성됐다는 알림입니다.",
-      "needs_action": true,
-      "suggested_action": "Vercel에서 잘못 구성된 도메인을 업데이트하거나 제거하세요."
-    },
-    {
-      "project": "기타",
-      "subject": "Important Info: Futurist Know Before You Go.",
-      "from": "Blockchain Futurist Conference <futurist@emeraldeex.com>",
-      "date": "2026-07-14",
-      "thread_id": "19f61b9bc5bd19ec",
-      "summary": "다음 주 Blockchain Futurist Conference 참석 전 참고 정보입니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "기타",
-      "subject": "A microscope on small businesses: Chile’s productivity opportunity",
-      "from": "McKinsey & Company <publishing@email.mckinsey.com>",
-      "date": "2026-07-14",
-      "thread_id": "19f618e8e23c1711",
-      "summary": "칠레 중소기업의 생산성 향상 기회를 다룬 McKinsey 콘텐츠입니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "기타",
-      "subject": "The Four Types of Agent Loops",
-      "from": "Daily Dose of DS <avi@dailydoseofds.com>",
-      "date": "2026-07-14",
-      "thread_id": "19f6174fc660cea1",
-      "summary": "네 가지 에이전트 루프 유형을 시각적으로 설명합니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "기타",
-      "subject": "What does it really take to supercharge your data skills with AI tools?",
-      "from": "Andy, Amanda, Jeff & Steve from Chart Chat <chartchatlive@substack.com>",
-      "date": "2026-07-14",
-      "thread_id": "19f6171307acf838",
-      "summary": "AI 도구로 데이터 역량을 강화하는 방법과 Chart Chat 72를 소개합니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "기타",
-      "subject": "Winners revealed: Reuters Events: Energy Industry Awards 2026",
-      "from": "Olivia Browne <Olivia.Browne@1.reutersevents.com>",
-      "date": "2026-07-14",
-      "thread_id": "19f6163d268a285b",
-      "summary": "Reuters Events Energy Industry Awards 2026 수상자 발표입니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "기타",
-      "subject": "Price Alert: Cardano (ADA) is Up ↗5.90%",
-      "from": "Coinbase <no-reply@mail.coinbase.com>",
-      "date": "2026-07-14",
-      "thread_id": "19f6142ec3e3e054",
-      "summary": "Cardano 가격이 24시간 동안 5.90% 상승했다는 Coinbase 알림입니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "기타",
-      "subject": "I’m in a difficult position. Earlier this year, I was ready to resign because I...",
-      "from": "Glassdoor Community <noreply@glassdoor.com>",
-      "date": "2026-07-14",
-      "thread_id": "19f6131fcfcec288",
-      "summary": "퇴사를 고민했던 직장인의 사연 등 Glassdoor 인기 글 알림입니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "기타",
+      "project": "Visual-Climate",
       "subject": "AI Didn't Create a New Era. It Revealed One.",
       "from": "The AI Collective Newsletter <newsletter@aicollective.com>",
       "date": "2026-07-14",
       "thread_id": "19f6127cd3e8395d",
-      "summary": "예술과 인지 인프라가 AI 시대에 미치는 영향을 다룬 뉴스레터입니다.",
+      "summary": "🧠 How the arts help us build cognitive infrastructure in the Era of Brain Capital. ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌",
       "needs_action": false,
       "suggested_action": ""
     },
     {
-      "project": "기타",
-      "subject": "Security alert",
-      "from": "Google <no-reply@accounts.google.com>",
-      "date": "2026-07-14",
-      "thread_id": "19f6125b04352ba9",
-      "summary": "Claude for Google Calendar에 계정 데이터 접근을 허용했다는 보안 알림입니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "기타",
-      "subject": "Security alert",
-      "from": "Google <no-reply@accounts.google.com>",
-      "date": "2026-07-14",
-      "thread_id": "19f6125b04352ba9",
-      "summary": "Claude for Gmail에 계정 데이터 접근을 허용했다는 보안 알림입니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "기타",
-      "subject": "Your order PRA_CAPR51108904",
-      "from": "Prada <client.service.americas@contact.prada.com>",
-      "date": "2026-07-14",
-      "thread_id": "19f5eb4d8322d46f",
-      "summary": "Prada 주문 PRA_CAPR51108904가 확정되고 출고 준비 중이라는 안내입니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "기타",
-      "subject": "Thank you for your visit",
-      "from": "no-reply.ontario@prod.esii-orion.com",
-      "date": "2026-07-14",
-      "thread_id": "19f60de0f0e7cb5c",
-      "summary": "ServiceOntario 방문에 감사하며 센터 평가를 요청하는 자동 메시지입니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "기타",
-      "subject": "Fax.Plus takes the next step in Canadian compliance",
-      "from": "Alohi Team <notification@m.alohi.com>",
-      "date": "2026-07-14",
-      "thread_id": "19f60bd643825a7e",
-      "summary": "Fax.Plus의 캐나다 법률 준수 강화 내용을 소개합니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "기타",
-      "subject": "🚨 Grok caught red-handed",
-      "from": "The Code <superhumancode@news.codenewsletter.ai>",
-      "date": "2026-07-14",
-      "thread_id": "19f60ae5fc9e42a4",
-      "summary": "Grok 관련 이슈와 로컬 에이전틱 AI 실행법을 소개합니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "기타",
-      "subject": "Get Ahead Before the Next Career Opportunity Finds You",
-      "from": "CFA Society Toronto <membership@cfatoronto.ca>",
-      "date": "2026-07-14",
-      "thread_id": "19f609c78c82d975",
-      "summary": "CFA Society Toronto 준회원 가입과 경력 네트워크를 홍보합니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "기타",
-      "subject": "The tool your charting platform has — now in the same place you trade",
-      "from": "Kraken <no-reply@email.kraken.com>",
-      "date": "2026-07-14",
-      "thread_id": "19f609180e4d4a18",
-      "summary": "거래 플랫폼 내 차트 도구 기능을 소개하는 Kraken 홍보입니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "기타",
-      "subject": "Starting in one hour | Building the Next Generation of Cyber Defense",
-      "from": "World Economic Forum Strategic Intelligence <intelligence@email.weforum.org>",
-      "date": "2026-07-14",
-      "thread_id": "19f6088573061184",
-      "summary": "차세대 사이버 방어 전문가 브리핑이 한 시간 뒤 시작된다는 안내입니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "기타",
-      "subject": "IAEA Mid-Month Careers Newsletter - July 2026",
-      "from": "MTHR Talent Outreach Team <MTHR.talent-outreach@iaea.org>",
-      "date": "2026-07-14",
-      "thread_id": "19f605d1be09d955",
-      "summary": "인턴십 웨비나 등 IAEA의 7월 중순 채용 소식입니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "기타",
-      "subject": "OpenAI's trillion-dollar wait",
-      "from": "PitchBook News <news-noreply@news.pitchbook.com>",
-      "date": "2026-07-14",
-      "thread_id": "19f605130be48aef",
-      "summary": "OpenAI 가치평가와 스포츠 투자 및 M&A 동향을 다룬 뉴스입니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "기타",
-      "subject": "How can AI empower SMEs beyond automation?",
-      "from": "World Economic Forum Strategic Intelligence <intelligence@email.weforum.org>",
-      "date": "2026-07-14",
-      "thread_id": "19f6043d5b9ad481",
-      "summary": "자동화를 넘어 중소기업을 지원하는 AI 활용을 다룬 WEF 주간 소식입니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "기타",
-      "subject": "Jung – Share your research at AGU26",
-      "from": "AGU <service@agu.org>",
-      "date": "2026-07-14",
-      "thread_id": "19f602426bdda224",
-      "summary": "AGU26 연구 초록을 8월 5일까지 제출하라는 일반 초대입니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "기타",
-      "subject": "PCF Studio is going Pro: Calculate fully-auditable PCFs faster and at scale",
-      "from": "Climatiq <hello@climatiq.io>",
-      "date": "2026-07-14",
-      "thread_id": "19f601e48fd58780",
-      "summary": "감사 가능한 제품 탄소발자국 계산을 위한 PCF Studio Pro를 소개합니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "기타",
-      "subject": "New jobs posted from jobs.consultant.greenclimate.fund",
-      "from": "greenclimatefund-jobnotification@noreply12.jobs2web.com",
-      "date": "2026-07-14",
-      "thread_id": "19f5fae4c69d1f06",
-      "summary": "Green Climate Fund 컨설턴트 신규 채용 공고 알림입니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "기타",
-      "subject": "Supa Update July 2026",
-      "from": "Supabase <welcome@supabase.com>",
-      "date": "2026-07-14",
-      "thread_id": "19f5f7acd6862e6b",
-      "summary": "Supabase의 지난 한 달간 제품 업데이트를 정리한 소식입니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "기타",
+      "project": "Visual-Climate",
       "subject": "We've Received Your Order: WCP00188782",
       "from": "Coach <Coach@em.coach.com>",
       "date": "2026-07-13",
       "thread_id": "19f5eb98add26723",
-      "summary": "Coach Outlet 주문 WCP00188782가 접수됐다는 확인입니다.",
+      "summary": "We'll let you know as soon as it's begun processing. View in web browser. Coach Outlet Logo ‍ Thank you. We just received your order. We'll let you kn",
       "needs_action": false,
       "suggested_action": ""
     },
     {
-      "project": "기타",
-      "subject": "Your order PRA_CAPR51108904",
-      "from": "Prada <client.service.americas@contact.prada.com>",
-      "date": "2026-07-13",
-      "thread_id": "19f5eb4d8322d46f",
-      "summary": "Prada 주문 PRA_CAPR51108904를 접수해 처리 중이라는 안내입니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "기타",
-      "subject": "Complete code challenge",
-      "from": "Granola <no-reply@mail.granola.ai>",
-      "date": "2026-07-13",
-      "thread_id": "19f5eabb432bb4dd",
-      "summary": "Granola 로그인용 일회용 코드가 발급됐으며 10분 후 만료된다는 안내입니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "기타",
-      "subject": "📅 Just scheduled: Get Google AI Certified - AI Professionals July 2026 Cohort [6 of 7]",
-      "from": "AI Professionals Toronto Centre <info@email.meetup.com>",
-      "date": "2026-07-13",
-      "thread_id": "19f5e799053a9bb7",
-      "summary": "Google AI 자격 과정 6회차 Meetup 행사 안내입니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "기타",
-      "subject": "Dashboard Design for Harim",
-      "from": "Pinterest <recommendations@explore.pinterest.com>",
-      "date": "2026-07-13",
-      "thread_id": "19f5e614626a6a53",
-      "summary": "스포츠·보석·현금흐름·IT 관리 대시보드 디자인 추천입니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "기타",
-      "subject": "[위시켓 필터 알림] ‘보완대체의사소통(AAC) 플랫폼 앱 기획 및 개발’ 프로젝트",
-      "from": "위시켓 <admin@wishket.com>",
-      "date": "2026-07-13",
-      "thread_id": "19f5e3235f1f2451",
-      "summary": "AAC 플랫폼 앱 기획·개발 신규 프로젝트 알림입니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "기타",
+      "project": "Visual-Climate",
       "subject": "Join our SAP Business Network Webinars",
       "from": "SAP <sap@mail.sap.com>",
       "date": "2026-07-13",
       "thread_id": "19f5c3466064fbc3",
-      "summary": "7월 SAP Business Network 웨비나 등록 안내입니다.",
+      "summary": "Register for our July events! ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏",
       "needs_action": false,
       "suggested_action": ""
     },
     {
-      "project": "기타",
+      "project": "Visual-Climate",
       "subject": "Everyone Came For Sam Altman This Week. Even Apple.",
       "from": "The AI Collective Newsletter <newsletter@aicollective.com>",
       "date": "2026-07-13",
       "thread_id": "19f5c00c9e5e41be",
-      "summary": "Sam Altman, Meta 모델과 Musk 반응 등 AI 업계 소식을 다룹니다.",
+      "summary": "Plus: Meta put a price tag on a model, and Musk replied \"Jinx.\" ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌",
       "needs_action": false,
       "suggested_action": ""
     },
     {
-      "project": "기타",
+      "project": "WMO",
       "subject": "Starting in one hour | El Niño and a Warming World",
       "from": "World Economic Forum Strategic Intelligence <intelligence@email.weforum.org>",
       "date": "2026-07-13",
       "thread_id": "19f5b7eddd314f4e",
-      "summary": "엘니뇨와 지구 온난화 전문가 브리핑이 한 시간 뒤 시작된다는 안내입니다.",
+      "summary": "Join the expert briefing with Digital Membership ‌ ‌ ‌ ‌ ‌ Connect and Collaborate Pin VIRTUAL EVENT El Niño and a Warming World: What Leaders Need to",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -2037,7 +2097,7 @@
       "from": "Sharafdzhon Boborakhimov <boborakhimov@unfpa.org>",
       "date": "2026-07-13",
       "thread_id": "19f5aa5bb9545afc",
-      "summary": "데이터 시각화 및 증거관리 지원 역할로 합류한 Harim을 환영합니다.",
+      "summary": "Dear Harim, Welcome to the team! Congratulations on your new role as Data Visualization and Evidence Management Support for CSE. We are very excited t",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -2047,7 +2107,7 @@
       "from": "Ramz Shalbak <shalbak@unfpa.org>",
       "date": "2026-07-13",
       "thread_id": "19f5aa5bb9545afc",
-      "summary": "Ramz가 Harim의 CSE 팀 합류를 환영했습니다.",
+      "summary": "Welcome to the team Harim. Looking forward to working with you. Regards, Ramz --- Ramz Shalbak Programme & Technical Specialist | Communications, Advo",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -2057,7 +2117,7 @@
       "from": "Wafa Dhaouadi <dhaouadi@unfpa.org>",
       "date": "2026-07-13",
       "thread_id": "19f5aa5bb9545afc",
-      "summary": "Wafa가 Harim을 CSE 데이터 시각화 및 증거관리 지원 담당자로 소개했습니다.",
+      "summary": "Dear colleagues, I am pleased to officially welcome Harim to the team as our Data Visualization and Evidence Management Support for CSE. We are very h",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -2067,7 +2127,7 @@
       "from": "Wafa Dhaouadi <dhaouadi@unfpa.org>",
       "date": "2026-07-13",
       "thread_id": "19f5a59d494b2e22",
-      "summary": "Harim의 UNFPA 계정 생성 안내에 Wafa가 반응을 남겼습니다.",
+      "summary": "💃 Wafa Dhaouadi reacted via Gmail On Mon, 13 Jul 2026 at 10:21, Khadija Mohammed <khamohammed@unfpa.org> wrote: Dear Harim, Your UNFPA account has bee",
       "needs_action": false,
       "suggested_action": ""
     },
@@ -2077,259 +2137,79 @@
       "from": "Khadija Mohammed <khamohammed@unfpa.org>",
       "date": "2026-07-13",
       "thread_id": "19f5a59d494b2e22",
-      "summary": "UNFPA 계정이 생성됐으므로 안내에 따라 로그인하라는 메시지입니다.",
-      "needs_action": true,
-      "suggested_action": "전달된 안내에 따라 새 UNFPA 계정 로그인을 설정하세요."
+      "summary": "Dear Harim, Your UNFPA account has been created. Please follow the instructions below to log in. Please let me know if you have any issues. Thanks, Kh",
+      "needs_action": false,
+      "suggested_action": ""
     },
     {
-      "project": "기타",
+      "project": "Equitee",
       "subject": "“I had become haunted by the simplest question: What did I care about?”",
       "from": "The Substack Post <post+the-weekender@substack.com>",
       "date": "2026-07-11",
       "thread_id": "19f516f72fa8b926",
-      "summary": "정신적 회복과 AI를 둘러싼 작가 논쟁 등을 담은 Weekender입니다.",
+      "summary": "In this edition of the Weekender: physical therapy for the mind, writers debating the merits of AI, and living at odds with New York City ͏ ͏ ͏ ͏ ͏ ͏",
       "needs_action": false,
       "suggested_action": ""
     },
     {
-      "project": "기타",
+      "project": "Equitee",
       "subject": "The end of venture as we knew it",
       "from": "PitchBook Research <news-noreply@news.pitchbook.com>",
       "date": "2026-07-11",
       "thread_id": "19f50a0b49ee0aeb",
-      "summary": "벤처시장 변화와 PE 투자 및 글로벌 M&A를 다룬 PitchBook 리서치입니다.",
+      "summary": "Also: Software's out—what's PE's next bet?; Our latest Global M&A report; Why evergreen outflows aren't a crisis... July 11, 2026 | Log in | Read onli",
       "needs_action": false,
       "suggested_action": ""
     },
     {
-      "project": "기타",
+      "project": "WHO",
       "subject": "Change of Venue: Invitation to UN HLPF 2026 Side Event Official Side Event - Intersectionality as Economy",
-      "from": "dothedreamydi@gmail.com <dodedream@gmail.com>",
+      "from": "\"dothedreamydi@gmail.com\" <dodedream@gmail.com>",
       "date": "2026-07-10",
       "thread_id": "19f4f2f72f68c2ca",
-      "summary": "UN HLPF 2026 교차성과 경제 주제 부대행사의 장소 변경 안내입니다.",
+      "summary": "Dear Colleagues, DoTheDream Youth Development Initiative (DoTheDream YDI) is pleased to invite you to the Official HLPF 2026 Off-Site Side Event title",
       "needs_action": false,
       "suggested_action": ""
     },
     {
-      "project": "기타",
+      "project": "WMO",
       "subject": "🌡️ weADAPT: Heat, urban adaptation, informal settlements, risk assessments and more...",
       "from": "Sukaina Bharwani <sukainabharwani.sei@gmail.com>",
       "date": "2026-07-10",
       "thread_id": "19f4f2f71177c316",
-      "summary": "폭염, 도시 적응, 비공식 정착지와 위험평가를 다룬 weADAPT 뉴스레터입니다.",
+      "summary": "Learn, Share, Connect Was this newsletter forwarded to you? Sign up here weADAPT Newsletter Special Edition on Heat As extreme heat and, in some regio",
       "needs_action": false,
       "suggested_action": ""
     },
     {
-      "project": "기타",
+      "project": "WHO",
       "subject": "Change of Venue: Invitation to UN HLPF 2026 Side Event Official Side Event - Intersectionality as Economy",
-      "from": "dothedreamydi@gmail.com <dodedream@gmail.com>",
+      "from": "\"dothedreamydi@gmail.com\" <dodedream@gmail.com>",
       "date": "2026-07-10",
       "thread_id": "19f4f2bb8998c59c",
-      "summary": "UN HLPF 2026 교차성과 경제 주제 부대행사의 장소 변경 안내입니다.",
+      "summary": "Dear Colleagues, DoTheDream Youth Development Initiative (DoTheDream YDI) is pleased to invite you to the Official HLPF 2026 Off-Site Side Event title",
       "needs_action": false,
       "suggested_action": ""
     },
     {
-      "project": "기타",
+      "project": "WMO",
       "subject": "🌡️ weADAPT: Heat, urban adaptation, informal settlements, risk assessments and more...",
       "from": "Sukaina Bharwani <sukainabharwani.sei@gmail.com>",
       "date": "2026-07-10",
       "thread_id": "19f4f2bb6347c5e8",
-      "summary": "폭염, 도시 적응, 비공식 정착지와 위험평가를 다룬 weADAPT 뉴스레터입니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "기타",
-      "subject": "Restoration of Claude Fable 5, Gemini's Video Dev Engine, DeepSeek Speeds Up Speculative Decoding",
-      "from": "The Batch @ DeepLearning.AI <thebatch@deeplearning.ai>",
-      "date": "2026-07-10",
-      "thread_id": "19f4cc6132079c29",
-      "summary": "Claude Fable 5, Gemini 영상 개발 엔진과 DeepSeek 디코딩을 다룬 AI 뉴스입니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "기타",
-      "subject": "One LinkedIn lead magnet. One $90K contract.",
-      "from": "Matey @ BURO Ventures <matey@buroventures.com>",
-      "date": "2026-07-10",
-      "thread_id": "19f4c9825869bca5",
-      "summary": "LinkedIn 리드 마그넷으로 계약을 만든 마케팅 사례를 소개합니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "기타",
-      "subject": "The FTC Says a Secretly Shaped Chatbot Could Deceive You Like a False Ad",
-      "from": "The AI Collective Newsletter <newsletter@aicollective.com>",
-      "date": "2026-07-10",
-      "thread_id": "19f4c8dc179f2631",
-      "summary": "은밀하게 조정된 챗봇의 기만 가능성에 대한 FTC 관점을 다룹니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "WHO",
-      "subject": "Introduction to the Work",
-      "from": "ADAIR-ROHANI, Heather <adairrohanih@who.int>",
-      "date": "2026-07-10",
-      "thread_id": "19f4c6fd2053c9f7",
-      "summary": "Heather가 통계 업무 소개를 위한 짧은 통화에 Harim과 동료들을 초대했습니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "WHO",
-      "subject": "Introduction Meeting",
-      "from": "ADAIR-ROHANI, Heather <adairrohanih@who.int>",
-      "date": "2026-07-10",
-      "thread_id": "19f4c6faf8abafa9",
-      "summary": "WHO 계약의 최종 HR 승인이 완료돼 시스템에서 처리 중이라는 소개 회의 안내입니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "기타",
-      "subject": "⚡ GPT-5.6 beats Fable 5 on coding",
-      "from": "The Code <superhumancode@news.codenewsletter.ai>",
-      "date": "2026-07-10",
-      "thread_id": "19f4c58727035fc3",
-      "summary": "GPT-5.6과 Fable 5의 코딩 비교 및 코딩 에이전트 작동 방식을 소개합니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "WMO",
-      "subject": "RE: Milestone 1_Inception Report_BCM e-learning course",
-      "from": "Luciane Veeck <lveeck@wmo.int>",
-      "date": "2026-07-10",
-      "thread_id": "19c9011ccf41efdf",
-      "summary": "BCM 과정 셸 편집 권한과 WMO ETRP 과정 직접 링크가 제공됐습니다.",
-      "needs_action": true,
-      "suggested_action": "제공된 WMO ETRP 과정 링크에서 편집 권한을 확인하고 과정 작업을 진행하세요."
-    },
-    {
-      "project": "기타",
-      "subject": "New job(s) match your search on Google Careers",
-      "from": "careers-noreply@google.com",
-      "date": "2026-07-09",
-      "thread_id": "19f4a052a9181410",
-      "summary": "Google Careers의 Climate 검색 조건에 맞는 신규 채용 공고입니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "기타",
-      "subject": "California Carbon Market Launches, Barcelona Issues Heat-Monitoring Bracelets, and More",
-      "from": "Climatebase Weekly <team@climatebase.org>",
-      "date": "2026-07-09",
-      "thread_id": "19f4867660d15bac",
-      "summary": "캘리포니아 탄소시장과 바르셀로나 폭염 모니터링 등 기후 소식입니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "기타",
-      "subject": "This week on Climate Change AI: July 2 - July 9, 2026",
-      "from": "Climate Change AI <no-reply@notification.circle.so>",
-      "date": "2026-07-09",
-      "thread_id": "19f4856e072fcc6a",
-      "summary": "7월 2~9일 Climate Change AI 커뮤니티 활동 요약입니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "WMO",
-      "subject": "RE: Accepted: BCM Training Course @ Wed 6 May 2026 8:15am - 9:15am (EDT) (Xiao Zhou)",
-      "from": "Xiao Zhou <xzhou@wmo.int>",
-      "date": "2026-07-09",
-      "thread_id": "19dfd3f09620955a",
-      "summary": "Xiao가 WMO 채용 페이지의 새 컨설팅 공고를 Harim에게 전달했습니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "WMO",
-      "subject": "New sign in to your WMO Education and Training Programme account",
-      "from": "Do not reply to this email (via ETRP Moodle Site) <noreply@mail-5fdff384796c4-hg01.net>",
-      "date": "2026-07-09",
-      "thread_id": "19f4771fdace2ab7",
-      "summary": "WMO 교육훈련 프로그램 계정에 새 기기 로그인이 있었다는 보안 알림입니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "WMO",
-      "subject": "WMO Education and Training Programme: account confirmation",
-      "from": "Admin User (via ETRP Moodle Site) <noreply@mail-5fdff384796c4-hg01.net>",
-      "date": "2026-07-09",
-      "thread_id": "19f476d193e9a0f6",
-      "summary": "WMO 교육훈련 프로그램 새 계정을 확인하라는 Moodle 안내입니다.",
-      "needs_action": true,
-      "suggested_action": "WMO 교육훈련 프로그램 계정 확인 절차를 완료하세요."
-    },
-    {
-      "project": "WMO",
-      "subject": "WMO Education and Training Programme: account confirmation",
-      "from": "Admin User (via ETRP Moodle Site) <noreply@mail-5fdff384796c4-hg01.net>",
-      "date": "2026-07-09",
-      "thread_id": "19f476d193e9a0f6",
-      "summary": "WMO 교육훈련 프로그램 새 계정을 확인하라는 Moodle 안내입니다.",
-      "needs_action": true,
-      "suggested_action": "WMO 교육훈련 프로그램 계정 확인 절차를 완료하세요."
-    },
-    {
-      "project": "기타",
-      "subject": "AIC Hall of Fame Ep. #1 | Silka Hsu",
-      "from": "The AI Collective Newsletter <newsletter@aicollective.com>",
-      "date": "2026-07-09",
-      "thread_id": "19f476a470f396fe",
-      "summary": "Silka Hsu와 선의 확산을 주제로 한 AI Collective 콘텐츠입니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "기타",
-      "subject": "You can now access all sessions from the Climate Innovation Forum, on demand",
-      "from": "Climate Action <reply@climateaction.org>",
-      "date": "2026-07-09",
-      "thread_id": "19f476046b8558af",
-      "summary": "Climate Innovation Forum 2026의 모든 공개 세션을 다시 볼 수 있다는 안내입니다.",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
-      "project": "WMO",
-      "subject": "RE: Accepted: BCM Training Course @ Wed 6 May 2026 8:15am - 9:15am (EDT) (Xiao Zhou)",
-      "from": "Xiao Zhou <xzhou@wmo.int>",
-      "date": "2026-07-09",
-      "thread_id": "19dfd3f09620955a",
-      "summary": "BCM 모듈을 WMO ETRP Moodle로 이전하는 등 다음 작업 단계가 공유됐습니다.",
-      "needs_action": true,
-      "suggested_action": "BCM 모듈을 WMO ETRP Moodle로 이전하는 다음 단계 작업을 진행하세요."
-    },
-    {
-      "project": "기타",
-      "subject": "Going live in 15 minutes",
-      "from": "Harald Roine <harald@buroventures.com>",
-      "date": "2026-07-09",
-      "thread_id": "19f46e5f23081954",
-      "summary": "LinkedIn 바이럴로 리드를 만드는 라이브 방송이 15분 뒤 시작된다는 홍보입니다.",
+      "summary": "Learn, Share, Connect Was this newsletter forwarded to you? Sign up here weADAPT Newsletter Special Edition on Heat As extreme heat and, in some regio",
       "needs_action": false,
       "suggested_action": ""
     }
   ],
   "stats": {
     "Climate-AICA": 0,
-    "Equitee": 0,
-    "UNFPA-CSE": 20,
-    "Visual-Climate": 3,
-    "WHO": 2,
-    "WMO": 11,
-    "기타": 196
+    "Equitee": 16,
+    "UNFPA-CSE": 34,
+    "Visual-Climate": 19,
+    "WHO": 5,
+    "WMO": 10,
+    "기타": 136
   },
   "searched": [
     "Climate-AICA",
@@ -2340,7 +2220,7 @@
     "WMO"
   ],
   "missed": [],
-  "last_status": "error",
-  "last_error": "작업 실패 (상태: failed)",
-  "last_attempt": 1784544017.272133
+  "last_status": "ok",
+  "last_error": null,
+  "last_attempt": 1784588170.328214
 }

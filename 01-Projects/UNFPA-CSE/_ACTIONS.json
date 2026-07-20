@@ -261,5 +261,26 @@
     "note": "",
     "created": "2026-07-19",
     "updated": "2026-07-19"
+  },
+  {
+    "id": "6f473dce",
+    "title": "[이메일] Deadline extended - Re: Staff Council Survey",
+    "detail": "이메일 내용 확인 후 회신/처리 필요",
+    "status": "open",
+    "priority": "med",
+    "due": "",
+    "people": [
+      "UNFPA Staff Council <staff.council@unfpa.org>"
+    ],
+    "sources": [
+      {
+        "kind": "gmail",
+        "label": "Deadline extended - Re: Staff Council Survey",
+        "url": "https://mail.google.com/mail/u/0/#all/19f70f01bc3e1113"
+      }
+    ],
+    "note": "",
+    "created": "2026-07-20",
+    "updated": "2026-07-20"
   }
 ]
