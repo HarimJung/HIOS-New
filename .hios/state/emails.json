@@ -1,6 +1,16 @@
 {
-  "updated": 1784588170.328214,
+  "updated": 1784590327.635478,
   "emails": [
+    {
+      "project": "기타",
+      "subject": "Wildfire smoke: How to help keep your pet safe",
+      "from": "Fetch Pet Insurance <benefits@info.fetchpet.com>",
+      "date": "2026-07-20",
+      "thread_id": "19f81c5bd2f08dea",
+      "summary": "Vet-approved safety tips, signs to watch for and ways your Fetch benefits can help. ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌",
+      "needs_action": false,
+      "suggested_action": ""
+    },
     {
       "project": "기타",
       "subject": "How To Turn Your Love For Learning Into A One-Person Business w/ Paul Musso",
@@ -1992,16 +2002,6 @@
       "suggested_action": ""
     },
     {
-      "project": "기타",
-      "subject": "🚨 GPT-5.6 is raising concerns",
-      "from": "The Code <superhumancode@news.codenewsletter.ai>",
-      "date": "2026-07-15",
-      "thread_id": "19f65e082f4363a0",
-      "summary": "Also: How to use OpenCode ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
       "project": "Visual-Climate",
       "subject": "Your Order Is On Its Way",
       "from": "Coach <coachorders@coachorders.narvar.com>",
@@ -2220,7 +2220,7 @@
     "WMO"
   ],
   "missed": [],
-  "last_status": "error",
-  "last_error": "Gmail 메시지 상세 조회 실패: Google API 연결 실패: <urlopen error [Errno 8] nodename nor servname provided, or not known>",
-  "last_attempt": 1784590106.262463
+  "last_status": "ok",
+  "last_error": null,
+  "last_attempt": 1784590327.635478
 }

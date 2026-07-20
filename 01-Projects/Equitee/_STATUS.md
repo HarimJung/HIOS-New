@@ -1,6 +1,6 @@
 ---
 client: Equitee
-updated: 2026-07-18
+updated: 2026-07-20
 tags: [equitee, status]
 ---
 
@@ -29,6 +29,8 @@ tags: [equitee, status]
 - Dash API agreement — Angel/Burim (longer-term)
 
 ## Recent Updates
+- 2026-07-20: 이메일 스캔 — Equitee 관련 신규 항목 없음 (뉴스레터만). David의 워킹세션 주기 설문 아직 미수신
+- 2026-07-19: _ACTIONS.json에 7/13 false-positive 미팅 액션 7건 자동 등록 — 모두 기존 오픈 항목과 중복 (신규 할 일 없음)
 - 2026-07-18: **PBI fraud 대시보드 에스컬레이션** — 이해관계자 불만; 완성 플랜 + Genspark 보안 게이트 문서화 (`2026-07-18-pbi-fraud-dashboard-completion-plan.md`)
 - 2026-07-16: findings email + target case list structure drafted (`03-Communications/`)
 - 2026-07-15: working group meeting (alert volume spike, triage step announced)

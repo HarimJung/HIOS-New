@@ -1,7 +1,7 @@
 ---
 tags: [todo]
 client: Visual-Climate
-updated: 2026-07-19
+updated: 2026-07-20
 ---
 
 # Visual-Climate — To-Do
@@ -13,5 +13,7 @@ updated: 2026-07-19
 - [ ] COP31 Canada pavilion Interest Form 제출 (canada.ca 폼 + Google Form)
 - [ ] Girl Effect HPV 제안서 회신 팔로업 (7/15 발송, ~7/22 무응답 시 팔로업 메일)
 - [ ] ONX 인보이스: 다음 발송부터 Invoice.ODC@onx.com + onxaccountspayable.canada@onx.com 모두 포함
+- [ ] visualclimate.com 도메인 매입 제안 검토 (IntelDomains 브로커 콜드메일, 7/19) — 매입 필요 여부만 결정
+- [ ] Flourish "Data storytelling in the age of AI" 웨비나 녹화 시청 (7/17 공개, 선택)
 
 ## Done

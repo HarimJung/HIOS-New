@@ -29,7 +29,7 @@
     "id": "unfpa-access-remind",
     "title": "Wafa info pack/드라이브/스크립트 수신 확인 — 안 왔으면 리마인드",
     "detail": "Wafa가 7/10(금)까지 보내기로 한 것: 핵심 문서, 드라이브 액세스, 리포팅 플랫폼 Google Script 코드, 첫 info pack. 7/10에 액세스 요청 메일 보냈으나 수신 확인 안 됨. 플랫폼 수정의 선행 조건이므로 오늘 확인.",
-    "status": "open",
+    "status": "done",
     "priority": "high",
     "due": "2026-07-15",
     "people": [
@@ -44,7 +44,7 @@
     ],
     "note": "아니 오긴햇는데 뭘 어쩧게 어디서 부터 멀함요?",
     "created": "2026-07-15",
-    "updated": "2026-07-16"
+    "updated": "2026-07-20"
   },
   {
     "id": "unfpa-portal-q",
@@ -182,7 +182,7 @@
     "id": "1af21e10",
     "title": "[이메일] 2026 Mid-Year Review is Now Open!",
     "detail": "8월 19일까지 Quantum CPM에서 중간평가를 완료하세요.",
-    "status": "open",
+    "status": "done",
     "priority": "med",
     "due": "",
     "people": [
@@ -197,7 +197,7 @@
     ],
     "note": "",
     "created": "2026-07-19",
-    "updated": "2026-07-19"
+    "updated": "2026-07-20"
   },
   {
     "id": "8456362c",
@@ -216,15 +216,15 @@
         "url": "https://mail.google.com/mail/u/0/#all/19f6fdd7dd39184d"
       }
     ],
-    "note": "",
+    "note": "이 인비테이션 기반 그래놀라 미팅 기반으로 해야할일 싹정리. 알려줘",
     "created": "2026-07-19",
-    "updated": "2026-07-19"
+    "updated": "2026-07-20"
   },
   {
     "id": "03669753",
     "title": "[이메일] (United Nations Population Fund Forwarding Confirmation - Receive Mail from hajung@unfpa.org",
     "detail": "자동 전달을 원하면 전달 확인 절차를 완료하세요.",
-    "status": "open",
+    "status": "done",
     "priority": "med",
     "due": "",
     "people": [
@@ -239,7 +239,7 @@
     ],
     "note": "",
     "created": "2026-07-19",
-    "updated": "2026-07-19"
+    "updated": "2026-07-20"
   },
   {
     "id": "59735680",

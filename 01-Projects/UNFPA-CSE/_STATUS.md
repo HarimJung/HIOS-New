@@ -1,6 +1,6 @@
 ---
 client: UNFPA
-updated: 2026-07-19
+updated: 2026-07-20
 tags: [unfpa, status]
 ---
 
@@ -25,6 +25,15 @@ tags: [unfpa, status]
   blocked until script access is confirmed.
 
 ## 최근 동향
+- 2026-07-20: CSE 팀 회의 진행 (최종 7:00–8:30am EDT로 시간 변경, Gemini
+  자동 노트 공유됨 — 검토 후 액션 정리 필요). 회의 후속으로 Steve Petit이
+  Wafa·하림에게 **팩트시트 3종** 작성 요청: ① CSE Pooled Fund ② EmpowerEd
+  ③ Global Programme on OOS CSE Phase 1&2 — 도너 대상 글로벌 인게이지먼트용,
+  8월 3일 9:30–10:00am EDT 리뷰 미팅 초대 수신. Wafa와 1:1 미팅 확정
+  (7/24 금 7:15–8:00am EDT). Wafa가 ITSO(Soren/Jennie)에 Google Suite/KM
+  도구 후속 콜 시간 제안 회신 — 콜 일정 확정 대기. OIC 공지: SRHR Branch
+  Chief(Dr. Ayman Abdelmohsen) 부재 7/21–8/21. 7/21 FGM 디지털 푸시백
+  웨비나 안내 및 Emotional Wellbeing 보너스 세션 공지 수신.
 - 2026-07-19: 열린 액션 점검 — 리포팅 플랫폼의 국가명 클러스터링·리포팅
   기간 연속성 버그 수정 목표는 7월 24일이며, Wafa의 접근권한 회신 확인이
   선행 조건. 국가 매핑 대시보드와 10개국 베이스라인 인포그래픽의 내부 완료

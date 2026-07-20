@@ -168,8 +168,15 @@ def _claude_argv_granola():
     Claude Code has no equivalent to Codex's mcp_servers.*.required config,
     so the requirement is stated in the prompt instead (see callers of this
     argv, which prepend an explicit "Granola MCP가 필요합니다" instruction).
+
+    _claude_argv()'s --allowedTools is a strict allowlist, so the base set
+    would silently hide the granola MCP's tools even when the server is
+    connected — add them explicitly.
     """
-    return _claude_argv()
+    argv = _claude_argv()
+    idx = argv.index("--allowedTools") + 1
+    argv[idx] = argv[idx] + ",mcp__granola"
+    return argv
 
 
 def _topic(params):
