@@ -1204,7 +1204,7 @@ async function loadMailTab() {
       <div class="ws-head"><span class="ws-title">이메일 — 전체 프로젝트</span>
         <span class="em-updated">${escapeHtml(upd)}</span>${health}<span class="spacer"></span>
         <button class="ws-open-btn" id="mail-refresh"
-          title="Granola 회의 + Gmail 이메일 수집 (매일 06:40 자동)">지금 수집</button></div>
+          title="Gmail 이메일 수집·분류 (매일 06:40 자동)">지금 수집</button></div>
       <div class="proj-chips">${chips}</div>
       ${na.length ? `
         <div class="mail-group-head na">회신·작업 필요 <span class="cnt">${na.length}</span></div>
@@ -1221,7 +1221,7 @@ async function loadMailTab() {
   $("mail-refresh").onclick = async () => {
     try {
       const res = await postJson("/api/run/morning_refresh", {});
-      startedToast(res, "이메일·미팅 수집");
+      startedToast(res, "이메일 수집·분류");
     } catch (e) { toast(`실패: ${e.body?.message || e.message}`, "err"); }
   };
 }
@@ -1308,7 +1308,7 @@ async function loadWorkOverview(box) {
   box.innerHTML = `
     <div class="ws-section ov-ask">
       <div class="ws-head"><span class="ws-title">엔진에게 바로 요청</span><span class="spacer"></span>
-        <span class="ai-note-inline">Claude가 <code>01-Projects/${escapeHtml(name)}/</code> 범위로 실행 — 로그는 AI 요청 탭</span></div>
+        <span class="ai-note-inline">Codex가 <code>01-Projects/${escapeHtml(name)}/</code> 범위로 실행 — 로그는 AI 요청 탭</span></div>
       <div class="ws-form">
         <input class="ws-input" id="ov-ask-input" maxlength="2000"
           placeholder="예: 최근 미팅노트 반영해서 _STATUS.md 업데이트해줘 (Enter로 실행)">
@@ -2312,7 +2312,7 @@ async function loadWorkAi(box) {
   box.innerHTML = `
     <div class="ws-section">
       <div class="ws-head"><span class="ws-title">AI 요청 — ${escapeHtml(name)}</span></div>
-      <div class="ai-note">Claude Code 엔진이 <code>01-Projects/${escapeHtml(name)}/</code> 범위로 실행됩니다
+      <div class="ai-note">Codex 엔진이 <code>01-Projects/${escapeHtml(name)}/</code> 범위로 실행됩니다
         (Read·Write·Edit·Glob·Grep — Bash/MCP 없음)</div>
       <textarea class="ai-ta" id="ai-prompt" maxlength="2000"
         placeholder="예: 최근 미팅노트를 반영해서 _STATUS.md를 업데이트해줘"></textarea>

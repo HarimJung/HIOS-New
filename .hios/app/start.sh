@@ -3,13 +3,19 @@
 set -euo pipefail
 
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PORT=8787
+PORT="${HIOS_PORT:-8787}"
 URL="http://127.0.0.1:${PORT}"
+
+open_url() {
+  if [[ "${HIOS_NO_OPEN:-0}" != "1" ]]; then
+    open "${URL}"
+  fi
+}
 
 # Already running? Just open the browser.
 if curl -s -m 1 "${URL}/api/health" >/dev/null 2>&1; then
   echo "HiOS Control Center 이미 실행 중 — 브라우저 오픈"
-  open "${URL}"
+  open_url
   exit 0
 fi
 
@@ -33,5 +39,5 @@ if ! curl -s -m 1 "${URL}/api/health" >/dev/null 2>&1; then
 fi
 
 echo "실행 완료: ${URL} (Ctrl-C로 종료)"
-open "${URL}"
+open_url
 wait "${SERVER_PID}"

@@ -1,0 +1,425 @@
+diff --git a/.hios/app/server.py b/.hios/app/server.py
+index 32c1469..1188d8c 100644
+--- a/.hios/app/server.py
++++ b/.hios/app/server.py
+@@ -5,9 +5,11 @@ Single-file Flask server: task registry + job manager + file browsing API.
+ Binds to 127.0.0.1 only. All subprocesses use argv lists (shell=False).
+ """
+ 
++import hashlib
+ import json
+ import os
+ import re
++import traceback
+ import shutil
+ import signal
+ import subprocess
+@@ -341,6 +343,102 @@ LOG_CAP = 2000
+ HEARTBEAT_SEC = 15
+ MAX_CLAUDE_CONCURRENT = 3   # max simultaneous headless claude processes
+ 
++# ---- Phase 0 usage guard: idempotency + cooldown + usage-limit breaker ----
++# Design: docs in 01-Projects — collection stays cheap, duplicates never run,
++# and a provider "out of usage" message pauses ALL claude dispatch (jobs stay
++# queued) until the stated reset time instead of burning the remaining quota.
++
++HEALTH_FILE = STATE_DIR / "health.json"
++USAGE_FILE = STATE_DIR / "usage.json"
++TASK_RUNS_FILE = STATE_DIR / "task_runs.json"
++AI_LIMIT_RE = re.compile(r"out of extra usage|usage limit reached", re.I)
++AI_LIMIT_RESET_RE = re.compile(r"resets?\s+(\d{1,2}):(\d{2})\s*(am|pm)", re.I)
++AI_LIMIT_BACKOFF = 1800        # fallback hold when the reset time can't be parsed
++AI_HEALTH = {"limited_until": 0.0, "since": None}   # guarded by LOCK
++USAGE_LOCK = threading.Lock()
++TASK_RUNS_LOCK = threading.Lock()
++
++
++def _idem_key(task_id, params):
++    try:
++        blob = json.dumps(params, sort_keys=True, ensure_ascii=False, default=str)
++    except (TypeError, ValueError):
++        blob = repr(params)
++    return f"{task_id}:{hashlib.sha1(blob.encode('utf-8', 'replace')).hexdigest()[:16]}"
++
++
++def _ai_limited_locked():
++    """Caller must hold LOCK."""
++    return time.time() < AI_HEALTH["limited_until"]
++
++
++def _parse_limit_reset(text):
++    """'resets 10:30pm (...)' → epoch of the next occurrence, or None."""
++    m = AI_LIMIT_RESET_RE.search(text or "")
++    if not m:
++        return None
++    hh = int(m.group(1)) % 12 + (12 if m.group(3).lower() == "pm" else 0)
++    now = time.localtime()
++    target = time.mktime((now.tm_year, now.tm_mon, now.tm_mday,
++                          hh, int(m.group(2)), 0, 0, 0, -1))
++    if target <= time.time():
++        target += 86400
++    return target + 120        # small buffer past the reset
++
++
++def _note_ai_limit(job, line):
++    """A claude job hit the provider usage limit. Caller must NOT hold LOCK."""
++    until = _parse_limit_reset(line) or (time.time() + AI_LIMIT_BACKOFF)
++    with LOCK:
++        AI_HEALTH["limited_until"] = max(AI_HEALTH["limited_until"], until)
++        AI_HEALTH["since"] = AI_HEALTH["since"] or time.time()
++        hint = time.strftime("%H:%M", time.localtime(AI_HEALTH["limited_until"]))
++        _append_log(job, f"[시스템] ⛔ Claude 사용량 한도 감지 — {hint}까지 "
++                         "AI 작업 일시정지 (대기열 유지, 자동 재개)")
++    _write_json(HEALTH_FILE, {
++        "ai": "limited", "since": AI_HEALTH["since"],
++        "limited_until": AI_HEALTH["limited_until"], "detected": line[:200],
++    })
++
++
++def _clear_ai_limit():
++    """A claude job succeeded — resume dispatch. Caller must NOT hold LOCK."""
++    with LOCK:
++        was = AI_HEALTH["limited_until"]
++        AI_HEALTH.update(limited_until=0.0, since=None)
++        _dispatch_locked()
++    if was:
++        _write_json(HEALTH_FILE, {"ai": "ok", "since": None, "limited_until": 0})
++
++
++def _record_usage(task_id, status, limited=False):
++    day = time.strftime("%Y-%m-%d")
++    with USAGE_LOCK:
++        data = _read_json(USAGE_FILE, {})
++        d = data.setdefault(day, {"claude_jobs": 0, "success": 0, "failed": 0,
++                                  "limited_hits": 0, "by_task": {}})
++        d["claude_jobs"] += 1
++        d["success" if status == "success" else "failed"] += 1
++        if limited:
++            d["limited_hits"] += 1
++        d["by_task"][task_id] = d["by_task"].get(task_id, 0) + 1
++        for k in sorted(data)[:-60]:      # keep 60 days
++            del data[k]
++        _write_json(USAGE_FILE, data)
++
++
++def _record_task_success(task_id):
++    with TASK_RUNS_LOCK:
++        data = _read_json(TASK_RUNS_FILE, {})
++        data[task_id] = time.time()
++        _write_json(TASK_RUNS_FILE, data)
++
++
++def _last_task_success(task_id):
++    with TASK_RUNS_LOCK:
++        v = _read_json(TASK_RUNS_FILE, {}).get(task_id)
++    return float(v) if isinstance(v, (int, float)) else None
++
+ 
+ def _job_summary(job):
+     return {
+@@ -457,11 +555,14 @@ def _runner(job, task, params):
+     if task.get("heartbeat"):
+         threading.Thread(target=_heartbeat, args=(job, proc), daemon=True).start()
+ 
++    limited_line = None
+     with open(log_path, "w", encoding="utf-8") as lf:
+         for line in proc.stdout:
+             line = line.rstrip("\n")
+             lf.write(line + "\n")
+             lf.flush()
++            if job.get("claude") and limited_line is None and AI_LIMIT_RE.search(line):
++                limited_line = line
+             with LOCK:
+                 _append_log(job, line)
+         rc = proc.wait()
+@@ -480,6 +581,13 @@ def _runner(job, task, params):
+             ACTIVE_GROUPS.difference_update(job["groups"])
+             _dispatch_locked()
+         lf.write(f"[system] finished status={job['status']} rc={rc}\n")
++    if job.get("claude"):
++        _record_usage(job["task_id"], job["status"], limited=bool(limited_line))
++        if limited_line:
++            _note_ai_limit(job, limited_line)
++        elif job["status"] == "success":
++            _record_task_success(job["task_id"])
++            _clear_ai_limit()
+     run_finalize()
+ 
+ 
+@@ -631,7 +739,13 @@ def index():
+ 
+ @app.get("/api/health")
+ def health():
+-    return jsonify(ok=True, vault=VAULT.name, time=time.time())
++    with LOCK:
++        limited = _ai_limited_locked()
++        resume = AI_HEALTH["limited_until"] if limited else None
++    usage = _read_json(USAGE_FILE, {}).get(time.strftime("%Y-%m-%d"), {})
++    return jsonify(ok=True, vault=VAULT.name, time=time.time(),
++                   ai="limited" if limited else "ok", ai_resume=resume,
++                   usage_today=usage)
+ 
+ 
+ @app.get("/api/tasks")
+@@ -679,7 +793,9 @@ def _dispatch_locked():
+             continue
+         if ACTIVE_GROUPS & job["groups"]:
+             continue
+-        if job.get("claude") and _claude_active_locked() >= MAX_CLAUDE_CONCURRENT:
++        if job.get("claude") and (
++            _claude_active_locked() >= MAX_CLAUDE_CONCURRENT or _ai_limited_locked()
++        ):
+             continue
+         job["status"] = "pending"
+         ACTIVE_GROUPS.update(job["groups"])
+@@ -699,10 +815,24 @@ def _dispatch():
+ def _start_job(task_id, params, label=None):
+     """Enqueue a task job — starts immediately if its groups are free,
+     otherwise waits in the queue (no more 409 rejections).
+-    Returns (job_id, None); second slot kept for caller compatibility."""
++    Returns (job_id, err):
++      (id, None)      fresh job enqueued
++      (id, "dedup")   identical job already queued/pending/running — reuse it
++      (None, "cooldown")  task succeeded < task["cooldown"] seconds ago"""
+     task = TASKS[task_id]
+     groups = _task_groups(task, params)
++    key = _idem_key(task_id, params)
++    cooldown = task.get("cooldown")
++    if cooldown:
++        last = _last_task_success(task_id)
++        if last and time.time() - last < cooldown:
++            return None, "cooldown"
+     with LOCK:
++        for jid in JOB_ORDER:
++            j = JOBS[jid]
++            if (j.get("idem_key") == key
++                    and j["status"] in ("queued", "pending", "running")):
++                return jid, "dedup"
+         job_id = uuid.uuid4().hex[:12]
+         job = {
+             "id": job_id,
+@@ -711,6 +841,7 @@ def _start_job(task_id, params, label=None):
+             "status": "queued",
+             "created": time.time(),
+             "groups": groups,
++            "idem_key": key,
+             "claude": bool(task.get("claude")),
+             "params": params,
+             "refresh": task.get("refresh"),
+@@ -737,8 +868,14 @@ def api_run(task_id):
+     if task_id not in TASKS or TASKS[task_id].get("internal"):
+         abort(404)
+     params = request.get_json(silent=True) or {}
+-    job_id, _err = _start_job(task_id, params)
+-    return jsonify(job_id=job_id, queued=_job_queued(job_id)), 202
++    job_id, err = _start_job(task_id, params)
++    if err == "cooldown":
++        cd = TASKS[task_id].get("cooldown") or 0
++        last = _last_task_success(task_id) or time.time()
++        return jsonify(job_id=None, cooldown=True,
++                       retry_in=max(0, int(cd - (time.time() - last)))), 200
++    return jsonify(job_id=job_id, queued=_job_queued(job_id),
++                   dedup=(err == "dedup")), 202
+ 
+ 
+ @app.get("/api/jobs")
+@@ -1725,7 +1862,10 @@ def _queue_tick():
+             {"path": f"07-Queue/{f.name}", "content": text[:QUEUE_CONTENT_MAX]},
+             label=f"큐 처리 · {f.stem[:40]}",
+         )
+-        if err:            # claude group busy — retry next tick
++        if err == "dedup":   # same file already in flight — reattach watcher
++            QUEUE_ACTIVE[f.name] = job_id
++            return
++        if err:              # retry next tick
+             return
+         _queue_set_status(f, "processing")
+         QUEUE_ACTIVE[f.name] = job_id
+@@ -1806,14 +1946,20 @@ def _scheduler_loop():
+                 if state.get(tid) == today or hhmm < entry["at"]:
+                     continue
+                 job_id, err = _start_job(tid, {})
+-                if err:  # group busy — retry on next tick
++                # dedup/cooldown = an equivalent run already exists/just
++                # succeeded — count today's slot as satisfied.
++                if err not in (None, "dedup", "cooldown"):
+                     continue
+                 state[tid] = today
+                 changed = True
+             if changed:
+                 _write_json(SCHED_STATE_FILE, state)
++            # periodic dispatch so queued claude jobs resume within a minute
++            # after an AI usage-limit hold expires.
++            _dispatch()
+         except Exception:
+-            pass
++            print(f"[scheduler] tick error:\n{traceback.format_exc()}",
++                  file=sys.stderr, flush=True)
+         time.sleep(60)
+ 
+ 
+@@ -2520,7 +2666,14 @@ def api_upload_reclassify(bid):
+ 
+ EMAILS_FILE = STATE_DIR / "emails.json"
+ EMAIL_SEEN_FILE = STATE_DIR / "email_actions_seen.json"
++EMAIL_DELTA_FILE = STATE_DIR / "email_delta.json"
+ EMAILS_LOCK = threading.Lock()
++
++
++def _email_set_hash(emails):
++    """Stable fingerprint of a project's collected email set (order-free)."""
++    keys = sorted(f"{e.get('thread_id', '')}|{e.get('date', '')}" for e in emails)
++    return hashlib.sha1("\n".join(keys).encode("utf-8")).hexdigest()[:16]
+ EMAILS_MAX = 200
+ EMAILS_PER_PROJECT = 15
+ EMAIL_SEEN_MAX = 1000
+@@ -2682,24 +2835,34 @@ def _morning_refresh_finalize(job, params):
+             "last_error": None,
+             "last_attempt": now,
+         })
+-    # distribution stage: enqueue one scoped update job per affected project.
++    # distribution stage (delta-gated): one scoped update job per project,
++    # but ONLY when that project's email set actually changed since the last
++    # SUCCESSFUL update (hash recorded in _project_update_finalize) — a run
++    # with nothing new costs zero AI calls.
+     per_proj = {}
+     for e in emails:
+         per_proj.setdefault(e["project"], []).append(e)
+-    dispatched = 0
++    with EMAILS_LOCK:
++        delta = _read_json(EMAIL_DELTA_FILE, {})
++    dispatched, unchanged = [], []
+     for pname in sorted(per_proj):
++        if delta.get(pname) == _email_set_hash(per_proj[pname]):
++            unchanged.append(pname)
++            continue
+         _, err = _start_job("project_update",
+                             {"project": pname, "emails": per_proj[pname]},
+                             label=f"상태 반영 — {pname}")
+         if err is None:
+-            dispatched += 1
++            dispatched.append(pname)
+     with LOCK:
+         _append_log(job, f"[시스템] 이메일 {len(emails)}건 저장 → state/emails.json")
+         if created:
+             _append_log(job, f"[시스템] needs_action 이메일 → 액션 아이템 {created}건 자동 생성")
+         if dispatched:
+-            _append_log(job, f"[시스템] 프로젝트 상태 반영 작업 {dispatched}건 대기열 등록 "
+-                             f"({', '.join(sorted(per_proj))})")
++            _append_log(job, f"[시스템] 프로젝트 상태 반영 작업 {len(dispatched)}건 대기열 등록 "
++                             f"({', '.join(dispatched)})")
++        if unchanged:
++            _append_log(job, f"[시스템] 변경 없음 — 배분 생략: {', '.join(unchanged)}")
+         if missed:
+             _append_log(job, f"[시스템] ⚠️ 검색 누락 프로젝트: {', '.join(missed)}")
+ 
+@@ -2709,6 +2872,7 @@ TASKS["morning_refresh"] = {
+     "category": "동기화",
+     "groups": {"claude"},
+     "claude": True,
++    "cooldown": 900,         # succeeded < 15 min ago → don't re-collect
+     "timeout": 900,          # meetings + per-project Gmail searches
+     "heartbeat": True,
+     "refresh": "projects",
+@@ -2750,6 +2914,22 @@ def _project_update_prompt(p):
+     )
+ 
+ 
++def _project_update_finalize(job, params):
++    """Record the applied email-set hash ONLY on success, so a failed update
++    (e.g. usage limit) is retried automatically on the next collection."""
++    with LOCK:
++        ok = job["status"] == "success"
++    if not ok:
++        return
++    pname = str(params.get("project", "") or "")
++    if not pname:
++        return
++    with EMAILS_LOCK:
++        delta = _read_json(EMAIL_DELTA_FILE, {})
++        delta[pname] = _email_set_hash(params.get("emails", []))
++        _write_json(EMAIL_DELTA_FILE, delta)
++
++
+ TASKS["project_update"] = {
+     "label_ko": "프로젝트 상태 반영",
+     "category": "동기화",
+@@ -2761,6 +2941,7 @@ TASKS["project_update"] = {
+     "refresh": "projects",
+     "argv": lambda p: _claude_argv_scoped(),
+     "stdin": _project_update_prompt,
++    "finalize": _project_update_finalize,
+ }
+ 
+ 
+@@ -3021,6 +3202,70 @@ def api_calendar():
+     return jsonify(events=events, error=err, cached=False)
+ 
+ 
++# ------------------------------------------------------- connection health
++# Honest status for every collector — no more silent skips that look like
++# success. "degraded" = no confirmed success within CONN_STALE_SEC.
++
++GRANOLA_SYNC_LOG = Path.home() / ".hios/logs/granola-sync.log"
++GRANOLA_SYNCED_FILE = Path.home() / ".hios/granola-synced.json"
++CONN_STALE_SEC = 26 * 3600
++
++
++def _granola_health():
++    out = {"status": "unknown", "last_success": None, "last_error": None}
++    try:
++        out["last_success"] = GRANOLA_SYNCED_FILE.stat().st_mtime
++    except OSError:
++        pass
++    try:
++        tail = GRANOLA_SYNC_LOG.read_text(encoding="utf-8", errors="replace")[-6000:]
++    except OSError:
++        tail = ""
++    last_run = tail.split("=== granola-sync run:")[-1] if tail else ""
++    if AI_LIMIT_RE.search(last_run):
++        out["last_error"] = "Claude 사용량 한도 — 마지막 동기화 실패"
++    elif "GRANOLA_AUTH_REQUIRED" in last_run:
++        out["last_error"] = "Granola 앱 로그인 필요"
++    if "SYNCED:" in last_run:      # last run completed with a sync summary
++        m = re.findall(r"=== granola-sync run: ([0-9: -]+?) ===", tail)
++        if m:
++            try:
++                ts = time.mktime(time.strptime(m[-1].strip(), "%Y-%m-%d %H:%M:%S"))
++                out["last_success"] = max(out["last_success"] or 0, ts)
++            except ValueError:
++                pass
++    ls = out["last_success"]
++    out["status"] = ("ok" if ls and time.time() - ls < CONN_STALE_SEC
++                     else "degraded")
++    return out
++
++
++@app.get("/api/health/connections")
++def api_health_connections():
++    with EMAILS_LOCK:
++        em = _read_json(EMAILS_FILE, {})
++    updated = em.get("updated")
++    gmail = {
++        "status": ("ok" if em.get("last_status") == "ok" and updated
++                   and time.time() - updated < CONN_STALE_SEC else "degraded"),
++        "last_success": updated,
++        "last_error": em.get("last_error"),
++    }
++    with CAL_LOCK:
++        cal = {
++            "status": ("error" if CAL_CACHE["error"]
++                       else "ok" if CAL_CACHE["ts"] else "unknown"),
++            "last_success": CAL_CACHE["ts"] or None,
++            "last_error": CAL_CACHE["error"],
++        }
++    with LOCK:
++        limited = _ai_limited_locked()
++        ai = {"status": "limited" if limited else "ok",
++              "resume": AI_HEALTH["limited_until"] if limited else None}
++    return jsonify(gmail=gmail, granola=_granola_health(), calendar=cal,
++                   ai=ai, time=time.time())
++
++
+ if __name__ == "__main__":
+     # Ensure node/claude are findable even when launched with a minimal PATH
+     # (claude CLI is a node script; rc=127 "env: node: No such file" otherwise).

@@ -6,4 +6,10 @@
 __pycache__/
 .hios/logs/
 .hios/.env
+.hios/state/email_delta.json
+.hios/state/granola_actions_seen.json
+.hios/state/granola.json
+.hios/state/health.json
+.hios/state/task_runs.json
+.hios/state/usage.json
 .playwright-mcp/

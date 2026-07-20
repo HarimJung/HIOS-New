@@ -112,5 +112,26 @@
     "note": "",
     "created": "2026-07-18",
     "updated": "2026-07-18"
+  },
+  {
+    "id": "0b3c9e50",
+    "title": "[이메일] File your annual return now / Déposez votre rapport annuel maintenant",
+    "detail": "7월 25일까지 Visual Climate Inc. 연차보고서를 제출하세요.",
+    "status": "open",
+    "priority": "med",
+    "due": "",
+    "people": [
+      "<ic.corporationscanada.ic@ised-isde.gc.ca>"
+    ],
+    "sources": [
+      {
+        "kind": "gmail",
+        "label": "File your annual return now / Déposez votre rapport annuel maintenant",
+        "url": "https://mail.google.com/mail/u/0/#all/19f64b5317e475a3"
+      }
+    ],
+    "note": "",
+    "created": "2026-07-19",
+    "updated": "2026-07-19"
   }
 ]

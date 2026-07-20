@@ -177,5 +177,89 @@
     "note": "",
     "created": "2026-07-18",
     "updated": "2026-07-18"
+  },
+  {
+    "id": "1af21e10",
+    "title": "[이메일] 2026 Mid-Year Review is Now Open!",
+    "detail": "8월 19일까지 Quantum CPM에서 중간평가를 완료하세요.",
+    "status": "open",
+    "priority": "med",
+    "due": "",
+    "people": [
+      "Division for Human Resources <dhr.office@unfpa.org>"
+    ],
+    "sources": [
+      {
+        "kind": "gmail",
+        "label": "2026 Mid-Year Review is Now Open!",
+        "url": "https://mail.google.com/mail/u/0/#all/19f7078f31a0ca54"
+      }
+    ],
+    "note": "",
+    "created": "2026-07-19",
+    "updated": "2026-07-19"
+  },
+  {
+    "id": "8456362c",
+    "title": "[이메일] Fwd: Updated invitation: CSE team meeting @ Mon 20 Jul 2026 11:30am - 1pm (EAT) (Wafa Dhaouadi)",
+    "detail": "가능하면 7월 20일 CSE 팀 회의에 참석하세요.",
+    "status": "open",
+    "priority": "med",
+    "due": "",
+    "people": [
+      "Wafa Dhaouadi <dhaouadi@unfpa.org>"
+    ],
+    "sources": [
+      {
+        "kind": "gmail",
+        "label": "Fwd: Updated invitation: CSE team meeting @ Mon 20 Jul 2026 11:30am - 1pm (EAT) (Wafa Dhaouadi)",
+        "url": "https://mail.google.com/mail/u/0/#all/19f6fdd7dd39184d"
+      }
+    ],
+    "note": "",
+    "created": "2026-07-19",
+    "updated": "2026-07-19"
+  },
+  {
+    "id": "03669753",
+    "title": "[이메일] (United Nations Population Fund Forwarding Confirmation - Receive Mail from hajung@unfpa.org",
+    "detail": "자동 전달을 원하면 전달 확인 절차를 완료하세요.",
+    "status": "open",
+    "priority": "med",
+    "due": "",
+    "people": [
+      "United Nations Population Fund Team <forwarding-noreply@google.com>"
+    ],
+    "sources": [
+      {
+        "kind": "gmail",
+        "label": "(United Nations Population Fund Forwarding Confirmation - Receive Mail from hajung@unfpa.org",
+        "url": "https://mail.google.com/mail/u/0/#all/19f683b40d04fd44"
+      }
+    ],
+    "note": "",
+    "created": "2026-07-19",
+    "updated": "2026-07-19"
+  },
+  {
+    "id": "59735680",
+    "title": "[이메일] Fwd: UNFPA Account For ( Harim Jung)",
+    "detail": "전달된 안내에 따라 새 UNFPA 계정 로그인을 설정하세요.",
+    "status": "open",
+    "priority": "med",
+    "due": "",
+    "people": [
+      "Khadija Mohammed <khamohammed@unfpa.org>"
+    ],
+    "sources": [
+      {
+        "kind": "gmail",
+        "label": "Fwd: UNFPA Account For ( Harim Jung)",
+        "url": "https://mail.google.com/mail/u/0/#all/19f5a59d494b2e22"
+      }
+    ],
+    "note": "",
+    "created": "2026-07-19",
+    "updated": "2026-07-19"
   }
 ]

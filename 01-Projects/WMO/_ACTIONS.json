@@ -150,5 +150,131 @@
     "note": "",
     "created": "2026-07-18",
     "updated": "2026-07-18"
+  },
+  {
+    "id": "375bc752",
+    "title": "[이메일] Re: Milestone 1_Inception Report_BCM e-learning course",
+    "detail": "BCM 과정에서 지적된 중요 문제를 검토하고 수정하세요.",
+    "status": "open",
+    "priority": "med",
+    "due": "",
+    "people": [
+      "Mustafa Adiguzel <MAdiguzel@wmo.int>"
+    ],
+    "sources": [
+      {
+        "kind": "gmail",
+        "label": "Re: Milestone 1_Inception Report_BCM e-learning course",
+        "url": "https://mail.google.com/mail/u/0/#all/19c9011ccf41efdf"
+      }
+    ],
+    "note": "",
+    "created": "2026-07-19",
+    "updated": "2026-07-19"
+  },
+  {
+    "id": "b03c4475",
+    "title": "[이메일] RE: Milestone 1_Inception Report_BCM e-learning course",
+    "detail": "제공된 권한으로 WMO 과정 셸에 접속해 작업을 진행하세요.",
+    "status": "open",
+    "priority": "med",
+    "due": "",
+    "people": [
+      "Luciane Veeck <lveeck@wmo.int>"
+    ],
+    "sources": [
+      {
+        "kind": "gmail",
+        "label": "RE: Milestone 1_Inception Report_BCM e-learning course",
+        "url": "https://mail.google.com/mail/u/0/#all/19c9011ccf41efdf"
+      }
+    ],
+    "note": "",
+    "created": "2026-07-19",
+    "updated": "2026-07-19"
+  },
+  {
+    "id": "f2dee6e8",
+    "title": "[이메일] WMO Education and Training Programme: account confirmation",
+    "detail": "본인이 요청한 계정이면 WMO 교육훈련 계정 확인을 완료하세요.",
+    "status": "open",
+    "priority": "med",
+    "due": "",
+    "people": [
+      "\"Admin User  (via ETRP Moodle Site)\" <noreply@mail-5fdff384796c4-hg01.net>"
+    ],
+    "sources": [
+      {
+        "kind": "gmail",
+        "label": "WMO Education and Training Programme: account confirmation",
+        "url": "https://mail.google.com/mail/u/0/#all/19f476d193e9a0f6"
+      }
+    ],
+    "note": "",
+    "created": "2026-07-19",
+    "updated": "2026-07-19"
+  },
+  {
+    "id": "8b9c6459",
+    "title": "[이메일] WMO Education and Training Programme: account confirmation",
+    "detail": "본인이 요청한 계정이면 WMO 교육훈련 계정 확인을 완료하세요.",
+    "status": "open",
+    "priority": "med",
+    "due": "",
+    "people": [
+      "\"Admin User  (via ETRP Moodle Site)\" <noreply@mail-5fdff384796c4-hg01.net>"
+    ],
+    "sources": [
+      {
+        "kind": "gmail",
+        "label": "WMO Education and Training Programme: account confirmation",
+        "url": "https://mail.google.com/mail/u/0/#all/19f476d193e9a0f6"
+      }
+    ],
+    "note": "",
+    "created": "2026-07-19",
+    "updated": "2026-07-19"
+  },
+  {
+    "id": "6aa20013",
+    "title": "[이메일] RE: Accepted: BCM Training Course @ Wed 6 May 2026 8:15am - 9:15am (EDT) (Xiao Zhou)",
+    "detail": "BCM 모듈을 WMO ETRP Moodle로 이전하는 후속 작업을 진행하세요.",
+    "status": "open",
+    "priority": "med",
+    "due": "",
+    "people": [
+      "Xiao Zhou <xzhou@wmo.int>"
+    ],
+    "sources": [
+      {
+        "kind": "gmail",
+        "label": "RE: Accepted: BCM Training Course @ Wed 6 May 2026 8:15am - 9:15am (EDT) (Xiao Zhou)",
+        "url": "https://mail.google.com/mail/u/0/#all/19dfd3f09620955a"
+      }
+    ],
+    "note": "",
+    "created": "2026-07-19",
+    "updated": "2026-07-19"
+  },
+  {
+    "id": "8bdb2fc6",
+    "title": "[이메일] RE: Milestone 1_Inception Report_BCM e-learning course",
+    "detail": "WMO ETRP Moodle의 비어 있는 BCM 과정 페이지에 콘텐츠를 구현하세요.",
+    "status": "open",
+    "priority": "med",
+    "due": "",
+    "people": [
+      "Luciane Veeck <lveeck@wmo.int>"
+    ],
+    "sources": [
+      {
+        "kind": "gmail",
+        "label": "RE: Milestone 1_Inception Report_BCM e-learning course",
+        "url": "https://mail.google.com/mail/u/0/#all/19c9011ccf41efdf"
+      }
+    ],
+    "note": "",
+    "created": "2026-07-19",
+    "updated": "2026-07-19"
   }
 ]
