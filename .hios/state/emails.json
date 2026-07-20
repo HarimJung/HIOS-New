@@ -2220,7 +2220,7 @@
     "WMO"
   ],
   "missed": [],
-  "last_status": "ok",
-  "last_error": null,
-  "last_attempt": 1784588170.328214
+  "last_status": "error",
+  "last_error": "Gmail 메시지 상세 조회 실패: Google API 연결 실패: <urlopen error [Errno 8] nodename nor servname provided, or not known>",
+  "last_attempt": 1784590106.262463
 }

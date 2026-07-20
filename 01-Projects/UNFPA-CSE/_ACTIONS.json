@@ -245,7 +245,7 @@
     "id": "59735680",
     "title": "[이메일] Fwd: UNFPA Account For ( Harim Jung)",
     "detail": "전달된 안내에 따라 새 UNFPA 계정 로그인을 설정하세요.",
-    "status": "open",
+    "status": "done",
     "priority": "med",
     "due": "",
     "people": [
@@ -260,13 +260,13 @@
     ],
     "note": "",
     "created": "2026-07-19",
-    "updated": "2026-07-19"
+    "updated": "2026-07-20"
   },
   {
     "id": "6f473dce",
     "title": "[이메일] Deadline extended - Re: Staff Council Survey",
     "detail": "이메일 내용 확인 후 회신/처리 필요",
-    "status": "open",
+    "status": "done",
     "priority": "med",
     "due": "",
     "people": [
