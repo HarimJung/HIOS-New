@@ -2291,6 +2291,28 @@ a.em-subject:hover{
   max-width:220px;
 }
 
+.em-important-row{
+  background:color-mix(in srgb, var(--accent) 6%, transparent);
+  border-radius:6px;
+}
+
+.em-star,.em-dismiss{
+  margin-left:auto;
+  flex-shrink:0;
+  border:none;
+  background:transparent;
+  cursor:pointer;
+  font-size:13px;
+  line-height:1;
+  padding:2px 5px;
+  border-radius:4px;
+  color:var(--text3);
+}
+
+.em-star:hover,.em-dismiss:hover{background:var(--bg2)}
+.em-star.active{color:#f5a623}
+.em-dismiss:hover{color:var(--danger,#e5484d)}
+
 .em-summary{
   font-size:12px;
   color:var(--text2);

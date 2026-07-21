@@ -3270,6 +3270,68 @@ EMAILS_PER_PROJECT = 15
 EMAIL_SEEN_MAX = 1000
 THREAD_ID_RE = re.compile(r"^[\w.:\-]{1,60}$")
 
+# User-side email curation (dismiss / mark important) — deliberately kept
+# separate from the collected emails.json: applied at read time so the
+# collection pipeline never has to know about it, and "un-dismiss" just
+# means removing a thread_id from this file.
+EMAIL_DISMISSED_FILE = STATE_DIR / "email_dismissed.json"
+EMAIL_FLAGS_FILE = STATE_DIR / "email_flags.json"
+EMAIL_CURATION_LOCK = threading.Lock()
+
+
+def _email_dismissed_ids():
+    raw = _read_json(EMAIL_DISMISSED_FILE, [])
+    return set(raw) if isinstance(raw, list) else set()
+
+
+def _email_flags():
+    raw = _read_json(EMAIL_FLAGS_FILE, {})
+    return raw if isinstance(raw, dict) else {}
+
+
+def _apply_email_curation(emails):
+    """Drop dismissed threads, annotate the rest with important=bool."""
+    with EMAIL_CURATION_LOCK:
+        dismissed = _email_dismissed_ids()
+        flags = _email_flags()
+    out = []
+    for e in emails:
+        tid = e.get("thread_id", "")
+        if tid in dismissed:
+            continue
+        out.append({**e, "important": bool(flags.get(tid))})
+    return out
+
+
+@app.post("/api/emails/dismiss")
+def api_email_dismiss():
+    body = request.get_json(silent=True) or {}
+    tid = str(body.get("thread_id", "") or "")
+    if not THREAD_ID_RE.match(tid):
+        abort(400)
+    with EMAIL_CURATION_LOCK:
+        dismissed = _email_dismissed_ids()
+        dismissed.add(tid)
+        _write_json(EMAIL_DISMISSED_FILE, sorted(dismissed)[-EMAIL_SEEN_MAX:])
+    return jsonify(ok=True)
+
+
+@app.post("/api/emails/important")
+def api_email_important():
+    body = request.get_json(silent=True) or {}
+    tid = str(body.get("thread_id", "") or "")
+    important = bool(body.get("important"))
+    if not THREAD_ID_RE.match(tid):
+        abort(400)
+    with EMAIL_CURATION_LOCK:
+        flags = _email_flags()
+        if important:
+            flags[tid] = True
+        else:
+            flags.pop(tid, None)
+        _write_json(EMAIL_FLAGS_FILE, flags)
+    return jsonify(ok=True)
+
 
 def _morning_refresh_snapshot_stdin(p):
     """Feed the raw Gmail snapshot to the AI-free classifier (email_classify.py)
@@ -3557,10 +3619,14 @@ def api_emails():
         data = _read_json(EMAILS_FILE, {"updated": None, "emails": []})
     if not isinstance(data, dict):
         data = {"updated": None, "emails": []}
+    emails = _apply_email_curation(data.get("emails", []))
+    stats = {p: 0 for p in data.get("stats", {})}
+    for e in emails:
+        stats[e["project"]] = stats.get(e["project"], 0) + 1
     return jsonify(
         updated=data.get("updated"),
-        emails=data.get("emails", []),
-        stats=data.get("stats", {}),
+        emails=emails,
+        stats=stats,
         searched=data.get("searched", []),
         missed=data.get("missed", []),
         last_status=data.get("last_status"),
@@ -3575,7 +3641,9 @@ def api_project_emails(name):
         abort(404)
     with EMAILS_LOCK:
         data = _read_json(EMAILS_FILE, {"updated": None, "emails": []})
-    emails = [e for e in data.get("emails", []) if e.get("project") == name]
+    emails = _apply_email_curation(
+        [e for e in data.get("emails", []) if e.get("project") == name]
+    )
     return jsonify(
         updated=data.get("updated"),
         emails=emails,

@@ -3,7 +3,7 @@
     "id": "eq-findings-email",
     "title": "False positive 첫 발견사항 요약 이메일 발송",
     "detail": "7/13 미팅에서 커밋한 액션. 지금까지 발견한 패턴 포함: ① 동일 보험사 전/후 계약 + 정책 여전히 활성 (CVSA 정보 완전 오류) ② export 케이스 — 커버리지 export됐으나 동일 회사에서 정책 활성. 현황: 1,000+ 레코드 SQL Server 적재, 100+ 알림 수동 리뷰(20-30% 수동 플래그), 2-플래그 체계(코멘트 기반 + AI).",
-    "status": "open",
+    "status": "done",
     "priority": "high",
     "due": "2026-07-17",
     "people": [],
@@ -16,13 +16,13 @@
     ],
     "note": "",
     "created": "2026-07-15",
-    "updated": "2026-07-15"
+    "updated": "2026-07-20"
   },
   {
     "id": "eq-target-list",
     "title": "타겟 케이스 리스트 + 조사관 질문 작성",
     "detail": "액세스 시트에 타겟 케이스 마킹, 조사관에게 물을 질문 정리, 케이스별 멤버/보험사 분류. Intact가 케이스 최다 예상, Aviva는 false positive 적을 것. 내부팀은 주로 network alert 사용 — claim/policy alert는 외부 조사관(TDI, Intact 슈퍼유저)에 적합.",
-    "status": "open",
+    "status": "done",
     "priority": "high",
     "due": "2026-07-18",
     "people": [],
@@ -35,7 +35,7 @@
     ],
     "note": "",
     "created": "2026-07-15",
-    "updated": "2026-07-15"
+    "updated": "2026-07-20"
   },
   {
     "id": "eq-angel-engage",
@@ -128,7 +128,7 @@
     "id": "eq-security-report",
     "title": "Claude Code 보안 건 Ivan/Julia에게 공식 통보",
     "detail": "개발 중 Claude가 blockchain/crypto 인코딩 모듈 다운로드 → Ivan 리뷰 결과 서명된 버전으로 클리어. 다만 다른 동료는 미서명 버전 다운로드했었음. 클리어됐어도 보안팀에 공식 통보 필요. 정책: 어떤 LLM에도 실데이터/IP 업로드 금지 (현재 Faker 목데이터만 사용, 실데이터는 로컬 Python으로만 읽음).",
-    "status": "open",
+    "status": "done",
     "priority": "med",
     "due": "2026-07-17",
     "people": [
@@ -144,7 +144,7 @@
     ],
     "note": "",
     "created": "2026-07-15",
-    "updated": "2026-07-15"
+    "updated": "2026-07-20"
   },
   {
     "id": "eq-shift-meeting",

@@ -71,7 +71,7 @@ def isolated(tmp_path, monkeypatch):
         "HEALTH_FILE", "USAGE_FILE", "TASK_RUNS_FILE", "EMAILS_FILE",
         "EMAIL_DELTA_FILE", "EMAIL_SEEN_FILE", "GRANOLA_STATE_FILE",
         "GRANOLA_ACTION_SEEN_FILE",
-        "SCHED_STATE_FILE",
+        "SCHED_STATE_FILE", "EMAIL_DISMISSED_FILE", "EMAIL_FLAGS_FILE",
     ):
         monkeypatch.setattr(server, name, tmp_path / f"{name.lower()}.json")
     monkeypatch.setattr(server, "GRANOLA_SYNC_LOG", tmp_path / "granola.log")
@@ -261,6 +261,48 @@ def test_p0_5_connection_health_reports_errors_and_staleness(isolated):
     assert body["calendar"]["status"] == "unknown"
     assert body["ai"]["status"] == "ok"
     assert body["ai"]["provider"] == "claude"
+
+
+def test_email_dismiss_hides_thread_and_recomputes_stats(isolated):
+    isolated.EMAILS_FILE.write_text(json.dumps({
+        "updated": 100.0,
+        "emails": [
+            {"project": "WMO", "thread_id": "t1", "subject": "keep"},
+            {"project": "WMO", "thread_id": "t2", "subject": "noise"},
+        ],
+        "stats": {"WMO": 2},
+    }), encoding="utf-8")
+
+    with isolated.app.test_client() as client:
+        before = client.get("/api/emails").get_json()
+        assert len(before["emails"]) == 2
+
+        resp = client.post("/api/emails/dismiss", json={"thread_id": "t2"})
+        assert resp.status_code == 200
+
+        after = client.get("/api/emails").get_json()
+        assert [e["thread_id"] for e in after["emails"]] == ["t1"]
+        assert after["stats"]["WMO"] == 1
+
+        bad = client.post("/api/emails/dismiss", json={"thread_id": "../../etc"})
+        assert bad.status_code == 400
+
+
+def test_email_important_flag_round_trips_and_can_be_cleared(isolated):
+    isolated.EMAILS_FILE.write_text(json.dumps({
+        "updated": 100.0,
+        "emails": [{"project": "WMO", "thread_id": "t1", "subject": "x"}],
+        "stats": {"WMO": 1},
+    }), encoding="utf-8")
+
+    with isolated.app.test_client() as client:
+        client.post("/api/emails/important", json={"thread_id": "t1", "important": True})
+        marked = client.get("/api/emails").get_json()
+        assert marked["emails"][0]["important"] is True
+
+        client.post("/api/emails/important", json={"thread_id": "t1", "important": False})
+        cleared = client.get("/api/emails").get_json()
+        assert cleared["emails"][0]["important"] is False
 
 
 def test_refresh_rejects_unconfirmed_gmail_and_preserves_cached_emails(isolated):

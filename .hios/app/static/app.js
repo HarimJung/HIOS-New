@@ -107,10 +107,32 @@ function escapeHtml(s) {
     .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
 }
 
+// [[01-Projects/X/02-Meetings/note]] or [[path|display text]] — AI-generated
+// notes (daily brief, _STATUS.md) reference other vault files this way.
+// Matches against the already-escaped string, so captured text is HTML-safe
+// to reinsert directly (no re-escaping, no injection risk).
+const WIKI_LINK_RE = /\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g;
+
 function renderMarkdown(src) {
   // escape raw HTML first, then let marked render markdown syntax only
-  return marked.parse(escapeHtml(src), { breaks: true });
+  const withWikiLinks = escapeHtml(src).replace(WIKI_LINK_RE, (whole, path, alias) => {
+    const trimmed = path.trim();
+    if (!trimmed.startsWith("01-Projects/") && !trimmed.startsWith("00-Inbox/")) {
+      return whole; // not a recognized vault path — leave the literal text alone
+    }
+    const relPath = /\.[a-z0-9]+$/i.test(trimmed) ? trimmed : `${trimmed}.md`;
+    const display = (alias || trimmed).trim();
+    return `<a href="#" class="wiki-link" data-path="${relPath}">${display}</a>`;
+  });
+  return marked.parse(withWikiLinks, { breaks: true });
 }
+
+document.addEventListener("click", (e) => {
+  const link = e.target.closest(".wiki-link");
+  if (!link) return;
+  e.preventDefault();
+  fmOpenInWorkspace(link.dataset.path);
+});
 
 function fmtDate(ts) {
   const d = new Date(ts * 1000);
@@ -1152,19 +1174,50 @@ function emailRowHtml(e, showProject) {
   const subj = link
     ? `<a class="em-subject" href="${escapeHtml(link)}" target="_blank" rel="noopener">${escapeHtml(e.subject || "(제목 없음)")}</a>`
     : `<span class="em-subject">${escapeHtml(e.subject || "(제목 없음)")}</span>`;
-  return `<div class="em-row">
+  const tid = escapeHtml(e.thread_id || "");
+  return `<div class="em-row${e.important ? " em-important-row" : ""}" data-tid="${tid}">
     <div class="em-line">
       <span class="em-date">${escapeHtml(e.date || "")}</span>
       ${showProject ? `<span class="em-proj">${escapeHtml(e.project)}</span>` : ""}
       ${e.needs_action ? `<span class="pill failed">액션</span>` : ""}
       ${subj}
       <span class="em-from">${escapeHtml(e.from || "")}</span>
+      ${e.thread_id ? `
+        <button class="em-star${e.important ? " active" : ""}" data-tid="${tid}"
+          title="${e.important ? "중요 해제" : "중요 표시"}">${e.important ? "★" : "☆"}</button>
+        <button class="em-dismiss" data-tid="${tid}" title="목록에서 지우기">✕</button>` : ""}
     </div>
     ${e.summary ? `<div class="em-summary">${escapeHtml(e.summary)}</div>` : ""}
     ${e.needs_action && e.suggested_action
       ? `<div class="em-suggest">→ ${escapeHtml(e.suggested_action)}</div>` : ""}
   </div>`;
 }
+
+document.addEventListener("click", async (e) => {
+  const star = e.target.closest(".em-star");
+  const dismiss = e.target.closest(".em-dismiss");
+  const btn = star || dismiss;
+  if (!btn) return;
+  const tid = btn.dataset.tid;
+  if (!tid) return;
+  const row = btn.closest(".em-row");
+  try {
+    if (star) {
+      const nowImportant = !star.classList.contains("active");
+      await postJson("/api/emails/important", { thread_id: tid, important: nowImportant });
+      star.classList.toggle("active", nowImportant);
+      star.textContent = nowImportant ? "★" : "☆";
+      star.title = nowImportant ? "중요 해제" : "중요 표시";
+      if (row) row.classList.toggle("em-important-row", nowImportant);
+    } else {
+      await postJson("/api/emails/dismiss", { thread_id: tid });
+      if (row) row.remove();
+      toast("이메일 목록에서 지웠습니다");
+    }
+  } catch (err) {
+    toast(`실패: ${err.body?.message || err.message}`, "err");
+  }
+});
 
 async function loadMailTab() {
   const doc = $("doc-view");
