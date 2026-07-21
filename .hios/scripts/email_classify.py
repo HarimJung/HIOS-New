@@ -29,7 +29,7 @@ PROJECT_RULES = {
     },
     "Equitee": {
         "domains": ["equiteco.ca"],
-        "keywords": ["equitee", "equitée", "équité", "false positive",
+        "keywords": ["equitee", "equite", "equitée", "équité", "false positive",
                       "fraud dashboard", "power bi", "auto theft"],
     },
     "WMO": {

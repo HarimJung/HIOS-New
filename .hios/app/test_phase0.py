@@ -462,11 +462,17 @@ def test_ai_runner_prefixes_repository_safety_rules(isolated, monkeypatch):
     assert written[0].endswith("do the task")
 
 
-def test_granola_sync_is_independent_required_mcp_and_records_health(isolated):
-    argv = isolated._claude_argv_granola()
-    assert argv[:2] == [isolated.CLAUDE_BIN, "--print"]
-    assert "Granola MCP가 반드시 필요합니다" in isolated._granola_refresh_prompt({})
-    assert any(e["task"] == "granola_refresh" for e in isolated.SCHEDULE)
+def test_granola_refresh_is_ai_free_and_calls_the_api_sync_script():
+    task = server.TASKS["granola_refresh"]
+    assert task["ai"] is False
+    assert task["groups"] == {"collectors"}
+    argv = task["argv"]({})
+    assert argv[0] == server.PYTHON_BIN
+    assert argv[-1] == str(server.HIOS_SCRIPTS / "granola_api_sync.py")
+    assert any(e["task"] == "granola_refresh" for e in server.SCHEDULE)
+
+
+def test_granola_sync_records_health(isolated):
 
     manifest = {
         "connection": {"status": "ok", "error": None},

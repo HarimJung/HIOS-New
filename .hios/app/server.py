@@ -162,21 +162,6 @@ def _claude_argv():
     ]
 
 
-def _claude_argv_granola():
-    """Granola sync must fail visibly if its authenticated MCP cannot start.
-
-    Claude Code has no equivalent to Codex's mcp_servers.*.required config,
-    so the requirement is stated in the prompt instead (see callers of this
-    argv, which prepend an explicit "Granola MCP가 필요합니다" instruction).
-
-    _claude_argv()'s --allowedTools is a strict allowlist, so the base set
-    would silently hide the granola MCP's tools even when the server is
-    connected — add them explicitly.
-    """
-    argv = _claude_argv()
-    idx = argv.index("--allowedTools") + 1
-    argv[idx] = argv[idx] + ",mcp__granola"
-    return argv
 
 
 def _topic(params):
@@ -3089,44 +3074,6 @@ def _gmail_collect_snapshot():
     }
 
 
-def _granola_refresh_prompt(p):
-    projects = _project_names()
-    since = time.strftime("%Y-%m-%d", time.localtime(time.time() - 7 * 86400))
-    return (
-        "Granola 회의 자동 동기화 작업입니다. Granola MCP가 반드시 필요합니다 — "
-        "연결되어 있지 않거나 인증에 실패하면 즉시 status를 error로 기록하고 중단하세요. "
-        "Gmail 등 다른 외부 서비스는 사용하지 마세요. "
-        "설정된 granola MCP의 list_meetings를 날짜/시간 인자 없이 정확히 한 번 호출하세요. "
-        f"반환된 전체 목록에서 날짜가 {since} 이후인 회의만 직접 필터링하세요. "
-        "list_meetings 호출에 time_range, start_date 또는 다른 필터를 전달하지 마세요. "
-        "필터링된 회의 수를 meetings_seen에 기록하세요. 각 신규 회의는 get_meetings로 "
-        "요약·결정사항·액션을 가져오세요. 이미 저장된 회의는 다시 가져오지 말고 기존 "
-        "회의록을 읽어 상태/TODO/액션 반영 여부를 점검하세요.\n\n"
-        "중복 확인 위치: 01-Projects/*/*-Meetings/, 00-Inbox/. granola_id가 같으면 "
-        "동일 회의입니다.\n"
-        f"허용 프로젝트 폴더: {', '.join(projects)}. 분류가 불명확하면 00-Inbox/에 저장하세요.\n"
-        "프로젝트로 분류된 새 회의는 그 프로젝트에 이미 존재하는 *-Meetings 폴더 "
-        "(예: 02-Meetings, 04-Meetings, 07-Meetings)에 저장하세요. 새 노트 파일명은 "
-        "YYYY-MM-DD-<client>-<topic>.md이고, front matter에 "
-        "tags, client, status, due, priority, source: granola, granola_id를 넣으세요. "
-        "본문에는 요약, 결정사항, 액션 아이템을 포함하세요.\n"
-        "신규 및 기존 최근 회의마다 해당 프로젝트의 _STATUS.md에 최신 진행상황·결정사항을, "
-        "_TODO.md에는 아직 끝나지 않은 하림 담당 액션·기한을 중복 없이 반영하세요. "
-        "_ACTIONS.json은 서버가 관리하므로 직접 수정하지 마세요. 다른 산출물 파일은 회의에서 "
-        "명시적으로 변경이 확정된 경우만 최소한으로 수정하고, 기존 파일 삭제·이동은 금지입니다.\n\n"
-        "actions에는 최근 회의 중 아직 완료되지 않았고 하림이 담당하는 액션만 넣으세요. "
-        "project는 허용 프로젝트명, granola_id는 회의 ID, note_path는 저장된 회의록의 저장소 "
-        "상대경로, due는 확실한 경우 YYYY-MM-DD 아니면 빈 문자열이어야 합니다.\n"
-        "마지막 줄에 코드펜스 없이 다음 JSON 객체만 출력하세요:\n"
-        '{"connection":{"status":"ok","error":null},'
-        '"meetings_seen":0,"meetings_created":0,'
-        '"actions":[{"project":"WMO","title":"할 일","detail":"근거와 다음 단계",'
-        '"due":"YYYY-MM-DD","people":["담당자"],"granola_id":"회의 ID",'
-        '"note_path":"01-Projects/WMO/02-Meetings/파일.md"}]}\n'
-        "MCP 인증이나 호출이 실패하면 파일을 만들지 말고 status를 error로, "
-        "error에 실제 오류를 기록하세요."
-    )
-
 
 def _extract_granola_manifest(text):
     decoder = json.JSONDecoder()
@@ -3279,16 +3226,17 @@ def _granola_refresh_finalize(job, params):
 TASKS["granola_refresh"] = {
     "label_ko": "Granola 동기화",
     "category": "동기화",
-    "groups": {"ai"},
-    "ai": True,   # granola_sync.py is broken (Granola v7+ encrypts
-                  # supabase.json; MCP is the only working path) — stays AI,
-                  # cooldown raised to cap it at ~3-4 runs/day instead of 900s.
-    "cooldown": 3600,
-    "timeout": 900,
-    "heartbeat": True,
+    # AI-free via the official public-api.granola.ai (Bearer token) —
+    # mcp.granola.ai requires interactive browser OAuth per user and simply
+    # cannot authenticate from a headless server session, no matter the
+    # allowedTools/CLI-version tweak. Same rationale as morning_refresh.
+    "groups": {"collectors"},
+    "ai": False,
+    "cooldown": 900,
+    "timeout": 300,
+    "heartbeat": False,
     "refresh": "projects",
-    "argv": lambda p: _claude_argv_granola(),
-    "stdin": _granola_refresh_prompt,
+    "argv": lambda p: [PYTHON_BIN, str(HIOS_SCRIPTS / "granola_api_sync.py")],
     "finalize": _granola_refresh_finalize,
 }
 
