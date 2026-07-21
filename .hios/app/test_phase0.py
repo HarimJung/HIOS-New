@@ -72,6 +72,7 @@ def isolated(tmp_path, monkeypatch):
         "EMAIL_DELTA_FILE", "EMAIL_SEEN_FILE", "GRANOLA_STATE_FILE",
         "GRANOLA_ACTION_SEEN_FILE",
         "SCHED_STATE_FILE", "EMAIL_DISMISSED_FILE", "EMAIL_FLAGS_FILE",
+        "PROJECT_ACTION_SEEN_FILE",
     ):
         monkeypatch.setattr(server, name, tmp_path / f"{name.lower()}.json")
     monkeypatch.setattr(server, "GRANOLA_SYNC_LOG", tmp_path / "granola.log")
@@ -588,3 +589,53 @@ def test_granola_actions_are_project_scoped_and_deduplicated(
         isolated.GRANOLA_ACTION_SEEN_FILE.read_text(encoding="utf-8")
     )
     assert len(seen) == 1
+
+
+def test_project_update_proposes_actions_deduped_by_title(
+        isolated, monkeypatch, tmp_path):
+    projects_dir = tmp_path / "projects"
+    (projects_dir / "UNFPA-CSE").mkdir(parents=True)
+    monkeypatch.setattr(isolated, "PROJECTS_DIR", projects_dir)
+    monkeypatch.setattr(isolated, "_project_names", lambda: ["UNFPA-CSE"])
+    action = {
+        "title": "Steve에게 팩트시트 3종 1차 초안 공유",
+        "detail": "7/20 CSE 팀 회의 후속 — Steve Petit 요청",
+        "due": "2026-08-01",
+        "priority": "high",
+        "people": ["Steve Petit"],
+        "source": {"kind": "granola",
+                    "url": "https://notes.granola.ai/d/abc", "label": "CSE 팀 회의"},
+    }
+    created = isolated._project_update_create_actions("UNFPA-CSE", [action])
+    assert created == 1
+    # same title again (e.g. next run before the meeting note ages out) → deduped
+    assert isolated._project_update_create_actions("UNFPA-CSE", [action]) == 0
+
+    items = json.loads(
+        (projects_dir / "UNFPA-CSE" / "_ACTIONS.json").read_text(encoding="utf-8")
+    )
+    assert len(items) == 1
+    assert items[0]["priority"] == "high"
+    assert items[0]["sources"][0]["kind"] == "granola"
+
+
+def test_project_update_finalize_parses_manifest_and_creates_actions(
+        isolated, monkeypatch, tmp_path):
+    projects_dir = tmp_path / "projects"
+    (projects_dir / "WHO").mkdir(parents=True)
+    monkeypatch.setattr(isolated, "PROJECTS_DIR", projects_dir)
+    monkeypatch.setattr(isolated, "_project_names", lambda: ["WHO"])
+    manifest = {"new_actions": [{
+        "title": "Salvatore concept note 회신",
+        "detail": "이메일 기반", "due": "", "priority": "med",
+        "people": [], "source": {"kind": "gmail", "url": "", "label": ""},
+    }]}
+    job = _job("pu", "project_update", status="success")
+    job["log"].append("요약: 상태 갱신함\n" + json.dumps(manifest))
+    isolated._project_update_finalize(job, {"project": "WHO", "emails": []})
+
+    items = json.loads(
+        (projects_dir / "WHO" / "_ACTIONS.json").read_text(encoding="utf-8")
+    )
+    assert len(items) == 1
+    assert items[0]["title"] == "Salvatore concept note 회신"

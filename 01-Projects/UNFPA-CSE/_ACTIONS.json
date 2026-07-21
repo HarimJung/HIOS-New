@@ -282,5 +282,26 @@
     "note": "",
     "created": "2026-07-20",
     "updated": "2026-07-20"
+  },
+  {
+    "id": "7c4b3bce",
+    "title": "[이메일] Fact Sheets: EmpowerEd, Pooled Fund and Phases 1 & 2 of the Global Programme on OOS CSE",
+    "detail": "이메일 내용 확인 후 회신/처리 필요",
+    "status": "open",
+    "priority": "med",
+    "due": "",
+    "people": [
+      "Steve Petit <petit@unfpa.org>"
+    ],
+    "sources": [
+      {
+        "kind": "gmail",
+        "label": "Fact Sheets: EmpowerEd, Pooled Fund and Phases 1 & 2 of the Global Programme on OOS CSE",
+        "url": "https://mail.google.com/mail/u/0/#all/19f7fa8585e945a6"
+      }
+    ],
+    "note": "",
+    "created": "2026-07-20",
+    "updated": "2026-07-20"
   }
 ]

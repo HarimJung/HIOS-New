@@ -57,10 +57,14 @@ PROJECT_RULES = {
 OTHER_PROJECT = "기타"
 
 NEEDS_ACTION_PATTERNS = [
-    r"\baction required\b", r"\bplease (respond|reply|confirm|sign|submit|review)\b",
+    r"\baction required\b",
+    r"\bplease (respond|reply|confirm|sign|submit|review|prepare|draft|send|share|provide)\b",
+    r"\bkindly (prepare|draft|send|share|provide|confirm)\b",
+    r"\bcould you\b", r"\bcan you\b", r"\brequested (to|that)\b",
     r"\bdeadline\b", r"\bdue (by|date)\b", r"\burgent\b", r"\basap\b",
     r"response needed", r"awaiting your", r"확인\s*부탁", r"회신\s*부탁",
-    r"제출\s*(부탁|필요)", r"마감", r"기한",
+    r"제출\s*(부탁|필요)", r"작성\s*(부탁|요청|필요)", r"준비\s*(부탁|요청)",
+    r"마감", r"기한",
 ]
 NEEDS_ACTION_RE = re.compile("|".join(NEEDS_ACTION_PATTERNS), re.I)
 

@@ -122,6 +122,7 @@ def write_note(note, project, detail):
 date: {date_str}
 title: "{title}"
 granola_id: {note.get('id', '')}
+granola_url: {detail.get('web_url', '') or note.get('web_url', '')}
 project: {project or '미분류'}
 type: meeting-transcript
 tags: [meeting, granola{', ' + project.lower() if project else ''}]

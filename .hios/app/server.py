@@ -3556,7 +3556,8 @@ def _project_update_prompt(p):
     lines = "\n".join(
         f"- [{e.get('date', '')}] {e.get('from', '')} — {e.get('subject', '')}: "
         f"{e.get('summary', '')}"
-        + (f" (⚡ 액션: {e.get('suggested_action', '') or '회신 필요'})"
+        + (f" (⚡ 액션: {e.get('suggested_action', '') or '회신 필요'}, "
+           f"thread_id: {e.get('thread_id', '')})"
            if e.get("needs_action") else "")
         for e in p.get("emails", [])
     )
@@ -3570,25 +3571,129 @@ def _project_update_prompt(p):
         "위 이메일, 미팅 노트 폴더(02-Meetings/ 또는 07-Meetings/ 등 이름이 다를 수 있음)의 "
         "최근 7일 노트, _ACTIONS.json 의 열린 항목을 반영해 "
         "'## 최근 동향' 섹션(없으면 만들기)을 날짜별 bullet 로 갱신하세요. "
+        "각 bullet에 근거가 된 미팅 노트가 있으면 `[[01-Projects/.../파일명]]` 형식(확장자 "
+        "제외)으로 위키링크를 반드시 포함하세요 — 대시보드에서 클릭하면 그 파일로 바로 이동합니다. "
         "front-matter 와 기존 섹션은 보존하고, 이미 반영된 내용은 중복 추가하지 마세요. "
         "구식이 된 문장은 고치세요.\n"
         f"2. 01-Projects/{name}/_TODO.md 에 위 이메일에서 나온 새 할 일이 있고 "
         "아직 목록에 없으면 추가하세요 (중복 금지, 완료 표시된 항목 건드리지 말 것).\n"
-        "3. 파일 삭제/이동 금지. _ACTIONS.json 은 서버가 관리하므로 수정 금지.\n\n"
-        "마지막에 무엇을 바꿨는지 2-3줄로 요약 출력하세요.\n"
+        f"3. 01-Projects/{name}/_ACTIONS.json 을 읽어서 이미 있는 열린(open) 액션 제목을 "
+        "확인하세요. 위 이메일과 최근 미팅 노트(트랜스크립트 포함)에서 "
+        "'누가 무엇을 언제까지 해야 하는지'가 구체적으로 드러나는 항목만, 아직 "
+        "_ACTIONS.json에 없는 것만 새 액션으로 제안하세요. 이 파일은 직접 수정하지 마세요 "
+        "— 서버가 중복 제거 후 대신 씁니다. 확실한 근거가 없으면 추측성 액션을 만들지 "
+        "말고 빈 배열을 내세요.\n\n"
+        "파일 삭제/이동 금지.\n\n"
+        "마지막 줄에 코드펜스 없이 다음 JSON 객체 하나만 출력하세요 (본문 요약 뒤에):\n"
+        '{"new_actions":[{"title":"한 줄 제목","detail":"근거·맥락 (어느 미팅/이메일인지 포함)",'
+        '"due":"YYYY-MM-DD 또는 빈 문자열","priority":"high|med|low","people":["관련자"],'
+        '"source":{"kind":"gmail|granola","label":"표시명",'
+        '"url":"이메일이면 https://mail.google.com/mail/u/0/#all/<thread_id>, '
+        '미팅이면 노트 frontmatter의 granola_url 값"}}]}\n'
     )
+
+
+def _extract_project_update_manifest(text):
+    decoder = json.JSONDecoder()
+    found = None
+    for match in re.finditer(r"\{", text or ""):
+        try:
+            candidate, _ = decoder.raw_decode(text[match.start():])
+        except ValueError:
+            continue
+        if isinstance(candidate, dict) and isinstance(candidate.get("new_actions"), list):
+            found = candidate
+    return found
+
+
+PROJECT_ACTION_SEEN_FILE = STATE_DIR / "project_action_seen.json"
+PROJECT_ACTION_SEEN_MAX = 2000
+PROJECT_ACTION_SEEN_LOCK = threading.Lock()
+
+
+def _project_action_key(project, title):
+    raw = f"{project}|{title.strip().lower()}"
+    return hashlib.sha1(raw.encode("utf-8")).hexdigest()[:24]
+
+
+def _project_update_create_actions(project, actions):
+    """AI-proposed action items from a project_update run, deduped across
+    runs by a hash of (project, normalized title) — these have no stable
+    external id like a thread_id/granola_id, so title similarity is the
+    only dedup signal available."""
+    if not isinstance(actions, list):
+        return 0
+    with PROJECT_ACTION_SEEN_LOCK:
+        raw_seen = _read_json(PROJECT_ACTION_SEEN_FILE, [])
+        seen = set(raw_seen) if isinstance(raw_seen, list) else set()
+    valid = []
+    pending_keys = set()
+    for action in actions[:50]:
+        if not isinstance(action, dict):
+            continue
+        title = _clean_item_text(action.get("title", ""), 300)
+        if not title:
+            continue
+        key = _project_action_key(project, title)
+        if key in seen or key in pending_keys:
+            continue
+        due = _clean_item_text(action.get("due", ""), 20)
+        if due and not DATE_RE.fullmatch(due):
+            due = ""
+        priority = action.get("priority") if action.get("priority") in ITEM_PRIORITIES else "med"
+        source = action.get("source") if isinstance(action.get("source"), dict) else {}
+        valid.append((key, {
+            "id": uuid.uuid4().hex[:8],
+            "title": title,
+            "detail": _clean_item_text(action.get("detail", ""), 1000),
+            "status": "open",
+            "priority": priority,
+            "due": due,
+            "people": _clean_people(action.get("people")),
+            "sources": _clean_sources([source]) if source else [],
+            "note": "",
+            "created": time.strftime("%Y-%m-%d"),
+            "updated": time.strftime("%Y-%m-%d"),
+        }))
+        pending_keys.add(key)
+    if not valid:
+        return 0
+    with ITEMS_LOCK:
+        proj = PROJECTS_DIR / project
+        items = _load_items(proj)
+        for key, item in valid:
+            items.append(item)
+            seen.add(key)
+        _write_json(_items_file(proj), items)
+    with PROJECT_ACTION_SEEN_LOCK:
+        _write_json(PROJECT_ACTION_SEEN_FILE, sorted(seen)[-PROJECT_ACTION_SEEN_MAX:])
+    return len(valid)
 
 
 def _project_update_finalize(job, params):
     """Record the applied email-set hash ONLY on success, so a failed update
-    (e.g. usage limit) is retried automatically on the next collection."""
+    (e.g. usage limit) is retried automatically on the next collection.
+    Also parses AI-proposed new_actions and writes them to _ACTIONS.json —
+    the AI is told not to touch that file directly so dedup stays server-side."""
     with LOCK:
         ok = job["status"] == "success"
+        text = "\n".join(job["log"])
     if not ok:
         return
     pname = str(params.get("project", "") or "")
     if not pname:
         return
+    manifest = _extract_project_update_manifest(text)
+    created = 0
+    if manifest and pname in _project_names():
+        try:
+            created = _project_update_create_actions(pname, manifest.get("new_actions", []))
+        except Exception as exc:
+            with LOCK:
+                _append_log(job, f"[시스템] 액션 생성 실패: {exc}")
+    if created:
+        with LOCK:
+            _append_log(job, f"[시스템] 새 액션 {created}건 생성됨 ({pname})")
     with EMAILS_LOCK:
         delta = _read_json(EMAIL_DELTA_FILE, {})
         if not isinstance(delta, dict):

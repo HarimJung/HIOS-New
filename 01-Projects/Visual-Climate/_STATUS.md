@@ -14,7 +14,7 @@ priority: steady
 
 ## 최근 동향
 <!-- 자동 반영: 수집된 이메일·미팅 기반으로 갱신됨 -->
-- **2026-07-20** — AI Collective가 Google이 거의 완성된 AI를 폐기하고 재시작한 사례와 $31B 규모 중국 경쟁사를 다룸 — AI 산업 콘텐츠 소재로 참고. BrightTALK에서 은행 리스크 프레임워크의 지속가능성 통합 웨비나 안내 수신 — 기후금융 리서치 참고.
+- **2026-07-20** — AI Collective가 Google이 거의 완성된 AI를 폐기하고 재시작한 사례와 $31B 규모 중국 경쟁사를 다룸 — AI 산업 콘텐츠 소재로 참고. BrightTALK에서 은행 리스크 프레임워크의 지속가능성 통합 웨비나 안내 수신 — 기후금융 리서치 참고. Granola 구독 영수증(#2346-4367, Stripe) 수신 — 경비 기록용.
 - **2026-07-19** — IntelDomains(도메인 브로커)로부터 visualclimate.com 매입 제안 콜드메일 수신 — 현재 visualclimate.org 사용 중, 매입 필요 여부 판단 필요.
 - **2026-07-17** — Flourish(Canva)의 "Data storytelling in the age of AI" 웨비나 녹화 공개 (YouTube) — 데이터 스토리텔링 콘텐츠·스킬 참고 자료.
 - **2026-07-17** — AI Collective가 상시 촬영 가능한 Meta AI 안경을 둘러싼 사회적 규범과 감시·증언 문제를 다룸 — 향후 AI·사회 콘텐츠 소재로 참고.

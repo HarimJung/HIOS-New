@@ -1,133 +1,155 @@
 {
- "batches": [
-  {
-   "id": "64ea2c15",
-   "created": 1784261479.616896,
-   "staging": "00-Inbox/uploads/2026-07-17-0011-64ea",
-   "status": "filed",
-   "job_id": "80d1531837cc",
-   "files": [
+  "batches": [
     {
-     "name": "Script - EmpowerED quarterly reporting.docx",
-     "orig_name": "Script - EmpowerED quarterly reporting.docx",
-     "size": 21747,
-     "path": "00-Inbox/uploads/2026-07-17-0011-64ea/Script - EmpowerED quarterly reporting.docx",
-     "status": "filed",
-     "dest": "01-Projects/UNFPA-CSE/06-Documents/Script - EmpowerED quarterly reporting.docx",
-     "project": "UNFPA-CSE",
-     "kind": "document",
-     "label": "EmpowerED 분기보고 스크립트",
-     "summary": "이건 EmpowerED 프로그램 분기 보고 절차/스크립트를 확인할 때 쓰는 것"
+      "id": "64ea2c15",
+      "created": 1784261479.616896,
+      "staging": "00-Inbox/uploads/2026-07-17-0011-64ea",
+      "status": "filed",
+      "job_id": "80d1531837cc",
+      "files": [
+        {
+          "name": "Script - EmpowerED quarterly reporting.docx",
+          "orig_name": "Script - EmpowerED quarterly reporting.docx",
+          "size": 21747,
+          "path": "00-Inbox/uploads/2026-07-17-0011-64ea/Script - EmpowerED quarterly reporting.docx",
+          "status": "filed",
+          "dest": "01-Projects/UNFPA-CSE/06-Documents/Script - EmpowerED quarterly reporting.docx",
+          "project": "UNFPA-CSE",
+          "kind": "document",
+          "label": "EmpowerED 분기보고 스크립트",
+          "summary": "이건 EmpowerED 프로그램 분기 보고 절차/스크립트를 확인할 때 쓰는 것"
+        },
+        {
+          "name": "FINAL REPORT - OOS CSE - PHASE II.docx",
+          "orig_name": "FINAL REPORT - OOS CSE - PHASE II.docx",
+          "size": 131455,
+          "path": "00-Inbox/uploads/2026-07-17-0011-64ea/FINAL REPORT - OOS CSE - PHASE II.docx",
+          "status": "filed",
+          "dest": "01-Projects/UNFPA-CSE/06-Documents/FINAL REPORT - OOS CSE - PHASE II.docx",
+          "project": "UNFPA-CSE",
+          "kind": "document",
+          "label": "OOS CSE 2단계 최종보고서",
+          "summary": "이건 Out-of-School CSE 프로그램 Phase II의 최종 결과를 참조할 때 쓰는 것"
+        },
+        {
+          "name": "Annual report 2025.docx",
+          "orig_name": "Annual report 2025.docx",
+          "size": 1180211,
+          "path": "00-Inbox/uploads/2026-07-17-0011-64ea/Annual report 2025.docx",
+          "status": "filed",
+          "dest": "01-Projects/UNFPA-CSE/06-Documents/Annual report 2025.docx",
+          "project": "UNFPA-CSE",
+          "kind": "document",
+          "label": "2025 연례보고서",
+          "summary": "이건 CSE 글로벌 프로그램의 2025년 연간 실적을 확인할 때 쓰는 것"
+        },
+        {
+          "name": "NORAD ANNUAL REPORT 2025.docx",
+          "orig_name": "NORAD ANNUAL REPORT 2025.docx",
+          "size": 225348,
+          "path": "00-Inbox/uploads/2026-07-17-0011-64ea/NORAD ANNUAL REPORT 2025.docx",
+          "status": "filed",
+          "dest": "01-Projects/UNFPA-CSE/06-Documents/NORAD ANNUAL REPORT 2025.docx",
+          "project": "UNFPA-CSE",
+          "kind": "document",
+          "label": "NORAD 도너 연례보고서 2025",
+          "summary": "이건 공여기관 NORAD 대상 2025년 연례 보고 내용을 참조할 때 쓰는 것"
+        },
+        {
+          "name": "AECID ANNUAL REPORT 2025.docx",
+          "orig_name": "AECID ANNUAL REPORT 2025.docx",
+          "size": 217970,
+          "path": "00-Inbox/uploads/2026-07-17-0011-64ea/AECID ANNUAL REPORT 2025.docx",
+          "status": "filed",
+          "dest": "01-Projects/UNFPA-CSE/06-Documents/AECID ANNUAL REPORT 2025.docx",
+          "project": "UNFPA-CSE",
+          "kind": "document",
+          "label": "AECID 도너 연례보고서 2025",
+          "summary": "이건 공여기관 AECID 대상 2025년 연례 보고 내용을 참조할 때 쓰는 것"
+        },
+        {
+          "name": "_for Harim_- The Global Programme on OOS CSE - Master Document.docx",
+          "orig_name": "[for Harim]- The Global Programme on OOS CSE - Master Document.docx",
+          "size": 14378,
+          "path": "00-Inbox/uploads/2026-07-17-0011-64ea/_for Harim_- The Global Programme on OOS CSE - Master Document.docx",
+          "status": "filed",
+          "dest": "01-Projects/UNFPA-CSE/05-References/_for Harim_- The Global Programme on OOS CSE - Master Document.docx",
+          "project": "UNFPA-CSE",
+          "kind": "reference",
+          "label": "OOS CSE 마스터 문서",
+          "summary": "이건 OOS CSE 글로벌 프로그램의 기준 정보를 빠르게 파악할 때 쓰는 것"
+        },
+        {
+          "name": "_for Harim_ - EmpowerED - Master Document.docx",
+          "orig_name": "[for Harim] - EmpowerED - Master Document.docx",
+          "size": 14837,
+          "path": "00-Inbox/uploads/2026-07-17-0011-64ea/_for Harim_ - EmpowerED - Master Document.docx",
+          "status": "filed",
+          "dest": "01-Projects/UNFPA-CSE/05-References/_for Harim_ - EmpowerED - Master Document.docx",
+          "project": "UNFPA-CSE",
+          "kind": "reference",
+          "label": "EmpowerED 마스터 문서",
+          "summary": "이건 EmpowerED 프로그램의 기준 정보를 빠르게 파악할 때 쓰는 것"
+        },
+        {
+          "name": "Global Baseline Assessment Report.docx",
+          "orig_name": "Global Baseline Assessment Report.docx",
+          "size": 747124,
+          "path": "00-Inbox/uploads/2026-07-17-0011-64ea/Global Baseline Assessment Report.docx",
+          "status": "filed",
+          "dest": "01-Projects/UNFPA-CSE/06-Documents/Global Baseline Assessment Report.docx",
+          "project": "UNFPA-CSE",
+          "kind": "document",
+          "label": "글로벌 베이스라인 평가 보고서",
+          "summary": "이건 베이스라인 인포그래픽 작업의 원천 데이터를 확인할 때 쓰는 것"
+        },
+        {
+          "name": "CSE Programmes_ 2026 Mapping.xlsx",
+          "orig_name": "CSE Programmes_ 2026 Mapping.xlsx",
+          "size": 356970,
+          "path": "00-Inbox/uploads/2026-07-17-0011-64ea/CSE Programmes_ 2026 Mapping.xlsx",
+          "status": "filed",
+          "dest": "01-Projects/UNFPA-CSE/05-References/CSE Programmes_ 2026 Mapping.xlsx",
+          "project": "UNFPA-CSE",
+          "kind": "reference",
+          "label": "CSE 프로그램 2026 매핑 데이터",
+          "summary": "이건 CSE 매핑 대시보드 구축에 필요한 프로그램 매핑 데이터를 쓸 때 쓰는 것"
+        },
+        {
+          "name": "ASRO CSE Evaluation HQ Mapping Survey Results 2025 (1).xlsx",
+          "orig_name": "ASRO CSE Evaluation HQ Mapping Survey Results 2025 (1).xlsx",
+          "size": 17936,
+          "path": "00-Inbox/uploads/2026-07-17-0011-64ea/ASRO CSE Evaluation HQ Mapping Survey Results 2025 (1).xlsx",
+          "status": "filed",
+          "dest": "01-Projects/UNFPA-CSE/05-References/ASRO CSE Evaluation HQ Mapping Survey Results 2025 (1).xlsx",
+          "project": "UNFPA-CSE",
+          "kind": "reference",
+          "label": "ASRO CSE 평가 설문 결과",
+          "summary": "이건 ASRO 지역 CSE 평가·HQ 매핑 설문 응답 데이터를 분석할 때 쓰는 것"
+        }
+      ]
     },
     {
-     "name": "FINAL REPORT - OOS CSE - PHASE II.docx",
-     "orig_name": "FINAL REPORT - OOS CSE - PHASE II.docx",
-     "size": 131455,
-     "path": "00-Inbox/uploads/2026-07-17-0011-64ea/FINAL REPORT - OOS CSE - PHASE II.docx",
-     "status": "filed",
-     "dest": "01-Projects/UNFPA-CSE/06-Documents/FINAL REPORT - OOS CSE - PHASE II.docx",
-     "project": "UNFPA-CSE",
-     "kind": "document",
-     "label": "OOS CSE 2단계 최종보고서",
-     "summary": "이건 Out-of-School CSE 프로그램 Phase II의 최종 결과를 참조할 때 쓰는 것"
-    },
-    {
-     "name": "Annual report 2025.docx",
-     "orig_name": "Annual report 2025.docx",
-     "size": 1180211,
-     "path": "00-Inbox/uploads/2026-07-17-0011-64ea/Annual report 2025.docx",
-     "status": "filed",
-     "dest": "01-Projects/UNFPA-CSE/06-Documents/Annual report 2025.docx",
-     "project": "UNFPA-CSE",
-     "kind": "document",
-     "label": "2025 연례보고서",
-     "summary": "이건 CSE 글로벌 프로그램의 2025년 연간 실적을 확인할 때 쓰는 것"
-    },
-    {
-     "name": "NORAD ANNUAL REPORT 2025.docx",
-     "orig_name": "NORAD ANNUAL REPORT 2025.docx",
-     "size": 225348,
-     "path": "00-Inbox/uploads/2026-07-17-0011-64ea/NORAD ANNUAL REPORT 2025.docx",
-     "status": "filed",
-     "dest": "01-Projects/UNFPA-CSE/06-Documents/NORAD ANNUAL REPORT 2025.docx",
-     "project": "UNFPA-CSE",
-     "kind": "document",
-     "label": "NORAD 도너 연례보고서 2025",
-     "summary": "이건 공여기관 NORAD 대상 2025년 연례 보고 내용을 참조할 때 쓰는 것"
-    },
-    {
-     "name": "AECID ANNUAL REPORT 2025.docx",
-     "orig_name": "AECID ANNUAL REPORT 2025.docx",
-     "size": 217970,
-     "path": "00-Inbox/uploads/2026-07-17-0011-64ea/AECID ANNUAL REPORT 2025.docx",
-     "status": "filed",
-     "dest": "01-Projects/UNFPA-CSE/06-Documents/AECID ANNUAL REPORT 2025.docx",
-     "project": "UNFPA-CSE",
-     "kind": "document",
-     "label": "AECID 도너 연례보고서 2025",
-     "summary": "이건 공여기관 AECID 대상 2025년 연례 보고 내용을 참조할 때 쓰는 것"
-    },
-    {
-     "name": "_for Harim_- The Global Programme on OOS CSE - Master Document.docx",
-     "orig_name": "[for Harim]- The Global Programme on OOS CSE - Master Document.docx",
-     "size": 14378,
-     "path": "00-Inbox/uploads/2026-07-17-0011-64ea/_for Harim_- The Global Programme on OOS CSE - Master Document.docx",
-     "status": "filed",
-     "dest": "01-Projects/UNFPA-CSE/05-References/_for Harim_- The Global Programme on OOS CSE - Master Document.docx",
-     "project": "UNFPA-CSE",
-     "kind": "reference",
-     "label": "OOS CSE 마스터 문서",
-     "summary": "이건 OOS CSE 글로벌 프로그램의 기준 정보를 빠르게 파악할 때 쓰는 것"
-    },
-    {
-     "name": "_for Harim_ - EmpowerED - Master Document.docx",
-     "orig_name": "[for Harim] - EmpowerED - Master Document.docx",
-     "size": 14837,
-     "path": "00-Inbox/uploads/2026-07-17-0011-64ea/_for Harim_ - EmpowerED - Master Document.docx",
-     "status": "filed",
-     "dest": "01-Projects/UNFPA-CSE/05-References/_for Harim_ - EmpowerED - Master Document.docx",
-     "project": "UNFPA-CSE",
-     "kind": "reference",
-     "label": "EmpowerED 마스터 문서",
-     "summary": "이건 EmpowerED 프로그램의 기준 정보를 빠르게 파악할 때 쓰는 것"
-    },
-    {
-     "name": "Global Baseline Assessment Report.docx",
-     "orig_name": "Global Baseline Assessment Report.docx",
-     "size": 747124,
-     "path": "00-Inbox/uploads/2026-07-17-0011-64ea/Global Baseline Assessment Report.docx",
-     "status": "filed",
-     "dest": "01-Projects/UNFPA-CSE/06-Documents/Global Baseline Assessment Report.docx",
-     "project": "UNFPA-CSE",
-     "kind": "document",
-     "label": "글로벌 베이스라인 평가 보고서",
-     "summary": "이건 베이스라인 인포그래픽 작업의 원천 데이터를 확인할 때 쓰는 것"
-    },
-    {
-     "name": "CSE Programmes_ 2026 Mapping.xlsx",
-     "orig_name": "CSE Programmes_ 2026 Mapping.xlsx",
-     "size": 356970,
-     "path": "00-Inbox/uploads/2026-07-17-0011-64ea/CSE Programmes_ 2026 Mapping.xlsx",
-     "status": "filed",
-     "dest": "01-Projects/UNFPA-CSE/05-References/CSE Programmes_ 2026 Mapping.xlsx",
-     "project": "UNFPA-CSE",
-     "kind": "reference",
-     "label": "CSE 프로그램 2026 매핑 데이터",
-     "summary": "이건 CSE 매핑 대시보드 구축에 필요한 프로그램 매핑 데이터를 쓸 때 쓰는 것"
-    },
-    {
-     "name": "ASRO CSE Evaluation HQ Mapping Survey Results 2025 (1).xlsx",
-     "orig_name": "ASRO CSE Evaluation HQ Mapping Survey Results 2025 (1).xlsx",
-     "size": 17936,
-     "path": "00-Inbox/uploads/2026-07-17-0011-64ea/ASRO CSE Evaluation HQ Mapping Survey Results 2025 (1).xlsx",
-     "status": "filed",
-     "dest": "01-Projects/UNFPA-CSE/05-References/ASRO CSE Evaluation HQ Mapping Survey Results 2025 (1).xlsx",
-     "project": "UNFPA-CSE",
-     "kind": "reference",
-     "label": "ASRO CSE 평가 설문 결과",
-     "summary": "이건 ASRO 지역 CSE 평가·HQ 매핑 설문 응답 데이터를 분석할 때 쓰는 것"
+      "id": "e7feb3db",
+      "created": 1784594239.566429,
+      "staging": "00-Inbox/uploads/2026-07-20-2037-e7fe",
+      "status": "filed",
+      "project": "",
+      "job_id": "fd69660e8905",
+      "files": [
+        {
+          "name": "Screenshot 2026-07-20 at 8.22.04_PM.png",
+          "orig_name": "Screenshot 2026-07-20 at 8.22.04 PM.png",
+          "size": 4300187,
+          "path": "00-Inbox/uploads/2026-07-20-2037-e7fe/Screenshot 2026-07-20 at 8.22.04_PM.png",
+          "status": "filed",
+          "dest": "00-Inbox/unsorted/Screenshot 2026-07-20 at 8.22.04_PM.png",
+          "project": "",
+          "kind": "reference",
+          "label": "HiOS 대시보드 스크린샷 (7/20)",
+          "summary": "이건 2026-07-20 시점 HiOS 대시보드 홈 화면(캘린더·프로젝트 카드·임박 액션·데일리 노트) 상태를 기록해둘 때 쓰는 것"
+        }
+      ]
     }
-   ]
-  }
- ]
+  ]
 }

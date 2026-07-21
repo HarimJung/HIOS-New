@@ -1,6 +1,16 @@
 {
-  "updated": 1784590327.635478,
+  "updated": 1784594906.411227,
   "emails": [
+    {
+      "project": "Visual-Climate",
+      "subject": "Your receipt from Granola #2346-4367",
+      "from": "Granola <invoice+statements+acct_1OmfmSCilWDhJZLI@stripe.com>",
+      "date": "2026-07-20",
+      "thread_id": "19f81f181e445882",
+      "summary": "Your receipt from Granola #2346-4367 ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏",
+      "needs_action": false,
+      "suggested_action": ""
+    },
     {
       "project": "기타",
       "subject": "Wildfire smoke: How to help keep your pet safe",
@@ -318,8 +328,8 @@
       "date": "2026-07-20",
       "thread_id": "19f7fa8585e945a6",
       "summary": "Dear Wafa and Harim, As discussed in our team meeting, kindly prepare the following fact sheets for our global engagement with donors: 1. Fact sheet f",
-      "needs_action": false,
-      "suggested_action": ""
+      "needs_action": true,
+      "suggested_action": "이메일 내용 확인 후 회신/처리 필요"
     },
     {
       "project": "Equitee",
@@ -1748,8 +1758,8 @@
       "date": "2026-07-15",
       "thread_id": "19f683b40d04fd44",
       "summary": "hajung@unfpa.org has requested to automatically forward mail to your email address data.harim.jung@gmail.com. To allow hajung@unfpa.org to automatical",
-      "needs_action": false,
-      "suggested_action": ""
+      "needs_action": true,
+      "suggested_action": "이메일 내용 확인 후 회신/처리 필요"
     },
     {
       "project": "UNFPA-CSE",
@@ -1992,16 +2002,6 @@
       "suggested_action": ""
     },
     {
-      "project": "기타",
-      "subject": "RE: Call for Updates to AI for Good Use Cases",
-      "from": "\"Liu, Xiaoyi\" <xiaoyi.liu@itu.int>",
-      "date": "2026-07-15",
-      "thread_id": "19f64e4c5c4acf27",
-      "summary": "Dear Authors, Due to limitations with Microsoft Forms, please note that the submission process for use case revisions has been updated. To complete yo",
-      "needs_action": false,
-      "suggested_action": ""
-    },
-    {
       "project": "Visual-Climate",
       "subject": "Your Order Is On Its Way",
       "from": "Coach <coachorders@coachorders.narvar.com>",
@@ -2206,10 +2206,10 @@
     "Climate-AICA": 0,
     "Equitee": 16,
     "UNFPA-CSE": 34,
-    "Visual-Climate": 19,
+    "Visual-Climate": 20,
     "WHO": 5,
     "WMO": 10,
-    "기타": 136
+    "기타": 135
   },
   "searched": [
     "Climate-AICA",
@@ -2222,5 +2222,5 @@
   "missed": [],
   "last_status": "ok",
   "last_error": null,
-  "last_attempt": 1784590327.635478
+  "last_attempt": 1784594906.411227
 }

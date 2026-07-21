@@ -26,7 +26,7 @@ tags: [unfpa, status]
 
 ## 최근 동향
 - 2026-07-20 (회의 노트 동기화): CSE 팀 회의 Granola 노트 수신
-  (`02-Meetings/2026-07-20-CSE-team-meeting.md`) — 핵심 액션:
+  ([[01-Projects/UNFPA-CSE/02-Meetings/2026-07-20-CSE-team-meeting]]) — 핵심 액션:
   ① 팩트시트 3종(EmpowerEd / CSE Pooled Fund / OOS CSE Phase 1&2)은
   **하림 주도 드래프팅** — 다음 주 Steve에게 1차 초안 공유 → 그다음 주 팀
   리뷰 (Steve 다음 주 부재, 코디네이터는 Wafa; EmpowerEd는 empowered
@@ -45,7 +45,9 @@ tags: [unfpa, status]
   하림이 다음 주 팔로업.
   팀: 신규 JPO 2명 합류 예정, Christine 9월 복귀.
 - 2026-07-20: CSE 팀 회의 진행 (최종 7:00–8:30am EDT로 시간 변경, Granola
-  노트 동기화 완료 — 액션은 위 bullet 참조). 회의 후속으로 Steve Petit이
+  노트 동기화 완료 — 액션은 위 bullet 참조
+  [[01-Projects/UNFPA-CSE/02-Meetings/2026-07-20-CSE-team-meeting]];
+  Gemini 자동 회의 노트도 별도 수신). 회의 후속으로 Steve Petit이
   Wafa·하림에게 **팩트시트 3종** 작성 요청: ① CSE Pooled Fund ② EmpowerEd
   ③ Global Programme on OOS CSE Phase 1&2 — 도너 대상 글로벌 인게이지먼트용,
   8월 3일 9:30–10:00am EDT 리뷰 미팅 초대 수신. Wafa와 1:1 미팅 확정
