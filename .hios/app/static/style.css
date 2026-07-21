@@ -1318,6 +1318,9 @@ body::after{
 .src-chip.granola:hover{color:var(--output);border-color:#10b98155;background:var(--output-glow)}
 .src-chip.link:hover{color:var(--input);border-color:var(--input);background:var(--input-glow)}
 
+button.src-chip{font:inherit; cursor:pointer; appearance:none}
+button.src-chip.bi-open-folder:hover{color:var(--text);border-color:var(--text3);background:var(--surface3)}
+
 .bi-person{
   font-family:var(--mono);
   font-size:10px;

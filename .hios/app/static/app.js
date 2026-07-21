@@ -854,7 +854,13 @@ function biCardHtml(p, it) {
     </div>
     <div class="bi-title">${escapeHtml(it.title)}</div>
     ${detail}
-    ${(srcs || people) ? `<div class="bi-meta">${srcs}${people}</div>` : ""}
+    <div class="bi-meta">
+      ${srcs}
+      <button class="src-chip bi-open-folder" type="button" data-p="${escapeHtml(p)}"
+        title="Finder에서 ${escapeHtml(p)} 프로젝트 폴더 열기">
+        <span class="src-ic">📁</span>프로젝트 폴더</button>
+      ${people}
+    </div>
     <div class="bi-controls">${statusBtns}</div>
     <div class="bi-note">
       <textarea class="bi-note-in" placeholder="메모 — 진행상황, 막힌 것, 다음 스텝…">${escapeHtml(it.note || "")}</textarea>
@@ -895,6 +901,12 @@ function wireBiCards(container, reload) {
     card.querySelector(".bi-del").onclick = async () => {
       if (!confirm("이 액션을 삭제할까요?")) return;
       if (await saveItem(p, id, { delete: true }, "삭제됨")) reload();
+    };
+    card.querySelector(".bi-open-folder").onclick = async () => {
+      try {
+        await postJson(`/api/projects/${encodeURIComponent(p)}/open`, { which: "root" });
+        toast(`Finder에서 ${p} 폴더 열림`, "ok");
+      } catch (e) { toast(`실패: ${e.body?.message || e.message}`, "err"); }
     };
   });
 }
