@@ -358,5 +358,112 @@
     "note": "granola_id: abc014f6-f7a6-4a78-9116-a1119b62d0e2",
     "created": "2026-07-19",
     "updated": "2026-07-19"
+  },
+  {
+    "id": "7de4cb56",
+    "title": "FP 패턴 category/subcategory 구조로 재편 (Claude Code)",
+    "detail": "7/20 AI False Positive 미팅 액션. ChatGPT/Copilot 생성 패턴이 부정확·그룹핑 미흡 → Claude Code로 전환, 기존 세분 그룹은 subcategory로 내리고 상위 category 신설. 이번 주 내 완료 목표.",
+    "status": "open",
+    "priority": "high",
+    "due": "2026-07-24",
+    "people": [
+      "Harim Jung"
+    ],
+    "sources": [
+      {
+        "kind": "granola",
+        "label": "AI False Positive 미팅 (7/20)",
+        "url": "https://notes.granola.ai/t/92090a75-a50c-4284-8424-d9a065c48f2a"
+      }
+    ],
+    "note": "",
+    "created": "2026-07-20",
+    "updated": "2026-07-20"
+  },
+  {
+    "id": "a47ebfaa",
+    "title": "471건 알림 개별 리뷰 완료 및 분류 결과 공유",
+    "detail": "7/20 AI False Positive 미팅 액션. 2주 내 케이스별 근본원인 분류(CBSA/CP 데이터 레거시 vs 비즈니스 룰 갭) 완료 후 결과 공유. 9월 초기 결과 커밋(Viva 미팅: Julia + VP of Fraud Crime)의 선행 단계.",
+    "status": "open",
+    "priority": "high",
+    "due": "2026-08-03",
+    "people": [
+      "Harim Jung"
+    ],
+    "sources": [
+      {
+        "kind": "granola",
+        "label": "AI False Positive 미팅 (7/20)",
+        "url": "https://notes.granola.ai/t/92090a75-a50c-4284-8424-d9a065c48f2a"
+      }
+    ],
+    "note": "",
+    "created": "2026-07-20",
+    "updated": "2026-07-20"
+  },
+  {
+    "id": "1c8761a6",
+    "title": "패턴·플래그 로직 공유 문서에 정리",
+    "detail": "7/20 AI False Positive 미팅 액션. 현재 패턴 설명과 플래그 부여 방식을 공유 문서화해 팀이 진행 상황을 추적할 수 있게 함. master table 기존 FP 플래그에 신규 컬럼 추가 방식도 반영.",
+    "status": "open",
+    "priority": "med",
+    "due": "",
+    "people": [
+      "Harim Jung"
+    ],
+    "sources": [
+      {
+        "kind": "granola",
+        "label": "AI False Positive 미팅 (7/20)",
+        "url": "https://notes.granola.ai/t/92090a75-a50c-4284-8424-d9a065c48f2a"
+      }
+    ],
+    "note": "",
+    "created": "2026-07-20",
+    "updated": "2026-07-20"
+  },
+  {
+    "id": "abbe8b5a",
+    "title": "내부 정렬 미팅 후 Julia 싱크 스케줄",
+    "detail": "7/20 AI False Positive 미팅 액션. 발견사항·스코프를 내부에서 먼저 정렬한 뒤 Julia와 별도 싱크 미팅 잡기.",
+    "status": "open",
+    "priority": "med",
+    "due": "",
+    "people": [
+      "Julia",
+      "Harim Jung"
+    ],
+    "sources": [
+      {
+        "kind": "granola",
+        "label": "AI False Positive 미팅 (7/20)",
+        "url": "https://notes.granola.ai/t/92090a75-a50c-4284-8424-d9a065c48f2a"
+      }
+    ],
+    "note": "",
+    "created": "2026-07-20",
+    "updated": "2026-07-20"
+  },
+  {
+    "id": "c4e0b358",
+    "title": "Jackie(Desjardins 슈퍼유저) 인터뷰 스케줄",
+    "detail": "7/20 AI False Positive 미팅 액션. 패턴 확정 후 Desjardins가 받는 알림 기준으로 Jackie가 관찰한 false positive 양상 인터뷰. 선행: 패턴 재편·확정.",
+    "status": "open",
+    "priority": "med",
+    "due": "",
+    "people": [
+      "Jackie",
+      "Harim Jung"
+    ],
+    "sources": [
+      {
+        "kind": "granola",
+        "label": "AI False Positive 미팅 (7/20)",
+        "url": "https://notes.granola.ai/t/92090a75-a50c-4284-8424-d9a065c48f2a"
+      }
+    ],
+    "note": "",
+    "created": "2026-07-20",
+    "updated": "2026-07-20"
   }
 ]

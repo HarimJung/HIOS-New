@@ -4,7 +4,7 @@ client: WHO
 status: active
 due: TBD
 priority: HIGH
-updated: 2026-07-19
+updated: 2026-07-20
 ---
 
 # WHO — Health & Energy Data Consulting
@@ -14,7 +14,8 @@ updated: 2026-07-19
 - **2026-07-13**: 온보딩 콜 완료 — 업무 배분 확정(가정에너지 DB ~60% / HCF 전화 ~40%), GNI 공변량 신규 방법론, 데이터 요청 메일박스 인수 예정. Teams 온보딩은 WIMS 계정 대기.
 - **2026-07-15**: UNICEF Data 이메일 — 2025년 영유아 예방접종 현황을 담은 WHO-UNICEF 예방접종 추정치 발표.
 - **2026-07-16**: pre-WIMS 문서 리뷰 계획 수립 (`2026-07-16-document-review-plan.md`) — 7/13 미팅 챗의 SOP/SDG7/HCF 부클릿 링크를 `_RESOURCES.md`로 백업하는 것이 최우선.
-- **열린 액션 (2026-07-19 기준)**: 문서 리뷰 진행 중 (due 7/20) · Salvatore HCF 지표 조화 컨셉노트 수신 확인 (due 7/22) · WIMS 블록 2건 (Wenlu Teams 온보딩, 데이터 요청 메일박스 인수).
+- **2026-07-20**: 지표 조화 워크스트림 시동 — Salvatore가 "Indicators work + your consultant" 이메일 스레드에서 Harim을 지표 작업 지원자로 소개(참조)하고, Arabella와 목요일(7/23) 캐치업 예정. Harim 회신에 Salvatore가 감사 확인. 같은 스레드의 Rick Johnston(WHO)은 7/23까지 부재(자동 회신). 근거 미팅: [[01-Projects/WHO/02-Meetings/2026-07-13-who-onboarding-introduction]]의 WASH 파트너 지표 조화 워크스트림.
+- **열린 액션 (2026-07-20 기준)**: 문서 리뷰 진행 중 (due 7/20) · Salvatore HCF 지표 조화 컨셉노트 수신 확인 (due 7/22) — 7/20 Indicators work 스레드로 워크스트림은 시작됨 · WIMS 블록 2건 (Wenlu Teams 온보딩, 데이터 요청 메일박스 인수).
 
 ## Scope (confirmed at 2026-07-13 onboarding meeting)
 Household energy & healthcare facility (HCF) electrification data work,

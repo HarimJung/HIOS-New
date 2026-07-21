@@ -1,13 +1,13 @@
 ---
 tags: [todo]
 client: WMO
-updated: 2026-07-19
+updated: 2026-07-20
 ---
 
 # WMO — To-Do
 
 ## Open
-- [ ] BCM 과정에서 Mustafa가 지적한 중요 문제들을 검토하고 수정하기 — 7/17 이메일
+- [ ] BCM 과정에서 Mustafa가 지적한 중요 문제들을 검토하고 수정하기 — 7/17 Mustafa 이메일, 7/20 Xiao 공식 지시 (Mustafa·Luciane 제안 반영)
 - [ ] WMO 과정 셸에서 수정 콘텐츠 반영 후 학습자 관점으로 동작 검수하기 (편집 권한·직접 주소 수신 완료)
 - [ ] 모듈별 소요시간 + 전체 코스 길이 확정해서 채워넣기
 - [ ] Lu에게 BCM 수료증 참고용 Calibration Course 템플릿 전달받아 적용 방식 확인하기 (다음 주 예정)

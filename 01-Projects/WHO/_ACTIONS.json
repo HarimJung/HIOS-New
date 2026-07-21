@@ -25,7 +25,7 @@
     ],
     "note": "",
     "created": "2026-07-15",
-    "updated": "2026-07-15"
+    "updated": "2026-07-20"
   },
   {
     "id": "who-wims-teams",
@@ -194,5 +194,27 @@
     "note": "granola_id: 90dffc42-b9f4-4d8f-84e1-13dd51e7c1d4",
     "created": "2026-07-19",
     "updated": "2026-07-19"
+  },
+  {
+    "id": "3fe7b540",
+    "title": "Indicators work 7/23(목) Salvatore–Arabella 캐치업 참여 준비",
+    "detail": "7/20 Salvatore Vinci 이메일 'RE: Indicators work + your consultant' — Salvatore가 목요일(7/23) Arabella와 캐치업 예정이며 Harim을 참조에 넣어 지표 조화 작업을 지원하기로 함. 7/13 온보딩 미팅에서 예고된 WASH 파트너 지표 조화 워크스트림의 실제 시동. Rick Johnston(WHO)은 7/23까지 부재.",
+    "status": "open",
+    "priority": "med",
+    "due": "2026-07-23",
+    "people": [
+      "Salvatore Vinci",
+      "Arabella"
+    ],
+    "sources": [
+      {
+        "kind": "gmail",
+        "label": "Indicators work + your consultant 스레드 (7/20)",
+        "url": "https://mail.google.com/mail/u/0/#all/19f7fc401eb3b1ac"
+      }
+    ],
+    "note": "",
+    "created": "2026-07-20",
+    "updated": "2026-07-20"
   }
 ]

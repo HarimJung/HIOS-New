@@ -843,7 +843,10 @@ function biCardHtml(p, it) {
        data-p="${escapeHtml(p)}" data-id="${escapeHtml(it.id)}">
     <div class="bi-top">
       <span class="bi-proj">${escapeHtml(p)}</span>
-      <span class="bi-prio ${escapeHtml(it.priority || "med")}">${BI_PRIO_KO[it.priority] || "중간"}</span>
+      <select class="bi-prio-select ${escapeHtml(it.priority || "med")}" title="우선순위 변경">
+        ${["high", "med", "low"].map((v) =>
+          `<option value="${v}"${v === (it.priority || "med") ? " selected" : ""}>${BI_PRIO_KO[v]}</option>`).join("")}
+      </select>
       ${dueBadge(it.due)}
       <span class="spacer"></span>
       <button class="bi-del" title="삭제">✕</button>
@@ -880,6 +883,13 @@ function wireBiCards(container, reload) {
     card.querySelector(".bi-note-save").onclick = async () => {
       const v = card.querySelector(".bi-note-in").value;
       await saveItem(p, id, { note: v }, "메모 저장됨 — _ACTIONS.json에 기록");
+    };
+    const prioSel = card.querySelector(".bi-prio-select");
+    prioSel.onchange = async () => {
+      const v = prioSel.value;
+      prioSel.className = `bi-prio-select ${v}`;
+      card.className = card.className.replace(/\bp-(high|med|low)\b/, `p-${v}`);
+      if (!(await saveItem(p, id, { priority: v }, `우선순위: ${BI_PRIO_KO[v]}`))) reload();
     };
     card.querySelector(".bi-del").onclick = async () => {
       if (!confirm("이 액션을 삭제할까요?")) return;

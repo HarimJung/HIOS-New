@@ -303,5 +303,48 @@
     "note": "",
     "created": "2026-07-20",
     "updated": "2026-07-20"
+  },
+  {
+    "id": "b788327d",
+    "title": "팩트시트 3종 1차 초안 작성 → Steve 공유",
+    "detail": "7/20 CSE 팀 회의 결정: Nordic 대표사무소 요청으로 팩트시트 3종(EmpowerEd / CSE Pooled Fund / OOS CSE Phase 1&2)을 하림 주도로 드래프팅, Wafa가 코디네이터. 다음 주 Steve에게 1차 초안 공유 → 그다음 주 팀 리뷰, 8/3 9:30am EDT 리뷰 미팅. 브랜딩: EmpowerEd는 empowered 브랜딩+UNFPA 로고, Pooled Fund는 UNFPA+도너(노르웨이 등) 로고. Steve가 콘텐츠 요구사항·예시 팩트시트를 Rams에게 송부 예정.",
+    "status": "open",
+    "priority": "high",
+    "due": "2026-07-31",
+    "people": [
+      "Steve Petit",
+      "Wafa Dhaouadi"
+    ],
+    "sources": [
+      {
+        "kind": "granola",
+        "label": "CSE 팀 회의 (7/20)",
+        "url": "https://notes.granola.ai/t/3570f07d-f4cf-4c02-b41e-c10fd6e56d54"
+      }
+    ],
+    "note": "",
+    "created": "2026-07-20",
+    "updated": "2026-07-20"
+  },
+  {
+    "id": "6036c31d",
+    "title": "Redirection 프로젝트 계약 진행상황 팔로업",
+    "detail": "7/20 CSE 팀 회의: Redirection 프로젝트 계약이 조달팀에서 드래프팅 중(John 휴가, focal point 지정됨), 계약 체결은 8월 중순~9월 초 예상. 하림이 다음 주 진행상황 팔로업하기로 함. Moonshot 제안은 12개월 기준.",
+    "status": "open",
+    "priority": "med",
+    "due": "2026-07-31",
+    "people": [
+      "Steve Petit"
+    ],
+    "sources": [
+      {
+        "kind": "granola",
+        "label": "CSE 팀 회의 (7/20)",
+        "url": "https://notes.granola.ai/t/3570f07d-f4cf-4c02-b41e-c10fd6e56d54"
+      }
+    ],
+    "note": "",
+    "created": "2026-07-20",
+    "updated": "2026-07-20"
   }
 ]
