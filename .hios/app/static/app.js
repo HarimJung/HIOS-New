@@ -830,7 +830,26 @@ function biSortKey(it) {
   return [due, BI_PRIO_W[it.priority] ?? 1];
 }
 
-function biCardHtml(p, it, deliverableSlugs) {
+// best-effort: match _RESOURCES.md entries against an action's deliverable
+// slug + title/detail words. Heuristic, so it's always shown alongside a
+// plain "모든 리소스" link — never the only way to reach the resource list.
+function matchResources(it, resourceIndex) {
+  if (!resourceIndex || !resourceIndex.length) return [];
+  const tokens = new Set((it.deliverable || "").split("-").filter((w) => w.length > 2));
+  const bag = `${it.title} ${it.detail || ""}`.toLowerCase();
+  for (const w of bag.match(/[a-z]{4,}/g) || []) tokens.add(w);
+  if (!tokens.size) return [];
+  const scored = resourceIndex.map((r) => {
+    const text = `${r.label} ${r.note}`.toLowerCase();
+    let score = 0;
+    for (const t of tokens) if (text.includes(t)) score += 1;
+    return { r, score };
+  }).filter((x) => x.score > 0);
+  scored.sort((a, b) => b.score - a.score);
+  return scored.slice(0, 4).map((x) => x.r);
+}
+
+function biCardHtml(p, it, deliverableSlugs, resourceIndex) {
   const srcs = (it.sources || []).map((s) =>
     `<a class="src-chip ${s.kind}" href="${escapeHtml(s.url)}" target="_blank" rel="noopener">
       <span class="src-ic">${SRC_ICON[s.kind] || "↗"}</span>${escapeHtml(s.label)}</a>`).join("");
@@ -870,6 +889,17 @@ function biCardHtml(p, it, deliverableSlugs) {
       ${delivSelect}
       ${people}
     </div>
+    ${resourceIndex && resourceIndex.length ? (() => {
+      const matched = matchResources(it, resourceIndex);
+      const chips = matched.map((r) =>
+        `<a class="src-chip resource" href="${escapeHtml(r.url)}" target="_blank" rel="noopener"
+           title="${escapeHtml(r.section)}${r.note ? " — " + escapeHtml(r.note) : ""}">
+          <span class="src-ic">🔗</span>${escapeHtml(r.label)}</a>`).join("");
+      return `<div class="bi-resources">
+        ${matched.length ? `<span class="bi-res-label">관련 리소스</span>${chips}` : ""}
+        <button class="bi-res-all" type="button" data-p="${escapeHtml(p)}">모든 리소스 보기 →</button>
+      </div>`;
+    })() : ""}
     <div class="bi-controls">${statusBtns}</div>
     <div class="bi-note">
       <textarea class="bi-note-in" placeholder="메모 — 진행상황, 막힌 것, 다음 스텝…">${escapeHtml(it.note || "")}</textarea>
@@ -931,6 +961,16 @@ function wireBiCards(container, reload) {
           v ? `딜리버블 연결: ${v}` : "딜리버블 연결 해제"))) reload();
       };
     }
+    const resAllBtn = card.querySelector(".bi-res-all");
+    if (resAllBtn) {
+      resAllBtn.onclick = () => {
+        if (!confirmLeave()) return;
+        state.workProject = p;
+        state.workSub = "resources";
+        localStorage.setItem("hios-work-proj", p);
+        switchTab("work");
+      };
+    }
   });
 }
 
@@ -969,18 +1009,23 @@ async function renderBoardView(container, fixedProject) {
   const done = flat.filter(([, it]) => it.status === "done");
 
   const deliverableMap = {};
+  const resourceMap = {};
   await Promise.all(visible.map(async (g) => {
-    deliverableMap[g.project] = await api(`/api/projects/${encodeURIComponent(g.project)}/deliverables`)
-      .catch(() => []);
+    [deliverableMap[g.project], resourceMap[g.project]] = await Promise.all([
+      api(`/api/projects/${encodeURIComponent(g.project)}/deliverables`).catch(() => []),
+      api(`/api/projects/${encodeURIComponent(g.project)}/resources-index`).catch(() => []),
+    ]);
   }));
 
-  const cards = open.map(([p, it]) => biCardHtml(p, it, deliverableMap[p])).join("")
+  const cards = open.map(([p, it]) => biCardHtml(p, it, deliverableMap[p], resourceMap[p])).join("")
     || `<div class="ws-empty">열린 액션 없음 🎉</div>`;
   let doneHtml = "";
   if (done.length) {
     doneHtml = `<button class="bi-done-toggle" id="bi-done-toggle">
         완료됨 ${done.length}건 ${state.boardShowDone ? "접기 ▲" : "보기 ▼"}</button>` +
-      (state.boardShowDone ? done.map(([p, it]) => biCardHtml(p, it, deliverableMap[p])).join("") : "");
+      (state.boardShowDone
+        ? done.map(([p, it]) => biCardHtml(p, it, deliverableMap[p], resourceMap[p])).join("")
+        : "");
   }
 
   const defProj = fixedProject || state.boardProject || groups[0]?.project;

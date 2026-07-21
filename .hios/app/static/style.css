@@ -1334,6 +1334,34 @@ button.src-chip.bi-open-folder:hover{color:var(--text);border-color:var(--text3)
 }
 .bi-deliv-select:hover{border-color:var(--text3)}
 
+.bi-resources{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:6px;
+  margin-top:6px;
+  padding-top:8px;
+  border-top:1px dashed var(--border);
+}
+.bi-res-label{
+  font-family:var(--mono);
+  font-size:10px;
+  color:var(--text3);
+  letter-spacing:.5px;
+}
+.src-chip.resource:hover{color:var(--auto);border-color:#f59e0b44;background:var(--auto-glow)}
+.bi-res-all{
+  font-family:var(--mono);
+  font-size:10px;
+  color:var(--text3);
+  background:transparent;
+  border:none;
+  cursor:pointer;
+  padding:3px 4px;
+  margin-left:auto;
+}
+.bi-res-all:hover{color:var(--accent); text-decoration:underline}
+
 .bi-person{
   font-family:var(--mono);
   font-size:10px;

@@ -1300,6 +1300,48 @@ def api_project_deliverables(name):
     return jsonify(_deliverable_slugs(_proj_dir(name)))
 
 
+RESOURCE_LINK_RE = re.compile(
+    r"^[-*]\s*(?:\*\*|★\s*)*\[([^\]]+)\]\(([^)]+)\)\)?\*{0,2}(?:\s*[—-]\s*(.*))?$"
+)
+RESOURCE_SECTION_RE = re.compile(r"^#{1,6}\s*(.+)$")
+
+
+def _parse_resources_md(text):
+    """[label](url) — note bullets from _RESOURCES.md, tagged with the
+    section header they fall under. Used to surface likely-relevant
+    resources on an action card without the AI having to re-curate them."""
+    section = ""
+    out = []
+    for line in (text or "").splitlines():
+        line = line.strip()
+        heading = RESOURCE_SECTION_RE.match(line)
+        if heading:
+            section = heading.group(1).strip()
+            continue
+        m = RESOURCE_LINK_RE.match(line)
+        if not m:
+            continue
+        label, url, note = m.group(1), m.group(2), (m.group(3) or "")
+        if not (url.startswith("http://") or url.startswith("https://")):
+            continue
+        out.append({
+            "label": _clean_item_text(label, 200),
+            "url": _clean_item_text(url, 500),
+            "note": _clean_item_text(note, 300),
+            "section": _clean_item_text(section, 100),
+        })
+    return out
+
+
+@app.get("/api/projects/<name>/resources-index")
+def api_project_resources_index(name):
+    proj = _proj_dir(name)
+    res_file = proj / "_RESOURCES.md"
+    if not res_file.is_file():
+        return jsonify([])
+    return jsonify(_parse_resources_md(res_file.read_text(encoding="utf-8")))
+
+
 @app.post("/api/projects/<name>/open")
 def api_project_open(name):
     proj = _proj_dir(name)

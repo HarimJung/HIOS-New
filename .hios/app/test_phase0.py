@@ -641,6 +641,38 @@ def test_project_update_finalize_parses_manifest_and_creates_actions(
     assert items[0]["title"] == "Salvatore concept note 회신"
 
 
+def test_parse_resources_md_extracts_links_with_section_and_note(isolated):
+    text = (
+        "# UNFPA-CSE — Resources & Links\n\n"
+        "## 매핑 & 대시보드 / Mapping & Dashboard\n"
+        "- [CSE Global Mapping (Sheet)](https://docs.google.com/x) — 매핑 원천 데이터\n\n"
+        "## 시스템 / Systems\n"
+        "- ★ [Reporting script (Apps Script)](https://script.google.com/y) — "
+        "**editable code — Jul 31 핵심**\n"
+        "- not a link, just prose\n"
+        "- [no https prefix](ftp://bad) — skipped\n"
+    )
+    items = isolated._parse_resources_md(text)
+    assert len(items) == 2
+    assert items[0] == {
+        "label": "CSE Global Mapping (Sheet)", "url": "https://docs.google.com/x",
+        "note": "매핑 원천 데이터", "section": "매핑 & 대시보드 / Mapping & Dashboard",
+    }
+    assert items[1]["label"] == "Reporting script (Apps Script)"
+    assert items[1]["section"] == "시스템 / Systems"
+    assert "Jul 31" in items[1]["note"]
+
+
+def test_resources_index_endpoint_returns_empty_for_missing_file(isolated, monkeypatch, tmp_path):
+    projects_dir = tmp_path / "projects"
+    (projects_dir / "Empty-Proj").mkdir(parents=True)
+    monkeypatch.setattr(isolated, "PROJECTS_DIR", projects_dir)
+    with isolated.app.test_client() as client:
+        resp = client.get("/api/projects/Empty-Proj/resources-index")
+        assert resp.status_code == 200
+        assert resp.get_json() == []
+
+
 def test_deliverable_slugs_lists_real_subdirs_only(isolated, tmp_path):
     proj = tmp_path / "UNFPA-CSE"
     (proj / "01-Deliverables" / "reporting-platform").mkdir(parents=True)
