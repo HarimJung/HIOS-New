@@ -3210,6 +3210,21 @@ def _granola_refresh_finalize(job, params):
             "actions_error": actions_error,
         }
         _write_json(GRANOLA_STATE_FILE, state)
+    # Meeting notes landing on disk isn't the same as being *reflected*
+    # anywhere — without this, a new meeting sits in *-Meetings/ until some
+    # unrelated email happens to trigger project_update for that project.
+    # project_update's own prompt already reads the recent-meetings folder,
+    # so an empty email list here still gets it read and synthesized.
+    dispatched = []
+    if ok:
+        valid_projects = set(_project_names())
+        for pname in manifest.get("projects_updated", []):
+            if pname not in valid_projects:
+                continue
+            _, err = _start_job("project_update", {"project": pname, "emails": []},
+                                label=f"상태 반영 — {pname}")
+            if err is None:
+                dispatched.append(pname)
     with LOCK:
         if ok:
             _append_log(
@@ -3219,6 +3234,9 @@ def _granola_refresh_finalize(job, params):
             )
             if actions_error:
                 _append_log(job, f"[시스템] Granola 액션 반영 실패 — {actions_error}")
+            if dispatched:
+                _append_log(job, f"[시스템] 프로젝트 상태 반영 작업 {len(dispatched)}건 대기열 등록 "
+                                 f"({', '.join(dispatched)})")
         else:
             _append_log(job, f"[시스템] Granola 동기화 실패 — {error}")
 

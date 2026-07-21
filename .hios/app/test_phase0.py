@@ -491,6 +491,29 @@ def test_granola_sync_records_health(isolated):
     assert health["last_error"] is None
 
 
+def test_granola_sync_dispatches_project_update_for_touched_projects(
+        isolated, monkeypatch):
+    monkeypatch.setattr(isolated, "_project_names", lambda: ["WMO", "Equitee"])
+    starts = []
+    monkeypatch.setattr(
+        isolated, "_start_job",
+        lambda *args, **kwargs: (starts.append((args, kwargs)) or ("job", None)),
+    )
+    manifest = {
+        "connection": {"status": "ok", "error": None},
+        "meetings_seen": 2, "meetings_created": 2,
+        "projects_updated": ["WMO", "Bogus-Project"],
+    }
+    job = _job("granola", "granola_refresh", status="success")
+    job["log"].append(json.dumps(manifest))
+    isolated._granola_refresh_finalize(job, {})
+
+    assert len(starts) == 1
+    (task_id, params), kwargs = starts[0]
+    assert task_id == "project_update"
+    assert params == {"project": "WMO", "emails": []}
+
+
 def test_granola_actions_are_project_scoped_and_deduplicated(
         isolated, monkeypatch, tmp_path):
     projects_dir = tmp_path / "projects"

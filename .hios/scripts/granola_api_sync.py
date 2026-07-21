@@ -204,6 +204,7 @@ def main():
     manifest["meetings_seen"] = len(notes)
 
     created = 0
+    projects_touched = set()
     for note in notes:
         if not isinstance(note, dict):
             continue
@@ -217,12 +218,16 @@ def main():
             continue
         if not isinstance(detail, dict):
             detail = {}
-        project = classify(note.get("title", ""), detail.get("summary", ""))
+        summary_text = detail.get("summary_markdown") or detail.get("summary_text") or ""
+        project = classify(note.get("title", ""), summary_text)
         write_note(note, project, detail)
         processed.add(note_id)
         created += 1
+        if project:
+            projects_touched.add(project)
 
     manifest["meetings_created"] = created
+    manifest["projects_updated"] = sorted(projects_touched)
     save_processed(processed)
     print(f"그래놀라 동기화 완료 — 조회 {manifest['meetings_seen']}건, "
           f"신규 {created}건 (AI 미사용, 공식 API)")

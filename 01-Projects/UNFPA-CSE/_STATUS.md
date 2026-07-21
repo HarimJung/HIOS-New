@@ -10,7 +10,7 @@ tags: [unfpa, status]
 
 | # | Deliverable | Status | Progress | Next Step | Due |
 |---|-------------|--------|----------|-----------|-----|
-| 1 | CSE Landing Page | Not started | 0% | Define requirements | TBD |
+| 1 | CSE Landing Page | Not started | 0% | IT/KM(Soren·Jennie) 미팅 → Steve 워크스트림 요약 이메일 확인 (내부 리소스 저장소 우선) | TBD |
 | 2 | Reporting Platform | In progress | 10% | Verify Wafa's 7/16 access reply → clasp export → gap audit | Jul 31 |
 | 3 | Baseline Infographics | Not started | 0% | Request 10 country reports (in handoff list) | Sep 22 |
 | 4 | Country Mapping Dashboard | Not started | 0% | Define data sources (in handoff list) | Sep 22 |
@@ -25,8 +25,27 @@ tags: [unfpa, status]
   blocked until script access is confirmed.
 
 ## 최근 동향
-- 2026-07-20: CSE 팀 회의 진행 (최종 7:00–8:30am EDT로 시간 변경, Gemini
-  자동 노트 공유됨 — 검토 후 액션 정리 필요). 회의 후속으로 Steve Petit이
+- 2026-07-20 (회의 노트 동기화): CSE 팀 회의 Granola 노트 수신
+  (`02-Meetings/2026-07-20-CSE-team-meeting.md`) — 핵심 액션:
+  ① 팩트시트 3종(EmpowerEd / CSE Pooled Fund / OOS CSE Phase 1&2)은
+  **하림 주도 드래프팅** — 다음 주 Steve에게 1차 초안 공유 → 그다음 주 팀
+  리뷰 (Steve 다음 주 부재, 코디네이터는 Wafa; EmpowerEd는 empowered
+  브랜딩+UNFPA 로고, Pooled Fund는 UNFPA+도너(노르웨이 등) 로고. Steve가
+  콘텐츠 요구사항·예시 팩트시트를 Rams에게 송부 예정).
+  ② CSE 디지털 플랫폼: 이번 주 IT/KM(Soren·Jennie) 미팅에서 권한 이슈 논의
+  예정 — 미팅 후 Steve가 워크스트림 매핑 요약 이메일 발송, Rams가 웹팀
+  (기존 템플릿 제약)·IT 경험 브리핑 제안. 비전: 내부 리소스 저장소 우선의
+  단일 CSE 랜딩 페이지.
+  ③ Youth Day: Rams가 EmpowerEd 앵커 휴먼 인터레스트 웹스토리(8/10)+소셜
+  포스트(8/1 카피 완성) 진행 — 포스트 본문에 도너 펀딩 언급 금지, 캡션에서
+  Canada 태그 가능.
+  ④ Empowered 로고 승인: Cynthia 사인오프 대기 — 9/22 도너 미팅 전 9/1까지
+  승인·노르웨이 도너 공유 목표.
+  ⑤ Redirection 프로젝트 계약(조달 드래프팅 중, 8월 중순~9월 초 예상) —
+  하림이 다음 주 팔로업.
+  팀: 신규 JPO 2명 합류 예정, Christine 9월 복귀.
+- 2026-07-20: CSE 팀 회의 진행 (최종 7:00–8:30am EDT로 시간 변경, Granola
+  노트 동기화 완료 — 액션은 위 bullet 참조). 회의 후속으로 Steve Petit이
   Wafa·하림에게 **팩트시트 3종** 작성 요청: ① CSE Pooled Fund ② EmpowerEd
   ③ Global Programme on OOS CSE Phase 1&2 — 도너 대상 글로벌 인게이지먼트용,
   8월 3일 9:30–10:00am EDT 리뷰 미팅 초대 수신. Wafa와 1:1 미팅 확정
