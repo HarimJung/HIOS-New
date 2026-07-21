@@ -61,6 +61,7 @@ const state = {
   workTreeCache: {},    // project -> tree json
   workOpenDirs: {},     // project -> Set of open dir paths
   workFilePath: null,
+  pendingHighlightActionId: null,
   contentView: "digests",
   contentFile: null,
   // home
@@ -837,7 +838,7 @@ function biCardHtml(p, it) {
   const statusBtns = BI_STATUS.map(([k, ko]) =>
     `<button class="bi-st ${k}${it.status === k ? " on" : ""}" data-st="${k}">${ko}</button>`).join("");
   const detail = it.detail
-    ? `<div class="bi-detail">${escapeHtml(it.detail).replace(/\n/g, "<br>")}</div>` : "";
+    ? `<div class="bi-detail md">${renderMarkdown(it.detail)}</div>` : "";
   return `
   <div class="bi-card p-${escapeHtml(it.priority || "med")}${it.status === "done" ? " is-done" : ""}"
        data-p="${escapeHtml(p)}" data-id="${escapeHtml(it.id)}">
@@ -974,6 +975,16 @@ async function renderBoardView(container, fixedProject) {
   if (dt) dt.onclick = () => { state.boardShowDone = !state.boardShowDone; reload(); };
 
   wireBiCards(container, reload);
+
+  if (state.pendingHighlightActionId) {
+    const target = container.querySelector(`.bi-card[data-id="${state.pendingHighlightActionId}"]`);
+    state.pendingHighlightActionId = null;
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth", block: "center" });
+      target.classList.add("bi-flash");
+      setTimeout(() => target.classList.remove("bi-flash"), 2200);
+    }
+  }
 
   container.querySelector("#bi-add-btn").onclick = async () => {
     const title = container.querySelector("#bi-add-title").value.trim();
@@ -1352,6 +1363,32 @@ async function loadWork() {
 
 /* -------- workspace: 개요 -------- */
 
+function priorityItemHtml(it) {
+  return `<div class="pri-item" data-id="${escapeHtml(it.id)}">
+    <div class="pri-top">
+      <span class="bi-prio ${escapeHtml(it.priority || "med")}">${BI_PRIO_KO[it.priority] || "중간"}</span>
+      ${dueBadge(it.due)}
+    </div>
+    <div class="pri-title">${escapeHtml(it.title)}</div>
+  </div>`;
+}
+
+function priorityPanelHtml(items) {
+  const open = items.filter((it) => it.status !== "done");
+  const top = open.slice().sort((a, b) => {
+    const x = biSortKey(a), y = biSortKey(b);
+    return x[0] - y[0] || x[1] - y[1];
+  }).slice(0, 8);
+  return `
+    <div class="ws-section ov-priority">
+      <div class="ws-head"><span class="ws-title">⭐ 지금 중요한 것</span>
+        <span class="spacer"></span><span class="em-updated">${open.length}건 열림</span></div>
+      ${top.length
+        ? `<div class="pri-list">${top.map(priorityItemHtml).join("")}</div>`
+        : `<div class="ws-empty">열린 액션 없음 🎉</div>`}
+    </div>`;
+}
+
 async function loadWorkOverview(box) {
   const name = state.workProject;
   let p;
@@ -1359,6 +1396,8 @@ async function loadWorkOverview(box) {
   catch (e) { box.innerHTML = failHtml(e); return; }
   const briefRel = `01-Projects/${name}/_PROJECT-BRIEF.md`;
   const brief = await api(`/api/vault-file/${encodeRel(briefRel)}`).catch(() => null);
+  const itemGroups = await api("/api/action-items").catch(() => []);
+  const myItems = (itemGroups.find((g) => g.project === name) || {}).items || [];
 
   const todosHtml = p.todos.length
     ? p.todos.map((t) => `
@@ -1369,35 +1408,40 @@ async function loadWorkOverview(box) {
     : `<div class="ws-empty">할 일 없음</div>`;
 
   box.innerHTML = `
-    <div class="ws-section ov-ask">
-      <div class="ws-head"><span class="ws-title">엔진에게 바로 요청</span><span class="spacer"></span>
-        <span class="ai-note-inline">Claude가 <code>01-Projects/${escapeHtml(name)}/</code> 범위로 실행 — 로그는 AI 요청 탭</span></div>
-      <div class="ws-form">
-        <input class="ws-input" id="ov-ask-input" maxlength="2000"
-          placeholder="예: 최근 미팅노트 반영해서 _STATUS.md 업데이트해줘 (Enter로 실행)">
-        <button class="ws-add-btn" id="ov-ask-run">엔진 실행</button>
+  <div class="ov-split">
+    <div class="ov-main">
+      <div class="ws-section ov-ask">
+        <div class="ws-head"><span class="ws-title">엔진에게 바로 요청</span><span class="spacer"></span>
+          <span class="ai-note-inline">Claude가 <code>01-Projects/${escapeHtml(name)}/</code> 범위로 실행 — 로그는 AI 요청 탭</span></div>
+        <div class="ws-form">
+          <input class="ws-input" id="ov-ask-input" maxlength="2000"
+            placeholder="예: 최근 미팅노트 반영해서 _STATUS.md 업데이트해줘 (Enter로 실행)">
+          <button class="ws-add-btn" id="ov-ask-run">엔진 실행</button>
+        </div>
+      </div>
+      <div class="ws-section" id="ov-status">
+        <div class="ws-head"><span class="ws-title">현황 — _STATUS.md</span><span class="spacer"></span>
+          <button class="ws-open-btn" id="ov-status-edit">편집</button>
+          <button class="ws-open-btn" data-open-folder="root">프로젝트 폴더</button></div>
+        <div class="md">${renderMarkdown(p.status || "_STATUS.md 없음")}</div>
+      </div>
+      ${brief && !brief.binary ? `
+      <div class="ws-section" id="ov-brief">
+        <div class="ws-head"><span class="ws-title">브리프 — _PROJECT-BRIEF.md</span><span class="spacer"></span>
+          <button class="ws-open-btn" id="ov-brief-edit">편집</button></div>
+        <div class="md">${renderMarkdown(brief.content)}</div>
+      </div>` : ""}
+      <div class="ws-section">
+        <div class="ws-head"><span class="ws-title">할 일 — _TODO.md</span></div>
+        <div id="ws-todos">${todosHtml}</div>
+        <div class="ws-form">
+          <input class="ws-input" id="todo-new" placeholder="새 할 일 입력 후 Enter 또는 추가">
+          <button class="ws-add-btn" id="todo-add">추가</button>
+        </div>
       </div>
     </div>
-    <div class="ws-section" id="ov-status">
-      <div class="ws-head"><span class="ws-title">현황 — _STATUS.md</span><span class="spacer"></span>
-        <button class="ws-open-btn" id="ov-status-edit">편집</button>
-        <button class="ws-open-btn" data-open-folder="root">프로젝트 폴더</button></div>
-      <div class="md">${renderMarkdown(p.status || "_STATUS.md 없음")}</div>
-    </div>
-    ${brief && !brief.binary ? `
-    <div class="ws-section" id="ov-brief">
-      <div class="ws-head"><span class="ws-title">브리프 — _PROJECT-BRIEF.md</span><span class="spacer"></span>
-        <button class="ws-open-btn" id="ov-brief-edit">편집</button></div>
-      <div class="md">${renderMarkdown(brief.content)}</div>
-    </div>` : ""}
-    <div class="ws-section">
-      <div class="ws-head"><span class="ws-title">할 일 — _TODO.md</span></div>
-      <div id="ws-todos">${todosHtml}</div>
-      <div class="ws-form">
-        <input class="ws-input" id="todo-new" placeholder="새 할 일 입력 후 Enter 또는 추가">
-        <button class="ws-add-btn" id="todo-add">추가</button>
-      </div>
-    </div>`;
+    <div class="ov-side">${priorityPanelHtml(myItems)}</div>
+  </div>`;
 
   const reload = () => loadWorkOverview(box);
 
@@ -1454,6 +1498,15 @@ async function loadWorkOverview(box) {
   };
   $("todo-add").onclick = addTodo;
   $("todo-new").onkeydown = (ev) => { if (ev.key === "Enter") addTodo(); };
+
+  box.querySelectorAll(".pri-item").forEach((row) => {
+    row.onclick = () => {
+      if (!confirmLeave()) return;
+      state.pendingHighlightActionId = row.dataset.id;
+      state.workSub = "actions";
+      loadWork();
+    };
+  });
 }
 
 /* -------- workspace: 미팅 -------- */
