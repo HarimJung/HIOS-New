@@ -639,3 +639,65 @@ def test_project_update_finalize_parses_manifest_and_creates_actions(
     )
     assert len(items) == 1
     assert items[0]["title"] == "Salvatore concept note 회신"
+
+
+def test_deliverable_slugs_lists_real_subdirs_only(isolated, tmp_path):
+    proj = tmp_path / "UNFPA-CSE"
+    (proj / "01-Deliverables" / "reporting-platform").mkdir(parents=True)
+    (proj / "01-Deliverables" / "cse-landing-page").mkdir(parents=True)
+    (proj / "01-Deliverables" / ".hidden").mkdir(parents=True)
+    (proj / "02-Meetings").mkdir(parents=True)
+
+    assert isolated._deliverable_slugs(proj) == ["cse-landing-page", "reporting-platform"]
+    # Climate-AICA style: falls back to *-Modules when no *-Deliverables exists
+    proj2 = tmp_path / "Climate-AICA"
+    (proj2 / "01-Modules" / "module1").mkdir(parents=True)
+    assert isolated._deliverable_slugs(proj2) == ["module1"]
+
+
+def test_clean_deliverable_rejects_nonexistent_slug(isolated, tmp_path):
+    proj = tmp_path / "UNFPA-CSE"
+    (proj / "01-Deliverables" / "reporting-platform").mkdir(parents=True)
+
+    assert isolated._clean_deliverable(proj, "reporting-platform") == "reporting-platform"
+    assert isolated._clean_deliverable(proj, "../../etc") == ""
+    assert isolated._clean_deliverable(proj, "made-up-slug") == ""
+    assert isolated._clean_deliverable(proj, "") == ""
+
+
+def test_project_open_deliverable_only_opens_real_subdir(isolated, monkeypatch, tmp_path):
+    projects_dir = tmp_path / "projects"
+    proj = projects_dir / "UNFPA-CSE"
+    (proj / "01-Deliverables" / "reporting-platform").mkdir(parents=True)
+    monkeypatch.setattr(isolated, "PROJECTS_DIR", projects_dir)
+    monkeypatch.setattr(isolated, "_project_names", lambda: ["UNFPA-CSE"])
+    opened = []
+    monkeypatch.setattr(isolated.subprocess, "Popen", lambda args: opened.append(args))
+
+    with isolated.app.test_client() as client:
+        client.post("/api/projects/UNFPA-CSE/open",
+                     json={"which": "deliverable", "slug": "reporting-platform"})
+        assert opened[-1] == ["open", str(proj / "01-Deliverables" / "reporting-platform")]
+
+        # bogus slug falls back to the deliverables root, not the raw (unsafe) path
+        client.post("/api/projects/UNFPA-CSE/open",
+                     json={"which": "deliverable", "slug": "../../../etc"})
+        assert opened[-1] == ["open", str(proj / "01-Deliverables")]
+
+
+def test_project_update_create_actions_stores_validated_deliverable(
+        isolated, monkeypatch, tmp_path):
+    projects_dir = tmp_path / "projects"
+    proj = projects_dir / "UNFPA-CSE"
+    (proj / "01-Deliverables" / "reporting-platform").mkdir(parents=True)
+    monkeypatch.setattr(isolated, "PROJECTS_DIR", projects_dir)
+    monkeypatch.setattr(isolated, "_project_names", lambda: ["UNFPA-CSE"])
+
+    isolated._project_update_create_actions("UNFPA-CSE", [
+        {"title": "리포팅 플랫폼 버그 수정", "deliverable": "reporting-platform"},
+        {"title": "근거 없는 딜리버블", "deliverable": "nonexistent-slug"},
+    ])
+    items = json.loads((proj / "_ACTIONS.json").read_text(encoding="utf-8"))
+    by_title = {i["title"]: i for i in items}
+    assert by_title["리포팅 플랫폼 버그 수정"]["deliverable"] == "reporting-platform"
+    assert by_title["근거 없는 딜리버블"]["deliverable"] == ""

@@ -1283,15 +1283,44 @@ def api_project_resource_add(name):
     return jsonify(ok=True)
 
 
+def _deliverable_root(proj):
+    """Most projects use 01-Deliverables/<slug>/; Climate-AICA uses 01-Modules/<slug>/."""
+    return _find_subdir(proj, "deliverable") or _find_subdir(proj, "module")
+
+
+def _deliverable_slugs(proj):
+    root = _deliverable_root(proj)
+    if root is None:
+        return []
+    return sorted(d.name for d in root.iterdir() if d.is_dir() and not d.name.startswith("."))
+
+
+@app.get("/api/projects/<name>/deliverables")
+def api_project_deliverables(name):
+    return jsonify(_deliverable_slugs(_proj_dir(name)))
+
+
 @app.post("/api/projects/<name>/open")
 def api_project_open(name):
     proj = _proj_dir(name)
-    which = (request.get_json(silent=True) or {}).get("which", "root")
+    body = request.get_json(silent=True) or {}
+    which = body.get("which", "root")
     target = proj
     if which == "meetings":
         target = _find_subdir(proj, "meeting") or proj
     elif which == "docs":
         target = _find_subdir(proj, "document") or proj
+    elif which == "deliverable":
+        root = _deliverable_root(proj)
+        slug = str(body.get("slug", "") or "")
+        candidate = (root / slug) if root and slug else None
+        # only open it if it's a real, existing subdir — never trust the
+        # client-supplied slug blindly (path traversal / stale data)
+        if (candidate and candidate.is_dir()
+                and candidate.resolve().is_relative_to(root.resolve())):
+            target = candidate
+        else:
+            target = root or proj
     subprocess.Popen(["open", str(target)])
     return jsonify(ok=True)
 
@@ -1679,6 +1708,15 @@ def _clean_people(raw):
     return [_clean_item_text(p, 60) for p in raw[:10] if _clean_item_text(p, 60)]
 
 
+def _clean_deliverable(proj, raw):
+    """Only accept a slug that's a real existing subdir — never store a
+    dangling reference the folder-open button can't resolve."""
+    slug = _clean_item_text(raw, 100)
+    if not slug or slug not in _deliverable_slugs(proj):
+        return ""
+    return slug
+
+
 @app.get("/api/action-items")
 def api_action_items():
     out = []
@@ -1704,6 +1742,7 @@ def api_action_item_add(name):
         "due": due if DATE_RE.match(due) else "",
         "people": _clean_people(data.get("people")),
         "sources": _clean_sources(data.get("sources")),
+        "deliverable": _clean_deliverable(proj, data.get("deliverable", "")),
         "note": _clean_item_text(data.get("note", "")),
         "created": time.strftime("%Y-%m-%d"),
         "updated": time.strftime("%Y-%m-%d"),
@@ -1748,6 +1787,8 @@ def api_action_item_update(name, item_id):
                 item["people"] = _clean_people(data["people"])
             if "sources" in data:
                 item["sources"] = _clean_sources(data["sources"])
+            if "deliverable" in data:
+                item["deliverable"] = _clean_deliverable(proj, data["deliverable"])
             item["updated"] = time.strftime("%Y-%m-%d")
         _write_json(_items_file(proj), items)
     return jsonify(ok=True)
@@ -3585,11 +3626,17 @@ def _project_update_prompt(p):
         "'누가 무엇을 언제까지 해야 하는지'가 구체적으로 드러나는 항목만, 아직 "
         "_ACTIONS.json에 없는 것만 새 액션으로 제안하세요. 이 파일은 직접 수정하지 마세요 "
         "— 서버가 중복 제거 후 대신 씁니다. 확실한 근거가 없으면 추측성 액션을 만들지 "
-        "말고 빈 배열을 내세요.\n\n"
+        "말고 빈 배열을 내세요.\n"
+        f"4. 01-Projects/{name}/ 에 01-Deliverables/ 또는 01-Modules/ 처럼 딜리버블별 "
+        "하위 폴더가 있으면 그 폴더명(슬러그) 목록을 확인하세요. 새 액션이 특정 딜리버블과 "
+        "명확히 연관되면 그 폴더명을 그대로 deliverable 필드에 넣으세요 (예: "
+        "\"reporting-platform\"). 애매하면 빈 문자열로 두세요 — 실제 존재하는 폴더명이 "
+        "아니면 서버가 무시합니다.\n\n"
         "파일 삭제/이동 금지.\n\n"
         "마지막 줄에 코드펜스 없이 다음 JSON 객체 하나만 출력하세요 (본문 요약 뒤에):\n"
         '{"new_actions":[{"title":"한 줄 제목","detail":"근거·맥락 (어느 미팅/이메일인지 포함)",'
         '"due":"YYYY-MM-DD 또는 빈 문자열","priority":"high|med|low","people":["관련자"],'
+        '"deliverable":"딜리버블 폴더명 또는 빈 문자열",'
         '"source":{"kind":"gmail|granola","label":"표시명",'
         '"url":"이메일이면 https://mail.google.com/mail/u/0/#all/<thread_id>, '
         '미팅이면 노트 frontmatter의 granola_url 값"}}]}\n'
@@ -3626,6 +3673,7 @@ def _project_update_create_actions(project, actions):
     only dedup signal available."""
     if not isinstance(actions, list):
         return 0
+    proj_dir = PROJECTS_DIR / project
     with PROJECT_ACTION_SEEN_LOCK:
         raw_seen = _read_json(PROJECT_ACTION_SEEN_FILE, [])
         seen = set(raw_seen) if isinstance(raw_seen, list) else set()
@@ -3654,6 +3702,7 @@ def _project_update_create_actions(project, actions):
             "due": due,
             "people": _clean_people(action.get("people")),
             "sources": _clean_sources([source]) if source else [],
+            "deliverable": _clean_deliverable(proj_dir, action.get("deliverable", "")),
             "note": "",
             "created": time.strftime("%Y-%m-%d"),
             "updated": time.strftime("%Y-%m-%d"),
@@ -3662,7 +3711,7 @@ def _project_update_create_actions(project, actions):
     if not valid:
         return 0
     with ITEMS_LOCK:
-        proj = PROJECTS_DIR / project
+        proj = proj_dir
         items = _load_items(proj)
         for key, item in valid:
             items.append(item)

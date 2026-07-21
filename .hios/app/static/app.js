@@ -830,7 +830,7 @@ function biSortKey(it) {
   return [due, BI_PRIO_W[it.priority] ?? 1];
 }
 
-function biCardHtml(p, it) {
+function biCardHtml(p, it, deliverableSlugs) {
   const srcs = (it.sources || []).map((s) =>
     `<a class="src-chip ${s.kind}" href="${escapeHtml(s.url)}" target="_blank" rel="noopener">
       <span class="src-ic">${SRC_ICON[s.kind] || "↗"}</span>${escapeHtml(s.label)}</a>`).join("");
@@ -839,9 +839,17 @@ function biCardHtml(p, it) {
     `<button class="bi-st ${k}${it.status === k ? " on" : ""}" data-st="${k}">${ko}</button>`).join("");
   const detail = it.detail
     ? `<div class="bi-detail md">${renderMarkdown(it.detail)}</div>` : "";
+  const slugs = deliverableSlugs || [];
+  const delivSelect = slugs.length
+    ? `<select class="bi-deliv-select" title="이 액션과 연결된 딜리버블 폴더">
+        <option value=""${it.deliverable ? "" : " selected"}>(프로젝트 전체)</option>
+        ${slugs.map((s) =>
+          `<option value="${escapeHtml(s)}"${s === it.deliverable ? " selected" : ""}>${escapeHtml(s)}</option>`).join("")}
+      </select>` : "";
+  const folderLabel = it.deliverable || "프로젝트 폴더";
   return `
   <div class="bi-card p-${escapeHtml(it.priority || "med")}${it.status === "done" ? " is-done" : ""}"
-       data-p="${escapeHtml(p)}" data-id="${escapeHtml(it.id)}">
+       data-p="${escapeHtml(p)}" data-id="${escapeHtml(it.id)}" data-deliverable="${escapeHtml(it.deliverable || "")}">
     <div class="bi-top">
       <span class="bi-proj">${escapeHtml(p)}</span>
       <select class="bi-prio-select ${escapeHtml(it.priority || "med")}" title="우선순위 변경">
@@ -856,9 +864,10 @@ function biCardHtml(p, it) {
     ${detail}
     <div class="bi-meta">
       ${srcs}
-      <button class="src-chip bi-open-folder" type="button" data-p="${escapeHtml(p)}"
-        title="Finder에서 ${escapeHtml(p)} 프로젝트 폴더 열기">
-        <span class="src-ic">📁</span>프로젝트 폴더</button>
+      <button class="src-chip bi-open-folder" type="button"
+        title="Finder에서 ${escapeHtml(folderLabel)} 폴더 열기">
+        <span class="src-ic">📁</span>${escapeHtml(folderLabel)}</button>
+      ${delivSelect}
       ${people}
     </div>
     <div class="bi-controls">${statusBtns}</div>
@@ -903,11 +912,25 @@ function wireBiCards(container, reload) {
       if (await saveItem(p, id, { delete: true }, "삭제됨")) reload();
     };
     card.querySelector(".bi-open-folder").onclick = async () => {
+      const slug = card.dataset.deliverable;
       try {
-        await postJson(`/api/projects/${encodeURIComponent(p)}/open`, { which: "root" });
-        toast(`Finder에서 ${p} 폴더 열림`, "ok");
+        await postJson(`/api/projects/${encodeURIComponent(p)}/open`,
+          slug ? { which: "deliverable", slug } : { which: "root" });
+        toast(`Finder에서 ${slug || p} 폴더 열림`, "ok");
       } catch (e) { toast(`실패: ${e.body?.message || e.message}`, "err"); }
     };
+    const delivSel = card.querySelector(".bi-deliv-select");
+    if (delivSel) {
+      delivSel.onchange = async () => {
+        const v = delivSel.value;
+        card.dataset.deliverable = v;
+        const folderBtn = card.querySelector(".bi-open-folder");
+        folderBtn.title = `Finder에서 ${v || p} 폴더 열기`;
+        folderBtn.lastChild.textContent = v || "프로젝트 폴더";
+        if (!(await saveItem(p, id, { deliverable: v },
+          v ? `딜리버블 연결: ${v}` : "딜리버블 연결 해제"))) reload();
+      };
+    }
   });
 }
 
@@ -945,13 +968,19 @@ async function renderBoardView(container, fixedProject) {
     .sort((a, b) => { const x = biSortKey(a[1]), y = biSortKey(b[1]); return x[0] - y[0] || x[1] - y[1]; });
   const done = flat.filter(([, it]) => it.status === "done");
 
-  const cards = open.map(([p, it]) => biCardHtml(p, it)).join("")
+  const deliverableMap = {};
+  await Promise.all(visible.map(async (g) => {
+    deliverableMap[g.project] = await api(`/api/projects/${encodeURIComponent(g.project)}/deliverables`)
+      .catch(() => []);
+  }));
+
+  const cards = open.map(([p, it]) => biCardHtml(p, it, deliverableMap[p])).join("")
     || `<div class="ws-empty">열린 액션 없음 🎉</div>`;
   let doneHtml = "";
   if (done.length) {
     doneHtml = `<button class="bi-done-toggle" id="bi-done-toggle">
         완료됨 ${done.length}건 ${state.boardShowDone ? "접기 ▲" : "보기 ▼"}</button>` +
-      (state.boardShowDone ? done.map(([p, it]) => biCardHtml(p, it)).join("") : "");
+      (state.boardShowDone ? done.map(([p, it]) => biCardHtml(p, it, deliverableMap[p])).join("") : "");
   }
 
   const defProj = fixedProject || state.boardProject || groups[0]?.project;
